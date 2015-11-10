@@ -12,6 +12,7 @@ install:
 - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 script:
- - npm run build
+ - npm run build resources
+ - npm run build-assets $DIST_BUCKET $DIST_FOLDER
  - npm run upload $DIST_BUCKET $DIST_FOLDER
 sudo: false

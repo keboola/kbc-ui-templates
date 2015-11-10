@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "node src/scripts/app/build.js",
+    "build-assets": "node src/scripts/app/build-assets.js",
     "upload": "node src/scripts/app/upload.js"
   }
 }

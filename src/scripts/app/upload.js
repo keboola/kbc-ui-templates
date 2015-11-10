@@ -9,11 +9,7 @@ AWS.config.region = 'us-east-1';
 var s3bucket = process.argv[2];
 var s3path = process.argv[3];
 var version = process.env.KBC_UI_TEMPLATES_REVISION;
-if (!version) {
-    version = uuid.v1();
-}
 
-buildAssetsFile("dist", version);
 uploadResources("dist", version);
 
 function uploadResources(dir, version) {
@@ -53,19 +49,3 @@ function uploadResources(dir, version) {
             });
     });
 }
-
-function buildAssetsFile(dir, version) {
-    var assets = {};
-    list = fs.readdirSync(dir)
-    if (!list) {
-        return data;
-    }
-    list.forEach(function (file) {
-        if (file != 'assets.json') {
-            var key = file.substr(0, file.length - 5);
-            assets[key] = "https://s3.amazonaws.com/" + s3bucket + "/" + s3path + "/" + version + "/" + file;
-        }
-    });
-    fs.writeFileSync(dir + "/assets.json", JSON.stringify(assets));
-}
-
