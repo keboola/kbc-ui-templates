@@ -8,7 +8,10 @@ AWS.config.region = 'us-east-1';
 
 var s3bucket = 'kbc-uis';
 var s3path = 'kbc.templates'
-var version = uuid.v1();
+var version = process.env.KBC_UI_TEMPLATES_REVISION;
+if (!version) {
+    version = uuid.v1();
+}
 
 buildAssetsFile("dist", version);
 uploadResources("dist", version);
