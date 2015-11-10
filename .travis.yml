@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "5"
+branches:
+  only:
+  - master
+install:
+- time npm install
+- git --version
+- git describe --tags
+- export KBC_UI_TEMPLATES_REVISION=`git describe --tags`
+- export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+- export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+script:
+ - npm run build
+ - npm run upload
+sudo: false
