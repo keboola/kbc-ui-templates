@@ -6,8 +6,8 @@ var uuid = require('node-uuid');
 
 AWS.config.region = 'us-east-1';
 
-var s3bucket = 'kbc-uis';
-var s3path = 'kbc.templates'
+var s3bucket = process.argv[2];
+var s3path = process.argv[3];
 var version = process.env.KBC_UI_TEMPLATES_REVISION;
 if (!version) {
     version = uuid.v1();
