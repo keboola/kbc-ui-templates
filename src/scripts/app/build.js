@@ -2,7 +2,9 @@ var fs = require("fs");
 var rmdir = require('rmdir-recursive').sync;
 var _ = require("lodash");
 
-resources = loadResources("src/resources");
+var resourcesFolder = process.argv[2];
+
+resources = loadResources(resourcesFolder);
 materializeResources(resources, "dist");
 
 // Materialize files in build dir
