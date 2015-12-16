@@ -99,8 +99,7 @@
         {
           "$ref": "#/definitions/fn_implode"
         }
-      ],
-      "additionalProperties": false
+      ]
     },
     "fn_md5": {
       "type": "object",
