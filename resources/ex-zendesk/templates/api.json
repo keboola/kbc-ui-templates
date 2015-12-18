@@ -1,1 +1,18 @@
-{}
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://",
+      {
+        "attr": "domain"
+      },
+      ".zendesk.com/api/v2/"
+    ]
+  },
+  "authentication": {
+    "type": "basic"
+  },
+  "pagination": {
+    "method": "response.url"
+  }
+}
