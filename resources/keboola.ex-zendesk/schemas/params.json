@@ -378,8 +378,7 @@
               "properties": {
                 "start_time": {
                   "title": "Start time",
-                  "$ref": "#/definitions/param",
-                  "minLength": 1
+                  "$ref": "#/definitions/param"
                 },
                 "end_time": {
                   "title": "End time",
