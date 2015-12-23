@@ -1,0 +1,1 @@
+{"type":"object","title":"Time","description":"Return time from the beginning of the unix epoch in seconds (1.1.1970)","properties":{"function":{"type":"string","template":"time"}}}

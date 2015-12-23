@@ -1,0 +1,1 @@
+{"type":"object","title":"Base64_encode","description":"Encodes data with MIME base64","properties":{"function":{"type":"string","template":"base64_encode"},"args":{"type":"array","items":[{"$ref":"#\/definitions\/param"}],"additionalItems":false,"maxItems":1}}}

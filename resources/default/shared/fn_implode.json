@@ -1,0 +1,1 @@
+{"type":"object","title":"Implode","properties":{"function":{"type":"string","template":"implode"},"args":{"type":"array","items":[{"type":"string","title":"Glue"}],"additionalItems":{"title":"Data","$ref":"#\/definitions\/param"},"minItems":1}}}

@@ -1,0 +1,1 @@
+{"type":"object","title":"SHA1","description":"Create a SHA1 hash of the parameter value","properties":{"function":{"type":"string","template":"sha1"},"args":{"type":"array","items":[{"$ref":"#\/definitions\/param"}],"additionalItems":false,"maxItems":1}}}

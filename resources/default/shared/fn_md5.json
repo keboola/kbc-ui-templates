@@ -1,0 +1,1 @@
+{"type":"object","title":"MD5","description":"Create a MD5 hash of the parameter value","properties":{"function":{"type":"string","template":"md5"},"args":{"type":"array","items":[{"$ref":"#\/definitions\/param"}],"additionalItems":false,"maxItems":1}}}

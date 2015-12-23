@@ -1,0 +1,1 @@
+{"type":"object","title":"Concatenate","properties":{"function":{"type":"string","template":"concat"},"args":{"type":"array","items":{"$ref":"#\/definitions\/param"},"additionalItems":false,"minItems":1}}}

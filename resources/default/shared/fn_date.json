@@ -1,0 +1,1 @@
+{"type":"object","title":"Date","description":"Return date in a specified format","properties":{"function":{"type":"string","template":"date"},"args":{"type":"array","items":[{"type":"string","title":"Date format"},{"$ref":"#\/definitions\/param","title":"Time value"}],"additionalItems":false,"minItems":1,"maxItems":2}}}

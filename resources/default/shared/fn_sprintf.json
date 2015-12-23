@@ -1,0 +1,1 @@
+{"type":"object","title":"Sprintf","properties":{"function":{"type":"string","template":"hash_hmac"},"args":{"type":"array","items":[{"type":"string","title":"Format"}],"additionalItems":{"title":"Data","$ref":"#\/definitions\/param"},"minItems":1}}}
