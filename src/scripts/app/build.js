@@ -4,25 +4,75 @@ var _ = require("lodash");
 
 var resourcesFolder = process.argv[2];
 
-resources = loadResources(resourcesFolder);
-materializeResources(resources, "dist");
+var resources = loadResources(resourcesFolder);
+var sharedDefinitions = loadSharedDefinitions(resourcesFolder + "/default/shared");
+
+materializeResources(resources, sharedDefinitions, "dist");
+
+// Load shared definitions
+function loadSharedDefinitions(dir) {
+    var shared = {};
+    var list = fs.readdirSync(dir);
+    // load all directories in resources level
+    list.forEach(function (file) {
+        var stat = fs.statSync(dir + '/' + file);
+        if (stat.isFile()) {
+            var name = file.substr(0, file.length - 5);
+            shared[name] = {};
+            console.log("Loading shared definition " + name);
+            var definitions = loadJSONFile(dir + '/' + file);
+            var keys = Object.keys(definitions);
+            for (var i = 0; i < keys.length; i++) {
+                if (keys[i] == 'definitions') {
+                    continue;
+                }
+                shared[name][keys[i]] = definitions[keys[i]];
+            }
+            if (definitions.definitions) {
+                var keys = Object.keys(definitions.definitions);
+                for (var i = 0; i < keys.length; i++) {
+                    shared[keys[i]] = {};
+                    shared[keys[i]] = definitions.definitions[keys[i]];
+                }
+            }
+        }
+    });
+    return shared;
+}
 
 // Materialize files in build dir
-function materializeResources(resources, dir) {
+function materializeResources(resources, sharedDefinitions, dir) {
     rmdir(dir, false);
     fs.mkdirSync(dir);
     _.forEach(resources, function(resource, key) {
         console.log("Building", key);
-        fs.writeFileSync(dir + "/" + key + ".json", JSON.stringify(resource));
+
+        // add shared definitions
+        var sharedDefinitionKeys = Object.keys(sharedDefinitions);
+        if (!resource.schemas.params.definitions) {
+            resource.schemas.params.definitions = {};
+        }
+        for (var i = 0; i < sharedDefinitionKeys.length; i++) {
+            if (resource.schemas.params.definitions[sharedDefinitionKeys[i]]) {
+                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in " + key;
+            } else {
+                resource.schemas.params.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
+            }
+        }
+        // replace absolute references
+        var re = /("\$ref":")[^#][^#]*/g;
+        var stringified = JSON.stringify(resource);
+        stringified = stringified.replace(re, '$1');
+        fs.writeFileSync(dir + "/" + key + ".json", stringified);
     });
 }
 
 function loadResources(dir) {
     var resources = {};
-    list = fs.readdirSync(dir);
+    var list = fs.readdirSync(dir);
     // load all directories in resources level
     list.forEach(function (file) {
-        stat = fs.statSync(dir + '/' + file);
+        var stat = fs.statSync(dir + '/' + file);
         if (stat.isDirectory()) {
             resources[file] = {};
             var fullPath = dir + '/' + file;
@@ -33,9 +83,8 @@ function loadResources(dir) {
     return resources;
 }
 
-
 function addResource(path, name) {
-    data =  {
+    var data =  {
         "schemas": addResourceItem(path, name, "schemas"),
         "templates": addResourceItem(path, name, "templates")
     };
@@ -49,7 +98,7 @@ function addTemplates(path, name, templateType) {
         return;
     }
     console.log("Loading", name, "templates", templateType);
-    list = fs.readdirSync(path + "/templates/" + templateType)
+    var list = fs.readdirSync(path + "/templates/" + templateType)
     if (!list) {
         return data;
     }
@@ -63,15 +112,17 @@ function addTemplates(path, name, templateType) {
             return;
         }
 
-        templateName = file.substr(0, file.length - 5);
+        var templateName = file.substr(0, file.length - 5);
 
-        filePath = path + "/templates/" + templateType + "/" + file;
-        metaFilePath = path + "/templates/" + templateType + "/" + templateName + ".meta.json";
+        var filePath = path + "/templates/" + templateType + "/" + file;
+        var metaFilePath = path + "/templates/" + templateType + "/" + templateName + ".meta.json";
+
+
+        var templateData = loadJSONFile(filePath);
+        var templateMeta = loadJSONFile(metaFilePath);
+        templateMeta.params = templateData;
 
         try {
-            templateData = JSON.parse(fs.readFileSync(filePath, "utf8").trim());
-            templateMeta = JSON.parse(fs.readFileSync(metaFilePath, "utf8").trim());
-            templateMeta.params = templateData;
             data.push(templateMeta);
         } catch (e) {
             throw "Cannot parse " + filePath + ": " + e;
@@ -88,7 +139,7 @@ function addResourceItem(path, name, resourceType) {
     }
     console.log("Loading", name, resourceType);
     // load all directories in resources level
-    list = fs.readdirSync(path + "/" + resourceType)
+    var list = fs.readdirSync(path + "/" + resourceType)
     if (!list) {
         return data;
     }
@@ -96,16 +147,22 @@ function addResourceItem(path, name, resourceType) {
         if (file.substr(-5) != '.json') {
             return;
         }
-        schemaName = file.substr(0, file.length - 5);
-
-        filePath = path + "/" + resourceType + "/" + file;
-        try {
-            data[schemaName] = JSON.parse(fs.readFileSync(filePath, "utf8").trim());
-        } catch (e) {
-            throw "Cannot parse " + filePath + ": " + e;
-        }
+        var schemaName = file.substr(0, file.length - 5);
+        var filePath = path + "/" + resourceType + "/" + file;
+        data[schemaName] = loadJSONFile(filePath);
     });
     return data;
+}
+
+function loadJSONFile(file) {
+    if (file.substr(-5) != '.json') {
+        throw file + " not a JSON file";
+    }
+    try {
+        return JSON.parse(fs.readFileSync(file, "utf8").trim());
+    } catch (e) {
+        throw "Cannot parse " + file + ": " + e;
+    }
 }
 
 
