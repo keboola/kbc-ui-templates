@@ -1,4 +1,5 @@
 {
+  "id": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json",
   "title": "Function",
   "oneOf": [
     {
