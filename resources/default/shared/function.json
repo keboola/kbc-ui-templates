@@ -1,36 +1,269 @@
 {
-  "id": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json",
-  "title": "Function",
-  "oneOf": [
-    {
-      "$ref": "fn_md5.json"
+  "definitions": {
+    "function": {
+      "title": "Function",
+      "oneOf": [
+        {
+          "$ref": "#/definitions/fn_md5"
+        },
+        {
+          "$ref": "#/definitions/fn_sha1"
+        },
+        {
+          "$ref": "#/definitions/fn_time"
+        },
+        {
+          "$ref": "#/definitions/fn_date"
+        },
+        {
+          "$ref": "#/definitions/fn_strtotime"
+        },
+        {
+          "$ref": "#/definitions/fn_base64_encode"
+        },
+        {
+          "$ref": "#/definitions/fn_hash_hmac"
+        },
+        {
+          "$ref": "#/definitions/fn_sprintf"
+        },
+        {
+          "$ref": "#/definitions/fn_concat"
+        },
+        {
+          "$ref": "#/definitions/fn_implode"
+        }
+      ]
     },
-    {
-      "$ref": "fn_sha1.json"
+    "fn_md5": {
+      "type": "object",
+      "title": "MD5",
+      "description": "Create a MD5 hash of the parameter value",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "md5"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "$ref": "#/definitions/param"
+            }
+          ],
+          "additionalItems": false,
+          "maxItems": 1
+        }
+      }
     },
-    {
-      "$ref": "fn_time.json"
+    "fn_sha1": {
+      "type": "object",
+      "title": "SHA1",
+      "description": "Create a SHA1 hash of the parameter value",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "sha1"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "$ref": "#/definitions/param"
+            }
+          ],
+          "additionalItems": false,
+          "maxItems": 1
+        }
+      }
     },
-    {
-      "$ref": "fn_date.json"
+    "fn_time": {
+      "type": "object",
+      "title": "Time",
+      "description": "Return time from the beginning of the unix epoch in seconds (1.1.1970)",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "time"
+        }
+      }
     },
-    {
-      "$ref": "fn_strtotime.json"
+    "fn_date": {
+      "type": "object",
+      "title": "Date",
+      "description": "Return date in a specified format",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "date"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string",
+              "title": "Date format"
+            },
+            {
+              "$ref": "#/definitions/param",
+              "title": "Time value"
+            }
+          ],
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 2
+        }
+      }
     },
-    {
-      "$ref": "fn_base64_encode.json"
+    "fn_strtotime": {
+      "type": "object",
+      "title": "Strtotime",
+      "description": "Convert a date string to number of seconds from the beginning of the unix epoch",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "strtotime"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "title": "Time string",
+              "description": "e.g.: \"-3 days\"",
+              "$ref": "#/definitions/param"
+            },
+            {
+              "title": "Timestamp - base for relative dated. \"now\" by default",
+              "$ref": "#/definitions/param"
+            }
+          ],
+          "additionalItems": false,
+          "minItems": 1,
+          "maxItems": 2
+        }
+      }
     },
-    {
-      "$ref": "fn_hash_hmac.json"
+    "fn_base64_encode": {
+      "type": "object",
+      "title": "Base64_encode",
+      "description": "Encodes data with MIME base64",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "base64_encode"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "$ref": "#/definitions/param"
+            }
+          ],
+          "additionalItems": false,
+          "maxItems": 1
+        }
+      }
     },
-    {
-      "$ref": "fn_sprintf.json"
+    "fn_hash_hmac": {
+      "type": "object",
+      "title": "hash_hmac",
+      "description": "Generate a keyed hash value using the HMAC method",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "hash_hmac"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string",
+              "title": "Hashing algorithm"
+            },
+            {
+              "title": "Data",
+              "$ref": "#/definitions/param"
+            },
+            {
+              "type": "string",
+              "title": "Shared secret key",
+              "description": "Shared secret key used for generating the HMAC variant of the message digest."
+            },
+            {
+              "type": "boolean",
+              "title": "Raw"
+            }
+          ],
+          "additionalItems": false,
+          "minItems": 3
+        }
+      }
     },
-    {
-      "$ref": "fn_concat.json"
+    "fn_sprintf": {
+      "type": "object",
+      "title": "Sprintf",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "hash_hmac"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string",
+              "title": "Format"
+            }
+          ],
+          "additionalItems": {
+            "title": "Data",
+            "$ref": "#/definitions/param"
+          },
+          "minItems": 1
+        }
+      }
     },
-    {
-      "$ref": "fn_implode.json"
+    "fn_concat": {
+      "type": "object",
+      "title": "Concatenate",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "concat"
+        },
+        "args": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/param"
+          },
+          "additionalItems": false,
+          "minItems": 1
+        }
+      }
+    },
+    "fn_implode": {
+      "type": "object",
+      "title": "Implode",
+      "properties": {
+        "function": {
+          "type": "string",
+          "template": "implode"
+        },
+        "args": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string",
+              "title": "Glue"
+            }
+          ],
+          "additionalItems": {
+            "title": "Data",
+            "$ref": "#/definitions/param"
+          },
+          "minItems": 1
+        }
+      }
     }
-  ]
+  }
 }
