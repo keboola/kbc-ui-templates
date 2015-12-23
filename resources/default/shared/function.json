@@ -1,40 +1,5 @@
 {
   "definitions": {
-    "function": {
-      "title": "Function",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/fn_md5"
-        },
-        {
-          "$ref": "#/definitions/fn_sha1"
-        },
-        {
-          "$ref": "#/definitions/fn_time"
-        },
-        {
-          "$ref": "#/definitions/fn_date"
-        },
-        {
-          "$ref": "#/definitions/fn_strtotime"
-        },
-        {
-          "$ref": "#/definitions/fn_base64_encode"
-        },
-        {
-          "$ref": "#/definitions/fn_hash_hmac"
-        },
-        {
-          "$ref": "#/definitions/fn_sprintf"
-        },
-        {
-          "$ref": "#/definitions/fn_concat"
-        },
-        {
-          "$ref": "#/definitions/fn_implode"
-        }
-      ]
-    },
     "fn_md5": {
       "type": "object",
       "title": "MD5",
@@ -265,5 +230,38 @@
         }
       }
     }
-  }
+  },
+  "title": "Function",
+  "oneOf": [
+    {
+      "$ref": "#/definitions/fn_md5"
+    },
+    {
+      "$ref": "#/definitions/fn_sha1"
+    },
+    {
+      "$ref": "#/definitions/fn_time"
+    },
+    {
+      "$ref": "#/definitions/fn_date"
+    },
+    {
+      "$ref": "#/definitions/fn_strtotime"
+    },
+    {
+      "$ref": "#/definitions/fn_base64_encode"
+    },
+    {
+      "$ref": "#/definitions/fn_hash_hmac"
+    },
+    {
+      "$ref": "#/definitions/fn_sprintf"
+    },
+    {
+      "$ref": "#/definitions/fn_concat"
+    },
+    {
+      "$ref": "#/definitions/fn_implode"
+    }
+  ]
 }
