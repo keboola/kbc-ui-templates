@@ -118,6 +118,7 @@
           "$ref": "#/definitions/job"
         }
       ],
+      "headerTemplate": "{{ i1 }}: {{self.title}}",
       "title": "Job"
     },
     "zendeskTicketsJob": {
