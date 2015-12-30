@@ -30,7 +30,30 @@
             "$ref": "#/definitions/job"
           }
         }
-      }
+      },
+      "defaultProperties": ["endpoint", "dataType", "params"]
+    },
+    "childJob": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/job"
+        },
+        {
+          "properties": {
+            "placeholders": {
+              "type": "object",
+              "format": "grid",
+              "title": "Placeholders",
+              "additionalProperties": {"type": "string"}
+            },
+            "recursionFilter": {
+              "type": "string",
+              "title": "Recursion Filter",
+              "description": "Can contain a value consisting of a name of a field from the parent's response, logical operator and a value to compare against. Supported operators are \"==\", \"<\", \">\", \"<=\", \">=\", \"!=\""
+            }
+          }
+        }
+      ]
     },
     "attr": {
       "type": "object",
@@ -119,6 +142,45 @@
                   "title": "End time",
                   "$ref": "#/definitions/param"
                 }
+              }
+            },
+            "children": {
+              "type": "array",
+              "title": "Child Jobs",
+              "uniqueItems": true,
+              "items": {
+                "oneOf": [
+                  {
+                    "allOf": [
+                      {"$ref": "#/definitions/childJob"},
+                      {
+                        "title": "Ticket comments",
+                        "properties": {
+                          "endpoint": {
+                            "template": "tickets/{id}/comments.json"
+                          },
+                          "recursionFilter": {
+                            "template": "status!=Deleted",
+                            "type": "string"
+                          },
+                          "dataType": {
+                            "template": "tickets_export"
+                          },
+                          "placeholders": {
+                            "properties": {
+                              "id": {
+                                "template": "id",
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": {"type": "string"}
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {"$ref": "#/definitions/childJob"}
+                ]
               }
             }
           }
