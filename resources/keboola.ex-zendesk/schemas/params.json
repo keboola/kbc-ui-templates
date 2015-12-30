@@ -53,8 +53,7 @@
             }
           }
         }
-      ],
-      "title": "Child job"
+      ]
     },
     "attr": {
       "type": "object",
@@ -118,7 +117,7 @@
           "$ref": "#/definitions/job"
         }
       ],
-      "headerTemplate": "{{ i1 }}: {{self.title}}",
+      "headerTemplate": "{{ i1 }}: {{self.endpoint}}",
       "title": "Job"
     },
     "zendeskTicketsJob": {
