@@ -164,7 +164,36 @@
                             "type": "string"
                           },
                           "dataType": {
-                            "template": "tickets_export"
+                            "template": "tickets_comments"
+                          },
+                          "placeholders": {
+                            "properties": {
+                              "id": {
+                                "template": "id",
+                                "type": "string"
+                              }
+                            },
+                            "additionalProperties": {"type": "string"}
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "allOf": [
+                      {"$ref": "#/definitions/childJob"},
+                      {
+                        "title": "Ticket audits",
+                        "properties": {
+                          "endpoint": {
+                            "template": "tickets/{id}/audits.json"
+                          },
+                          "recursionFilter": {
+                            "template": "status!=Deleted",
+                            "type": "string"
+                          },
+                          "dataType": {
+                            "template": "tickets_audits"
                           },
                           "placeholders": {
                             "properties": {
