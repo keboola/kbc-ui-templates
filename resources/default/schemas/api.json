@@ -1,1 +1,65 @@
-{}
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "id": "http://localhost/json-editor/schemas/api",
+  "title": "API",
+  "type": "object",
+  "properties": {
+    "baseUrl": {
+      "oneOf": [
+        {
+          "type": "string",
+          "title": "Plain URL"
+        },
+        {
+          "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json"
+        }
+      ]
+    },
+    "http": {
+      "type": "object",
+      "properties": {
+        "headers": {
+          "type": "object",
+          "options": {
+            "collapsed": true
+          },
+          "properties": {
+            "Accept-Encoding": {
+              "type": "string"
+            },
+            "Accept": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "requiredHeaders": {
+          "type": "array",
+          "options": {
+            "collapsed": true,
+            "grid_columns": 3
+          },
+          "format": "grid",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "authentication": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "basic",
+            "url.query",
+            "login"
+          ]
+        }
+      }
+    }
+  }
+}
