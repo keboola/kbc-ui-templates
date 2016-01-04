@@ -63,6 +63,8 @@ function materializeResources(resources, sharedDefinitions, dir) {
         var re = /("\$ref":")[^#][^#]*/g;
         var stringified = JSON.stringify(resource);
         stringified = stringified.replace(re, '$1');
+        // test replaced JSON
+        JSON.parse(stringified);
         fs.writeFileSync(dir + "/" + key + ".json", stringified);
     });
 }
