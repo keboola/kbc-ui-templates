@@ -52,13 +52,24 @@ function materializeResources(resources, sharedDefinitions, dir) {
         if (!resource.schemas.params.definitions) {
             resource.schemas.params.definitions = {};
         }
+        if (!resource.schemas.api.definitions) {
+            resource.schemas.api.definitions = {};
+        }
+
+        // Inject shared definitions into params and api
         for (var i = 0; i < sharedDefinitionKeys.length; i++) {
             if (resource.schemas.params.definitions[sharedDefinitionKeys[i]]) {
-                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in " + key;
+                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in `params` " + key;
             } else {
                 resource.schemas.params.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
             }
+            if (resource.schemas.api.definitions[sharedDefinitionKeys[i]]) {
+                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in `api` " + key;
+            } else {
+                resource.schemas.api.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
+            }
         }
+        
         // replace absolute references
         var re = /("\$ref":")[^#][^#]*\/([^/]+).json/g;
         var stringified = JSON.stringify(resource);
