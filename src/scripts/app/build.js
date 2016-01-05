@@ -60,9 +60,9 @@ function materializeResources(resources, sharedDefinitions, dir) {
             }
         }
         // replace absolute references
-        var re = /("\$ref":")[^#][^#]*/g;
+        var re = /("\$ref":")[^#][^#]*\/([^/]+).json/g;
         var stringified = JSON.stringify(resource);
-        stringified = stringified.replace(re, '$1');
+        stringified = stringified.replace(re, '$1#/definitions/$2');
         // test replaced JSON
         JSON.parse(stringified);
         fs.writeFileSync(dir + "/" + key + ".json", stringified);
