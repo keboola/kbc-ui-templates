@@ -52,17 +52,28 @@ function materializeResources(resources, sharedDefinitions, dir) {
         if (!resource.schemas.params.definitions) {
             resource.schemas.params.definitions = {};
         }
+        if (!resource.schemas.api.definitions) {
+            resource.schemas.api.definitions = {};
+        }
+
+        // Inject shared definitions into params and api
         for (var i = 0; i < sharedDefinitionKeys.length; i++) {
             if (resource.schemas.params.definitions[sharedDefinitionKeys[i]]) {
-                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in " + key;
+                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in `params` " + key;
             } else {
                 resource.schemas.params.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
             }
+            if (resource.schemas.api.definitions[sharedDefinitionKeys[i]]) {
+                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in `api` " + key;
+            } else {
+                resource.schemas.api.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
+            }
         }
+        
         // replace absolute references
-        var re = /("\$ref":")[^#][^#]*/g;
+        var re = /("\$ref":")[^#][^#]*\/([^/]+).json/g;
         var stringified = JSON.stringify(resource);
-        stringified = stringified.replace(re, '$1');
+        stringified = stringified.replace(re, '$1#/definitions/$2');
         // test replaced JSON
         JSON.parse(stringified);
         fs.writeFileSync(dir + "/" + key + ".json", stringified);
