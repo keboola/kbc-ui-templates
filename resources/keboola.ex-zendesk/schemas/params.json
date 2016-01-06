@@ -269,9 +269,11 @@
     "jobs": {
       "type": "array",
       "title": "Jobs",
+      "format": "tabs",
       "uniqueItems": true,
       "items": {
-        "$ref": "#/definitions/zendeskJob"
+        "$ref": "#/definitions/zendeskJob",
+        "headerTemplate": "{{ i1 }}: {{self.endpoint}}"
       }
     }
   }

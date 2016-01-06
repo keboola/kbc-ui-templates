@@ -49,23 +49,139 @@
       }
     },
     "authentication": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": [
-            "basic",
-            "url.query",
-            "login"
-          ],
-          "options": {
-            "enum_titles": [
-              "Basic", "Query", "Login"
-            ]
+      "oneOf": [
+        {
+          "type": "object",
+          "title": "Basic",
+          "properties": {
+            "type": {
+              "type": "string",
+              "template": "basic"
+            }
           },
-          "format": "tabs"
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "title": "Query",
+          "description": "Add query parameters to each request",
+          "properties": {
+            "type": {
+              "type": "string",
+              "template": "url.query"
+            }
+          },
+          "additionalProperties": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json#/definitions/function"
+              }
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "title": "Login",
+          "properties": {
+            "type": {
+              "type": "string",
+              "template": "login"
+            },
+            "loginRequest": {
+              "type": "object",
+              "properties": {
+                "endpoint": {
+                  "type": "string",
+                  "minLength": 1,
+                  "description": "The API 'login' URL"
+                },
+                "params": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json#/definitions/function"
+                      }
+                    ]
+                  }
+                },
+                "headers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "oneOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json#/definitions/function"
+                      }
+                    ]
+                  }
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "GET",
+                    "POST",
+                    "FORM"
+                  ]
+                }
+              }
+            },
+            "apiRequest": {
+              "type": "object",
+              "properties": {
+                "query": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "Name of the query parameter with the value being a path within the response from login API (eg. 'token')"
+                },
+                "headers": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "description": "Name of the header with the value being a path within the response from login API (eg. 'X-Api-Key')"
+                }
+              }
+            },
+            "expires": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "title": "Number of seconds"
+                },
+                {
+                  "title": "Value in login response",
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "minLength": 1,
+                      "type": "string",
+                      "description": "Path within the response containing the expiry time value."
+                    },
+                    "relative": {
+                      "type": "boolean",
+                      "default": false
+                    }
+                  }
+                }
+              ]
+            }
+          }
         }
-      }
+      ]
+    },
+    "pagination": {
+      "type": "object"
     }
   }
 }
