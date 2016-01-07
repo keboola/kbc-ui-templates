@@ -55,13 +55,14 @@
     "http": {
       "type": "object",
       "title": "HTTP Headers",
+      "defaultProperties": [
+        "headers"
+      ],
+      "additionalProperties": false,
       "properties": {
         "headers": {
           "type": "object",
           "title": "Default headers",
-          "options": {
-            "collapsed": true
-          },
           "defaultProperties": [
 
           ],
@@ -81,9 +82,6 @@
           "type": "array",
           "title": "Required headers",
           "description": "Add headers that must be set in config.http.headers",
-          "options": {
-            "collapsed": true
-          },
           "format": "table",
           "items": {
             "type": "string",
@@ -95,14 +93,19 @@
     },
     "authentication": {
       "title": "Authentication",
+      "required": "type",
       "oneOf": [
         {
           "type": "object",
           "title": "Basic",
+          "description": "Basic auth has no additional settings. Requires 'username' and 'password' to be set in config.",
           "properties": {
             "type": {
               "type": "string",
-              "template": "basic"
+              "template": "basic",
+              "options": {
+                "hidden": true
+              }
             }
           },
           "additionalProperties": false
@@ -114,7 +117,10 @@
           "properties": {
             "type": {
               "type": "string",
-              "template": "url.query"
+              "template": "url.query",
+              "options": {
+                "hidden": true
+              }
             }
           },
           "additionalProperties": {
@@ -131,21 +137,34 @@
         {
           "type": "object",
           "title": "Login",
+          "description": "Authenticate with the API to obtain a token(s), which can then be used in headers or query parameters",
+          "defaultProperties": [
+            "loginRequest",
+            "apiRequest"
+          ],
           "properties": {
             "type": {
               "type": "string",
-              "template": "login"
+              "template": "login",
+              "options": {
+                "hidden": true
+              }
             },
             "loginRequest": {
+              "title": "Login request",
+              "description": "Describe the request to login/authorize against the API",
               "type": "object",
               "properties": {
                 "endpoint": {
+                  "title": "Endpoint",
                   "type": "string",
                   "minLength": 1,
                   "description": "The API 'login' URL"
                 },
                 "params": {
                   "type": "object",
+                  "title": "Parameters",
+                  "description": "Query, JSON or FORM parameters, depending on the 'Method' setting",
                   "additionalProperties": {
                     "oneOf": [
                       {
@@ -159,6 +178,7 @@
                 },
                 "headers": {
                   "type": "object",
+                  "title": "HTTP Headers",
                   "additionalProperties": {
                     "oneOf": [
                       {
@@ -171,20 +191,31 @@
                   }
                 },
                 "method": {
+                  "title": "Method",
                   "type": "string",
                   "enum": [
                     "GET",
                     "POST",
                     "FORM"
-                  ]
+                  ],
+                  "options": {
+                    "enum_titles": [
+                      "GET",
+                      "POST",
+                      "Form data using POST"
+                    ]
+                  }
                 }
               }
             },
             "apiRequest": {
+              "title": "API request",
+              "description": "Describe how the response from Login request is used to authorize API requests",
               "type": "object",
               "properties": {
                 "query": {
                   "type": "object",
+                  "title": "Query parameters",
                   "additionalProperties": {
                     "type": "string"
                   },
@@ -192,6 +223,7 @@
                 },
                 "headers": {
                   "type": "object",
+                  "title": "HTTP Headers",
                   "additionalProperties": {
                     "type": "string"
                   },
@@ -200,6 +232,7 @@
               }
             },
             "expires": {
+              "title": "Expiry",
               "oneOf": [
                 {
                   "type": "integer",
@@ -210,11 +243,13 @@
                   "type": "object",
                   "properties": {
                     "response": {
+                      "title": "Response path",
                       "minLength": 1,
                       "type": "string",
                       "description": "Path within the response containing the expiry time value."
                     },
                     "relative": {
+                      "title": "Relative",
                       "type": "boolean",
                       "default": false
                     }
@@ -228,6 +263,7 @@
     },
     "pagination": {
       "title": "Pagination",
+      "required": "method",
       "options": {
         "keep_oneof_values": false
       },
@@ -246,8 +282,10 @@
               "description": "Scroll using limit and offset parameters",
               "properties": {
                 "method": {
-                  "type": "string",
-                  "template": "offset"
+                  "template": "offset",
+                  "options": {
+                    "hidden": true
+                  }
                 },
                 "limit": {
                   "type": "integer",
@@ -286,7 +324,10 @@
               ],
               "properties": {
                 "method": {
-                  "template": "response.param"
+                  "template": "response.param",
+                  "options": {
+                    "hidden": true
+                  }
                 },
                 "responseParam": {
                   "type": "string",
@@ -301,7 +342,8 @@
                 },
                 "includeParams": {
                   "type": "boolean",
-                  "title": "Whether params from job configuration are used in next page request",
+                  "title": "Include config parameters",
+                  "description": "Whether params from job configuration are used in next page request",
                   "default": false
                 },
                 "scrollRequest": {
@@ -348,7 +390,10 @@
               ],
               "properties": {
                 "method": {
-                  "template": "response.url"
+                  "template": "response.url",
+                  "options": {
+                    "hidden": true
+                  }
                 },
                 "urlKey": {
                   "type": "string",
@@ -378,7 +423,10 @@
               ],
               "properties": {
                 "method": {
-                  "template": "pagenum"
+                  "template": "pagenum",
+                  "options": {
+                    "hidden": true
+                  }
                 },
                 "pageParam": {
                   "type": "string",
@@ -386,6 +434,7 @@
                   "title": "Page number parameter"
                 },
                 "limit": {
+                  "title": "Page size limit",
                   "type": "integer"
                 },
                 "limitParam": {
