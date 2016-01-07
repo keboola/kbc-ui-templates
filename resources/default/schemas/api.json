@@ -1,10 +1,47 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://localhost/json-editor/schemas/api",
+  "definitions": {
+    "paginationMethod": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "nextPageFlag": {
+          "type": "object",
+          "title": "Next page flag in response",
+          "properties": {
+            "field": {
+              "type": "string",
+              "title": "Name of the boolean field within response",
+              "minLength": 1
+            },
+            "stopOn": {
+              "type": "boolean",
+              "title": "Whether to stop scrolling on true or false"
+            },
+            "ifNotSet": {
+              "type": "boolean",
+              "title": "If the value is not contained in reponse, what to assume?"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
   "title": "API",
   "type": "object",
+  "additionalProperties": false,
+  "defaultProperties": [
+    "baseUrl",
+    "http"
+  ],
   "properties": {
     "baseUrl": {
+      "title": "Base URL",
       "oneOf": [
         {
           "type": "string",
@@ -17,12 +54,17 @@
     },
     "http": {
       "type": "object",
+      "title": "HTTP Headers",
       "properties": {
         "headers": {
           "type": "object",
+          "title": "Default headers",
           "options": {
             "collapsed": true
           },
+          "defaultProperties": [
+
+          ],
           "properties": {
             "Accept-Encoding": {
               "type": "string"
@@ -37,18 +79,22 @@
         },
         "requiredHeaders": {
           "type": "array",
+          "title": "Required headers",
+          "description": "Add headers that must be set in config.http.headers",
           "options": {
-            "collapsed": true,
-            "grid_columns": 3
+            "collapsed": true
           },
-          "format": "grid",
+          "format": "table",
           "items": {
-            "type": "string"
+            "type": "string",
+            "headerTemplate": "{{self}}",
+            "title": "Header"
           }
         }
       }
     },
     "authentication": {
+      "title": "Authentication",
       "oneOf": [
         {
           "type": "object",
@@ -181,7 +227,187 @@
       ]
     },
     "pagination": {
-      "type": "object"
+      "title": "Pagination",
+      "options": {
+        "keep_oneof_values": false
+      },
+      "oneOf": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/paginationMethod"
+            },
+            {
+              "title": "Offset",
+              "defaultProperties": [
+                "method",
+                "limit"
+              ],
+              "description": "Scroll using limit and offset parameters",
+              "properties": {
+                "method": {
+                  "type": "string",
+                  "template": "offset"
+                },
+                "limit": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "limitParam": {
+                  "type": "string",
+                  "title": "Limit parameter",
+                  "default": "limit"
+                },
+                "offsetParam": {
+                  "type": "string",
+                  "title": "Offset parameter",
+                  "default": "offset"
+                },
+                "firstPageParams": {
+                  "type": "boolean",
+                  "title": "Include parameters in first page request",
+                  "default": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/paginationMethod"
+            },
+            {
+              "title": "Response parameter",
+              "defaultProperties": [
+                "method",
+                "responseParam",
+                "queryParam"
+              ],
+              "properties": {
+                "method": {
+                  "template": "response.param"
+                },
+                "responseParam": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Path in response",
+                  "description": "Path within response that points to a value used for scrolling"
+                },
+                "queryParam": {
+                  "type": "string",
+                  "minLength": 1,
+                  "title": "Query parameter"
+                },
+                "includeParams": {
+                  "type": "boolean",
+                  "title": "Whether params from job configuration are used in next page request",
+                  "default": false
+                },
+                "scrollRequest": {
+                  "type": "object",
+                  "title": "Next page request",
+                  "description": "Override next page request settings",
+                  "properties": {
+                    "endpoint": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "method": {
+                      "type": "string",
+                      "enum": [
+                        "GET",
+                        "POST",
+                        "FORM"
+                      ]
+                    },
+                    "params": {
+                      "type": "object",
+                      "format": "table",
+                      "title": "Query parameters",
+                      "additionalProperties": {
+                        "$ref": "#/definitions/param"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/paginationMethod"
+            },
+            {
+              "title": "Response URL",
+              "defaultProperties": [
+                "method",
+                "urlKey"
+              ],
+              "properties": {
+                "method": {
+                  "template": "response.url"
+                },
+                "urlKey": {
+                  "type": "string",
+                  "default": "next_page",
+                  "minLength": 1
+                },
+                "includeParams": {
+                  "type": "boolean",
+                  "title": "Include config parameters",
+                  "description": "Whether params from job configuration are used in next page request",
+                  "default": false
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/definitions/paginationMethod"
+            },
+            {
+              "title": "Page number",
+              "defaultProperties": [
+                "method",
+                "pageParam"
+              ],
+              "properties": {
+                "method": {
+                  "template": "pagenum"
+                },
+                "pageParam": {
+                  "type": "string",
+                  "default": "page",
+                  "title": "Page number parameter"
+                },
+                "limit": {
+                  "type": "integer"
+                },
+                "limitParam": {
+                  "type": "string",
+                  "default": "limit",
+                  "title": "Limit parameter"
+                },
+                "firstPage": {
+                  "type": "integer",
+                  "default": 1,
+                  "title": "First page number"
+                },
+                "firstPageParams": {
+                  "type": "boolean",
+                  "title": "Include parameters in first page request",
+                  "default": true
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
   }
 }
