@@ -69,13 +69,15 @@ function materializeResources(resources, sharedDefinitions, dir) {
                 resource.schemas.api.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
             }
         }
-        
+
         // replace absolute references
-        var re = /("\$ref":")[^#][^#]*\/([^/]+).json/g;
+        var re = /("\$ref":")[^#][^"]*\/([^/]+).json/g;
         var stringified = JSON.stringify(resource);
-        stringified = stringified.replace(re, '$1#/definitions/$2');
-        // test replaced JSON
-        JSON.parse(stringified);
+        if (stringified.match(re)) {
+            stringified = stringified.replace(re, '$1#/definitions/$2');
+            // test replaced JSON
+            JSON.parse(stringified);
+        }
         fs.writeFileSync(dir + "/" + key + ".json", stringified);
     });
 }
