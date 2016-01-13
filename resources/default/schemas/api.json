@@ -39,6 +39,9 @@
     "baseUrl",
     "http"
   ],
+  "required": [
+    "baseUrl"
+  ],
   "properties": {
     "baseUrl": {
       "title": "Base URL",
@@ -142,6 +145,10 @@
             "loginRequest",
             "apiRequest"
           ],
+          "required": [
+            "loginRequest",
+            "apiRequest"
+          ],
           "properties": {
             "type": {
               "type": "string",
@@ -154,6 +161,9 @@
               "title": "Login request",
               "description": "Describe the request to login/authorize against the API",
               "type": "object",
+              "required": [
+                "endpoint"
+              ],
               "properties": {
                 "endpoint": {
                   "title": "Endpoint",
@@ -279,6 +289,10 @@
                 "method",
                 "limit"
               ],
+              "required": [
+                "method",
+                "limit"
+              ],
               "description": "Scroll using limit and offset parameters",
               "properties": {
                 "method": {
@@ -318,6 +332,11 @@
             {
               "title": "Response parameter",
               "defaultProperties": [
+                "method",
+                "responseParam",
+                "queryParam"
+              ],
+              "required": [
                 "method",
                 "responseParam",
                 "queryParam"
@@ -388,6 +407,10 @@
                 "method",
                 "urlKey"
               ],
+              "required": [
+                "method",
+                "urlKey"
+              ],
               "properties": {
                 "method": {
                   "template": "response.url",
@@ -420,6 +443,9 @@
               "defaultProperties": [
                 "method",
                 "pageParam"
+              ],
+              "required": [
+                "method"
               ],
               "properties": {
                 "method": {
