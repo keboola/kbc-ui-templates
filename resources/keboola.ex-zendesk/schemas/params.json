@@ -87,7 +87,7 @@
           "title": "String"
         },
         {
-          "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.jsongit",
+          "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json",
           "title": "Function"
         },
         {
