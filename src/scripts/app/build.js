@@ -24,17 +24,11 @@ function loadSharedDefinitions(dir) {
             var keys = Object.keys(definitions);
             for (var i = 0; i < keys.length; i++) {
                 if (keys[i] == 'definitions') {
-                    continue;
+                    throw new Error('Remote definitions not supported')
                 }
                 shared[name][keys[i]] = definitions[keys[i]];
             }
-            if (definitions.definitions) {
-                var keys = Object.keys(definitions.definitions);
-                for (var i = 0; i < keys.length; i++) {
-                    shared[keys[i]] = {};
-                    shared[keys[i]] = definitions.definitions[keys[i]];
-                }
-            }
+
         }
     });
     return shared;
@@ -176,7 +170,7 @@ function loadJSONFile(file) {
     try {
         return JSON.parse(fs.readFileSync(file, "utf8").trim());
     } catch (e) {
-        throw "Cannot parse " + file + ": " + e;
+        throw Error("Cannot parse " + file + ": " + e);
     }
 }
 
