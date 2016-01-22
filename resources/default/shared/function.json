@@ -29,7 +29,7 @@
       "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function_strtotime.json"
     },
     {
-      "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/time.json"
+      "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function_time.json"
     }
   ]
 }
