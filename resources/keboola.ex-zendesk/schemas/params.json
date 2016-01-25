@@ -245,7 +245,7 @@
       "description": "Output bucket for results",
       "minLength": 4,
       "default": "zendesk",
-      "title": "Output SAPI bucket"
+      "title": "Output bucket"
     },
     "domain": {
       "type": "string",
@@ -256,13 +256,15 @@
     },
     "username": {
       "type": "string",
-      "description": "Your zendesk e-mail appended by \"/token\"",
+      "title": "Username",
+      "description": "Your Zendesk e-mail appended by \"/token\"",
       "minLength": 11,
       "required": true
     },
-    "password": {
-      "type": "string",
-      "description": "Your zendesk token",
+    "#password": {
+      "type": "password",
+      "title": "Password",
+      "description": "Your Zendesk token",
       "minLength": 40,
       "required": true
     },
