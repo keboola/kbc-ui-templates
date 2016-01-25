@@ -262,7 +262,7 @@
       "required": true
     },
     "#password": {
-      "type": "password",
+      "type": "string",
       "title": "Password",
       "description": "Your Zendesk token",
       "minLength": 40,
