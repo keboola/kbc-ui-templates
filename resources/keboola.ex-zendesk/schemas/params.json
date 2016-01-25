@@ -264,6 +264,7 @@
     "#password": {
       "type": "string",
       "title": "Password",
+      "format": "password",
       "description": "Your Zendesk token",
       "minLength": 40,
       "required": true
