@@ -4,6 +4,9 @@
       "type": "object",
       "title": "Job",
       "headerTemplate": "{{ i1 }}: {{self.endpoint}}",
+      "required": [
+        "endpoint"
+      ],
       "properties": {
         "endpoint": {
           "type": "string",
@@ -135,6 +138,9 @@
               "template": "tickets_export"
             },
             "params": {
+              "required": [
+                "start_time"
+              ],
               "properties": {
                 "start_time": {
                   "title": "Start time",
