@@ -3,7 +3,9 @@
     "endpoint": "exports/tickets.json",
     "dataType": "tickets_export",
     "params": {
-      "start_time": "",
+      "start_time": {
+        "time": "previousStart"
+      },
       "end_time": ""
     },
     "children": [
