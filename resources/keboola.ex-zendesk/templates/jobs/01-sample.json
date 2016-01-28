@@ -1,0 +1,15 @@
+[
+  {
+    "endpoint": "exports/tickets.json",
+    "dataType": "tickets_export",
+    "params": {
+      "start_time": "",
+      "end_time": ""
+    }
+  },
+  {
+    "endpoint": "users.json",
+    "dataType": "users",
+    "params": {}
+  }
+]

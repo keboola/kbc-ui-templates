@@ -97,7 +97,7 @@ function addResource(path, name) {
         "schemas": addResourceItem(path, name, "schemas"),
         "templates": addResourceItem(path, name, "templates")
     };
-    data.templates["params"] = addTemplates(path, name, "params");
+    data.templates["jobs"] = addTemplates(path, name, "jobs");
     return data;
 }
 
@@ -129,7 +129,7 @@ function addTemplates(path, name, templateType) {
 
         var templateData = loadJSONFile(filePath);
         var templateMeta = loadJSONFile(metaFilePath);
-        templateMeta.params = templateData;
+        templateMeta.jobs = templateData;
 
         try {
             data.push(templateMeta);
