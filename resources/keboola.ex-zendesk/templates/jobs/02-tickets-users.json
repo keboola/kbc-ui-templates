@@ -11,7 +11,6 @@
   },
   {
     "endpoint": "users.json",
-    "dataType": "users",
-    "params": {}
+    "dataType": "users"
   }
 ]
