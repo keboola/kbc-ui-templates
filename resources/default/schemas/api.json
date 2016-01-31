@@ -319,6 +319,11 @@
                   "type": "boolean",
                   "title": "Include parameters in first page request",
                   "default": true
+                },
+                "offsetFromJob": {
+                  "type": "boolean",
+                  "title": "Use offset specified in job config for first request",
+                  "default": false
                 }
               }
             }
