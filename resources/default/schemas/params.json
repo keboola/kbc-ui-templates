@@ -40,7 +40,7 @@
           "title": "Child Jobs",
           "uniqueItems": true,
           "items": {
-            "$ref": "#/definitions/job"
+            "$ref": "#/definitions/childJob"
           }
         }
       }
@@ -55,7 +55,10 @@
             "placeholders": {
               "type": "object",
               "format": "table",
-              "title": "Placeholders"
+              "title": "Placeholders",
+              "additionalProperties": {
+                "type": "string"
+              }
             },
             "recursionFilter": {
               "type": "string",
