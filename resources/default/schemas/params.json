@@ -137,6 +137,7 @@
     "jobs": {
       "type": "array",
       "title": "Jobs",
+      "format": "tabs",
       "uniqueItems": true,
       "items": {
         "$ref": "#/definitions/job"
