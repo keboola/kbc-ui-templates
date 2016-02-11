@@ -43,10 +43,17 @@ function materializeResources(resources, sharedDefinitions, dir) {
 
         // add shared definitions
         var sharedDefinitionKeys = Object.keys(sharedDefinitions);
+        if (!resource.schemas.params) {
+            resource.schemas.params = {};
+        }
         if (!resource.schemas.params.definitions) {
             resource.schemas.params.definitions = {};
         }
-        if (!resource.schemas.api.definitions) {
+        
+        if (!resource.schemas.api) {
+            resource.schemas.api = {};
+        }
+        if (!resource.schemas.api || !resource.schemas.api.definitions) {
             resource.schemas.api.definitions = {};
         }
 
