@@ -248,7 +248,7 @@
   "properties": {
     "outputBucket": {
       "type": "string",
-      "description": "Output bucket for results, prefix in.c- added automatically.",
+      "description": "Storage bucket for storing results, prefix in.c- added automatically.",
       "minLength": 4,
       "default": "zendesk",
       "title": "Output bucket",
