@@ -1,0 +1,19 @@
+{
+  "baseUrl": "https://api.intercom.io",
+  "authentication": {
+    "type": "basic"
+  },
+  "http": {
+    "defaultOptions": {
+      "headers": {
+        "Accept": "application/json"
+      }
+    }
+  },
+  "pagination": {
+    "method": "pagenum",
+    "pageParam": "page",
+    "limit": "50",
+    "limitParam": "per_page"
+  }
+}

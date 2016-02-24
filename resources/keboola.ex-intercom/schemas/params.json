@@ -1,0 +1,29 @@
+{
+  "title": "Config",
+  "type": "object",
+  "properties": {
+    "outputBucket": {
+      "type": "string",
+      "description": "Storage bucket for storing results, prefix in.c- added automatically.",
+      "minLength": 4,
+      "default": "intercom",
+      "title": "Output bucket",
+      "required": true
+    },
+    "username": {
+      "type": "string",
+      "title": "App ID",
+      "description": "Application ID (https://developers.intercom.io/page/getting-started)",
+      "minLength": 1,
+      "required": true
+    },
+    "#password": {
+      "type": "string",
+      "title": "API key",
+      "format": "password",
+      "description": "Read-only Access API Key (https://developers.intercom.io/page/getting-started)",
+      "minLength": 1,
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,39 @@
+[
+  {
+    "endpoint": "users",
+    "children": [
+      {
+        "endpoint": "notes?user_id={1:user_id}",
+        "placeholders": {
+          "1:user_id": "user_id"
+        },
+        "recursionFilter": "user_id!=&email!="
+      },
+      {
+        "endpoint": "events?user_id={1:user_id}&type=user",
+        "placeholders": {
+          "1:user_id": "user_id"
+        },
+        "recursionFilter": "user_id!=&email!="
+      }
+    ]
+  },
+  {
+    "endpoint": "contacts"
+  },
+  {
+    "endpoint": "companies"
+  },
+  {
+    "endpoint": "admins"
+  },
+  {
+    "endpoint": "tags"
+  },
+  {
+    "endpoint": "segments"
+  },
+  {
+    "endpoint": "conversations"
+  }
+]
