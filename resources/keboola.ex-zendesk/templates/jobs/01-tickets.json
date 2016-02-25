@@ -11,11 +11,17 @@
     "children": [
       {
         "endpoint": "tickets/{id}/audits.json",
-        "dataType": "tickets_audits"
+        "dataType": "tickets_audits",
+        "placeholders": {
+            "id": "id"
+        }
       },
       {
         "endpoint": "tickets/{id}/comments.json",
-        "dataType": "tickets_comments"
+        "dataType": "tickets_comments",
+        "placeholders": {
+            "id": "id"
+        }
       }
     ]
   }

@@ -96,7 +96,7 @@
     },
     "authentication": {
       "title": "Authentication",
-      "required": "type",
+      "required": ["type"],
       "oneOf": [
         {
           "type": "object",
