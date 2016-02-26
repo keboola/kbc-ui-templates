@@ -261,18 +261,31 @@
       "minLength": 1,
       "required": true
     },
+    "usermail": {
+      "type": "string",
+      "format": "email",
+      "title": "User e-mail",
+      "description": "Your Zendesk user e-mail",
+      "minLength": 1,
+      "required": true
+    },
     "username": {
       "type": "string",
-      "title": "Username",
-      "description": "Your Zendesk e-mail appended by \"/token\"",
       "minLength": 11,
-      "required": true
+      "template": "{{usermail}}/token",
+      "watch": {
+        "usermail": "usermail"
+      },
+      "required": true,
+      "options": {
+        "hidden": true
+      }
     },
     "#password": {
       "type": "string",
-      "title": "Password",
+      "title": "Token",
       "format": "password",
-      "description": "Your Zendesk token",
+      "description": "Your Zendesk token, obtained at https://developer.zendesk.com/rest_api/docs/core/introduction#api-token",
       "minLength": 40,
       "required": true
     },
