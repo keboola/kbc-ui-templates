@@ -34,7 +34,11 @@
           }
         }
       },
-      "defaultProperties": ["endpoint", "dataType", "params"]
+      "defaultProperties": [
+        "endpoint",
+        "dataType",
+        "params"
+      ]
     },
     "childJob": {
       "allOf": [
@@ -47,7 +51,9 @@
               "type": "object",
               "format": "grid",
               "title": "Placeholders",
-              "additionalProperties": {"type": "string"}
+              "additionalProperties": {
+                "type": "string"
+              }
             },
             "recursionFilter": {
               "type": "string",
@@ -160,7 +166,9 @@
                 "oneOf": [
                   {
                     "allOf": [
-                      {"$ref": "#/definitions/childJob"},
+                      {
+                        "$ref": "#/definitions/childJob"
+                      },
                       {
                         "title": "Ticket comments",
                         "properties": {
@@ -181,7 +189,9 @@
                                 "type": "string"
                               }
                             },
-                            "additionalProperties": {"type": "string"}
+                            "additionalProperties": {
+                              "type": "string"
+                            }
                           }
                         }
                       }
@@ -189,7 +199,9 @@
                   },
                   {
                     "allOf": [
-                      {"$ref": "#/definitions/childJob"},
+                      {
+                        "$ref": "#/definitions/childJob"
+                      },
                       {
                         "title": "Ticket audits",
                         "properties": {
@@ -210,13 +222,17 @@
                                 "type": "string"
                               }
                             },
-                            "additionalProperties": {"type": "string"}
+                            "additionalProperties": {
+                              "type": "string"
+                            }
                           }
                         }
                       }
                     ]
                   },
-                  {"$ref": "#/definitions/childJob"}
+                  {
+                    "$ref": "#/definitions/childJob"
+                  }
                 ]
               }
             }
@@ -285,7 +301,12 @@
       "type": "string",
       "title": "Token",
       "format": "password",
-      "description": "Your Zendesk token, obtained at https://developer.zendesk.com/rest_api/docs/core/introduction#api-token",
+      "links": [
+        {
+          "rel": "Get Zendesk API Token",
+          "href": "https://developer.zendesk.com/rest_api/docs/core/introduction#api-token"
+        }
+      ],
       "minLength": 40,
       "required": true
     },
