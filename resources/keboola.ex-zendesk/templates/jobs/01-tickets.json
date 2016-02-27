@@ -14,14 +14,16 @@
         "dataType": "tickets_audits",
         "placeholders": {
             "id": "id"
-        }
+        },
+        "recursionFilter": "status!=Deleted"
       },
       {
         "endpoint": "tickets/{id}/comments.json",
         "dataType": "tickets_comments",
         "placeholders": {
             "id": "id"
-        }
+        },
+        "recursionFilter": "status!=Deleted"
       }
     ]
   }
