@@ -101,6 +101,14 @@
           "title": "String"
         },
         {
+          "type": "boolean",
+          "title": "Boolean value"
+        },
+        {
+          "type": "integer",
+          "title": "Number"
+        },
+        {
           "$ref": "https://raw.githubusercontent.com/keboola/kbc-ui-templates/master/resources/default/shared/function.json",
           "title": "Function"
         },
