@@ -1,0 +1,28 @@
+{
+  "authentication": {
+    "type": "oauth10"
+  },
+  "baseUrl": "https://api.twitter.com/1.1/",
+  "pagination": {
+    "method": "multiple",
+    "scrollers": {
+      "param_next_cursor": {
+        "method": "response.param",
+        "responseParam": "next_cursor",
+        "queryParam": "cursor"
+      },
+      "url_next_results": {
+        "method": "response.url",
+        "urlKey": "search_metadata.next_results",
+        "paramIsQuery": true
+      },
+      "cursor_timeline": {
+        "method": "cursor",
+        "idKey": "id",
+        "param": "max_id",
+        "reverse": true,
+        "increment": -1
+      }
+    }
+  }
+}
