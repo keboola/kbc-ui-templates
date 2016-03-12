@@ -1,0 +1,12 @@
+{
+  "title": "Config",
+  "type": "object",
+  "properties": {
+    "incrementalOutput": {
+      "type": "boolean",
+      "description": "Set results to be stored incrementally",
+      "default": false,
+      "title": "Incremental Output"
+    }
+  }
+}
