@@ -24,5 +24,12 @@
         "increment": -1
       }
     }
+  },
+  "http": {
+    "defaultOptions": {
+      "params": {
+        "count": 200
+      }
+    }
   }
 }
