@@ -1,6 +1,7 @@
 {
   "title": "Config",
   "type": "object",
+  "defaultProperties": ["incrementalOutput"],
   "properties": {
     "incrementalOutput": {
       "type": "boolean",
