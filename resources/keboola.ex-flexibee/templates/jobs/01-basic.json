@@ -1,0 +1,15 @@
+[
+	{
+		"endpoint": "faktura-vydana",
+		"dataField": "winstrom.faktura-vydana",
+		"children": [
+			{
+				"endpoint": "faktura-vydana/{1:faktura}",
+				"dataField": "winstrom.faktura-vydana",
+				"placeholders": {
+					"1:faktura": "id"
+				}
+			}
+		]
+	}
+]

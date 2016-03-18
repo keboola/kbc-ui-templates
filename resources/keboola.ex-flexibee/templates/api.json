@@ -1,0 +1,28 @@
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://firemni.flexibee.eu/c/",
+      {
+        "attr": "domain"
+      },
+      "/"
+    ]
+  },
+  "authentication": {
+    "type": "basic"
+  },
+  "http": {
+    "defaultOptions": {
+      "headers": {
+        "Accept": "application/json"
+      }
+    }
+  },
+  "pagination": {
+    "method": "pagenum",
+    "pageParam": "page",
+    "limit": "100",
+    "limitParam": "per_page"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "title": "Config",
+  "type": "object",
+  "properties": {
+    "outputBucket": {
+      "type": "string",
+      "description": "Storage bucket for storing results, prefix in.c- added automatically.",
+      "minLength": 4,
+      "default": "flexibee",
+      "title": "Output bucket",
+      "required": true
+    },
+    "username": {
+      "type": "string",
+      "title": "FlexiBee Login",
+      "description": "",
+      "minLength": 1,
+      "required": true
+    },
+    "#password": {
+      "type": "string",
+      "title": "FlexiBee Password",
+      "format": "password",
+      "description": "",
+      "minLength": 1,
+      "required": true
+    }
+  }
+}
