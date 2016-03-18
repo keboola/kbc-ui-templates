@@ -1,0 +1,12 @@
+{
+      "baseUrl": "https://app.portadi.com/",
+      "http": {
+        "requiredHeaders": [
+          "Authorization"
+        ]
+      },
+      "pagination": {
+        "limit": "200",
+        "method": "offset"
+      }
+    }
