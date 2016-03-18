@@ -1,9 +1,17 @@
 {
       "baseUrl": "https://app.portadi.com/",
       "http": {
-        "requiredHeaders": [
-          "Authorization"
-        ]
+        "headers": {
+          "Authorization": {
+            "function": "concat",
+            "args": [
+              "Bearer ",
+              {
+                "attr": "token"
+              }
+            ]
+          }
+        }
       },
       "pagination": {
         "limit": "200",
