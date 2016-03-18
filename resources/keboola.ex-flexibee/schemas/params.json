@@ -2,12 +2,11 @@
   "title": "Config",
   "type": "object",
   "properties": {
-    "outputBucket": {
+    "domain": {
       "type": "string",
-      "description": "Storage bucket for storing results, prefix in.c- added automatically.",
-      "minLength": 4,
-      "default": "flexibee",
-      "title": "Output bucket",
+      "title": "FlexiBee Company Account",
+      "description": "We have \"keboola_s_r_o_\" (...flexibee.eu/c/keboola_s_r_o_/...)",
+      "minLength": 1,
       "required": true
     },
     "username": {
