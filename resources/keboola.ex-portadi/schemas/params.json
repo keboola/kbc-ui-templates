@@ -6,6 +6,7 @@
       "type": "string",
       "title": "Admin API Token",
       "description": "Obtain api key in user settings(https://app.portadi.com/#!/settings) page on Portadi administration (needs admin privileges).",
+      "format": "password",
       "minLength": 1,
       "required": true
     }
