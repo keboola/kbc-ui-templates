@@ -20,9 +20,9 @@
     }
   },
   "pagination": {
-    "method": "pagenum",
-    "pageParam": "page",
+    "method": "offset",
+    "offsetParam": "start",
     "limit": "100",
-    "limitParam": "per_page"
+    "limitParam": "limit"
   }
 }
