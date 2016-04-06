@@ -1,4 +1,4 @@
 {
   "name": "Invoices",
-  "description": "Download\n\n - list of all invoices\n - all invoices details\n - all invoices items"
+  "description": "Download\n\n - issued invoices (including all details)\n - received invoices (including all details)"
 }

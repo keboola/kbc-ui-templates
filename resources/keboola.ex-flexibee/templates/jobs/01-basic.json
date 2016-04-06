@@ -1,15 +1,28 @@
 [
-	{
-		"endpoint": "faktura-vydana",
-		"dataField": "winstrom.faktura-vydana",
-		"children": [
-			{
-				"endpoint": "faktura-vydana/{1:faktura}",
-				"dataField": "winstrom.faktura-vydana",
-				"placeholders": {
-					"1:faktura": "id"
-				}
-			}
-		]
-	}
-]
+        {
+          "endpoint": "faktura-vydana",
+          "dataField": "winstrom.faktura-vydana",
+          "children": [
+            {
+              "endpoint": "faktura-vydana/{1:faktura-vydana}",
+              "dataField": "winstrom.faktura-vydana",
+              "placeholders": {
+                "1:faktura-vydana": "id"
+              }
+            }
+          ]
+        },
+        {
+          "endpoint": "faktura-prijata",
+          "dataField": "winstrom.faktura-prijata",
+          "children": [
+            {
+              "endpoint": "faktura-prijata/{1:faktura-prijata}",
+              "dataField": "winstrom.faktura-prijata",
+              "placeholders": {
+                "1:faktura-prijata": "id"
+              }
+            }
+          ]
+        }
+      ]
