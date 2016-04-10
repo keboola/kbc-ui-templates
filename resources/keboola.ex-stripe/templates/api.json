@@ -1,0 +1,22 @@
+{
+      "baseUrl": "https://api.stripe.com/v1/",
+      "http": {
+        "headers": {
+          "Authorization": {
+            "function": "concat",
+            "args": [
+              "Bearer ",
+              {
+                "attr": "#token"
+              }
+            ]
+          },
+          "Accept": "application/json"
+        }
+      },
+      "pagination": {
+        "method": "response.param",
+        "responseParam": "data.9.id",
+        "queryParam": "starting_after"
+      }
+    }

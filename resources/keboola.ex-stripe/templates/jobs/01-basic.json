@@ -1,0 +1,6 @@
+[
+        {
+          "endpoint": "charges",
+          "dataField": "data"
+        }
+]

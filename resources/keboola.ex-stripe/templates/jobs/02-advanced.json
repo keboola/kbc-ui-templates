@@ -1,0 +1,30 @@
+[
+        {
+          "endpoint": "charges",
+          "dataField": "data"
+        },
+        {
+          "endpoint": "customers",
+          "dataField": "data"
+        },
+        {
+          "endpoint": "balance/history",
+          "dataField": "data"
+        },
+        {
+          "endpoint": "disputes",
+          "dataField": "data"
+        },
+        {
+          "endpoint": "events",
+          "dataField": "data"
+        },
+        {
+          "endpoint": "refunds",
+          "dataField": "data"
+        },
+        {
+          "endpoint": "transfers",
+          "dataField": "data"
+        }
+]
