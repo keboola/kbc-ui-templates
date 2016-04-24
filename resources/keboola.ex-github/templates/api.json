@@ -1,0 +1,25 @@
+{
+    "baseUrl": "https://api.github.com/",
+    "authentication": {
+      "type": "oauth20",
+      "format": "json",
+      "headers": {
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "token ",
+            {
+              "authorization": "data.access_token"
+            }
+          ]
+        }
+      }
+    },
+    "pagination": {
+      "method": "pagenum",
+      "pageParam": "page",
+      "limitParam": "per_page",
+      "limit": 100,
+      "firstPage": 1
+    }
+  }
