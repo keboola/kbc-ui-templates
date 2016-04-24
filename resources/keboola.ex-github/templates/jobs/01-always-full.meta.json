@@ -1,11 +1,4 @@
 {
   "name": "Full Load - always get everything",
-  "description": "Download GitHub Organization
-  \n
-  \n - Members
-  \n - Teams
-  \n - Repositories
-  \n - Issues
-  \n - Commits
-"
+  "description": "Download GitHub Organization\n\n - Members\n - Teams\n - Repositories\n - Issues\n - Commits"
 }
