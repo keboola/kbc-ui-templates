@@ -109,7 +109,7 @@ function addResource(path, name) {
     // backward compatibility mode
     // TODO remove after migration
     data.templates["jobs"] = addTemplates(path, name);
-    
+
     return data;
 }
 
@@ -139,12 +139,14 @@ function addTemplates(path, name, templateType) {
         var templateJobsData = loadJSONFile(jobsFilePath);
         templateMeta.jobs = templateJobsData;
 
+        /*
         if (fs.existsSync(mappingsFilePath)) {
             var templateMappingsData = loadJSONFile(mappingsFilePath);
             templateMeta.mappings = templateMappingsData;
         } else {
             templateMeta.mappings = {};
         }
+        */
 
         try {
             data.push(templateMeta);
