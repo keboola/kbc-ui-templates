@@ -104,17 +104,22 @@ function addResource(path, name) {
         "schemas": addResourceItem(path, name, "schemas"),
         "templates": addResourceItem(path, name, "templates")
     };
-    data.templates["jobs"] = addTemplates(path, name, "jobs");
+    data.templates["config"] = addTemplates(path, name);
+
+    // backward compatibility mode
+    // TODO remove after migration
+    data.templates["jobs"] = addTemplates(path, name);
+    
     return data;
 }
 
 function addTemplates(path, name, templateType) {
     var data = [];
-    if (!fs.existsSync(path + "/templates/" + templateType)) {
+    if (!fs.existsSync(path + "/templates/") || !fs.existsSync(path + "/templates/meta")) {
         return;
     }
-    console.log("Loading", name, "templates", templateType);
-    var list = fs.readdirSync(path + "/templates/" + templateType)
+    console.log("Loading", name, "templates");
+    var list = fs.readdirSync(path + "/templates/meta")
     if (!list) {
         return data;
     }
@@ -123,20 +128,23 @@ function addTemplates(path, name, templateType) {
         if (file.substr(-5) != '.json') {
             return;
         }
-        // skip meta files
-        if (file.substr(-10) == '.meta.json') {
-            return;
-        }
 
         var templateName = file.substr(0, file.length - 5);
+        var metaFilePath = path + "/templates/meta/" + templateName + ".json";
+        var jobsFilePath = path + "/templates/jobs/" + templateName + ".json";
+        var mappingsFilePath = path + "/templates/mappings/" + templateName + ".json";
 
-        var filePath = path + "/templates/" + templateType + "/" + file;
-        var metaFilePath = path + "/templates/" + templateType + "/" + templateName + ".meta.json";
-
-
-        var templateData = loadJSONFile(filePath);
         var templateMeta = loadJSONFile(metaFilePath);
-        templateMeta.jobs = templateData;
+
+        var templateJobsData = loadJSONFile(jobsFilePath);
+        templateMeta.jobs = templateJobsData;
+
+        if (fs.existsSync(mappingsFilePath)) {
+            var templateMappingsData = loadJSONFile(mappingsFilePath);
+            templateMeta.mappings = templateMappingsData;
+        } else {
+            templateMeta.mappings = {};
+        }
 
         try {
             data.push(templateMeta);
