@@ -190,7 +190,9 @@
         "parent_id": {
           "type": "user",
           "mapping": {
-            "destination": "channer_id"
+            "destination": "channel_id",
+            "primaryKey": true
+	    
           }
         },
         "type": {
@@ -205,7 +207,9 @@
         },
         "user": {
           "mapping": {
-            "destination": "user"
+            "destination": "user",
+            "primaryKey": true
+	    
           }
         },
         "text": {
