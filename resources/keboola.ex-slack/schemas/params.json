@@ -8,14 +8,6 @@
       "description": "Always check this settings to TRUE",
       "title": "Incremental Output",
       "required": true
-    },
-    "debug": {
-      "type": "boolean",
-      "format" : "checkbox",
-      "description": "Always check this settings to TRUE",
-      "title": "Debug Mode",
-      "required": true
     }
-    
   }
 }
