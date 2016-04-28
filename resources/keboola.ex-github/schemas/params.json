@@ -1,1 +1,13 @@
-{}
+{
+  "title": "Config",
+  "type": "object",
+  "properties": {
+    "incrementalOutput": {
+      "type": "boolean"
+      "format" : "checkox"
+      "description": "Always check this settings to TRUE",
+      "title": "Incremental Output",
+      "required": true
+    }
+  }
+}
