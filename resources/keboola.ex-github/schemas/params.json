@@ -4,7 +4,7 @@
   "properties": {
     "incrementalOutput": {
       "type": "boolean",
-      "format" : "checkox",
+      "format" : "checkbox",
       "description": "Always check this settings to TRUE",
       "title": "Incremental Output",
       "required": true
