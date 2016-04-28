@@ -31,8 +31,18 @@
                     "1:name": "name",
                     "2:login": "login"
                   },
-                  "dataType": "commits"
-                  
+                  "dataType": "commits",
+                  "params": {
+                    "since": {
+                      "function": "date",
+                      "args": [
+                        "Y-m-d",
+                        {
+                          "time": "previousStart"
+                        }
+                      ]
+                    }
+                  }
                 },
                 {
                   "endpoint": "repos/{2:login}/{1:name}/issues",
@@ -40,8 +50,18 @@
                     "1:name": "name",
                     "2:login": "login"
                   },
-                  "dataType": "issues"
-                  
+                  "dataType": "issues",
+                  "params": {
+                    "since": {
+                      "function": "date",
+                      "args": [
+                        "Y-m-d",
+                        {
+                          "time": "previousStart"
+                        }
+                      ]
+                    }
+                  }
                 }
               ]
             }
