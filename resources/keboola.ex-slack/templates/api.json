@@ -1,20 +1,21 @@
 {
-    "baseUrl": "https://slack.com/api/",
-    "authentication": {
-      "type": "oauth20",
-      "format": "json",
-      "query": {
-        "token": {
-          "authorization": "data.access_token"
-        }
-      }
-    },
+  "baseUrl": "https://slack.com/api/",
+  "authentication": {
+    "type": "oauth20",
+    "format": "json",
     "query": {
-      "count": "1000"
+      "token": {
+        "authorization": "data.access_token"
+      }
+    }
+  },
+  "http": {
+    "headers": {
+      "Accept": "application/json"
     },
-    "http": {
-      "headers": {
-        "Accept": "application/json"
+    "defaultOptions": {
+      "params": {
+        "count": "1000"
       }
     },
     "pagination": {
@@ -23,3 +24,4 @@
       "queryParam": "latest"
     }
   }
+}
