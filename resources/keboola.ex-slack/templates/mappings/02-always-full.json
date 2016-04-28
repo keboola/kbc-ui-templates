@@ -187,6 +187,12 @@
             "primaryKey": true
           }
         },
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "channer_id"
+          }
+        },
         "type": {
           "mapping": {
             "destination": "type"
