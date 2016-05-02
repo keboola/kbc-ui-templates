@@ -5,9 +5,10 @@
     "incrementalOutput": {
       "type": "boolean",
       "format" : "checkbox",
-      "description": "Always check this settings to TRUE",
+      "description": "Write the result incrementally",
       "title": "Incremental Output",
-      "required": true
+      "required": true,
+      "default": true
     }
   }
 }
