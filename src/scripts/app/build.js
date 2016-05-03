@@ -63,11 +63,11 @@ function addResource(path, name) {
 
 function addTemplates(path, name) {
     var data = [];
-    if (!fs.existsSync(path + "/templates/") || !fs.existsSync(path + "/templates/meta")) {
+    if (!fs.existsSync(path + "/templates") || !fs.existsSync(path + "/templates/config")) {
         return;
     }
     console.log("Loading", name, "templates");
-    var list = fs.readdirSync(path + "/templates/meta")
+    var list = fs.readdirSync(path + "/templates/config")
     if (!list) {
         return data;
     }
@@ -78,11 +78,13 @@ function addTemplates(path, name) {
         }
 
         var templateName = file.substr(0, file.length - 5);
-        var metaFilePath = path + "/templates/meta/" + templateName + ".json";
+
+        var templateFilePath = path + "/templates/config/" + templateName + ".json";
+        var templateMeta = loadJSONFile(templateFilePath);
+
+        // backward compatibility
         var jobsFilePath = path + "/templates/jobs/" + templateName + ".json";
         var mappingsFilePath = path + "/templates/mappings/" + templateName + ".json";
-
-        var templateMeta = loadJSONFile(metaFilePath);
 
         var templateJobsData = loadJSONFile(jobsFilePath);
         templateMeta.jobs = templateJobsData;
@@ -93,6 +95,7 @@ function addTemplates(path, name) {
         } else {
             templateMeta.mappings = {};
         }
+        // end of backward compatibility
 
         try {
             data.push(templateMeta);
