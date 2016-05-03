@@ -5,44 +5,16 @@ var _ = require("lodash");
 var resourcesFolder = process.argv[2];
 
 var resources = loadResources(resourcesFolder);
-var sharedDefinitions = loadSharedDefinitions(resourcesFolder + "/default/shared");
 
-materializeResources(resources, sharedDefinitions, "dist");
-
-// Load shared definitions
-function loadSharedDefinitions(dir) {
-    var shared = {};
-    var list = fs.readdirSync(dir);
-    // load all directories in resources level
-    list.forEach(function (file) {
-        var stat = fs.statSync(dir + '/' + file);
-        if (stat.isFile()) {
-            var name = file.substr(0, file.length - 5);
-            shared[name] = {};
-            console.log("Loading shared definition " + name);
-            var definitions = loadJSONFile(dir + '/' + file);
-            var keys = Object.keys(definitions);
-            for (var i = 0; i < keys.length; i++) {
-                if (keys[i] == 'definitions') {
-                    throw new Error('Remote definitions not supported')
-                }
-                shared[name][keys[i]] = definitions[keys[i]];
-            }
-
-        }
-    });
-    return shared;
-}
+materializeResources(resources, "dist");
 
 // Materialize files in build dir
-function materializeResources(resources, sharedDefinitions, dir) {
+function materializeResources(resources, dir) {
     rmdir(dir, false);
     fs.mkdirSync(dir);
     _.forEach(resources, function(resource, key) {
         console.log("Building", key);
 
-        // add shared definitions
-        var sharedDefinitionKeys = Object.keys(sharedDefinitions);
         if (!resource.schemas.params) {
             resource.schemas.params = {};
         }
@@ -57,28 +29,7 @@ function materializeResources(resources, sharedDefinitions, dir) {
             resource.schemas.api.definitions = {};
         }
 
-        // Inject shared definitions into params and api
-        for (var i = 0; i < sharedDefinitionKeys.length; i++) {
-            if (resource.schemas.params.definitions[sharedDefinitionKeys[i]]) {
-                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in `params` " + key;
-            } else {
-                resource.schemas.params.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
-            }
-            if (resource.schemas.api.definitions[sharedDefinitionKeys[i]]) {
-                throw "Shared definition " + sharedDefinitionKeys[i] + " already found in `api` " + key;
-            } else {
-                resource.schemas.api.definitions[sharedDefinitionKeys[i]] = sharedDefinitions[sharedDefinitionKeys[i]];
-            }
-        }
-
-        // replace absolute references
-        var re = /("\$ref":")[^#][^"]*\/([^/]+).json/g;
         var stringified = JSON.stringify(resource);
-        if (stringified.match(re)) {
-            stringified = stringified.replace(re, '$1#/definitions/$2');
-            // test replaced JSON
-            JSON.parse(stringified);
-        }
         fs.writeFileSync(dir + "/" + key + ".json", stringified);
     });
 }
