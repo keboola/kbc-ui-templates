@@ -1,0 +1,22 @@
+{
+  "name": "Tickets and Users",
+  "description": "Get all *tickets* and *users*.",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "exports/tickets.json",
+        "dataType": "tickets_export",
+        "params": {
+          "start_time": {
+            "time": "previousStart"
+          },
+          "end_time": ""
+        }
+      },
+      {
+        "endpoint": "users.json",
+        "dataType": "users"
+      }
+    ]
+  }
+}

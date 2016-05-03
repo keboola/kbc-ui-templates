@@ -1,0 +1,36 @@
+{
+  "name": "Tickets All Inclusive",
+  "description": "Downloads all *tickets* and their *audits* and *comments*.",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "exports/tickets.json",
+        "dataType": "tickets_export",
+        "params": {
+          "start_time": {
+            "time": "previousStart"
+          },
+          "end_time": ""
+        },
+        "children": [
+          {
+            "endpoint": "tickets/{id}/audits.json",
+            "dataType": "tickets_audits",
+            "placeholders": {
+              "id": "id"
+            },
+            "recursionFilter": "status!=Deleted"
+          },
+          {
+            "endpoint": "tickets/{id}/comments.json",
+            "dataType": "tickets_comments",
+            "placeholders": {
+              "id": "id"
+            },
+            "recursionFilter": "status!=Deleted"
+          }
+        ]
+      }
+    ]
+  }
+}

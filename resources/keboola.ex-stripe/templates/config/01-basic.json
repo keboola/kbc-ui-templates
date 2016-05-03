@@ -1,0 +1,12 @@
+{
+  "name": "Only Charges - FULL LOAD",
+  "description": "Download\n\n - List all charges",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "charges",
+        "dataField": "data"
+      }
+    ]
+  }
+}

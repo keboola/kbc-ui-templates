@@ -1,0 +1,12 @@
+{
+  "name": "Tags",
+  "description": "Downloads all *tags*.",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "tags.json",
+        "dataType": "tags"
+      }
+    ]
+  }
+}
