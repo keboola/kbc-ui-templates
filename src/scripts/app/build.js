@@ -58,13 +58,10 @@ function addResource(path, name) {
     data.templates["config"] = addTemplates(path, name);
 
     // backward compatibility mode
-    // TODO remove after migration
-    data.templates["jobs"] = addTemplates(path, name);
-    
     return data;
 }
 
-function addTemplates(path, name, templateType) {
+function addTemplates(path, name) {
     var data = [];
     if (!fs.existsSync(path + "/templates/") || !fs.existsSync(path + "/templates/meta")) {
         return;
