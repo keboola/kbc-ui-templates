@@ -2,7 +2,7 @@
   "name": "Full Mode - always get everything",
   "description": "Download from GitHub\n\n - Your Organizations\n\n - Org Members\n - Org Teams\n - Org Repositories\n - Repo Issues\n - Repo Commits",
   "data": {
-    "incrementalOutput": true,
+    "incrementalOutput": false,
     "jobs": [
       {
         "endpoint": "user/orgs",
