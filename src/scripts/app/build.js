@@ -82,21 +82,6 @@ function addTemplates(path, name) {
         var templateFilePath = path + "/templates/config/" + templateName + ".json";
         var templateMeta = loadJSONFile(templateFilePath);
 
-        // backward compatibility
-        var jobsFilePath = path + "/templates/jobs/" + templateName + ".json";
-        var mappingsFilePath = path + "/templates/mappings/" + templateName + ".json";
-
-        var templateJobsData = loadJSONFile(jobsFilePath);
-        templateMeta.jobs = templateJobsData;
-
-        if (fs.existsSync(mappingsFilePath)) {
-            var templateMappingsData = loadJSONFile(mappingsFilePath);
-            templateMeta.mappings = templateMappingsData;
-        } else {
-            templateMeta.mappings = {};
-        }
-        // end of backward compatibility
-
         try {
             data.push(templateMeta);
         } catch (e) {
