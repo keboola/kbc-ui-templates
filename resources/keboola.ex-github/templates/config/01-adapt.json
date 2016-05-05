@@ -75,15 +75,16 @@
     ],
     "mappings": {
         "organizations": {
-          "id": {
+          "login": {
             "mapping": {
-              "destination": "id",
+              "destination": "org_name",
               "primaryKey": true
             }
           },
-          "login": {
+          "id": {
             "mapping": {
-              "destination": "org_name"
+              "destination": "org_id"
+
             }
           }
         },
