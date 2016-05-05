@@ -54,19 +54,20 @@
       }
     ],
     "mappings": {
-        "organizations": {
-          "id": {
-            "mapping": {
-              "destination": "id",
-              "primaryKey": true
-            }
-          },
-          "login": {
-            "mapping": {
-              "destination": "org_name"
-            }
+      "organizations": {
+        "login": {
+          "mapping": {
+            "destination": "org_name",
+            "primaryKey": true
           }
         },
+        "id": {
+          "mapping": {
+            "destination": "org_id"
+
+          }
+        }
+      },
         "repos": {
           "id": {
             "mapping": {
