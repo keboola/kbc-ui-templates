@@ -1,5 +1,5 @@
 {
-  "title": "Config",
+  "title": "Authorization",
   "type": "object",
   "properties": {
     "domain": {

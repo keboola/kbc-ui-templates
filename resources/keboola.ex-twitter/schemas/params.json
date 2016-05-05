@@ -1,5 +1,5 @@
 {
-  "title": "Config",
+  "title": "Load",
   "type": "object",
   "defaultProperties": ["incrementalOutput"],
   "properties": {
