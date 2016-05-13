@@ -1,0 +1,50 @@
+{
+  "name": "Get data from Google Plus",
+  "description": "Download from Google Plus",
+  "data": {
+    "incrementalOutput": true,
+    "debug": 0,
+    "jobs": [{
+      "endpoint": "people/me/people/connected",
+      "dataType": "people_connected",
+      "dataField": "."
+    }, {
+      "endpoint": "people/me/people/visible",
+      "dataType": "people_visible",
+      "dataField": "."
+    }, {
+      "endpoint": "people/me/activities/public",
+      "dataType": "items",
+      "dataField": "items",
+      "children": [{
+        "endpoint": "/plus/v1/activities/{id}",
+        "dataType": "activity_details",
+        "dataField": ".",
+        "placeholders": {
+          "id": "id"
+        }
+      }, {
+        "endpoint": "/plus/v1/activities/{id}/people/plusoners",
+        "dataType": "activity_pluses",
+        "dataField": "items",
+        "placeholders": {
+          "id": "id"
+        }
+      }, {
+        "endpoint": "/plus/v1/activities/{id}/people/resharers",
+        "dataType": "activity_reshare",
+        "dataField": "items",
+        "placeholders": {
+          "id": "id"
+        }
+      }, {
+        "endpoint": "/plus/v1/activities/{id}/comments",
+        "dataType": "activity_comments",
+        "dataField": ".",
+        "placeholders": {
+          "id": "id"
+        }
+      }]
+    }]
+  }
+}

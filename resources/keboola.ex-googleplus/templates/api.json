@@ -1,0 +1,18 @@
+{
+  "baseUrl": "https://www.googleapis.com/plus/v1/",
+  "name": "gplus",
+  "authentication": {
+    "type": "oauth20",
+    "format": "json",
+    "headers": {
+      "Authorization": {
+        "function": "concat",
+        "args": [
+          "Bearer ", {
+            "authorization": "data.access_token"
+          }
+        ]
+      }
+    }
+  }
+}
