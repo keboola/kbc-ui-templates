@@ -1,9 +1,32 @@
 {
-  "name": "Checks with Results for last 24 hours",
-  "description": "Get all *checks* and *results*.",
+  "name": "Basic - last 24 hours",
+  "description": "Downloads all\n\n - checks and their results \n - probes \n - alerts \n - contacts \n - settings\n - credits",
   "data": {
     "incrementalOutput": true,
     "jobs": [
+      {
+        "endpoint": "settings",
+        "dataField": "settings",
+        "dataType": "settings"
+      },
+      {
+        "endpoint": "credits",
+        "dataField": "credits",
+        "dataType": "credits"
+      },
+      {
+        "endpoint": "probes",
+        "params": {
+          "includedeleted": true
+        },
+        "dataField": "probes",
+        "dataType": "probes"
+      },
+      {
+        "endpoint": "contacts",
+        "dataField": "contacts",
+        "dataType": "contacts"
+      },
       {
         "endpoint": "checks",
         "params": {
@@ -40,9 +63,62 @@
             "dataType": "results"
           }
         ]
+      },
+      {
+        "endpoint": "actions",
+        "dataField": "actions.alerts",
+        "dataType": "alerts"
       }
     ],
     "mappings": {
+      "contacts": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "email": {
+          "mapping": {
+            "destination": "email"
+          }
+        },
+        "cellphone": {
+          "mapping": {
+            "destination": "cellphone"
+          }
+        },
+        "countryiso": {
+          "mapping": {
+            "destination": "countryiso"
+          }
+        },
+        "defaultsmsprovider": {
+          "mapping": {
+            "destination": "defaultsmsprovider"
+          }
+        },
+        "directtwitter": {
+          "mapping": {
+            "destination": "directtwitter"
+          }
+        },
+        "twitteruser": {
+          "mapping": {
+            "destination": "twitteruser"
+          }
+        },
+        "paused": {
+          "mapping": {
+            "destination": "paused"
+          }
+        }
+      },
       "checks": {
         "id": {
           "mapping": {
@@ -301,6 +377,57 @@
           "mapping": {
             "destination": "checks_id",
             "primaryKey": true
+          }
+        }
+      },
+      "alerts": {
+        "contactname": {
+          "mapping": {
+            "destination": "contactname"
+          }
+        },
+        "contactid": {
+          "mapping": {
+            "destination": "contactid",
+            "primaryKey": true
+          }
+        },
+        "checkid": {
+          "mapping": {
+            "destination": "checkid",
+            "primaryKey": true
+          }
+        },
+        "time": {
+          "mapping": {
+            "destination": "time",
+            "primaryKey": true
+          }
+        },
+        "via": {
+          "mapping": {
+            "destination": "via",
+            "primaryKey": true
+          }
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "messageshort": {
+          "mapping": {
+            "destination": "messageshort"
+          }
+        },
+        "sentto": {
+          "mapping": {
+            "destination": "sentto"
+          }
+        },
+        "charged": {
+          "mapping": {
+            "destination": "charged"
           }
         }
       }
