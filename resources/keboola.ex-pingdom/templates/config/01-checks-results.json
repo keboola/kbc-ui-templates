@@ -1,0 +1,309 @@
+{
+  "name": "Checks with Results for last 24 hours",
+  "description": "Get all *checks* and *results*.",
+  "data": {
+    "incrementalOutput": true,
+    "jobs": [
+      {
+        "endpoint": "checks",
+        "params": {
+          "include_tags": true
+        },
+        "dataType": "checks",
+        "children": [
+          {
+            "endpoint": "checks/{1:id}",
+            "placeholders": {
+              "1:id": "id"
+            },
+            "dataField": "check",
+            "dataType": "checks-detailed"
+          },
+          {
+            "endpoint": "results/{1:id}",
+            "params": {
+              "from": {
+                "function": "strtotime",
+                "args": [
+                  "-1 days"
+                ]
+              },
+              "to": {
+                "function": "time"
+              },
+              "limit": 1000
+            },
+            "placeholders": {
+              "1:id": "id"
+            },
+            "dataField": "results",
+            "dataType": "results"
+          }
+        ]
+      }
+    ],
+    "mappings": {
+      "checks": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "lasterrortime": {
+          "mapping": {
+            "destination": "lasterrortime"
+          }
+        },
+        "lasttesttime": {
+          "mapping": {
+            "destination": "lasttesttime"
+          }
+        },
+        "lastresponsetime": {
+          "mapping": {
+            "destination": "lastresponsetime"
+          }
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "resolution": {
+          "mapping": {
+            "destination": "resolution"
+          }
+        },
+        "hostname": {
+          "mapping": {
+            "destination": "hostname"
+          }
+        },
+        "use_legacy_notifications": {
+          "mapping": {
+            "destination": "use_legacy_notifications"
+          }
+        },
+        "alert_policy": {
+          "mapping": {
+            "destination": "alert_policy"
+          }
+        },
+        "alert_policy_name": {
+          "mapping": {
+            "destination": "alert_policy_name"
+          }
+        },
+        "acktimeout": {
+          "mapping": {
+            "destination": "acktimeout"
+          }
+        },
+        "autoresolve": {
+          "mapping": {
+            "destination": "autoresolve"
+          }
+        },
+        "created": {
+          "mapping": {
+            "destination": "created"
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "tags",
+          "tableMapping": {
+            "name": {
+              "mapping": {
+                "destination": "name"
+              }
+            },
+            "type": {
+              "mapping": {
+                "destination": "type"
+              }
+            },
+            "count": {
+              "mapping": {
+                "destination": "count"
+              }
+            }
+          }
+        },
+        "ipv6": {
+          "mapping": {
+            "destination": "ipv6"
+          }
+        }
+      },
+      "checks-detailed": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "hostname": {
+          "mapping": {
+            "destination": "hostname"
+          }
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "resolution": {
+          "mapping": {
+            "destination": "resolution"
+          }
+        },
+        "contactids": {
+          "type": "table",
+          "destination": "checks-contacts",
+          "tableMapping": {
+            "contactids": {
+              "mapping": {
+                "destination": "contacts_id"
+              }
+            },
+            "parent_id": {
+              "type": "user",
+              "mapping": {
+                "destination": "checks_id",
+                "primaryKey": true
+              }
+            }
+          }
+        },
+        "sendtoemail": {
+          "mapping": {
+            "destination": "sendtoemail"
+          }
+        },
+        "sendtosms": {
+          "mapping": {
+            "destination": "sendtosms"
+          }
+        },
+        "sendtotwitter": {
+          "mapping": {
+            "destination": "sendtotwitter"
+          }
+        },
+        "sendtoiphone": {
+          "mapping": {
+            "destination": "sendtoiphone"
+          }
+        },
+        "sendtoandroid": {
+          "mapping": {
+            "destination": "sendtoandroid"
+          }
+        },
+        "sendnotificationwhendown": {
+          "mapping": {
+            "destination": "sendnotificationwhendown"
+          }
+        },
+        "notifyagainevery": {
+          "mapping": {
+            "destination": "notifyagainevery"
+          }
+        },
+        "notifywhenbackup": {
+          "mapping": {
+            "destination": "notifywhenbackup"
+          }
+        },
+        "lasterrortime": {
+          "mapping": {
+            "destination": "lasterrortime"
+          }
+        },
+        "lasttesttime": {
+          "mapping": {
+            "destination": "lasttesttime"
+          }
+        },
+        "lastresponsetime": {
+          "mapping": {
+            "destination": "lastresponsetime"
+          }
+        },
+        "created": {
+          "mapping": {
+            "destination": "created"
+          }
+        },
+        "ipv6": {
+          "mapping": {
+            "destination": "ipv6"
+          }
+        }
+      },
+      "results": {
+        "probeid": {
+          "mapping": {
+            "destination": "probeid",
+            "primaryKey": true
+          }
+        },
+        "time": {
+          "mapping": {
+            "destination": "time",
+            "primaryKey": true
+          }
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "responsetime": {
+          "mapping": {
+            "destination": "responsetime"
+          }
+        },
+        "statusdesc": {
+          "mapping": {
+            "destination": "statusdesc"
+          }
+        },
+        "statusdesclong": {
+          "mapping": {
+            "destination": "statusdesclong"
+          }
+        },
+        "analysisid": {
+          "mapping": {
+            "destination": "analysisid"
+          }
+        },
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "checks_id",
+            "primaryKey": true
+          }
+        }
+      }
+    }
+  }
+}

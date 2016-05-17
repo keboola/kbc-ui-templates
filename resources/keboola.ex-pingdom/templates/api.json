@@ -1,0 +1,25 @@
+{
+  "baseUrl": "https://api.pingdom.com/api/2.0/",
+  "authentication": {
+    "type": "basic"
+  },
+  "http": {
+    "headers": {
+      "Accept": "application/json",
+      "Accept-Encoding": "gzip",
+      "App-Key": {
+        "function": "concat",
+        "args": [
+          {
+            "attr": "#appKey"
+          }
+        ]
+      }
+    }
+  },
+  "pagination": {
+    "method": "offset",
+    "limit": 100,
+    "firstPageParams": false
+  }
+}
