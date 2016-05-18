@@ -29,9 +29,6 @@
       },
       {
         "endpoint": "checks",
-        "params": {
-          "include_tags": true
-        },
         "dataType": "checks",
         "children": [
           {
@@ -48,7 +45,9 @@
               "from": {
                 "function": "strtotime",
                 "args": [
-                  "-1 days"
+                  {
+                    "attr": "loadFrom"
+                  }
                 ]
               },
               "to": {
@@ -196,27 +195,6 @@
             "destination": "created"
           }
         },
-        "tags": {
-          "type": "table",
-          "destination": "tags",
-          "tableMapping": {
-            "name": {
-              "mapping": {
-                "destination": "name"
-              }
-            },
-            "type": {
-              "mapping": {
-                "destination": "type"
-              }
-            },
-            "count": {
-              "mapping": {
-                "destination": "count"
-              }
-            }
-          }
-        },
         "ipv6": {
           "mapping": {
             "destination": "ipv6"
@@ -254,16 +232,30 @@
           "type": "table",
           "destination": "checks-contacts",
           "tableMapping": {
-            "contactids": {
+            ".": {
               "mapping": {
                 "destination": "contacts_id"
               }
-            },
-            "parent_id": {
-              "type": "user",
+            }
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "checks-tags",
+          "tableMapping": {
+            "name": {
               "mapping": {
-                "destination": "checks_id",
-                "primaryKey": true
+                "destination": "name"
+              }
+            },
+            "type": {
+              "mapping": {
+                "destination": "type"
+              }
+            },
+            "count": {
+              "mapping": {
+                "destination": "count"
               }
             }
           }
