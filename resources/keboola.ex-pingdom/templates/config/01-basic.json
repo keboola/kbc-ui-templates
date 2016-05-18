@@ -1,6 +1,6 @@
 {
-  "name": "Basic - last 24 hours",
-  "description": "Downloads all\n\n - checks and their results \n - probes \n - alerts \n - contacts \n - settings\n - credits",
+  "name": "Basic",
+  "description": "Downloads \n\n - checks and their results \n - probes \n - alerts \n - contacts \n - settings\n - credits",
   "data": {
     "incrementalOutput": true,
     "jobs": [
