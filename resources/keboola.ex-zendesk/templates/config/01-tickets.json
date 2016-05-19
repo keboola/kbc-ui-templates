@@ -19,7 +19,7 @@
             "placeholders": {
               "id": "id"
             },
-            "recursionFilter": "status!=Deleted"
+            "recursionFilter": "status!=deleted"
           },
           {
             "endpoint": "tickets/{id}/comments.json",
@@ -27,7 +27,7 @@
             "placeholders": {
               "id": "id"
             },
-            "recursionFilter": "status!=Deleted"
+            "recursionFilter": "status!=deleted"
           }
         ]
       }

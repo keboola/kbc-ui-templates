@@ -11,8 +11,5 @@
   },
   "authentication": {
     "type": "basic"
-  },
-  "pagination": {
-    "method": "response.url"
   }
 }
