@@ -2,16 +2,29 @@
   "baseUrl": "https://www.googleapis.com/plus/v1/",
   "name": "gplus",
   "authentication": {
-    "type": "oauth20",
-    "format": "json",
-    "headers": {
-      "Authorization": {
-        "function": "concat",
-        "args": [
-          "Bearer ", {
-            "authorization": "data.access_token"
-          }
-        ]
+    "type": "oauth20.login",
+    "loginRequest": {
+      "endpoint": "https://accounts.google.com/o/oauth2/token",
+      "params": {
+        "refresh_token": {
+          "user": "refresh_token"
+        },
+        "client_id": {
+          "consumer": "client_id"
+        },
+        "client_secret": {
+          "consumer": "client_secret"
+        },
+        "grant_type": "refresh_token"
+      },
+      "method": "FORM",
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      }
+    },
+    "apiRequest": {
+      "query": {
+        "access_token": "access_token"
       }
     }
   }
