@@ -367,7 +367,7 @@
         "parent_id": {
           "type": "user",
           "mapping": {
-            "destination": "checks_id",
+            "destination": "checks_pk",
             "primaryKey": true
           }
         }
