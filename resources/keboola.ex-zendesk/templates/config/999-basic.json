@@ -1,0 +1,479 @@
+{
+  "name": "Dev basic template",
+  "description": "Downloads all *tickets* and their *audits* and *comments* with *attachments*.",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "incremental/tickets.json",
+        "scroller": "zendesk",
+        "dataType": "tickets",
+        "dataField": "tickets",
+        "params": {
+          "start_time": "1"
+        },
+        "children": [
+          {
+            "endpoint": "tickets/{id}/audits.json",
+            "dataType": "tickets_audits",
+            "placeholders": {
+              "id": "id"
+            },
+            "recursionFilter": "status!=deleted"
+          },
+          {
+            "endpoint": "tickets/{1:id}/comments.json",
+            "dataType": "tickets_comments",
+            "placeholders": {
+              "1:id": "id"
+            },
+            "recursionFilter": "status!=deleted"
+          },
+          {
+            "endpoint": "tickets/{1:id}/metrics",
+            "dataType": "ticket_metrics",
+            "dataField": "ticket_metric",
+            "placeholders": {
+              "1:id": "id"
+            },
+            "recursionFilter": "status!=deleted"
+          }
+        ]
+      }
+    ],
+    "mappings": {
+      "tickets": {
+        "id": {
+          "mapping": {
+            "primaryKey": true,
+            "destination": "id"
+          }
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "external_id": {
+          "mapping": {
+            "destination": "external_id"
+          }
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "subject": {
+          "mapping": {
+            "destination": "subject"
+          }
+        },
+        "priority": {
+          "mapping": {
+            "destination": "priority"
+          }
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "recipient": {
+          "mapping": {
+            "destination": "recipient"
+          }
+        },
+        "requester_id": {
+          "mapping": {
+            "destination": "requester_id"
+          }
+        },
+        "submitter_id": {
+          "mapping": {
+            "destination": "submitter_id"
+          }
+        },
+        "assignee_id": {
+          "mapping": {
+            "destination": "assignee_id"
+          }
+        },
+        "organization_id": {
+          "mapping": {
+            "destination": "organization_id"
+          }
+        },
+        "group_id": {
+          "mapping": {
+            "destination": "group_id"
+          }
+        },
+        "collaborator_ids": {
+          "type": "table",
+          "destination": "tickets_collaborators",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "collaborators_pk"
+              }
+            }
+          }
+        },
+        "forum_topic_id": {
+          "mapping": {
+            "destination": "forum_topic_id"
+          }
+        },
+        "problem_id": {
+          "mapping": {
+            "destination": "problem_id"
+          }
+        },
+        "has_incidents": {
+          "mapping": {
+            "destination": "has_incidents"
+          }
+        },
+        "due_at": {
+          "mapping": {
+            "destination": "due_at"
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "tickets_tags",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "tag"
+              }
+            }
+          }
+        },
+        "via.channel": {
+          "mapping": {
+            "destination": "via_channel"
+          }
+        },
+        "custom_fields": {
+          "type": "table",
+          "destination": "tickets_custom_fields",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "custom_fields_id"
+              }
+            },
+            "value": {
+              "mapping": {
+                "destination": "value"
+              }
+            }
+          }
+        },
+        "satisfaction_rating": {
+          "type": "table",
+          "destination": "tickets_ratings",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id"
+              }
+            },
+            "score": {
+              "mapping": {
+                "destination": "score"
+              }
+            }
+          }
+        },
+        "sharing_agreement_ids": {
+          "type": "table",
+          "destination": "tickets_sharing_agreements",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "sharing_agreements_pk"
+              }
+            }
+          }
+        },
+        "followup_ids": {
+          "type": "table",
+          "destination": "tickets_followups",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "followup_tickets_pk"
+              }
+            }
+          }
+        },
+        "ticket_form_id": {
+          "mapping": {
+            "destination": "ticket_form_id"
+          }
+        },
+        "brand_id": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        }
+      },
+      "tickets_comments": {
+        "id": {
+          "mapping": {
+            "primaryKey": true,
+            "destination": "id"
+          }
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "body": {
+          "mapping": {
+            "destination": "body"
+          }
+        },
+        "public": {
+          "mapping": {
+            "destination": "public"
+          }
+        },
+        "author_id": {
+          "mapping": {
+            "destination": "author_id"
+          }
+        },
+        "attachments": {
+          "type": "table",
+          "destination": "tickets_comments_attachments",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "primaryKey": true,
+                "destination": "id"
+              }
+            },
+            "file_name": {
+              "mapping": {
+                "destination": "file_name"
+              }
+            },
+            "content_url": {
+              "mapping": {
+                "destination": "content_url"
+              }
+            },
+            "content_type": {
+              "mapping": {
+                "destination": "content_type"
+              }
+            },
+            "size": {
+              "mapping": {
+                "destination": "size"
+              }
+            },
+            "width": {
+              "mapping": {
+                "destination": "width"
+              }
+            },
+            "height": {
+              "mapping": {
+                "destination": "height"
+              }
+            },
+            "inline": {
+              "mapping": {
+                "destination": "inline"
+              }
+            },
+            "thumbnails": {
+              "type": "table",
+              "destination": "tickets_comments_attachments_thumbnails",
+              "tableMapping": {
+                "id": {
+                  "mapping": {
+                    "primaryKey": true,
+                    "destination": "id"
+                  }
+                },
+                "file_name": {
+                  "mapping": {
+                    "destination": "file_name"
+                  }
+                },
+                "content_url": {
+                  "mapping": {
+                    "destination": "content_url"
+                  }
+                },
+                "content_type": {
+                  "mapping": {
+                    "destination": "content_type"
+                  }
+                },
+                "size": {
+                  "mapping": {
+                    "destination": "size"
+                  }
+                },
+                "width": {
+                  "mapping": {
+                    "destination": "width"
+                  }
+                },
+                "height": {
+                  "mapping": {
+                    "destination": "height"
+                  }
+                },
+                "inline": {
+                  "mapping": {
+                    "destination": "inline"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "audit_id": {
+          "mapping": {
+            "destination": "audit_id"
+          }
+        },
+        "via.channel": {
+          "mapping": {
+            "destination": "via_channel"
+          }
+        },
+        "metadata.system.ip_address": {
+          "mapping": {
+            "destination": "ip_address"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "tickets_pk"
+          }
+        }
+      },
+      "tickets_audits": {
+        "id": {
+          "mapping": {
+            "primaryKey": true,
+            "destination": "id"
+          }
+        },
+        "ticket_id": {
+          "mapping": {
+            "destination": "ticket_id"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "author_id": {
+          "mapping": {
+            "destination": "author_id"
+          }
+        },
+        "via.channel": {
+          "mapping": {
+            "destination": "via_channel"
+          }
+        },
+        "events": {
+          "type": "table",
+          "destination": "tickets_audits_events",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id"
+              }
+            },
+            "type": {
+              "mapping": {
+                "destination": "type"
+              }
+            },
+            "author_id": {
+              "mapping": {
+                "destination": "author_id"
+              }
+            },
+            "thumbnails": {
+              "type": "table",
+              "destination": "tickets_comments_attachments_thumbnails",
+              "tableMapping": {
+                "id": {
+                  "mapping": {
+                    "primaryKey": true,
+                    "destination": "id"
+                  }
+                },
+                "file_name": {
+                  "mapping": {
+                    "destination": "file_name"
+                  }
+                },
+                "content_url": {
+                  "mapping": {
+                    "destination": "content_url"
+                  }
+                },
+                "content_type": {
+                  "mapping": {
+                    "destination": "content_type"
+                  }
+                },
+                "size": {
+                  "mapping": {
+                    "destination": "size"
+                  }
+                },
+                "width": {
+                  "mapping": {
+                    "destination": "width"
+                  }
+                },
+                "height": {
+                  "mapping": {
+                    "destination": "height"
+                  }
+                },
+                "inline": {
+                  "mapping": {
+                    "destination": "inline"
+                  }
+                }
+              }
+            },
+            "field_name": {
+              "mapping": {
+                "destination": "field_name"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

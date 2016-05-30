@@ -11,5 +11,22 @@
   },
   "authentication": {
     "type": "basic"
+  },
+  "http": {
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
+  "pagination": {
+    "method": "multiple",
+    "default": "nextPage",
+    "scrollers": {
+      "zendesk": {
+        "method": "zendesk.response.url"
+      },
+      "nextPage": {
+        "method": "response.url"
+      }
+    }
   }
 }
