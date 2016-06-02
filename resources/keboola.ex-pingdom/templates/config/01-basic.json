@@ -1,14 +1,9 @@
 {
   "name": "Basic",
-  "description": "Downloads \n\n - checks and their results \n - probes \n - alerts \n - contacts \n - settings\n - credits",
+  "description": "Downloads \n\n - checks and their results \n - probes \n - alerts \n - contacts \n - credits",
   "data": {
     "incrementalOutput": true,
     "jobs": [
-      {
-        "endpoint": "settings",
-        "dataField": "settings",
-        "dataType": "settings"
-      },
       {
         "endpoint": "credits",
         "dataField": "credits",
@@ -180,16 +175,6 @@
             "destination": "alert_policy_name"
           }
         },
-        "acktimeout": {
-          "mapping": {
-            "destination": "acktimeout"
-          }
-        },
-        "autoresolve": {
-          "mapping": {
-            "destination": "autoresolve"
-          }
-        },
         "created": {
           "mapping": {
             "destination": "created"
@@ -234,7 +219,7 @@
           "tableMapping": {
             ".": {
               "mapping": {
-                "destination": "contacts_id"
+                "destination": "contacts_pk"
               }
             }
           }
@@ -329,7 +314,14 @@
       "results": {
         "probeid": {
           "mapping": {
-            "destination": "probeid",
+            "destination": "probes_pk",
+            "primaryKey": true
+          }
+        },
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "checks_pk",
             "primaryKey": true
           }
         },
@@ -361,32 +353,20 @@
         },
         "analysisid": {
           "mapping": {
-            "destination": "analysisid"
-          }
-        },
-        "parent_id": {
-          "type": "user",
-          "mapping": {
-            "destination": "checks_pk",
-            "primaryKey": true
+            "destination": "analysis_pk"
           }
         }
       },
       "alerts": {
-        "contactname": {
+        "checkid": {
           "mapping": {
-            "destination": "contactname"
+            "destination": "checks_pk",
+            "primaryKey": true
           }
         },
         "contactid": {
           "mapping": {
-            "destination": "contactid",
-            "primaryKey": true
-          }
-        },
-        "checkid": {
-          "mapping": {
-            "destination": "checkid",
+            "destination": "contacts_pk",
             "primaryKey": true
           }
         },
@@ -400,6 +380,11 @@
           "mapping": {
             "destination": "via",
             "primaryKey": true
+          }
+        },
+        "contactname": {
+          "mapping": {
+            "destination": "contactname"
           }
         },
         "status": {
@@ -420,6 +405,96 @@
         "charged": {
           "mapping": {
             "destination": "charged"
+          }
+        }
+      },
+      "probes": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "countryiso": {
+          "mapping": {
+            "destination": "countryiso"
+          }
+        },
+        "city": {
+          "mapping": {
+            "destination": "city"
+          }
+        },
+        "region": {
+          "mapping": {
+            "destination": "region"
+          }
+        },
+        "hostname": {
+          "mapping": {
+            "destination": "hostname"
+          }
+        },
+        "ip": {
+          "mapping": {
+            "destination": "ip"
+          }
+        },
+        "ipv6": {
+          "mapping": {
+            "destination": "ipv6"
+          }
+        },
+        "active": {
+          "mapping": {
+            "destination": "active"
+          }
+        }
+      },
+      "credits": {
+        "availablesms": {
+          "mapping": {
+            "destination": "availablesms"
+          }
+        },
+        "availablesmstests": {
+          "mapping": {
+            "destination": "availablesmstests"
+          }
+        },
+        "autofillsms": {
+          "mapping": {
+            "destination": "autofillsms"
+          }
+        },
+        "autofillsms_amount": {
+          "mapping": {
+            "destination": "autofillsms_amount"
+          }
+        },
+        "autofillsms_when_left": {
+          "mapping": {
+            "destination": "autofillsms_when_left"
+          }
+        },
+        "defaultchecklimit": {
+          "mapping": {
+            "destination": "defaultchecklimit"
+          }
+        },
+        "availabledefaultchecks": {
+          "mapping": {
+            "destination": "availabledefaultchecks"
+          }
+        },
+        "useddefault": {
+          "mapping": {
+            "destination": "useddefault"
           }
         }
       }
