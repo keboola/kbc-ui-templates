@@ -1,20 +1,24 @@
 {
   "name": "Dev basic template",
-  "description": "Downloads all *tickets* and their *audits* and *comments* with *attachments*.",
+  "description": "Downloads \n\n - *tickets* with details \n - *organizations* \n - *groups* \n - *users* \n - *tags*",
   "data": {
     "jobs": [
       {
-        "endpoint": "organizations",
+        "endpoint": "tags.json",
+        "dataType": "tags"
+      },
+      {
+        "endpoint": "organizations.json",
         "dataType": "organizations",
         "dataField": "organizations"
       },
       {
-        "endpoint": "users",
+        "endpoint": "users.json",
         "dataType": "users",
         "dataField": "users"
       },
       {
-        "endpoint": "groups",
+        "endpoint": "groups.json",
         "dataType": "groups",
         "dataField": "groups",
         "children": [
@@ -33,7 +37,9 @@
         "dataType": "tickets",
         "dataField": "tickets",
         "params": {
-          "start_time": "1"
+          "start_time": {
+            "time": "previousStart"
+          }
         },
         "children": [
           {
@@ -53,7 +59,7 @@
             "recursionFilter": "status!=deleted"
           },
           {
-            "endpoint": "tickets/{1:id}/metrics",
+            "endpoint": "tickets/{1:id}/metrics.json",
             "dataType": "ticket_metrics",
             "dataField": "ticket_metric",
             "placeholders": {
@@ -65,6 +71,18 @@
       }
     ],
     "mappings": {
+      "tags": {
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "count": {
+          "mapping": {
+            "destination": "count"
+          }
+        }
+      },
       "users": {
         "id": {
           "mapping": {
