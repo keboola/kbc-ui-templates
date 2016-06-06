@@ -18,15 +18,6 @@
     }
   },
   "pagination": {
-    "method": "multiple",
-    "default": "nextPage",
-    "scrollers": {
-      "zendesk": {
-        "method": "zendesk.response.url"
-      },
-      "nextPage": {
-        "method": "response.url"
-      }
-    }
+    "method": "zendesk.response.url"
   }
 }
