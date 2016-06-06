@@ -5,7 +5,7 @@
     "jobs": [
       {
         "endpoint": "incremental/tickets.json",
-        "dataType": "tickets_export",
+        "dataType": "tickets",
         "params": {
           "start_time": {
             "time": "previousStart"
