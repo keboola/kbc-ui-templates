@@ -12,7 +12,12 @@
   "authentication": {
     "type": "basic"
   },
+  "http": {
+    "headers": {
+      "Accept": "application/json"
+    }
+  },
   "pagination": {
-    "method": "response.url"
+    "method": "zendesk.response.url"
   }
 }

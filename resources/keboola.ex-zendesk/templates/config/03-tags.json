@@ -7,6 +7,20 @@
         "endpoint": "tags.json",
         "dataType": "tags"
       }
-    ]
+    ],
+    "mappings": {
+      "tags": {
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "count": {
+          "mapping": {
+            "destination": "count"
+          }
+        }
+      }
+    }
   }
 }

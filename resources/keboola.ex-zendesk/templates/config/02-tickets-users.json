@@ -4,19 +4,467 @@
   "data": {
     "jobs": [
       {
-        "endpoint": "exports/tickets.json",
-        "dataType": "tickets_export",
+        "endpoint": "incremental/tickets.json",
+        "dataType": "tickets",
         "params": {
           "start_time": {
             "time": "previousStart"
-          },
-          "end_time": ""
+          }
         }
       },
       {
         "endpoint": "users.json",
         "dataType": "users"
       }
-    ]
+    ],
+    "mappings": {
+      "users": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "email": {
+          "mapping": {
+            "destination": "email"
+          }
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "deleted": {
+          "mapping": {
+            "destination": "deleted"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "time_zone": {
+          "mapping": {
+            "destination": "time_zone"
+          }
+        },
+        "phone": {
+          "mapping": {
+            "destination": "phone"
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "users_tags",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "tag"
+              }
+            }
+          }
+        },
+        "photo": {
+          "type": "table",
+          "destination": "users_photos",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "primaryKey": true,
+                "destination": "id"
+              }
+            },
+            "file_name": {
+              "mapping": {
+                "destination": "file_name"
+              }
+            },
+            "content_url": {
+              "mapping": {
+                "destination": "content_url"
+              }
+            },
+            "content_type": {
+              "mapping": {
+                "destination": "content_type"
+              }
+            },
+            "size": {
+              "mapping": {
+                "destination": "size"
+              }
+            },
+            "width": {
+              "mapping": {
+                "destination": "width"
+              }
+            },
+            "height": {
+              "mapping": {
+                "destination": "height"
+              }
+            },
+            "inline": {
+              "mapping": {
+                "destination": "inline"
+              }
+            },
+            "thumbnails": {
+              "type": "table",
+              "destination": "users_photos_thumbnails",
+              "tableMapping": {
+                "id": {
+                  "mapping": {
+                    "primaryKey": true,
+                    "destination": "id"
+                  }
+                },
+                "file_name": {
+                  "mapping": {
+                    "destination": "file_name"
+                  }
+                },
+                "content_url": {
+                  "mapping": {
+                    "destination": "content_url"
+                  }
+                },
+                "content_type": {
+                  "mapping": {
+                    "destination": "content_type"
+                  }
+                },
+                "size": {
+                  "mapping": {
+                    "destination": "size"
+                  }
+                },
+                "width": {
+                  "mapping": {
+                    "destination": "width"
+                  }
+                },
+                "height": {
+                  "mapping": {
+                    "destination": "height"
+                  }
+                },
+                "inline": {
+                  "mapping": {
+                    "destination": "inline"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "locale_id": {
+          "mapping": {
+            "destination": "locale_id"
+          }
+        },
+        "locale": {
+          "mapping": {
+            "destination": "locale"
+          }
+        },
+        "organization_id": {
+          "mapping": {
+            "destination": "organizations_pk"
+          }
+        },
+        "role": {
+          "mapping": {
+            "destination": "role"
+          }
+        },
+        "verified": {
+          "mapping": {
+            "destination": "verified"
+          }
+        },
+        "external_id": {
+          "mapping": {
+            "destination": "external_id"
+          }
+        },
+        "alias": {
+          "mapping": {
+            "destination": "alias"
+          }
+        },
+        "active": {
+          "mapping": {
+            "destination": "active"
+          }
+        },
+        "shared": {
+          "mapping": {
+            "destination": "shared"
+          }
+        },
+        "shared_agent": {
+          "mapping": {
+            "destination": "shared_agent"
+          }
+        },
+        "last_login_at": {
+          "mapping": {
+            "destination": "last_login_at"
+          }
+        },
+        "two_factor_auth_enabled": {
+          "mapping": {
+            "destination": "two_factor_auth_enabled"
+          }
+        },
+        "signature": {
+          "mapping": {
+            "destination": "signature"
+          }
+        },
+        "details": {
+          "mapping": {
+            "destination": "details"
+          }
+        },
+        "notes": {
+          "mapping": {
+            "destination": "notes"
+          }
+        },
+        "custom_role_id": {
+          "mapping": {
+            "destination": "custom_role_id"
+          }
+        },
+        "moderator": {
+          "mapping": {
+            "destination": "moderator"
+          }
+        },
+        "ticket_restriction": {
+          "mapping": {
+            "destination": "ticket_restriction"
+          }
+        },
+        "only_private_comments": {
+          "mapping": {
+            "destination": "only_private_comments"
+          }
+        },
+        "restricted_agent": {
+          "mapping": {
+            "destination": "restricted_agent"
+          }
+        },
+        "suspended": {
+          "mapping": {
+            "destination": "suspended"
+          }
+        },
+        "chat_only": {
+          "mapping": {
+            "destination": "chat_only"
+          }
+        }
+      },
+      "tickets": {
+        "id": {
+          "mapping": {
+            "primaryKey": true,
+            "destination": "id"
+          }
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "external_id": {
+          "mapping": {
+            "destination": "external_id"
+          }
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "subject": {
+          "mapping": {
+            "destination": "subject"
+          }
+        },
+        "priority": {
+          "mapping": {
+            "destination": "priority"
+          }
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "recipient": {
+          "mapping": {
+            "destination": "recipient"
+          }
+        },
+        "requester_id": {
+          "mapping": {
+            "destination": "requester_id"
+          }
+        },
+        "submitter_id": {
+          "mapping": {
+            "destination": "submitter_id"
+          }
+        },
+        "assignee_id": {
+          "mapping": {
+            "destination": "assignee_id"
+          }
+        },
+        "organization_id": {
+          "mapping": {
+            "destination": "organization_id"
+          }
+        },
+        "group_id": {
+          "mapping": {
+            "destination": "group_id"
+          }
+        },
+        "collaborator_ids": {
+          "type": "table",
+          "destination": "tickets_collaborators",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "collaborators_pk"
+              }
+            }
+          }
+        },
+        "forum_topic_id": {
+          "mapping": {
+            "destination": "forum_topic_id"
+          }
+        },
+        "problem_id": {
+          "mapping": {
+            "destination": "problem_id"
+          }
+        },
+        "has_incidents": {
+          "mapping": {
+            "destination": "has_incidents"
+          }
+        },
+        "due_at": {
+          "mapping": {
+            "destination": "due_at"
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "tickets_tags",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "tag"
+              }
+            }
+          }
+        },
+        "via.channel": {
+          "mapping": {
+            "destination": "via_channel"
+          }
+        },
+        "custom_fields": {
+          "type": "table",
+          "destination": "tickets_custom_fields",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "custom_fields_id"
+              }
+            },
+            "value": {
+              "mapping": {
+                "destination": "value"
+              }
+            }
+          }
+        },
+        "satisfaction_rating": {
+          "type": "table",
+          "destination": "tickets_ratings",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id"
+              }
+            },
+            "score": {
+              "mapping": {
+                "destination": "score"
+              }
+            }
+          }
+        },
+        "sharing_agreement_ids": {
+          "type": "table",
+          "destination": "tickets_sharing_agreements",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "sharing_agreements_pk"
+              }
+            }
+          }
+        },
+        "followup_ids": {
+          "type": "table",
+          "destination": "tickets_followups",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "followup_tickets_pk"
+              }
+            }
+          }
+        },
+        "ticket_form_id": {
+          "mapping": {
+            "destination": "ticket_form_id"
+          }
+        },
+        "brand_id": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        }
+      }
+    }
   }
 }

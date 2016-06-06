@@ -1,10 +1,39 @@
 {
-  "name": "Tickets All Inclusive",
-  "description": "Downloads all *tickets* and their *audits*, *metrics* and *comments*.",
+  "name": "Dev basic template",
+  "description": "Downloads \n\n - *tickets* with details \n - *organizations* \n - *groups* \n - *users* \n - *tags*",
   "data": {
     "jobs": [
       {
+        "endpoint": "tags.json",
+        "dataType": "tags"
+      },
+      {
+        "endpoint": "organizations.json",
+        "dataType": "organizations",
+        "dataField": "organizations"
+      },
+      {
+        "endpoint": "users.json",
+        "dataType": "users",
+        "dataField": "users"
+      },
+      {
+        "endpoint": "groups.json",
+        "dataType": "groups",
+        "dataField": "groups",
+        "children": [
+          {
+            "endpoint": "groups/{id}/users.json",
+            "dataType": "users_groups",
+            "placeholders": {
+              "id": "id"
+            }
+          }
+        ]
+      },
+      {
         "endpoint": "incremental/tickets.json",
+        "scroller": "zendesk",
         "dataType": "tickets",
         "dataField": "tickets",
         "params": {
@@ -22,10 +51,19 @@
             "recursionFilter": "status!=deleted"
           },
           {
-            "endpoint": "tickets/{id}/comments.json",
+            "endpoint": "tickets/{1:id}/comments.json",
             "dataType": "tickets_comments",
             "placeholders": {
-              "id": "id"
+              "1:id": "id"
+            },
+            "recursionFilter": "status!=deleted"
+          },
+          {
+            "endpoint": "tickets/{1:id}/metrics.json",
+            "dataType": "ticket_metrics",
+            "dataField": "ticket_metric",
+            "placeholders": {
+              "1:id": "id"
             },
             "recursionFilter": "status!=deleted"
           }
@@ -33,6 +71,407 @@
       }
     ],
     "mappings": {
+      "tags": {
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "count": {
+          "mapping": {
+            "destination": "count"
+          }
+        }
+      },
+      "users": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "email": {
+          "mapping": {
+            "destination": "email"
+          }
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "deleted": {
+          "mapping": {
+            "destination": "deleted"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "time_zone": {
+          "mapping": {
+            "destination": "time_zone"
+          }
+        },
+        "phone": {
+          "mapping": {
+            "destination": "phone"
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "users_tags",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "tag"
+              }
+            }
+          }
+        },
+        "photo": {
+          "type": "table",
+          "destination": "users_photos",
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "primaryKey": true,
+                "destination": "id"
+              }
+            },
+            "file_name": {
+              "mapping": {
+                "destination": "file_name"
+              }
+            },
+            "content_url": {
+              "mapping": {
+                "destination": "content_url"
+              }
+            },
+            "content_type": {
+              "mapping": {
+                "destination": "content_type"
+              }
+            },
+            "size": {
+              "mapping": {
+                "destination": "size"
+              }
+            },
+            "width": {
+              "mapping": {
+                "destination": "width"
+              }
+            },
+            "height": {
+              "mapping": {
+                "destination": "height"
+              }
+            },
+            "inline": {
+              "mapping": {
+                "destination": "inline"
+              }
+            },
+            "thumbnails": {
+              "type": "table",
+              "destination": "users_photos_thumbnails",
+              "tableMapping": {
+                "id": {
+                  "mapping": {
+                    "primaryKey": true,
+                    "destination": "id"
+                  }
+                },
+                "file_name": {
+                  "mapping": {
+                    "destination": "file_name"
+                  }
+                },
+                "content_url": {
+                  "mapping": {
+                    "destination": "content_url"
+                  }
+                },
+                "content_type": {
+                  "mapping": {
+                    "destination": "content_type"
+                  }
+                },
+                "size": {
+                  "mapping": {
+                    "destination": "size"
+                  }
+                },
+                "width": {
+                  "mapping": {
+                    "destination": "width"
+                  }
+                },
+                "height": {
+                  "mapping": {
+                    "destination": "height"
+                  }
+                },
+                "inline": {
+                  "mapping": {
+                    "destination": "inline"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "locale_id": {
+          "mapping": {
+            "destination": "locale_id"
+          }
+        },
+        "locale": {
+          "mapping": {
+            "destination": "locale"
+          }
+        },
+        "organization_id": {
+          "mapping": {
+            "destination": "organizations_pk"
+          }
+        },
+        "role": {
+          "mapping": {
+            "destination": "role"
+          }
+        },
+        "verified": {
+          "mapping": {
+            "destination": "verified"
+          }
+        },
+        "external_id": {
+          "mapping": {
+            "destination": "external_id"
+          }
+        },
+        "alias": {
+          "mapping": {
+            "destination": "alias"
+          }
+        },
+        "active": {
+          "mapping": {
+            "destination": "active"
+          }
+        },
+        "shared": {
+          "mapping": {
+            "destination": "shared"
+          }
+        },
+        "shared_agent": {
+          "mapping": {
+            "destination": "shared_agent"
+          }
+        },
+        "last_login_at": {
+          "mapping": {
+            "destination": "last_login_at"
+          }
+        },
+        "two_factor_auth_enabled": {
+          "mapping": {
+            "destination": "two_factor_auth_enabled"
+          }
+        },
+        "signature": {
+          "mapping": {
+            "destination": "signature"
+          }
+        },
+        "details": {
+          "mapping": {
+            "destination": "details"
+          }
+        },
+        "notes": {
+          "mapping": {
+            "destination": "notes"
+          }
+        },
+        "custom_role_id": {
+          "mapping": {
+            "destination": "custom_role_id"
+          }
+        },
+        "moderator": {
+          "mapping": {
+            "destination": "moderator"
+          }
+        },
+        "ticket_restriction": {
+          "mapping": {
+            "destination": "ticket_restriction"
+          }
+        },
+        "only_private_comments": {
+          "mapping": {
+            "destination": "only_private_comments"
+          }
+        },
+        "restricted_agent": {
+          "mapping": {
+            "destination": "restricted_agent"
+          }
+        },
+        "suspended": {
+          "mapping": {
+            "destination": "suspended"
+          }
+        },
+        "chat_only": {
+          "mapping": {
+            "destination": "chat_only"
+          }
+        }
+      },
+      "users_groups": {
+        "id": {
+          "mapping": {
+            "destination": "users_pk"
+          }
+        },
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "groups_pk"
+          }
+        }
+      },
+      "groups": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "deleted": {
+          "mapping": {
+            "destination": "deleted"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        }
+      },
+      "organizations": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "shared_tickets": {
+          "mapping": {
+            "destination": "shared_tickets"
+          }
+        },
+        "shared_comments": {
+          "mapping": {
+            "destination": "shared_comments"
+          }
+        },
+        "external_id": {
+          "mapping": {
+            "destination": "external_id"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "domain_names": {
+          "type": "table",
+          "destination": "organizations_domain_names",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "domain"
+              }
+            }
+          }
+        },
+        "details": {
+          "mapping": {
+            "destination": "details"
+          }
+        },
+        "notes": {
+          "mapping": {
+            "destination": "notes"
+          }
+        },
+        "group_id": {
+          "mapping": {
+            "destination": "group_id"
+          }
+        },
+        "tags": {
+          "type": "table",
+          "destination": "organizations_tags",
+          "tableMapping": {
+            ".": {
+              "mapping": {
+                "destination": "tag"
+              }
+            }
+          }
+        }
+      },
       "tickets": {
         "id": {
           "mapping": {
