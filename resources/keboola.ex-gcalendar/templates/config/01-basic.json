@@ -17,7 +17,7 @@
             "placeholders": {
               "id": "id"
             },
-            "recursionFilter": "id!=#contacts@group.v.calendar.google.com&id!=en.czech#holiday@group.v.calendar.google.com&id!=en.indonesian#holiday@group.v.calendar.google.com"            
+            "recursionFilter": "id!=#contacts@group.v.calendar.google.com&id!~%#holiday@group.v.calendar.google.com"
           }
         ]
       }
