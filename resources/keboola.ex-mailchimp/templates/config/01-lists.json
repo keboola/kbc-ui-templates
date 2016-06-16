@@ -1,9 +1,9 @@
 {
   "name": "Lists and members",
-  "description": "Get lists and their members from mailchimp",
+  "description": "Get lists and their members",
   "data": {
     "incrementalOutput": false,
-    "debug": 1,
+    "debug": 0,
     "jobs": [
         {
           "endpoint": "lists",

@@ -1,0 +1,25 @@
+{
+  "name": "Automations",
+  "description": "Get automations and the associated emails",
+  "data": {
+    "incrementalOutput": false,
+    "debug": 0,
+    "jobs": [
+      {
+        "endpoint": "automations",
+        "dataField": "automations",
+        "dataType": "automations",
+        "children": [
+          {
+            "endpoint": "automations/{id}/emails",
+            "placeholders": {
+              "id": "id"
+            },
+            "dataField": "emails",
+            "dataType": "emails"
+          }
+        ]
+      }
+    ]
+  }
+}

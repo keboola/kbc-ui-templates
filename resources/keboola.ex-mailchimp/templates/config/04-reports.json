@@ -1,0 +1,49 @@
+{
+  "name": "Reports",
+  "description": "Get reports and domain performance",
+  "data": {
+    "incrementalOutput": false,
+    "debug": 0,
+    "jobs": [
+        {
+          "endpoint": "reports",
+          "dataField": "reports",
+          "dataType": "reports",
+          "children": [
+            {
+              "endpoint": "reports/{id}/click-details",
+              "placeholders": {
+                "id": "id"
+              },
+              "dataField": "urls_clicked",
+              "dataType": "urls-clicked"
+            },
+            {
+              "endpoint": "reports/{id}/domain-performance",
+              "placeholders": {
+                "id": "id"
+              },
+              "dataField": "domains",
+              "dataType": "domain-performance"
+            },
+            {
+              "endpoint": "reports/{id}/locations",
+              "placeholders": {
+                "id": "id"
+              },
+              "dataField": "locations",
+              "dataType": "locations"
+            },
+            {
+              "endpoint": "reports/{id}/unsubscribed",
+              "placeholders": {
+                "id": "id"
+              },
+              "dataField": "unsubscribes",
+              "dataType": "unsubscribed"
+            }
+          ]
+        }
+    ]
+  }
+}

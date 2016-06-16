@@ -1,0 +1,25 @@
+{
+  "name": "Campaigns",
+  "description": "Get campaigns and their feedback",
+  "data": {
+    "incrementalOutput": false,
+    "debug": 0,
+    "jobs": [
+      {
+      "endpoint": "campaigns",
+      "dataField": "campaigns",
+      "dataType": "campaigns",
+      "children": [
+        {
+          "endpoint": "campaigns/{id}/feedback",
+          "placeholders": {
+            "id": "id"
+          },
+          "dataField": "feedback",
+          "dataType": "feedback"
+        }
+      ]
+    }
+    ]
+  }
+}
