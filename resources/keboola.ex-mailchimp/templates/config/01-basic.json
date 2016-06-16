@@ -1,6 +1,6 @@
 {
-  "name": "Get data from mailchimp",
-  "description": "Download from mailchimp",
+  "name": "Lists and members",
+  "description": "Get lists and their members from mailchimp",
   "data": {
     "incrementalOutput": false,
     "debug": 1,
@@ -11,12 +11,12 @@
           "dataType": "lists",
           "children": [
             {
-              "endpoint": "lists/{id}/campaigns",
+              "endpoint": "lists/{id}/members",
               "placeholders": {
                 "id": "id"
               },
-              "dataField": "campaigns",
-              "dataType": "campaigns"
+              "dataField": "members",
+              "dataType": "members"
             }
           ]
         }
