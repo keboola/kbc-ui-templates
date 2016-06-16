@@ -4,23 +4,30 @@
   "data": {
     "incrementalOutput": true,
     "debug": 0,
-    "jobs": [
-      {
-        "endpoint": "users/me/calendarList",
-        "dataType": "calendars",
-        "dataField": "items",
-        "children": [
-          {
-            "endpoint": "calendars/{id}/events",
-            "dataType": "events",
-            "dataField": "items",
-            "placeholders": {
-              "id": "id"
-            },
-            "recursionFilter": "id!=#contacts@group.v.calendar.google.com&id!~%#holiday@group.v.calendar.google.com"
-          }
-        ]
-      }
-    ]
-  }
+     "jobs": [
+        {
+          "endpoint": "users/me/calendarList",
+          "dataType": "calendars",
+          "dataField": "items",
+          "children": [
+            {
+              "endpoint": "calendars/{id}/events",
+              "dataType": "events",
+              "dataField": "items",
+              "placeholders": {
+                "id": {
+                  "path": "id",
+                  "function": "urlencode",
+                  "args": [
+                    {
+                      "placeholder": "value"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+   }
 }
