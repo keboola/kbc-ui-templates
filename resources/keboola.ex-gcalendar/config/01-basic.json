@@ -2,7 +2,7 @@
   "name": "Get data from Google Calendar",
   "description": "Download from Google Calendar",
   "data": {
-    "id": "gcalendar",
+    "incrementalOutput": true,
     "debug": 0,
     "jobs": [
       {
