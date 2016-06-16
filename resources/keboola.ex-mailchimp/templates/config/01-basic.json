@@ -1,0 +1,25 @@
+{
+  "name": "Get data from mailchimp",
+  "description": "Download from mailchimp",
+  "data": {
+    "incrementalOutput": false,
+    "debug": 1,
+    "jobs": [
+        {
+          "endpoint": "lists",
+          "dataField": "lists",
+          "dataType": "lists",
+          "children": [
+            {
+              "endpoint": "lists/{id}/campaigns",
+              "placeholders": {
+                "id": "id"
+              },
+              "dataField": "campaigns",
+              "dataType": "campaigns"
+            }
+          ]
+        }
+    ]
+  }
+}

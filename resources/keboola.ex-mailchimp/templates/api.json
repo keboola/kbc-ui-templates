@@ -1,0 +1,21 @@
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://",
+          {
+            "attr": "dc"
+          },
+          ".api.mailchimp.com/3.0/"
+        ]
+  },
+  "pagination": {
+    "method": "offset",
+    "limit": 1000,
+    "limitParam": "count"
+  },
+  "name": "mailchimp",
+  "authentication": {
+    "type": "basic"
+  }
+}
