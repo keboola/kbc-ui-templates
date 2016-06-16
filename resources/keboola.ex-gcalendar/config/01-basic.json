@@ -1,0 +1,26 @@
+{
+  "name": "Get data from Google Calendar",
+  "description": "Download from Google Calendar",
+  "data": {
+    "id": "gcalendar",
+    "debug": 0,
+    "jobs": [
+      {
+        "endpoint": "users/me/calendarList",
+        "dataType": "calendars",
+        "dataField": "items",
+        "children": [
+          {
+            "endpoint": "calendars/{id}/events",
+            "dataType": "events",
+            "dataField": "items",
+            "placeholders": {
+              "id": "id"
+            },
+            "recursionFilter": "id!=#contacts@group.v.calendar.google.com&id!=en.czech#holiday@group.v.calendar.google.com&id!=en.indonesian#holiday@group.v.calendar.google.com"
+          }
+        ]
+      }
+    ]
+  }
+}
