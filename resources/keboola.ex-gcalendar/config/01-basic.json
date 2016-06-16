@@ -16,7 +16,7 @@
             "dataField": "items",
             "placeholders": {
               "id": "id"
-            },
+            }
           }
         ]
       }
