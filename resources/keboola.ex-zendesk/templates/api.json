@@ -16,7 +16,7 @@
       "Authorization": {
         "function": "concat",
         "args": [
-          "token ",
+          "Bearer ",
           {
             "authorization": "data.access_token"
           }
