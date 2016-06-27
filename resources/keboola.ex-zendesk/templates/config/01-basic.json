@@ -60,7 +60,7 @@
           },
           {
             "endpoint": "tickets/{1:id}/metrics.json",
-            "dataType": "ticket_metrics",
+            "dataType": "tickets_metrics",
             "dataField": "ticket_metric",
             "placeholders": {
               "1:id": "id"
@@ -130,17 +130,6 @@
             "destination": "phone"
           }
         },
-        "tags": {
-          "type": "table",
-          "destination": "users_tags",
-          "tableMapping": {
-            ".": {
-              "mapping": {
-                "destination": "tag"
-              }
-            }
-          }
-        },
         "photo": {
           "type": "table",
           "destination": "users_photos",
@@ -184,53 +173,6 @@
             "inline": {
               "mapping": {
                 "destination": "inline"
-              }
-            },
-            "thumbnails": {
-              "type": "table",
-              "destination": "users_photos_thumbnails",
-              "tableMapping": {
-                "id": {
-                  "mapping": {
-                    "primaryKey": true,
-                    "destination": "id"
-                  }
-                },
-                "file_name": {
-                  "mapping": {
-                    "destination": "file_name"
-                  }
-                },
-                "content_url": {
-                  "mapping": {
-                    "destination": "content_url"
-                  }
-                },
-                "content_type": {
-                  "mapping": {
-                    "destination": "content_type"
-                  }
-                },
-                "size": {
-                  "mapping": {
-                    "destination": "size"
-                  }
-                },
-                "width": {
-                  "mapping": {
-                    "destination": "width"
-                  }
-                },
-                "height": {
-                  "mapping": {
-                    "destination": "height"
-                  }
-                },
-                "inline": {
-                  "mapping": {
-                    "destination": "inline"
-                  }
-                }
               }
             }
           }
@@ -457,18 +399,7 @@
         },
         "group_id": {
           "mapping": {
-            "destination": "group_id"
-          }
-        },
-        "tags": {
-          "type": "table",
-          "destination": "organizations_tags",
-          "tableMapping": {
-            ".": {
-              "mapping": {
-                "destination": "tag"
-              }
-            }
+            "destination": "groups_pk"
           }
         }
       },
@@ -516,43 +447,32 @@
         },
         "requester_id": {
           "mapping": {
-            "destination": "requester_id"
+            "destination": "requester_users_pk"
           }
         },
         "submitter_id": {
           "mapping": {
-            "destination": "submitter_id"
+            "destination": "submitter_users_pk"
           }
         },
         "assignee_id": {
           "mapping": {
-            "destination": "assignee_id"
+            "destination": "assignee_users_pk"
           }
         },
         "organization_id": {
           "mapping": {
-            "destination": "organization_id"
+            "destination": "organizations_pk"
           }
         },
         "group_id": {
           "mapping": {
-            "destination": "group_id"
-          }
-        },
-        "collaborator_ids": {
-          "type": "table",
-          "destination": "tickets_collaborators",
-          "tableMapping": {
-            ".": {
-              "mapping": {
-                "destination": "collaborators_pk"
-              }
-            }
+            "destination": "groups_pk"
           }
         },
         "forum_topic_id": {
           "mapping": {
-            "destination": "forum_topic_id"
+            "destination": "topic_id"
           }
         },
         "problem_id": {
@@ -570,41 +490,17 @@
             "destination": "due_at"
           }
         },
-        "tags": {
-          "type": "table",
-          "destination": "tickets_tags",
-          "tableMapping": {
-            ".": {
-              "mapping": {
-                "destination": "tag"
-              }
-            }
-          }
-        },
         "via.channel": {
           "mapping": {
             "destination": "via_channel"
           }
         },
-        "custom_fields": {
-          "type": "table",
-          "destination": "tickets_custom_fields",
-          "tableMapping": {
-            "id": {
-              "mapping": {
-                "destination": "custom_fields_id"
-              }
-            },
-            "value": {
-              "mapping": {
-                "destination": "value"
-              }
-            }
-          }
-        },
         "satisfaction_rating": {
           "type": "table",
           "destination": "tickets_ratings",
+          "parentKey": {
+            "primaryKey": true
+          },
           "tableMapping": {
             "id": {
               "mapping": {
@@ -621,10 +517,14 @@
         "sharing_agreement_ids": {
           "type": "table",
           "destination": "tickets_sharing_agreements",
+          "parentKey": {
+            "primaryKey": true
+          },
           "tableMapping": {
             ".": {
               "mapping": {
-                "destination": "sharing_agreements_pk"
+                "destination": "sharing_agreements_pk",
+                "primaryKey": true
               }
             }
           }
@@ -632,10 +532,14 @@
         "followup_ids": {
           "type": "table",
           "destination": "tickets_followups",
+          "parentKey": {
+            "primaryKey": true
+          },
           "tableMapping": {
             ".": {
               "mapping": {
-                "destination": "followup_tickets_pk"
+                "destination": "followup_tickets_pk",
+                "primaryKey": true
               }
             }
           }
@@ -647,14 +551,20 @@
         },
         "brand_id": {
           "mapping": {
-            "destination": "updated_at"
+            "destination": "brand_pk"
           }
         },
         "created_at": {
           "mapping": {
             "destination": "created_at"
           }
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          }
         }
+
       },
       "tickets_comments": {
         "id": {
@@ -680,7 +590,7 @@
         },
         "author_id": {
           "mapping": {
-            "destination": "author_id"
+            "destination": "author_pk"
           }
         },
         "attachments": {
@@ -779,7 +689,7 @@
         },
         "audit_id": {
           "mapping": {
-            "destination": "audit_id"
+            "destination": "tickets_audits_pk"
           }
         },
         "via.channel": {
@@ -813,7 +723,7 @@
         },
         "ticket_id": {
           "mapping": {
-            "destination": "ticket_id"
+            "destination": "tickets_pk"
           }
         },
         "created_at": {
@@ -823,85 +733,150 @@
         },
         "author_id": {
           "mapping": {
-            "destination": "author_id"
+            "destination": "author_pk"
           }
         },
         "via.channel": {
           "mapping": {
             "destination": "via_channel"
           }
+        }
+      },
+      "tickets_metrics": {
+        "id": {
+          "mapping": {
+            "primaryKey": true,
+            "destination": "id"
+          }
         },
-        "events": {
-          "type": "table",
-          "destination": "tickets_audits_events",
-          "tableMapping": {
-            "id": {
-              "mapping": {
-                "destination": "id"
-              }
-            },
-            "type": {
-              "mapping": {
-                "destination": "type"
-              }
-            },
-            "author_id": {
-              "mapping": {
-                "destination": "author_id"
-              }
-            },
-            "thumbnails": {
-              "type": "table",
-              "destination": "tickets_comments_attachments_thumbnails",
-              "tableMapping": {
-                "id": {
-                  "mapping": {
-                    "primaryKey": true,
-                    "destination": "id"
-                  }
-                },
-                "file_name": {
-                  "mapping": {
-                    "destination": "file_name"
-                  }
-                },
-                "content_url": {
-                  "mapping": {
-                    "destination": "content_url"
-                  }
-                },
-                "content_type": {
-                  "mapping": {
-                    "destination": "content_type"
-                  }
-                },
-                "size": {
-                  "mapping": {
-                    "destination": "size"
-                  }
-                },
-                "width": {
-                  "mapping": {
-                    "destination": "width"
-                  }
-                },
-                "height": {
-                  "mapping": {
-                    "destination": "height"
-                  }
-                },
-                "inline": {
-                  "mapping": {
-                    "destination": "inline"
-                  }
-                }
-              }
-            },
-            "field_name": {
-              "mapping": {
-                "destination": "field_name"
-              }
-            }
+        "ticket_id": {
+          "mapping": {
+            "destination": "tickets_pk"
+          }
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "group_stations": {
+          "mapping": {
+            "destination": "group_stations"
+          }
+        },
+        "assignee_stations": {
+          "mapping": {
+            "destination": "assignee_stations"
+          }
+        },
+        "reopens": {
+          "mapping": {
+            "destination": "reopens"
+          }
+        },
+        "replies": {
+          "mapping": {
+            "destination": "replies"
+          }
+        },
+        "assignee_updated_at": {
+          "mapping": {
+            "destination": "assignee_updated_at"
+          }
+        },
+        "requester_updated_at": {
+          "mapping": {
+            "destination": "requester_updated_at"
+          }
+        },
+        "status_updated_at": {
+          "mapping": {
+            "destination": "status_updated_at"
+          }
+        },
+        "initially_assigned_at": {
+          "mapping": {
+            "destination": "initially_assigned_at"
+          }
+        },
+        "assigned_at": {
+          "mapping": {
+            "destination": "assigned_at"
+          }
+        },
+        "solved_at": {
+          "mapping": {
+            "destination": "solved_at"
+          }
+        },
+        "latest_comment_added_at": {
+          "mapping": {
+            "destination": "latest_comment_added_at"
+          }
+        },
+        "reply_time_in_minutes.calendar": {
+          "mapping": {
+            "destination": "reply_time_in_minutes_calendar"
+          }
+        },
+        "reply_time_in_minutes.business": {
+          "mapping": {
+            "destination": "reply_time_in_minutes_business"
+          }
+        },
+        "first_resolution_time_in_minutes.calendar": {
+          "mapping": {
+            "destination": "first_resolution_time_in_minutes_calendar"
+          }
+        },
+        "first_resolution_time_in_minutes.business": {
+          "mapping": {
+            "destination": "first_resolution_time_in_minutes_business"
+          }
+        },
+        "full_resolution_time_in_minutes.calendar": {
+          "mapping": {
+            "destination": "full_resolution_time_in_minutes_calendar"
+          }
+        },
+        "full_resolution_time_in_minutes.business": {
+          "mapping": {
+            "destination": "full_resolution_time_in_minutes_business"
+          }
+        },
+        "agent_wait_time_in_minutes.calendar": {
+          "mapping": {
+            "destination": "agent_wait_time_in_minutes_calendar"
+          }
+        },
+        "agent_wait_time_in_minutes.business": {
+          "mapping": {
+            "destination": "agent_wait_time_in_minutes_business"
+          }
+        },
+        "requester_wait_time_in_minutes.calendar": {
+          "mapping": {
+            "destination": "requester_wait_time_in_minutes_calendar"
+          }
+        },
+        "requester_wait_time_in_minutes.business": {
+          "mapping": {
+            "destination": "requester_wait_time_in_minutes_business"
+          }
+        },
+        "on_hold_time_in_minutes.calendar": {
+          "mapping": {
+            "destination": "on_hold_time_in_minutes_calendar"
+          }
+        },
+        "on_hold_time_in_minutes.business": {
+          "mapping": {
+            "destination": "on_hold_time_in_minutes_business"
           }
         }
       }
