@@ -10,19 +10,7 @@
     ]
   },
   "authentication": {
-    "type": "oauth20",
-    "format": "json",
-    "headers": {
-      "Authorization": {
-        "function": "concat",
-        "args": [
-          "Bearer ",
-          {
-            "authorization": "data.access_token"
-          }
-        ]
-      }
-    }
+    "type": "basic"
   },
   "http": {
     "headers": {
