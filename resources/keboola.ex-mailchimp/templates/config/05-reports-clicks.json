@@ -1,5 +1,5 @@
 {
-  "name": "Reports",
+  "name": "Reports with click details",
   "description": "Get reports and domain performance with member click details.",
   "data": {
     "incrementalOutput": false,
