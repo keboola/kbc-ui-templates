@@ -15,7 +15,16 @@
         },
         "dataField": "urls_clicked",
         "dataType": "urls-clicked"
-      }, {
+      }, 
+      {
+        "endpoint": "reports/{id}/email-activity",
+        "placeholders": {
+          "id": "id"
+        },
+        "dataField": "email_activity",
+        "dataType": "emails"
+      },  
+      {
         "endpoint": "reports/{id}/domain-performance",
         "placeholders": {
           "id": "id"
