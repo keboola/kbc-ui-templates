@@ -15,15 +15,15 @@
         },
         "dataField": "urls_clicked",
         "dataType": "urls-clicked"
-      }, 
+      },
       {
         "endpoint": "reports/{id}/email-activity",
         "placeholders": {
           "id": "id"
         },
-        "dataField": "email_activity",
-        "dataType": "emails"
-      },  
+        "dataField": "emails",
+        "dataType": "email-activity"
+      },
       {
         "endpoint": "reports/{id}/domain-performance",
         "placeholders": {

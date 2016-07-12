@@ -23,9 +23,9 @@
               "placeholders": {
                 "id": "id"
               },
-              "dataField": "email_activity",
-              "dataType": "emails"
-            },            
+              "dataField": "emails",
+              "dataType": "email-activity"
+            },
             {
               "endpoint": "reports/{id}/domain-performance",
               "placeholders": {
