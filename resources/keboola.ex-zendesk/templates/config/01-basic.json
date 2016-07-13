@@ -602,8 +602,13 @@
           "mapping": {
             "destination": "updated_at"
           }
+        },
+        "tags": {
+          "forceType": "json",
+          "mapping": {
+            "destination": "tags"
+          }
         }
-
       },
       "tickets_comments": {
         "id": {
