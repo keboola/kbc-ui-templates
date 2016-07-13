@@ -1,7 +1,8 @@
 {
-  "name": "Dev basic template",
+  "name": "Basic template",
   "description": "Downloads \n\n - *tickets* with details \n - *organizations* \n - *groups* \n - *users* \n - *tags*",
   "data": {
+    "incrementalOutput": true,
     "jobs": [
       {
         "endpoint": "tags.json",
