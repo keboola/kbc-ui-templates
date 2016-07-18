@@ -19,14 +19,6 @@
               "dataType": "urls-clicked"
             },
             {
-              "endpoint": "reports/{id}/email-activity",
-              "placeholders": {
-                "id": "id"
-              },
-              "dataField": "emails",
-              "dataType": "email-activity"
-            },
-            {
               "endpoint": "reports/{id}/domain-performance",
               "placeholders": {
                 "id": "id"
