@@ -1,0 +1,36 @@
+{
+  "name": "Lists Members activity",
+  "description": "Get lists, their members and activity of each individual member. This template may take some hours to complete.",
+  "data": {
+    "incrementalOutput": false,
+    "debug": 0,
+    "jobs": [
+        {
+          "endpoint": "lists",
+          "dataField": "lists",
+          "dataType": "lists",
+          "children": [
+            {
+              "endpoint": "lists/{id}/members",
+              "placeholders": {
+                "id": "id"
+              },
+              "dataField": "members",
+              "dataType": "members",
+              "children": [
+                {
+                  "endpoint": "lists/{listId}/members/{memberId}/activity",
+                  "placeholders": {
+                    "listId": "list_id",
+                    "memberId": "id"
+                  },
+                  "dataField": "activity",
+                  "dataType": "activity"
+                }
+              ]
+            }
+          ]
+        }
+    ]
+  }
+}
