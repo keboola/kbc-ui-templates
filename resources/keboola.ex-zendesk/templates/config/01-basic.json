@@ -1,7 +1,8 @@
 {
-  "name": "Dev basic template",
+  "name": "Basic template",
   "description": "Downloads \n\n - *tickets* with details \n - *organizations* \n - *groups* \n - *users* \n - *tags*",
   "data": {
+    "incrementalOutput": true,
     "jobs": [
       {
         "endpoint": "tags.json",
@@ -16,6 +17,11 @@
         "endpoint": "users.json",
         "dataType": "users",
         "dataField": "users"
+      },
+      {
+        "endpoint": "ticket_fields.json",
+        "dataType": "tickets_fields",
+        "dataField": "ticket_fields"
       },
       {
         "endpoint": "groups.json",
@@ -286,6 +292,12 @@
           "mapping": {
             "destination": "chat_only"
           }
+        },
+        "tags": {
+          "forceType": "json",
+          "mapping": {
+            "destination": "tags"
+          }
         }
       },
       "users_groups": {
@@ -401,6 +413,12 @@
           "mapping": {
             "destination": "groups_pk"
           }
+        },
+        "tags": {
+          "forceType": "json",
+          "mapping": {
+            "destination": "tags"
+          }
         }
       },
       "tickets": {
@@ -495,6 +513,28 @@
             "destination": "via_channel"
           }
         },
+        "custom_fields": {
+          "type": "table",
+          "destination": "tickets_fields_values",
+          "parentKey": {
+            "primaryKey": true
+          },
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "tickets_fields_pk",
+                "primaryKey": true
+              }
+            },
+            "value": {
+              "forceType": "json",
+              "mapping": {
+                "destination": "value",
+                "primaryKey": true
+              }
+            }
+          }
+        },
         "satisfaction_rating": {
           "type": "table",
           "destination": "tickets_ratings",
@@ -563,8 +603,13 @@
           "mapping": {
             "destination": "updated_at"
           }
+        },
+        "tags": {
+          "forceType": "json",
+          "mapping": {
+            "destination": "tags"
+          }
         }
-
       },
       "tickets_comments": {
         "id": {
@@ -877,6 +922,34 @@
         "on_hold_time_in_minutes.business": {
           "mapping": {
             "destination": "on_hold_time_in_minutes_business"
+          }
+        }
+      },
+      "tickets_fields": {
+        "id": {
+          "mapping": {
+            "primaryKey": true,
+            "destination": "id"
+          }
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "title": {
+          "mapping": {
+            "destination": "title"
+          }
+        },
+        "active": {
+          "mapping": {
+            "destination": "active"
+          }
+        },
+        "tag": {
+          "mapping": {
+            "destination": "tag"
           }
         }
       }
