@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+
+  app:
+    image: node:5
+    volumes:
+      - ./:/code
+    working_dir: /code
+    tty: true
+    stdin_open: true
+    command: bash
