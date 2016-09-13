@@ -29,7 +29,11 @@
   },
   "query": {
     "hapikey": {
-      "attr": "#hkey"
+    	"function": "concat",
+        "args": [
+          {
+            "attr": "#hkey"
+          }
+        ]
     }
-  }
 }
