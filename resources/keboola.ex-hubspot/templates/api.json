@@ -1,0 +1,39 @@
+{
+  "authentication": {
+    "type": "url.query"
+  },
+  "http": {
+    "defaultOptions": {
+      "headers": {
+        "Accept": "application/json"
+      }
+    }
+  },
+  "baseUrl": "https://api.hubapi.com",
+  "pagination": {
+    "method": "multiple",
+    "default": "offset",
+    "scrollers": {
+      "offset": {
+        "method": "offset",
+        "limit": 100,
+        "limitParam": "count"
+      },
+      "contacts-offset": {
+        "method": "response.param",
+        "limit": 100,
+        "responseParam": "vid-offset",
+        "queryParam": "vidOffset"
+      }
+    }
+  },
+  "query": {
+    "hapikey": {
+    	"function": "concat",
+        "args": [
+          {
+            "attr": "#hkey"
+          }
+        ]
+    }
+}

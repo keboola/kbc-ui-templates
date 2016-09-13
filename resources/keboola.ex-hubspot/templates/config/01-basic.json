@@ -1,0 +1,185 @@
+{
+  "name": "Basic",
+  "description": "Downloads companies, contacts, deals, owners, pipelines and stages",
+  "data": {
+    "jobs": [
+      {
+        "dataField": "companies",
+        "dataType": "companies",
+        "endpoint": "companies/v2/companies/",
+        "children": [
+          {
+            "dataField": "contacts",
+            "dataType": "companies_contacts",
+            "endpoint": "companies/v2/companies/{companyId}/contacts",
+            "placeholders": {
+              "companyId": "companyId"
+            }
+          }
+        ]
+      },
+      {
+        "dataField": "contacts",
+        "dataType": "contacts",
+        "endpoint": "contacts/v1/lists/all/contacts/all/",
+        "scroller": "contacts-offset"
+      },
+      {
+        "dataField": ".",
+        "dataType": "owners",
+        "endpoint": "owners/v2/owners/"
+      },
+      {
+        "dataField": "results",
+        "dataType": "deals",
+        "endpoint": "deals/v1/deal/recent/modified/"
+      },
+      {
+        "dataField": ".",
+        "dataType": "pipelines",
+        "endpoint": "deals/v1/pipelines/",
+        "children": [
+          {
+            "dataField": "stages",
+            "dataType": "stages",
+            "endpoint": "deals/v1/pipelines/{pipelineId}",
+            "placeholders": {
+              "pipelineId": "pipelineId"
+            }
+          }
+        ]
+      }
+    ],
+    "mappings": {
+      "companies": {
+        "companyId": {
+          "mapping": {
+            "destination": "company_id",
+            "primaryKey": true
+          }
+        },
+        "properties.name.value": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "properties.website.value": {
+          "mapping": {
+            "destination": "website"
+          }
+        }
+      },
+      "companies_contacts": {
+        "parent_companyId": {
+          "type": "user",
+          "mapping": {
+            "destination": "company_id"
+          }
+        },
+        "vid": {
+          "mapping": {
+            "destination": "contact_id"
+          }
+        }
+      },
+      "contacts": {
+        "vid": {
+          "mapping": {
+            "destination": "contact_id",
+            "primaryKey": true
+          }
+        },
+        "properties.firstname.value": {
+          "mapping": {
+            "destination": "first_name"
+          }
+        },
+        "properties.lastname.value": {
+          "mapping": {
+            "destination": "last_name"
+          }
+        },
+        "profile-url": "profile_url"
+      },
+      "owners": {
+        "ownerId": {
+          "mapping": {
+            "destination": "owner_id",
+            "primaryKey": true
+          }
+        },
+        "firstName": "first_name",
+        "lastName": "last_name",
+        "email": "email",
+        "type": "type"
+      },
+      "deals": {
+        "dealId": {
+          "mapping": {
+            "destination": "deal_id",
+            "primaryKey": true
+          }
+        },
+        "properties.dealname.value": {
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "properties.hubspot_owner_id.value": {
+          "mapping": {
+            "destination": "owner_id"
+          }
+        },
+        "associations.associatedCompanyIds.0": {
+          "mapping": {
+            "destination": "company_id"
+          }
+        },
+        "properties.pipeline.value": {
+          "mapping": {
+            "destination": "pipeline_id"
+          }
+        },
+        "properties.dealstage.value": {
+          "mapping": {
+            "destination": "stage_id"
+          }
+        },
+        "properties.dealtype.value": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "properties.amount.value": {
+          "mapping": {
+            "destination": "amount"
+          }
+        }
+      },
+      "pipelines": {
+        "pipelineId": {
+          "mapping": {
+            "destination": "pipeline_id",
+            "primaryKey": true
+          }
+        },
+        "label": "label"
+      },
+      "stages": {
+        "parent_pipelineId": {
+          "type": "user",
+          "mapping": {
+            "destination": "pipeline_id"
+          }
+        },
+        "stageId": {
+          "mapping": {
+            "destination": "stage_id",
+            "primaryKey": true
+          }
+        },
+        "label": "label"
+      }
+    }
+  }
+}
