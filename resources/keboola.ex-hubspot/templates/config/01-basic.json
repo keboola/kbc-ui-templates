@@ -1,6 +1,6 @@
 {
   "name": "Basic",
-  "description": "Downloads companies, contacts, deals, owners, pipelines and stages",
+  "description": "Downloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages",
   "data": {
     "incrementalOutput": true,
     "jobs": [
