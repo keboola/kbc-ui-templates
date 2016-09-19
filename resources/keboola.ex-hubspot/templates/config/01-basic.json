@@ -8,6 +8,7 @@
         "dataField": "companies",
         "dataType": "companies",
         "endpoint": "companies/v2/companies/",
+        "scroller": "companies-offset",
         "children": [
           {
             "dataField": "contacts",
