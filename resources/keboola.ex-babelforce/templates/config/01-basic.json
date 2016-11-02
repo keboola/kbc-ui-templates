@@ -1,0 +1,163 @@
+{
+  "name": "Basic",
+  "description": "Downloads calls data",
+  "data": {
+    "incrementalOutput": true,
+    "jobs": [
+      {
+        "endpoint": "calls/reporting",
+        "dataType": "calls_export",
+        "dataField": "items",
+        "params": {
+          "filters.time.end": {
+            "time": "currentStart"
+          },
+          "filters.time.start": {
+            "time": "previousStart"
+          }
+        },
+        "responseFilter": [
+          "bridged.agent",
+          "bridged.queue",
+          "recordings[].file",
+          "recordings[].call",
+          "recordings[].agent"
+        ]
+      }
+    ],
+    "mappings": {
+      "calls_export": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "parentId": {
+          "mapping": {
+            "destination": "parentId"
+          }
+        },
+        "sessionId": {
+          "mapping": {
+            "destination": "sessionId"
+          }
+        },
+        "conversationId": {
+          "mapping": {
+            "destination": "conversationId"
+          }
+        },
+        "dateCreated": {
+          "mapping": {
+            "destination": "dateCreated"
+          }
+        },
+        "dateEstablished": {
+          "mapping": {
+            "destination": "dateEstablished"
+          }
+        },
+        "lastUpdated": {
+          "mapping": {
+            "destination": "lastUpdated"
+          }
+        },
+        "state": {
+          "mapping": {
+            "destination": "state"
+          }
+        },
+        "finishReason": {
+          "mapping": {
+            "destination": "finishReason"
+          }
+        },
+        "from": {
+          "mapping": {
+            "destination": "from"
+          }
+        },
+        "to": {
+          "mapping": {
+            "destination": "to"
+          }
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          }
+        },
+        "source": {
+          "mapping": {
+            "destination": "source"
+          }
+        },
+        "domain": {
+          "mapping": {
+            "destination": "domain"
+          }
+        },
+        "duration": {
+          "mapping": {
+            "destination": "duration"
+          }
+        },
+        "anonymous": {
+          "mapping": {
+            "destination": "anonymous"
+          }
+        },
+        "bridged": {
+          "type": "table",
+          "destination": "bridged_calls_export",
+          "parentKey": {
+            "destination": "call_id"
+          },
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id",
+                "primaryKey": true
+              }
+            },
+            "name": "name",
+            "number": "number",
+            "queueId": "queueId",
+            "queueName": "queueName",
+            "agent": "agent",
+            "queue": "queue"
+          }
+        },
+        "recordings": {
+          "type": "table",
+          "destination": "recordings_export",
+          "parentKey": {
+            "destination": "call_id"
+          },
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id",
+                "primaryKey": true
+              }
+            },
+            "dateCreated": "dateCreated",
+            "lastUpdated": "lastUpdated",
+            "duration": "duration",
+            "url": "url",
+            "file": "file",
+            "state": "state",
+            "call": "call",
+            "agent": "agent"
+          }
+        },
+        "_url": {
+          "mapping": {
+            "destination": "url"
+          }
+        }
+      }
+    }
+  }
+}
