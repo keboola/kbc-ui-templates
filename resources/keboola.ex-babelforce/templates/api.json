@@ -1,7 +1,4 @@
 {
-  "authentication": {
-    "type": "url.query"
-  },
   "http": {
     "headers": {
       "X-Auth-Access-Id": {
