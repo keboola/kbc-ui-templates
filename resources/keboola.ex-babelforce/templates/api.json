@@ -1,0 +1,31 @@
+{
+  "authentication": {
+    "type": "url.query"
+  },
+  "http": {
+    "headers": {
+      "X-Auth-Access-Id": {
+        "function": "concat",
+        "args": [
+          {
+            "attr": "#apiAccessId"
+          }
+        ]
+      },
+      "X-Auth-Access-Token": {
+        "function": "concat",
+        "args": [
+          {
+            "attr": "#apiAccessToken"
+          }
+        ]
+      }
+    }
+  },
+  "baseUrl": "https://preproduction.babelforce.com/api/v2/",
+  "pagination": {
+    "method": "pagenum",
+    "limitParam": "max",
+    "limit": 100
+  }
+}
