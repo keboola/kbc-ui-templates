@@ -1,0 +1,113 @@
+{
+    "api": {
+        "baseUrl": {
+            "function": "concat",
+            "args": [
+                "https://api.visioncritical.com/v1/applications/", {
+                    "attr": "community"
+                },
+                "/"
+            ]
+        },
+        "pagination": {
+            "method": "offset",
+            "limit": 1000
+        }
+    },
+    "config": {
+        "debug": 1,
+        "email": "{YOUR EMAIL}",
+        "#password": "{YOUR PASSWORD}",
+        "community": "{YOUR COMMUNITY}",
+        "http": {
+            "headers": {
+                "Accept": "application/json",
+                "cache-control": "no-cache",
+                "authorization": {
+                    "function": "concat",
+                    "args": [
+                        "Basic ", {
+                            "function": "base64_encode",
+                            "args": [{
+                                "function": "concat",
+                                "args": [{
+                                        "attr": "email"
+                                    },
+                                    ":", {
+                                        "attr": "#password"
+                                    }
+                                ]
+                            }]
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}
+".": {
+    "mapping": {
+        "destination": "variable_categories"
+    }
+}
+}
+},
+"dataType": {
+    "mapping": {
+        "destination": "dataType"
+    }
+},
+"constraints_readOnly": {
+    "mapping": {
+        "destination": "constraints_readOnly"
+    }
+},
+"constraints_returnLatest": {
+    "mapping": {
+        "destination": "constraints_returnLatest"
+    }
+},
+"constraints_uniquePerMember": {
+    "mapping": {
+        "destination": "constraints_uniquePerMember"
+    }
+},
+"memberVariableValues_href": {
+    "mapping": {
+        "destination": "memberVariableValues_href"
+    }
+},
+"sequenceId": {
+    "mapping": {
+        "destination": "sequenceId"
+    }
+},
+"createDate": {
+    "mapping": {
+        "destination": "createDate"
+    }
+},
+"lastUpdateDate": {
+    "mapping": {
+        "destination": "lastUpdateDate"
+    }
+},
+"createdBy": {
+    "mapping": {
+        "destination": "createdBy"
+    }
+},
+"lastUpdatedBy": {
+    "mapping": {
+        "destination": "lastUpdatedBy"
+    }
+},
+"href": {
+    "mapping": {
+        "destination": "href"
+    }
+}
+}
+}
+}
+}
