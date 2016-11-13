@@ -1,9 +1,6 @@
 language: node_js
 node_js:
   - "5"
-branches:
-  only:
-  - master
 install:
 - time npm install
 - git --version
@@ -14,5 +11,10 @@ install:
 script:
  - npm run build resources
  - npm run build-assets $DIST_BUCKET $DIST_FOLDER
- - npm run upload $DIST_BUCKET $DIST_FOLDER
 sudo: false
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: ./scripts/deploy-script.sh
+  on:
+    tags: true
