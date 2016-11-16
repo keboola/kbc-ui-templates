@@ -1,0 +1,236 @@
+{
+    "name": "Extract both Member Values and Variables (Recommended)",
+    "description": "Download from Vision Critical\n\n - Member Values\n\n - Member Variables\n",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [{
+            "endpoint": "memberVariables",
+            "dataField": "items",
+            "dataType": "member_variables",
+            "params": {
+                "limit": "1000",
+                "offset": "0"
+            }
+        }, {
+            "endpoint": "membervalues",
+            "dataField": "items",
+            "dataType": "member_values",
+            "params": {
+                "limit": "1000",
+                "offset": "0"
+            }
+        }],
+        "mappings": {
+            "member_values": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true,
+                        "propertyOrder": 1
+                    }
+                },
+                "items": {
+                    "mapping": {
+                        "destination": "items"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                },
+                "communityId": {
+                    "mapping": {
+                        "destination": "communityId"
+                    }
+                },
+                "memberId": {
+                    "mapping": {
+                        "destination": "memberId"
+                    }
+                },
+                "memberEmail": {
+                    "mapping": {
+                        "destination": "memberEmail"
+                    }
+                },
+                "memberVariableId": {
+                    "mapping": {
+                        "destination": "memberVariableId"
+                    }
+                },
+                "memberVariableName": {
+                    "mapping": {
+                        "destination": "memberVariableName"
+                    }
+                },
+                "memberVariableType": {
+                    "mapping": {
+                        "destination": "memberVariableType"
+                    }
+                },
+                "memberVariableValueId": {
+                    "mapping": {
+                        "destination": "memberVariableValueId"
+                    }
+                },
+                "memberVariableValue": {
+                    "mapping": {
+                        "destination": "memberVariableValue"
+                    }
+                },
+                "memberSequenceId": {
+                    "mapping": {
+                        "destination": "memberSequenceId"
+                    }
+                },
+                "memberVariableSequenceId": {
+                    "mapping": {
+                        "destination": "memberVariableSequenceId"
+                    }
+                },
+                "memberVariableValueSequenceId": {
+                    "mapping": {
+                        "destination": "memberVariableValueSequenceId"
+                    }
+                },
+                "memberDataSetType": {
+                    "mapping": {
+                        "destination": "memberDataSetType"
+                    }
+                },
+                "effectiveDate": {
+                    "mapping": {
+                        "destination": "effectiveDate"
+                    }
+                },
+                "createDate": {
+                    "mapping": {
+                        "destination": "createDate"
+                    }
+                },
+                "lastUpdateDate": {
+                    "mapping": {
+                        "destination": "lastUpdateDate"
+                    }
+                },
+                "createdBy": {
+                    "mapping": {
+                        "destination": "createdBy"
+                    }
+                },
+                "links": {
+                    "type": "table",
+                    "destination": "value_links",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "primaryKey": true,
+                                "destination": "id"
+                            }
+                        }
+                    }
+                },
+                "lastUpdatedBy": {
+                    "mapping": {
+                        "destination": "lastUpdatedBy"
+                    }
+                }
+            },
+            "member_variables": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "description": {
+                    "mapping": {
+                        "destination": "description"
+                    }
+                },
+                "source": {
+                    "mapping": {
+                        "destination": "source"
+                    }
+                },
+                "type": {
+                    "mapping": {
+                        "destination": "type"
+                    }
+                },
+                "categories": {
+                    "type": "table",
+                    "destination": "variable_categories",
+                    "tableMapping": {
+                        ".": {
+                            "mapping": {
+                                "destination": "variable_categories"
+                            }
+                        }
+                    }
+                },
+                "dataType": {
+                    "mapping": {
+                        "destination": "dataType"
+                    }
+                },
+                "constraints_readOnly": {
+                    "mapping": {
+                        "destination": "constraints_readOnly"
+                    }
+                },
+                "constraints_returnLatest": {
+                    "mapping": {
+                        "destination": "constraints_returnLatest"
+                    }
+                },
+                "constraints_uniquePerMember": {
+                    "mapping": {
+                        "destination": "constraints_uniquePerMember"
+                    }
+                },
+                "memberVariableValues_href": {
+                    "mapping": {
+                        "destination": "memberVariableValues_href"
+                    }
+                },
+                "sequenceId": {
+                    "mapping": {
+                        "destination": "sequenceId"
+                    }
+                },
+                "createDate": {
+                    "mapping": {
+                        "destination": "createDate"
+                    }
+                },
+                "lastUpdateDate": {
+                    "mapping": {
+                        "destination": "lastUpdateDate"
+                    }
+                },
+                "createdBy": {
+                    "mapping": {
+                        "destination": "createdBy"
+                    }
+                },
+                "lastUpdatedBy": {
+                    "mapping": {
+                        "destination": "lastUpdatedBy"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                }
+            }
+        }
+    }
+}
