@@ -1,42 +1,38 @@
 {
-    "api": {
-        "baseUrl": {
-            "function": "concat",
-            "args": [
-                "https://api.visioncritical.com/v1/applications/", {
-                    "attr": "community"
-                },
-                "/"
-            ]
-        },
-        "pagination": {
-            "method": "offset",
-            "limit": 1000
-        }
+    "baseUrl": {
+        "function": "concat",
+        "args": [
+            "https://api.visioncritical.com/v1/applications/", {
+                "attr": "community"
+            },
+            "/"
+        ]
     },
-    "config": {
-        "http": {
-            "headers": {
-                "Accept": "application/json",
-                "cache-control": "no-cache",
-                "authorization": {
-                    "function": "concat",
-                    "args": [
-                        "Basic ", {
-                            "function": "base64_encode",
+    "pagination": {
+        "method": "offset",
+        "limit": 1000
+    },
+    "http": {
+        "headers": {
+            "Accept": "application/json",
+            "cache-control": "no-cache",
+            "authorization": {
+                "function": "concat",
+                "args": [
+                    "Basic ", {
+                        "function": "base64_encode",
+                        "args": [{
+                            "function": "concat",
                             "args": [{
-                                "function": "concat",
-                                "args": [{
-                                        "attr": "email"
-                                    },
-                                    ":", {
-                                        "attr": "#password"
-                                    }
-                                ]
-                            }]
-                        }
-                    ]
-                }
+                                    "attr": "email"
+                                },
+                                ":", {
+                                    "attr": "#password"
+                                }
+                            ]
+                        }]
+                    }
+                ]
             }
         }
     }
