@@ -5,3 +5,7 @@
 ## Tasks
 
 - build resources - `npm run build resources_path`
+
+## Deployment
+
+Only tagged releases are deployed to production 
