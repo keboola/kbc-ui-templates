@@ -19,7 +19,7 @@
       }
     }
   },
-  "baseUrl": "https://preproduction.babelforce.com/api/v2/",
+  "baseUrl": "https://services.babelforce.com",
   "pagination": {
     "method": "pagenum",
     "limitParam": "max",
