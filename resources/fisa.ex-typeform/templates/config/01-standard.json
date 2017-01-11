@@ -2,7 +2,6 @@
     "name": "Standard (Recommended)",
     "description": "Standard",
     "data": {
-        "id": "typeform",
         "incrementalOutput": {
             "function": "concat",
             "args": [
