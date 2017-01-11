@@ -1,0 +1,112 @@
+{
+    "name": "Standard (Recommended)",
+    "description": "Standard",
+    "data": {
+        "id": "typeform",
+        "incrementalOutput": {
+            "attr": "incrementalOutput"
+        },
+        "debug": {
+            "attr": "loadFrom"
+        },
+        "http": {
+            "headers": {
+                "Accept": "application/json"
+            }
+        },
+        "jobs": [{
+            "endpoint": "forms",
+            "dataType": "forms",
+            "dataField": ".",
+            "children": [{
+                "endpoint": "/v1/form/{id}",
+                "placeholders": {
+                    "id": "id"
+                },
+                "dataType": "form",
+                "dataField": "."
+            }]
+        }],
+        "mappings": {
+            "forms": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true,
+                        "propertyOrder": 1
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                }
+            },
+            "form": {
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "form_id",
+                        "primaryKey": true
+                    }
+                },
+                "stats.responses.showing": {
+                    "mapping": {
+                        "destination": "stats_responses_showing"
+                    }
+                },
+                "stats.responses.total": {
+                    "mapping": {
+                        "destination": "stats_responses_total"
+                    }
+                },
+                "stats.responses.completed": {
+                    "mapping": {
+                        "destination": "stats_responses_completed"
+                    }
+                },
+                "questions": {
+                    "destination": "questions",
+                    "type": "table",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id",
+                                "primaryKey": true
+                            }
+                        },
+                        "question": "question",
+                        "field_id": "fieldId",
+                        "group": "group"
+                    }
+                },
+                "responses": {
+                    "destination": "responses",
+                    "type": "table",
+                    "tableMapping": {
+                        "completed": "completed",
+                        "token": {
+                            "mapping": {
+                                "destination": "id",
+                                "primaryKey": true
+                            }
+                        },
+                        "metadata.browser": "metadata_browser",
+                        "metadata.platform": "metadata_platform",
+                        "metadata.date_land": "metadata_date_land",
+                        "metadata.date_submit": "metadata_date_submit",
+                        "metadata.user_agent": "metadata_user_agent",
+                        "metadata.referer": "metadata_referer",
+                        "metadata.network_id": "metadata_network_id",
+                        "answers": {
+                            "mapping": {
+                                "destination": "answers"
+                            },
+                            "forceType": "json"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
