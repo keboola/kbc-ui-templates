@@ -1,0 +1,25 @@
+{
+    "authentication": {
+        "type": "url.query"
+    },
+    "baseUrl": "https://api.typeform.com/v1/",
+    "pagination": {
+        "method": "offset",
+        "limit": 100
+    },
+    "http": {
+        "headers": {
+            "Accept": "application/json"
+        }
+    },
+    "query": {
+        "key": {
+            "function": "concat",
+            "args": [
+                {
+                    "attr": "#token"
+                }
+            ]
+        }
+    }
+}
