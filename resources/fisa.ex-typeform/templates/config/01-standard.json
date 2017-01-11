@@ -4,10 +4,20 @@
     "data": {
         "id": "typeform",
         "incrementalOutput": {
-            "attr": "incrementalOutput"
+            "function": "concat",
+            "args": [
+                {
+                    "attr": "incrementalOutput"
+                }
+            ]
         },
         "debug": {
-            "attr": "loadFrom"
+            "function": "concat",
+            "args": [
+                {
+                    "attr": "debug"
+                }
+            ]
         },
         "http": {
             "headers": {
