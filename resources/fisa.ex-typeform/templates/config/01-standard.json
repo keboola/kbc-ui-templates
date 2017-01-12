@@ -1,6 +1,6 @@
 {
     "name": "Standard (Recommended)",
-    "description": "Standard",
+    "description": "Downloads list of forms, form details, questions and responses.",
     "data": {
         "incrementalOutput": true,
         "debug": false,
