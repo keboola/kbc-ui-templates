@@ -2,22 +2,8 @@
     "name": "Standard (Recommended)",
     "description": "Standard",
     "data": {
-        "incrementalOutput": {
-            "function": "concat",
-            "args": [
-                {
-                    "attr": "incrementalOutput"
-                }
-            ]
-        },
-        "debug": {
-            "function": "concat",
-            "args": [
-                {
-                    "attr": "debug"
-                }
-            ]
-        },
+        "incrementalOutput": true,
+        "debug": false,
         "http": {
             "headers": {
                 "Accept": "application/json"
