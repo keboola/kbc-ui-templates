@@ -24,7 +24,7 @@
                     "args": [
                       "-",
                       {
-                        "attr": "range.range"
+                        "attr": "range.number"
                       },
                       " ",
                       {
