@@ -1,0 +1,11 @@
+{
+    "baseUrl": "https://api.quintly.com/v0.9/",
+    "authentication": {
+        "type": "basic"
+    },
+    "http": {
+        "headers": {
+            "Accept": "application/json"
+        }
+    }
+}

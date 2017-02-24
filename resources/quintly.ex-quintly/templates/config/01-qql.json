@@ -1,0 +1,52 @@
+{
+    "name": "Run QQL query",
+    "description": "",
+    "data": {
+        "debug": true,
+        "incrementalOutput": true,
+        "jobs": [{
+          "endpoint": "qql",
+          "dataType": "qql",
+          "dataField": "data",
+          "params": {
+            "qqlQuery": {
+              "attr": "qqlQuery"
+            },
+            "startTime": {
+              "function": "date",
+              "args": [
+                "Y-m-d",
+                {
+                  "function": "strtotime",
+                  "args": [{
+                    "function": "concat",
+                    "args": [
+                      "-",
+                      {
+                        "attr": "range.number"
+                      },
+                      " ",
+                      {
+                        "attr": "range.unit"
+                      }
+                    ]
+                  }]
+                }
+              ]
+            },
+            "endTime": {
+              "function": "date",
+              "args": [
+                "Y-m-d"
+              ]
+            },
+            "interval": {
+              "attr": "range.interval"
+            },
+            "profileIds": {
+              "attr": "profileids"
+            }
+          }
+        }]
+    }
+}
