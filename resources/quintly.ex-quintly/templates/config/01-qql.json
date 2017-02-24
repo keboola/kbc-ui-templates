@@ -2,8 +2,9 @@
     "name": "Run QQL query",
     "description": "",
     "data": {
-        "debug": true,
-        "incrementalOutput": true,
+        "incrementalOutput": {
+          "attr": "incrementalOutput"
+        },
         "jobs": [{
           "endpoint": "qql",
           "dataType": "qql",
@@ -23,7 +24,7 @@
                     "args": [
                       "-",
                       {
-                        "attr": "range.number"
+                        "attr": "range.range"
                       },
                       " ",
                       {
