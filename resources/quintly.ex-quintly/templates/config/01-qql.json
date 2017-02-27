@@ -2,9 +2,6 @@
     "name": "Run QQL query",
     "description": "",
     "data": {
-        "incrementalOutput": {
-          "attr": "incrementalOutput"
-        },
         "jobs": [{
           "endpoint": "qql",
           "dataType": "qql",
