@@ -1,0 +1,38 @@
+{
+  "baseUrl": "https://api.adform.com/v1/",
+  "pagination": {
+    "method": "multiple",
+    "scrollers": {
+      "campaign_cursor": {
+        "method": "offset",
+        "limit": 100,
+        "offsetParam": "offset",
+        "limitParam": "limit"
+      }
+    }
+  },
+  "authentication": {
+    "type": "login",
+    "loginRequest": {
+      "endpoint": "/Services/Security/Login",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "method": "POST",
+      "params": {
+        "UserName": {
+          "attr": "username"
+        },
+        "PassWord": {
+          "attr": "#password"
+        }
+      }
+    },
+    "apiRequest": {
+      "headers": {
+        "Ticket": "Ticket"
+      }
+    }
+  },
+  "name": "adform"
+}

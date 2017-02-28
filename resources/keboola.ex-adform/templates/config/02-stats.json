@@ -1,0 +1,92 @@
+{
+  "name": "Campaign stats",
+  "description": "Get Campaigns, Advertisers and Campaigns Stats (Reporting Stats)",
+  "data": {
+    "jobs": [{
+      "endpoint": "campaigns",
+      "scroller": "campaign_cursor",
+      "params": [],
+      "dataType": "campaigns",
+      "dataField": "campaigns"
+    }, {
+      "endpoint": "/Services/Advertiser/Advertisers",
+      "params": [],
+      "dataType": "clients",
+      "dataField": "Advertisers"
+    }, {
+      "endpoint": "reportingstats/agency/reportdata",
+      "method": "POST",
+      "params": {
+        "dimensions": [
+          "client",
+          "campaign",
+          "date"
+        ],
+        "metrics": [
+          "impressions",
+          "clicks",
+          "ctr",
+          "conversionsAll",
+          "ecpm"
+        ],
+        "filter": {
+          "date": "campaignStartToEnd"
+        }
+      },
+      "dataType": "reportData",
+      "dataField": "reportData"
+    }],
+    "mappings": {
+      "reportData": {
+        "rows": {
+          "type": "table",
+          "destination": "metrics",
+          "tableMapping": {
+            "1": {
+              "type": "column",
+              "mapping": {
+                "destination": "campaign"
+              }
+            },
+            "2": {
+              "type": "column",
+              "mapping": {
+                "destination": "date"
+              }
+            },
+            "3": {
+              "type": "column",
+              "mapping": {
+                "destination": "impressions"
+              }
+            },
+            "4": {
+              "type": "column",
+              "mapping": {
+                "destination": "clicks"
+              }
+            },
+            "5": {
+              "type": "column",
+              "mapping": {
+                "destination": "ctr"
+              }
+            },
+            "6": {
+              "type": "column",
+              "mapping": {
+                "destination": "conversionsAll"
+              }
+            },
+            "7": {
+              "type": "column",
+              "mapping": {
+                "destination": "ecpm"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
