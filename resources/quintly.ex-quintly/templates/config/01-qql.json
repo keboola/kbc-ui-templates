@@ -1,50 +1,60 @@
 {
-    "name": "Run QQL query",
-    "description": "",
-    "data": {
-        "jobs": [{
-          "endpoint": "qql",
-          "dataType": "qql",
-          "dataField": "data",
-          "params": {
-            "qqlQuery": {
-              "attr": "qqlQuery"
-            },
-            "startTime": {
-              "function": "date",
-              "args": [
-                "Y-m-d",
-                {
-                  "function": "strtotime",
-                  "args": [{
-                    "function": "concat",
-                    "args": [
-                      "-",
-                      {
-                        "attr": "range.number"
-                      },
-                      " ",
-                      {
-                        "attr": "range.unit"
-                      }
-                    ]
-                  }]
-                }
-              ]
-            },
-            "endTime": {
-              "function": "date",
-              "args": [
-                "Y-m-d"
-              ]
-            },
-            "interval": {
-              "attr": "range.interval"
-            },
-            "profileIds": {
-              "attr": "profileids"
-            }
+  "name": "Run QQL query",
+  "description": "",
+  "data": {
+    "jobs": [{
+      "endpoint": "qql",
+      "dataType": "qql",
+      "dataField": "data",
+      "params": {
+        "qqlQuery": {
+          "attr": "qqlQuery"
+        },
+        "userData": {
+          "extracted": {
+            "function": "date",
+            "args": [
+              "Y-m-d H:i:s", {
+                "function": "strtotime",
+                "args": [
+                  "now"
+                ]
+              }
+            ]
           }
-        }]
-    }
+        },
+        "startTime": {
+          "function": "date",
+          "args": [
+            "Y-m-d", {
+              "function": "strtotime",
+              "args": [{
+                "function": "concat",
+                "args": [
+                  "-", {
+                    "attr": "range.number"
+                  },
+                  " ", {
+                    "attr": "range.unit"
+                  }
+                ]
+              }]
+            }
+          ]
+        },
+        "endTime": {
+          "function": "date",
+          "args": [
+            "Y-m-d"
+          ]
+        },
+        "interval": {
+          "attr": "range.interval"
+        },
+        "profileIds": {
+          "attr": "profileids"
+        }
+      }
+    }]
+  }
 }
