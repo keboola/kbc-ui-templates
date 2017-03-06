@@ -12,8 +12,8 @@
       "report_cursor": {
         "method": "offset",
         "limit": 3000,
-        "offsetParam": "offset",
-        "limitParam": "limit"
+        "offsetParam": "paging.offset",
+        "limitParam": "paging.limit"
       }
     }
   },
