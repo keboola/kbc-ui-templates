@@ -2,6 +2,7 @@
   "name": "Campaign stats",
   "description": "Get Campaigns, Advertisers and Campaigns Stats (Reporting Stats)",
   "data": {
+    "incrementalOutput": true,
     "jobs": [
       {
         "endpoint": "campaigns",
@@ -19,7 +20,6 @@
       {
         "endpoint": "reportingstats/agency/reportdata",
         "method": "POST",
-        "scroller": "report_cursor",
         "params": {
           "dimensions": [
             "client",
@@ -34,8 +34,18 @@
             "ecpm"
           ],
           "filter": {
-            "date": "campaignStartToEnd"
-          }
+            "date": "PastThirtyDays"
+          },
+          "paging": {
+            "offset": 0,
+            "limit": 3000
+          },
+          "sort": [
+            {
+              "dimension": "date",
+              "direction": "desc"
+            }
+          ]
         },
         "dataType": "reportData",
         "dataField": "reportData"
