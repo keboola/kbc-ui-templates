@@ -19,7 +19,7 @@
       "params": {
         "dimensions": [
           "client",
-          "campaignId",
+          "campaignID",
           "date"
         ],
         "metrics": [
@@ -45,7 +45,7 @@
             "1": {
               "type": "column",
               "mapping": {
-                "destination": "campaignId"
+                "destination": "campaignID"
               }
             },
             "2": {
