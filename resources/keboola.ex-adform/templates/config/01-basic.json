@@ -2,16 +2,19 @@
   "name": "Campaigns",
   "descriptions": "Get Campaigns and Advertisers",
   "data": {
-    "jobs": [{
-      "endpoint": "campaigns",
-      "params": [],
-      "dataType": "campaigns",
-      "dataField": "campaigns"
-    }, {
-      "endpoint": "/Services/Advertiser/Advertisers",
-      "params": [],
-      "dataType": "clients",
-      "dataField": "Advertisers"
-    }]
+    "jobs": [
+      {
+        "endpoint": "campaigns",
+        "params": [],
+        "dataType": "campaigns",
+        "dataField": "campaigns"
+      },
+      {
+        "endpoint": "/Services/Advertiser/Advertisers",
+        "params": [],
+        "dataType": "clients",
+        "dataField": "Advertisers"
+      }
+    ]
   }
 }

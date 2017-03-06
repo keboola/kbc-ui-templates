@@ -2,40 +2,45 @@
   "name": "Campaign stats",
   "description": "Get Campaigns, Advertisers and Campaigns Stats (Reporting Stats)",
   "data": {
-    "jobs": [{
-      "endpoint": "campaigns",
-      "scroller": "campaign_cursor",
-      "params": [],
-      "dataType": "campaigns",
-      "dataField": "campaigns"
-    }, {
-      "endpoint": "/Services/Advertiser/Advertisers",
-      "params": [],
-      "dataType": "clients",
-      "dataField": "Advertisers"
-    }, {
-      "endpoint": "reportingstats/agency/reportdata",
-      "method": "POST",
-      "params": {
-        "dimensions": [
-          "client",
-          "campaignID",
-          "date"
-        ],
-        "metrics": [
-          "impressions",
-          "clicks",
-          "ctr",
-          "conversionsAll",
-          "ecpm"
-        ],
-        "filter": {
-          "date": "campaignStartToEnd"
-        }
+    "jobs": [
+      {
+        "endpoint": "campaigns",
+        "scroller": "campaign_cursor",
+        "params": [],
+        "dataType": "campaigns",
+        "dataField": "campaigns"
       },
-      "dataType": "reportData",
-      "dataField": "reportData"
-    }],
+      {
+        "endpoint": "/Services/Advertiser/Advertisers",
+        "params": [],
+        "dataType": "clients",
+        "dataField": "Advertisers"
+      },
+      {
+        "endpoint": "reportingstats/agency/reportdata",
+        "method": "POST",
+        "scroller": "report_cursor",
+        "params": {
+          "dimensions": [
+            "client",
+            "campaignID",
+            "date"
+          ],
+          "metrics": [
+            "impressions",
+            "clicks",
+            "ctr",
+            "conversionsAll",
+            "ecpm"
+          ],
+          "filter": {
+            "date": "campaignStartToEnd"
+          }
+        },
+        "dataType": "reportData",
+        "dataField": "reportData"
+      }
+    ],
     "mappings": {
       "reportData": {
         "rows": {

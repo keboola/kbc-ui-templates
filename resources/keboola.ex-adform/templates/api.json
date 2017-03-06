@@ -8,6 +8,12 @@
         "limit": 100,
         "offsetParam": "offset",
         "limitParam": "limit"
+      },
+      "report_cursor": {
+        "method": "offset",
+        "limit": 3000,
+        "offsetParam": "offset",
+        "limitParam": "limit"
       }
     }
   },
