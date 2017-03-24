@@ -1,0 +1,26 @@
+{
+    "baseUrl": {
+        "function": "concat",
+        "args": [
+            "https://",
+            {
+                "attr": "companyDomain"
+            },
+            ".pipedrive.com/v1/"
+        ]
+    },
+    "authentication": {
+        "type": "url.query",
+        "query": {
+            "api_token": {
+                "attr": "#apiToken"
+            }
+        }
+    },
+    "pagination": {
+        "method": "offset",
+        "limit": 500,
+        "limitParam": "limit",
+        "offsetParam": "start"
+    }
+  }
