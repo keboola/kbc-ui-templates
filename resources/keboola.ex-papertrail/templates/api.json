@@ -1,0 +1,16 @@
+{
+      "baseUrl": "https://papertrailapp.com/api/v1/",
+      "http": {
+        "headers": {
+          "X-Papertrail-Token": {
+            "attr": "#token"
+          }
+        }
+      },
+      "pagination": {
+        "method": "response.param",
+        "responseParam": "min_id",
+        "queryParam": "max_id",
+        "includeParams": true
+      }
+    }

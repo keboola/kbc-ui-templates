@@ -1,0 +1,59 @@
+{
+  "name": "Basic",
+  "description": "Downloads all records matching the query within the retention period. Incrementally adds new records each run.",
+  "data": {
+    "incrementalOutput": true,
+    "jobs": [
+      {
+        "endpoint": "events/search.json",
+        "params": {
+          "min_time": {
+            "function": "strtotime",
+            "args": [
+              {
+                "function": "concat",
+                "args": [
+                  {
+                    "attr": "retention"
+                  },
+                  " ago"
+                ]
+              }
+            ]
+          },
+          "max_time": {
+            "function": "strtotime",
+            "args": [
+              "now"
+            ]
+          },
+          "q": {
+            "attr": "query"
+          }
+        },
+        "dataType": "events"
+      }
+    ],
+    "mappings": {
+      "events": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "source_ip": "source_ip",
+        "program": "program",
+        "message": "message",
+        "received_at": "received_at",
+        "generated_at": "generated_at",
+        "display_received_at": "display_received_at",
+        "source_id": "source_id",
+        "source_name": "source_name",
+        "hostname": "hostname",
+        "severity": "severity",
+        "facility": "facility"
+      }
+    }
+  }
+}
