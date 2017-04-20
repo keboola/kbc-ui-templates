@@ -1,5 +1,5 @@
 {
-  "name": "Basic",
+  "name": "Basic template",
   "description": "Downloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages",
   "data": {
     "incrementalOutput": true,
