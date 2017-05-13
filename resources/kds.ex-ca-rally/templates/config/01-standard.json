@@ -1,0 +1,135 @@
+{
+    "name": "Standard (Recommended)",
+    "description": "Downloads projects, requirements, user stories, estimates and releases.",
+    "data": {
+        "http": {
+            "headers": {
+                "Accept": "application/json"
+            }
+        },
+        "jobs": [{
+                "endpoint": "project",
+                "dataType": "projects",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                }
+            },
+            {
+                "endpoint": "hierarchicalrequirement",
+                "dataType": "hierarchical_requirements",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "hierarchicalrequirement/{ObjectID}",
+                    "dataType": "hierarchical_requirements_detail",
+                    "dataField": ".",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            },
+            {
+                "endpoint": "defect",
+                "dataType": "defect",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "defect/{ObjectID}",
+                    "dataType": "defect_detail",
+                    "dataField": ".",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            },
+            {
+                "endpoint": "PreliminaryEstimate",
+                "dataType": "PreliminaryEstimate",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                }
+            },
+            {
+                "endpoint": "portfolioitem",
+                "dataType": "portfolio_items",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                        "endpoint": "portfolioitem/{ObjectID}",
+                        "dataType": "feature_detail",
+                        "dataField": ".",
+                        "params": {
+                            "start": 1
+                        },
+                        "placeholders": {
+                            "ObjectID": "_refObjectUUID"
+                        }
+                    },
+                    {
+                        "endpoint": "portfolioitem/Feature/{ObjectID}/UserStories",
+                        "dataType": "Feature_UserStories",
+                        "dataField": "QueryResult.Results",
+                        "params": {
+                            "start": 1
+                        },
+                        "placeholders": {
+                            "ObjectID": "_refObjectUUID"
+                        }
+                    }
+                ]
+            },
+            {
+                "endpoint": "iteration",
+                "dataType": "iteration",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "iteration/{ObjectID}",
+                    "dataType": "iteration_detail",
+                    "dataField": ".",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            },
+            {
+                "endpoint": "Release",
+                "dataType": "release",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "release/{ObjectID}",
+                    "dataType": "release_detail",
+                    "dataField": ".",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            }
+        ]
+    }
+}
