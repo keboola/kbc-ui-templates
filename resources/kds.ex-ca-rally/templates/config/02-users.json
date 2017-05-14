@@ -1,0 +1,69 @@
+{
+    "name": "Users",
+    "description": "Downloads users and portfolios.",
+    "data": {
+        "http": {
+            "headers": {
+                "Accept": "application/json"
+            }
+        },
+        "jobs": [{
+                "endpoint": "user/",
+                "dataType": "user",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "user/{ObjectID}",
+                    "dataType": "userdetail",
+                    "dataField": ".",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            },
+            {
+                "endpoint": "portfolioitem/initiative",
+                "dataType": "initiative",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "portfolioitem/initiative/{ObjectID}",
+                    "dataType": "initiative_detail",
+                    "dataField": ".",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            },
+            {
+                "endpoint": "portfolioitem/theme",
+                "dataType": "theme",
+                "dataField": "QueryResult.Results",
+                "params": {
+                    "start": 1
+                },
+                "children": [{
+                    "endpoint": "portfolioitem/theme/{ObjectID}/children",
+                    "dataType": "theme_detail",
+                    "dataField": "QueryResult.Results",
+                    "params": {
+                        "start": 1
+                    },
+                    "placeholders": {
+                        "ObjectID": "_refObjectUUID"
+                    }
+                }]
+            }
+        ]
+    }
+}
