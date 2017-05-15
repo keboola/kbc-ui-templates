@@ -1,0 +1,32 @@
+{
+    "name": "Tasks",
+    "description": "Downloads tasks and task details.",
+    "data": {
+        "http": {
+            "headers": {
+                "Accept": "application/json"
+            }
+        },
+        "jobs": [{
+              "endpoint": "Task",
+          "dataType": "task",
+          "dataField": "QueryResult.Results",
+          "params": {
+            "start": 1
+          },
+          "children": [
+            {
+              "endpoint": "task/{ObjectID}?fetch=_refObjectUUID,ObjectID,ObjectUUID,FormattedID,WorkProduct,Tags,Name,Owner,Actuals,Estimate,State,TimeSpent,ToDo",
+              "dataType": "task_detail",
+              "dataField": "Task",
+              "params": {
+                "start": 1
+              },
+              "placeholders": {
+                "ObjectID": "_refObjectUUID"
+              }
+                }]
+            }
+        ]
+    }
+}
