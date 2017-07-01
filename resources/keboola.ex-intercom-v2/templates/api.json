@@ -1,0 +1,46 @@
+{
+  "baseUrl": "https://api.intercom.io",
+  "http": {
+    "defaultOptions": {
+      "headers": {
+        "Accept": "application/json"
+      }
+    }
+  },
+  "authentication": {
+    "type": "oauth20",
+    "format": "json",
+    "headers": {
+      "Authorization": {
+        "function": "concat",
+        "args": [
+          "Bearer ",
+          {
+            "authorization": "data.access_token"
+          }
+        ]
+      }
+    }
+  },
+  "pagination": {
+    "method": "response.param",
+    "responseParam": "scroll_param",
+    "queryParam": "scroll_param",
+    "includeParams": true,
+    "nextPageFlag": {
+      "field": "users",
+      "stopOn": false,
+      "ifNotSet": true
+    }
+  },
+  "retryConfig": {
+    "http": {
+      "retryHeader": "X-RateLimit-Reset",
+      "codes": [
+        429,
+        503
+      ]
+    },
+    "maxRetries": 10
+  }
+}
