@@ -10,14 +10,15 @@
                 "children": [
                     {
                         "endpoint": "notes?user_id={1:user_id}",
+                        "dataType": "notes",
                         "placeholders": {
                             "1:user_id": "user_id"
                         },
                         "recursionFilter": "user_id!=&email!="
                     },
                     {
-                        "dataType": "events",
                         "endpoint": "events?user_id={1:user_id}&type=user",
+                        "dataType": "events",
                         "placeholders": {
                             "1:user_id": "user_id"
                         },
