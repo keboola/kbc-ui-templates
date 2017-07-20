@@ -1,46 +1,78 @@
 {
-  "baseUrl": "https://api.intercom.io",
-  "http": {
-    "defaultOptions": {
-      "headers": {
-        "Accept": "application/json"
-      }
-    }
-  },
-  "authentication": {
-    "type": "oauth20",
-    "format": "json",
-    "headers": {
-      "Authorization": {
-        "function": "concat",
-        "args": [
-          "Bearer ",
-          {
-            "authorization": "data.access_token"
-          }
-        ]
-      }
-    }
-  },
-  "pagination": {
-    "method": "response.param",
-    "responseParam": "scroll_param",
-    "queryParam": "scroll_param",
-    "includeParams": true,
-    "nextPageFlag": {
-      "field": "users",
-      "stopOn": false,
-      "ifNotSet": true
-    }
-  },
-  "retryConfig": {
+    "baseUrl": "https://api.intercom.io",
     "http": {
-      "retryHeader": "X-RateLimit-Reset",
-      "codes": [
-        429,
-        503
-      ]
+        "defaultOptions": {
+            "headers": {
+                "Accept": "application/json"
+            }
+        }
     },
-    "maxRetries": 10
-  }
+    "authentication": {
+        "type": "oauth20",
+        "format": "json",
+        "headers": {
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "authorization": "data.access_token"
+                    }
+                ]
+            }
+        }
+    },
+    "pagination": {
+        "method": "multiple",
+        "scrollers": {
+            "users": {
+                "method": "response.param",
+                "queryParam": "scroll_param",
+                "responseParam": "scroll_param",
+                "includeParams": true,
+                "nextPageFlag": {
+                    "field": "users",
+                    "stopOn": false,
+                    "ifNotSet": true
+                }
+            },
+            "contacts": {
+                "method": "response.param",
+                "queryParam": "scroll_param",
+                "responseParam": "scroll_param",
+                "includeParams": true,
+                "nextPageFlag": {
+                    "field": "contacts",
+                    "stopOn": false,
+                    "ifNotSet": true
+                }
+            },
+            "companies": {
+                "method": "response.param",
+                "queryParam": "scroll_param",
+                "responseParam": "scroll_param",
+                "includeParams": true,
+                "nextPageFlag": {
+                    "field": "companies",
+                    "stopOn": false,
+                    "ifNotSet": true
+                }
+            },
+            "pages": {
+                "method": "response.url",
+                "urlKey": "pages.next"
+            }
+        },
+        "default": "pages"
+    },
+    "retryConfig": {
+        "http": {
+            "retryHeader": "X-RateLimit-Reset",
+            "codes": [
+                429,
+                503
+            ]
+        },
+        "maxRetries": 10
+    }
 }
