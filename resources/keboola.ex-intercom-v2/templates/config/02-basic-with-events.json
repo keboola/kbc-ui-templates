@@ -1,5 +1,5 @@
 {
-    "name": "Basic w/ full events (experimental)",
+    "name": "Full w/ events (experimental)",
     "description": "Downloads all\n\n - users and their notes and events\n - contacts\n - companies\n - admins\n - tags \n - segments\n - conversations\n\nNote: this configuration may experience unexpected failures when downloading large volumes of events.",
     "data": {
         "jobs": [
