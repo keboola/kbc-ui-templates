@@ -1,6 +1,6 @@
 {
     "name": "Full (events summary)",
-    "description": "Downloads all\n\n - users and their notes and summary of events\n - contacts\n - companies\n - admins\n - tags \n - segments\n - conversations",
+    "description": "Downloads all\n\n - users and their notes and summary of events\n - contacts\n - companies\n - admins\n - tags \n - segments\n - conversations and conversation parts",
     "data": {
         "jobs": [
             {
@@ -48,8 +48,22 @@
             {
                 "endpoint": "conversations",
                 "params": {
-                    "per_page": "60"
-                }
+                    "per_page": "60",
+                    "display_as": "plaintext"
+                },
+                "children": [
+                    {
+                        "endpoint": "conversations/{1:conversation_id}",
+                        "placeholders": {
+                            "1:conversation_id": "id"
+                        },
+                        "params": {
+                            "display_as": "plaintext"
+                        },
+                        "dataType": "conversation_parts",
+                        "dataField": "conversation_parts.conversation_parts"
+                    }
+                ]
             }
         ]
     }
