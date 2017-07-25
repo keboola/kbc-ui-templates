@@ -43,7 +43,10 @@
                 "endpoint": "tags"
             },
             {
-                "endpoint": "segments"
+                "endpoint": "segments",
+                "params": {
+                    "include_count": "true"
+                }
             }
         ],
         "mappings": {
