@@ -1,6 +1,6 @@
 {
     "name": "Conversations (with parts)",
-    "description": "Downloads all\n\n - users and their notes and summary of events\n - contacts\n - companies\n - admins\n - tags \n - segments\n - conversations and conversation parts",
+    "description": "Downloads all conversations and conversation parts",
     "data": {
         "jobs": [
             {

@@ -1,6 +1,6 @@
 {
     "name": "Users and events (experimental)",
-    "description": "Downloads all\n\n - users and their events\n\nNote: this configuration may experience unexpected failures when downloading large volumes of events.",
+    "description": "Downloads all users and their events\n\nNote: this configuration may experience unexpected failures when downloading large volumes of events.",
     "data": {
         "jobs": [
             {
