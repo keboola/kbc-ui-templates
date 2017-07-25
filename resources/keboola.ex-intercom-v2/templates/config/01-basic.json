@@ -1,6 +1,6 @@
 {
-    "name": "Full (events summary)",
-    "description": "Downloads all\n\n - users and their notes and summary of events\n - contacts\n - companies\n - admins\n - tags \n - segments\n - conversations and conversation parts",
+    "name": "Basic (events summary, without conversations)",
+    "description": "Downloads all\n\n - users and their notes and summary of events\n - contacts\n - companies\n - admins\n - tags \n - segments",
     "data": {
         "jobs": [
             {
@@ -44,27 +44,235 @@
             },
             {
                 "endpoint": "segments"
-            },
-            {
-                "endpoint": "conversations",
-                "params": {
-                    "per_page": "60",
-                    "display_as": "plaintext"
-                },
-                "children": [
-                    {
-                        "endpoint": "conversations/{1:conversation_id}",
-                        "placeholders": {
-                            "1:conversation_id": "id"
-                        },
-                        "params": {
-                            "display_as": "plaintext"
-                        },
-                        "dataType": "conversation_parts",
-                        "dataField": "conversation_parts.conversation_parts"
-                    }
-                ]
             }
-        ]
+        ],
+        "mappings": {
+            "users": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "created_at": "created_at",
+                "signed_up_at": "signed_up_at",
+                "updated_at": "updated_at",
+                "email": "email",
+                "phone": "phone",
+                "user_id": "user_id",
+                "last_request_at": "last_request_at",
+                "session_count": "session_count",
+                "unsubscribed_from_emails": "unsubscribed_from_emails",
+                "marked_email_as_spam": "marked_email_as_spam",
+                "has_hard_bounced": "has_hard_bounced",
+                "user_agent_data": "user_agent_data",
+                "last_seen_ip": "last_seen_ip",
+                "pseudonym": "pseudonym",
+                "anonymous": "anonymous",
+                "name": "name",
+                "location_data.city_name": "location_data_city_name",
+                "location_data.continent_code": "location_data_continent_code",
+                "location_data.country_code": "location_data_country_code",
+                "location_data.country_name": "location_data_country_name",
+                "location_data.latitude": "location_data_latitude",
+                "location_data.longitude": "location_data_longitude",
+                "location_data.postal_code": "location_data_postal_code",
+                "location_data.region_name": "location_data_region_name",
+                "location_data.timezone": "location_data_timezone",
+                "avatar.image_url": "avatar_image_url",
+                "tags.tags": {
+                    "type": "table",
+                    "destination": "users_tags",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "segments.segments": {
+                    "type": "table",
+                    "destination": "users_segments",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "companies.companies": {
+                    "type": "table",
+                    "destination": "users_companies",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "social_profiles.social_profiles": {
+                    "type": "table",
+                    "destination": "users_social_profiles",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id",
+                        "name": "name",
+                        "username": "username",
+                        "url": "url"
+                    }
+                },
+                "custom_attributes": {
+                    "forceType": true,
+                    "mapping": {
+                        "destination": "custom_attributes"
+                    }
+                }
+            },
+            "notes": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "created_at": "created_at",
+                "body": "body",
+                "user.type": "user_type",
+                "user.id": "user_id",
+                "author.type": "author_type",
+                "author.id": "author_id"
+            },
+            "events_summary": {
+                "name": "name",
+                "first": "first",
+                "last": "last",
+                "description": "description"
+            },
+            "contacts": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "created_at": "created_at",
+                "updated_at": "updated_at",
+                "user_id": "user_id",
+                "email": "email",
+                "phone": "name",
+                "anonymous": "anonymous",
+                "pseudonym": "pseudonym",
+                "last_request_at": "last_request_at",
+                "unsubscribed_from_emails": "unsubscribed_from_emails",
+                "location_data.city_name": "location_data_city_name",
+                "location_data.continent_code": "location_data_continent_code",
+                "location_data.country_code": "location_data_country_code",
+                "location_data.country_name": "location_data_country_name",
+                "location_data.latitude": "location_data_latitude",
+                "location_data.longitude": "location_data_longitude",
+                "location_data.postal_code": "location_data_postal_code",
+                "location_data.region_name": "location_data_region_name",
+                "location_data.timezone": "location_data_timezone",
+                "avatar.image_url": "avatar_image_url",
+                "user_agent_data": "user_agent_data",
+                "last_seen_ip": "last_seen_ip",
+                "tags.tags": {
+                    "type": "table",
+                    "destination": "contacts-tags",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "segments.segments": {
+                    "type": "table",
+                    "destination": "contacts-segments",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "companies.companies": {
+                    "type": "table",
+                    "destination": "contacts-companies",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "social_profiles.social_profiles": {
+                    "type": "table",
+                    "destination": "contacts-social_profiles",
+                    "tableMapping": {
+                        "type": "type",
+                        "id": "id",
+                        "name": "name",
+                        "username": "username",
+                        "url": "url"
+                    }
+                },
+                "custom_attributes": {
+                    "forceType": true,
+                    "mapping": {
+                        "destination": "custom_attributes"
+                    }
+                }
+            },
+            "companies": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "created_at": "created_at",
+                "remote_created_at": "remote_created_at",
+                "updated_at": "updated_at",
+                "company_id": "company_id",
+                "name": "name",
+                "session_count": "session_count",
+                "monthly_spend": "monthly_spend",
+                "plan": "plan",
+                "custom_attributes": {
+                    "forceType": true,
+                    "mapping": {
+                        "destination": "custom_attributes"
+                    }
+                }
+            },
+            "admins": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": "name",
+                "email": "email"
+            },
+            "tags": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": "name"
+            },
+            "segments": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": "name",
+                "created_at": "created_at",
+                "updated_at": "updated_at",
+                "count": "count",
+                "person_type": "person_type"
+            }
+        }
     }
 }

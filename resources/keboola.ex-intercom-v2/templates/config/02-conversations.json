@@ -1,0 +1,107 @@
+{
+    "name": "Conversations (with parts)",
+    "description": "Downloads all\n\n - users and their notes and summary of events\n - contacts\n - companies\n - admins\n - tags \n - segments\n - conversations and conversation parts",
+    "data": {
+        "jobs": [
+            {
+                "endpoint": "conversations",
+                "params": {
+                    "per_page": "60",
+                    "display_as": "plaintext"
+                },
+                "children": [
+                    {
+                        "endpoint": "conversations/{1:conversation_id}",
+                        "placeholders": {
+                            "1:conversation_id": "id"
+                        },
+                        "params": {
+                            "display_as": "plaintext"
+                        },
+                        "dataType": "conversation_parts",
+                        "dataField": "conversation_parts.conversation_parts"
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "conversations": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "created_at": "created_at",
+                "updated_at": "updated_at",
+                "user.type": "user_type",
+                "user.id": "user_id",
+                "assignee.type": "assignee_type",
+                "assignee.id": "assignee_id",
+                "conversation_message.type": "conversation_message_type",
+                "conversation_message.id": "conversation_message_id",
+                "conversation_message.id": "conversation_message_id",
+                "conversation_message.subject": "conversation_message_subject",
+                "conversation_message.body": "conversation_message_body",
+                "conversation_message.author.type": "conversation_message_author_type",
+                "conversation_message.author.id": "conversation_message_author_id",
+                "conversation_message.url": "conversation_message_author_url",
+                "conversation_message.attachments": {
+                    "type": "table",
+                    "destination": "conversations_attachments",
+                    "tableMapping": {
+                        "type": "type",
+                        "name": "name",
+                        "url": "url",
+                        "content_type": "content_type",
+                        "filesize": "filesize",
+                        "width": "width",
+                        "height": "height"
+                    }
+                },
+                "open": "open",
+                "read": "read",
+                "tags.tags": {
+                    "type": "table",
+                    "destination": "conversations_tags",
+                    "tableMapping": {
+                        "id": "id"
+                    }
+                }
+            },
+            "conversation_parts": {
+                "type": "type",
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "part_type": "part_type",
+                "body": "body",
+                "created_at": "created_at",
+                "updated_at": "updated_at",
+                "notified_at": "notified_at",
+                "assigned_to.type": "assigned_to_type",
+                "assigned_to.id": "assigned_to_id",
+                "author.type": "author_type",
+                "author.id": "author_id",
+                "external_id": "external_id",
+                "attachments": {
+                    "type": "table",
+                    "destination": "conversation_parts_attachments",
+                    "tableMapping": {
+                        "type": "type",
+                        "name": "name",
+                        "url": "url",
+                        "content_type": "content_type",
+                        "filesize": "filesize",
+                        "width": "width",
+                        "height": "height"
+                    }
+                }
+            }
+        }
+    }
+}
