@@ -1,10 +1,9 @@
 {
-  "name": "Basic template",
-  "description": "Downloads \n\n - *tickets* with details \n - *organizations* \n - *groups* \n - *users* \n - *tags*",
+  "name": "Tickets with Comments",
+  "description": "Downloads \n\n - *tickets* with details \n - *organizations* \n - *groups* \n - *users* \n - *tags* \n - *comments*",
   "data": {
     "incrementalOutput": true,
-    "jobs": [
-      {
+    "jobs": [{
         "endpoint": "tags.json",
         "dataType": "tags"
       },
@@ -27,15 +26,13 @@
         "endpoint": "groups.json",
         "dataType": "groups",
         "dataField": "groups",
-        "children": [
-          {
-            "endpoint": "groups/{id}/users.json",
-            "dataType": "users_groups",
-            "placeholders": {
-              "id": "id"
-            }
+        "children": [{
+          "endpoint": "groups/{id}/users.json",
+          "dataType": "users_groups",
+          "placeholders": {
+            "id": "id"
           }
-        ]
+        }]
       },
       {
         "endpoint": "incremental/tickets.json",
@@ -43,12 +40,12 @@
         "dataType": "tickets",
         "dataField": "tickets",
         "params": {
+          "include": "metric_sets,comment_count",
           "start_time": {
             "time": "previousStart"
           }
         },
-        "children": [
-          {
+        "children": [{
             "endpoint": "tickets/{id}/audits.json",
             "dataType": "tickets_audits",
             "placeholders": {
@@ -59,15 +56,6 @@
           {
             "endpoint": "tickets/{1:id}/comments.json",
             "dataType": "tickets_comments",
-            "placeholders": {
-              "1:id": "id"
-            },
-            "recursionFilter": "status!=deleted"
-          },
-          {
-            "endpoint": "tickets/{1:id}/metrics.json",
-            "dataType": "tickets_metrics",
-            "dataField": "ticket_metric",
             "placeholders": {
               "1:id": "id"
             },
@@ -513,28 +501,6 @@
             "destination": "via_channel"
           }
         },
-        "custom_fields": {
-          "type": "table",
-          "destination": "tickets_fields_values",
-          "parentKey": {
-            "primaryKey": true
-          },
-          "tableMapping": {
-            "id": {
-              "mapping": {
-                "destination": "tickets_fields_pk",
-                "primaryKey": true
-              }
-            },
-            "value": {
-              "forceType": "json",
-              "mapping": {
-                "destination": "value",
-                "primaryKey": true
-              }
-            }
-          }
-        },
         "satisfaction_rating": {
           "type": "table",
           "destination": "tickets_ratings",
@@ -542,44 +508,9 @@
             "primaryKey": true
           },
           "tableMapping": {
-            "id": {
-              "mapping": {
-                "destination": "id"
-              }
-            },
             "score": {
               "mapping": {
                 "destination": "score"
-              }
-            }
-          }
-        },
-        "sharing_agreement_ids": {
-          "type": "table",
-          "destination": "tickets_sharing_agreements",
-          "parentKey": {
-            "primaryKey": true
-          },
-          "tableMapping": {
-            ".": {
-              "mapping": {
-                "destination": "sharing_agreements_pk",
-                "primaryKey": true
-              }
-            }
-          }
-        },
-        "followup_ids": {
-          "type": "table",
-          "destination": "tickets_followups",
-          "parentKey": {
-            "primaryKey": true
-          },
-          "tableMapping": {
-            ".": {
-              "mapping": {
-                "destination": "followup_tickets_pk",
-                "primaryKey": true
               }
             }
           }
@@ -608,6 +539,151 @@
           "forceType": "json",
           "mapping": {
             "destination": "tags"
+          }
+        },
+        "metric_set": {
+          "type": "table",
+          "destination": "tickets_metrics",
+          "parentKey": {
+            "primaryKey": true
+          },
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "primaryKey": true,
+                "destination": "id"
+              }
+            },
+            "ticket_id": {
+              "mapping": {
+                "destination": "ticket_id"
+              }
+            },
+            "created_at": {
+              "mapping": {
+                "destination": "created_at"
+              }
+            },
+            "updated_at": {
+              "mapping": {
+                "destination": "updated_at"
+              }
+            },
+            "group_stations": {
+              "mapping": {
+                "destination": "group_stations"
+              }
+            },
+            "assignee_stations": {
+              "mapping": {
+                "destination": "assignee_stations"
+              }
+            },
+            "reopens": {
+              "mapping": {
+                "destination": "reopens"
+              }
+            },
+            "replies": {
+              "mapping": {
+                "destination": "replies"
+              }
+            },
+            "assignee_updated_at": {
+              "mapping": {
+                "destination": "assignee_updated_at"
+              }
+            },
+            "requester_updated_at": {
+              "mapping": {
+                "destination": "requester_updated_at"
+              }
+            },
+            "status_updated_at": {
+              "mapping": {
+                "destination": "status_updated_at"
+              }
+            },
+            "initially_assigned_at": {
+              "mapping": {
+                "destination": "initially_assigned_at"
+              }
+            },
+            "assigned_at": {
+              "mapping": {
+                "destination": "assigned_at"
+              }
+            },
+            "solved_at": {
+              "mapping": {
+                "destination": "solved_at"
+              }
+            },
+            "latest_comment_added_at": {
+              "mapping": {
+                "destination": "latest_comment_added_at"
+              }
+            },
+            "reply_time_in_minutes.calendar": {
+              "mapping": {
+                "destination": "reply_time_in_minutes_calendar"
+              }
+            },
+            "reply_time_in_minutes.business": {
+              "mapping": {
+                "destination": "reply_time_in_minutes_business"
+              }
+            },
+            "first_resolution_time_in_minutes.calendar": {
+              "mapping": {
+                "destination": "first_resolution_time_in_minutes_calendar"
+              }
+            },
+            "first_resolution_time_in_minutes.business": {
+              "mapping": {
+                "destination": "first_resolution_time_in_minutes_business"
+              }
+            },
+            "full_resolution_time_in_minutes.calendar": {
+              "mapping": {
+                "destination": "full_resolution_time_in_minutes_calendar"
+              }
+            },
+            "full_resolution_time_in_minutes.business": {
+              "mapping": {
+                "destination": "full_resolution_time_in_minutes_business"
+              }
+            },
+            "agent_wait_time_in_minutes.calendar": {
+              "mapping": {
+                "destination": "agent_wait_time_in_minutes_calendar"
+              }
+            },
+            "agent_wait_time_in_minutes.business": {
+              "mapping": {
+                "destination": "agent_wait_time_in_minutes_business"
+              }
+            },
+            "requester_wait_time_in_minutes.calendar": {
+              "mapping": {
+                "destination": "requester_wait_time_in_minutes_calendar"
+              }
+            },
+            "requester_wait_time_in_minutes.business": {
+              "mapping": {
+                "destination": "requester_wait_time_in_minutes_business"
+              }
+            },
+            "on_hold_time_in_minutes.calendar": {
+              "mapping": {
+                "destination": "on_hold_time_in_minutes_calendar"
+              }
+            },
+            "on_hold_time_in_minutes.business": {
+              "mapping": {
+                "destination": "on_hold_time_in_minutes_business"
+              }
+            }
           }
         }
       },
@@ -784,144 +860,6 @@
         "via.channel": {
           "mapping": {
             "destination": "via_channel"
-          }
-        }
-      },
-      "tickets_metrics": {
-        "id": {
-          "mapping": {
-            "primaryKey": true,
-            "destination": "id"
-          }
-        },
-        "ticket_id": {
-          "mapping": {
-            "destination": "tickets_pk"
-          }
-        },
-        "created_at": {
-          "mapping": {
-            "destination": "created_at"
-          }
-        },
-        "updated_at": {
-          "mapping": {
-            "destination": "updated_at"
-          }
-        },
-        "group_stations": {
-          "mapping": {
-            "destination": "group_stations"
-          }
-        },
-        "assignee_stations": {
-          "mapping": {
-            "destination": "assignee_stations"
-          }
-        },
-        "reopens": {
-          "mapping": {
-            "destination": "reopens"
-          }
-        },
-        "replies": {
-          "mapping": {
-            "destination": "replies"
-          }
-        },
-        "assignee_updated_at": {
-          "mapping": {
-            "destination": "assignee_updated_at"
-          }
-        },
-        "requester_updated_at": {
-          "mapping": {
-            "destination": "requester_updated_at"
-          }
-        },
-        "status_updated_at": {
-          "mapping": {
-            "destination": "status_updated_at"
-          }
-        },
-        "initially_assigned_at": {
-          "mapping": {
-            "destination": "initially_assigned_at"
-          }
-        },
-        "assigned_at": {
-          "mapping": {
-            "destination": "assigned_at"
-          }
-        },
-        "solved_at": {
-          "mapping": {
-            "destination": "solved_at"
-          }
-        },
-        "latest_comment_added_at": {
-          "mapping": {
-            "destination": "latest_comment_added_at"
-          }
-        },
-        "reply_time_in_minutes.calendar": {
-          "mapping": {
-            "destination": "reply_time_in_minutes_calendar"
-          }
-        },
-        "reply_time_in_minutes.business": {
-          "mapping": {
-            "destination": "reply_time_in_minutes_business"
-          }
-        },
-        "first_resolution_time_in_minutes.calendar": {
-          "mapping": {
-            "destination": "first_resolution_time_in_minutes_calendar"
-          }
-        },
-        "first_resolution_time_in_minutes.business": {
-          "mapping": {
-            "destination": "first_resolution_time_in_minutes_business"
-          }
-        },
-        "full_resolution_time_in_minutes.calendar": {
-          "mapping": {
-            "destination": "full_resolution_time_in_minutes_calendar"
-          }
-        },
-        "full_resolution_time_in_minutes.business": {
-          "mapping": {
-            "destination": "full_resolution_time_in_minutes_business"
-          }
-        },
-        "agent_wait_time_in_minutes.calendar": {
-          "mapping": {
-            "destination": "agent_wait_time_in_minutes_calendar"
-          }
-        },
-        "agent_wait_time_in_minutes.business": {
-          "mapping": {
-            "destination": "agent_wait_time_in_minutes_business"
-          }
-        },
-        "requester_wait_time_in_minutes.calendar": {
-          "mapping": {
-            "destination": "requester_wait_time_in_minutes_calendar"
-          }
-        },
-        "requester_wait_time_in_minutes.business": {
-          "mapping": {
-            "destination": "requester_wait_time_in_minutes_business"
-          }
-        },
-        "on_hold_time_in_minutes.calendar": {
-          "mapping": {
-            "destination": "on_hold_time_in_minutes_calendar"
-          }
-        },
-        "on_hold_time_in_minutes.business": {
-          "mapping": {
-            "destination": "on_hold_time_in_minutes_business"
           }
         }
       },
