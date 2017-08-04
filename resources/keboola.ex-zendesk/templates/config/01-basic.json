@@ -512,6 +512,11 @@
               "mapping": {
                 "destination": "score"
               }
+            },
+            "id": {
+              "mapping": {
+                "destination": "id"
+              }
             }
           }
         },
