@@ -29,7 +29,7 @@
             {
                 "endpoint": "contacts/scroll",
                 "scroller": "contacts",
-                "dataType": "contacts"
+                "dataType": "leads"
             },
             {
                 "endpoint": "companies/scroll",
@@ -143,11 +143,18 @@
             },
             "events_summary": {
                 "name": "name",
+                "count": "count",
                 "first": "first",
                 "last": "last",
-                "description": "description"
+                "description": "description",
+                "parent_user_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "user_id"
+                    }
+                }
             },
-            "contacts": {
+            "leads": {
                 "type": "type",
                 "id": {
                     "mapping": {
@@ -159,7 +166,8 @@
                 "updated_at": "updated_at",
                 "user_id": "user_id",
                 "email": "email",
-                "phone": "name",
+                "name": "name",
+                "phone": "phone",
                 "anonymous": "anonymous",
                 "pseudonym": "pseudonym",
                 "last_request_at": "last_request_at",
@@ -176,9 +184,14 @@
                 "avatar.image_url": "avatar_image_url",
                 "user_agent_data": "user_agent_data",
                 "last_seen_ip": "last_seen_ip",
+                "remote_created_at": "remote_created_at",
+                "signed_up_at": "signed_up_at",
+                "session_count": "session_count",
+                "marked_email_as_spam": "marked_email_as_spam",
+                "has_hard_bounced": "has_hard_bounced",
                 "tags.tags": {
                     "type": "table",
-                    "destination": "contacts-tags",
+                    "destination": "leads_tags",
                     "tableMapping": {
                         "type": "type",
                         "id": "id"
@@ -186,7 +199,7 @@
                 },
                 "segments.segments": {
                     "type": "table",
-                    "destination": "contacts-segments",
+                    "destination": "leads_segments",
                     "tableMapping": {
                         "type": "type",
                         "id": "id"
@@ -194,7 +207,7 @@
                 },
                 "companies.companies": {
                     "type": "table",
-                    "destination": "contacts-companies",
+                    "destination": "leads_companies",
                     "tableMapping": {
                         "type": "type",
                         "id": "id"
@@ -202,7 +215,7 @@
                 },
                 "social_profiles.social_profiles": {
                     "type": "table",
-                    "destination": "contacts-social_profiles",
+                    "destination": "leads_social_profiles",
                     "tableMapping": {
                         "type": "type",
                         "id": "id",
@@ -233,6 +246,7 @@
                 "name": "name",
                 "session_count": "session_count",
                 "monthly_spend": "monthly_spend",
+                "user_count": "user_count",
                 "plan": "plan",
                 "custom_attributes": {
                     "forceType": true,

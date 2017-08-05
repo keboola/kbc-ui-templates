@@ -35,18 +35,19 @@
                 },
                 "created_at": "created_at",
                 "updated_at": "updated_at",
+                "waiting_since": "waiting_since",
+                "snoozed_until": "snoozed_until",
                 "user.type": "user_type",
                 "user.id": "user_id",
                 "assignee.type": "assignee_type",
                 "assignee.id": "assignee_id",
                 "conversation_message.type": "conversation_message_type",
                 "conversation_message.id": "conversation_message_id",
-                "conversation_message.id": "conversation_message_id",
                 "conversation_message.subject": "conversation_message_subject",
                 "conversation_message.body": "conversation_message_body",
                 "conversation_message.author.type": "conversation_message_author_type",
                 "conversation_message.author.id": "conversation_message_author_id",
-                "conversation_message.url": "conversation_message_author_url",
+                "conversation_message.url": "conversation_message_url",
                 "conversation_message.attachments": {
                     "type": "table",
                     "destination": "conversations_attachments",
@@ -62,10 +63,20 @@
                 },
                 "open": "open",
                 "read": "read",
+                "state": "state",
                 "tags.tags": {
                     "type": "table",
                     "destination": "conversations_tags",
                     "tableMapping": {
+                        "type": "type",
+                        "id": "id"
+                    }
+                },
+                "customers.customers": {
+                    "type": "table",
+                    "destination": "conversations_customers",
+                    "tableMapping": {
+                        "type": "type",
                         "id": "id"
                     }
                 }
