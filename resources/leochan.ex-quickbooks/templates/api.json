@@ -1,0 +1,19 @@
+{
+  "baseUrl": {
+    "function": "sprintf",
+    "args": [
+      "https://quickbooks.api.intuit.com/v3/company/%s/",
+      {
+        "attr": "companyid"
+      }
+    ]
+  },
+  "authentication": {
+    "type": "oauth10"
+  },
+  "http": {
+    "headers": {
+      "Accept": "application/json"
+    }
+  }
+}
