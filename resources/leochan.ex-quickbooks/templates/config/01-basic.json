@@ -2,8 +2,6 @@
   "name": "Basic",
   "description": "Basic template",
   "data": {
-    "debug": true,
-    "outputBucket": "quickbooks",
     "jobs": [
       {
         "endpoint": "query",
