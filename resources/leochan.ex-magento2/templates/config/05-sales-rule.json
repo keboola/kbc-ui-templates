@@ -1,17 +1,19 @@
 {
     "name":"SalesRule",
     "description":"SalesRule Template\n- saleRules\n- coupons",
-    "outputBucket":"magento",
-    "jobs":[
-        {
-            "endpoint":"saleRules/search?searchCriteria",
-            "dataType":"saleRules",
-            "dataField":"items"
-        },
-        {
-            "endpoint":"coupons/search?searchCriteria",
-            "dataType":"coupons",
-            "dataField":"items"
-        }  
-    ]
+    "data": {
+        "outputBucket":"magento",
+        "jobs": [
+            {
+                "endpoint": "saleRules/search?searchCriteria",
+                "dataType": "saleRules",
+                "dataField": "items"
+            },
+            {
+                "endpoint": "coupons/search?searchCriteria",
+                "dataType": "coupons",
+                "dataField": "items"
+            }
+        ]
+    }
 }

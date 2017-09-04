@@ -1,22 +1,24 @@
 {
     "name":"Tax",
     "description":"Tax Template\n- taxRates\n- taxRules\n- taxClasses",
-    "outputBucket":"magento",
-    "jobs":[
-        {
-            "endpoint":"taxRates/search?searchCriteria",
-            "dataType":"taxRates",
-            "dataField":"items"
-        },
-        {
-            "endpoint":"taxRules/search?searchCriteria",
-            "dataType":"taxRules",
-            "dataField":"items"
-        },
-        {
-            "endpoint":"taxClasses/search?searchCriteria",
-            "dataType":"taxClasses",
-            "dataField":"items"
-        }
-    ]
+    "data": {
+        "outputBucket": "magento",
+        "jobs": [
+            {
+                "endpoint": "taxRates/search?searchCriteria",
+                "dataType": "taxRates",
+                "dataField": "items"
+            },
+            {
+                "endpoint": "taxRules/search?searchCriteria",
+                "dataType": "taxRules",
+                "dataField": "items"
+            },
+            {
+                "endpoint": "taxClasses/search?searchCriteria",
+                "dataType": "taxClasses",
+                "dataField": "items"
+            }
+        ]
+    }
 }
