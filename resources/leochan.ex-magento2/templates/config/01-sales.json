@@ -1,0 +1,32 @@
+{
+    "name":"Sales",
+    "description":"Sales Template\n- orders\n- invoices\n- creditmemos\n- shipments\n- transaction",
+    "outputBucket":"magento",
+    "jobs":[
+        {
+            "endpoint":"orders?searchCriteria",
+            "dataType":"orders",
+            "dataField":"items"
+        },
+        {
+            "endpoint":"invoices?searchCriteria",
+            "dataType":"invoices",
+            "dataField":"items"
+        },
+        {
+            "endpoint":"creditmemos?searchCriteria",
+            "dataType":"creditmemos",
+            "dataField":"items"
+        },
+        {
+            "endpoint":"shipments?searchCriteria",
+            "dataType":"shipments",
+            "dataField":"items"
+        },
+        {
+            "endpoint":"transactions?searchCriteria",
+            "dataType":"transactions",
+            "dataField":"items"
+        }
+    ]
+}

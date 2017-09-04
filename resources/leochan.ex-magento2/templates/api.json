@@ -1,0 +1,33 @@
+{
+    "api":{
+        "baseUrl":{
+            "function":"concat",
+            "args":[
+                {
+                    "attr":"url"
+                },
+                "/rest/V1/"
+            ]
+        },
+        "authentication":{
+            "type":"oauth20",
+            "headers":{
+                "Content-Type":"application/json",
+                "Authorization":{
+                    "function":"concat",
+                    "args":[
+                        "Bearer ",
+                        {
+                            "authorization":"data"
+                        }
+                    ]
+                }
+            }            
+        },
+        "http":{
+            "headers":{
+                "Accept":"application/json"
+            }
+        }  
+    }
+}
