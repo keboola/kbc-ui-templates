@@ -2,12 +2,11 @@
     "name":"Quote",
     "description":"Quote Template\n- products",
     "data": {
-        "outputBucket": "magento",
         "jobs": [
             {
-                "endpoint": "carts/search?searchCriteria",
-                "dataType": "carts",
-                "dataField": "items"
+                "endpoint":"carts/search",
+                "dataType":"carts",
+                "dataField":"items"
             }
         ]
     }

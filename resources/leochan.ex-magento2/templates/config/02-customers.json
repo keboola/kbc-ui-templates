@@ -2,12 +2,11 @@
     "name":"Customers",
     "description":"Customers Template\n- customers",
     "data": {
-        "outputBucket": "magento",
         "jobs": [
             {
-                "endpoint": "customers/search?searchCriteria",
-                "dataType": "customers",
-                "dataField": "items"
+                "endpoint":"customers/search",
+                "dataType":"customers",
+                "dataField":"items"
             }
         ]
     }

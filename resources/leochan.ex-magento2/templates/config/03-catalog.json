@@ -2,16 +2,15 @@
     "name":"Catalog",
     "description":"Catalog Template\n- products\n- categories",
     "data": {
-        "outputBucket": "magento",
         "jobs": [
             {
-                "endpoint": "products?searchCriteria",
-                "dataType": "products",
-                "dataField": "items"
+                "endpoint":"products",
+                "dataType":"products",
+                "dataField":"items"
             },
             {
-                "endpoint": "categories?searchCriteria",
-                "dataType": "categories"
+                "endpoint":"categories",
+                "dataType":"categories"
             }
         ]
     }

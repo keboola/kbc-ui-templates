@@ -1,31 +1,60 @@
 {
-    "baseUrl":{
-        "function":"concat",
-        "args":[
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      {
+        "attr": "url"
+      },
+      "/rest/V1/"
+    ]
+  },
+  "authentication": {
+    "type": "login",
+    "loginRequest": {
+      "endpoint": "integration/admin/token",
+      "method": "POST",
+      "params": {
+        "username": {
+          "function": "concat",
+          "args": [
             {
-                "attr":"url"
-            },
-            "/rest/V1/"
-        ]
-    },
-    "authentication":{
-        "type":"oauth20",
-        "headers":{
-            "Content-Type":"application/json",
-            "Authorization":{
-                "function":"concat",
-                "args":[
-                    "Bearer ",
-                    {
-                        "authorization":"data"
-                    }
-                ]
+              "attr": "magento_username"
             }
-        }            
-    },
-    "http":{
-        "headers":{
-            "Accept":"application/json"
+          ]
+        },
+        "password": {
+          "function": "concat",
+          "args": [
+            {
+              "attr": "#magento_password"
+            }
+          ]
         }
+      }
+    },
+    "format": "json",
+    "apiRequest": {
+      "headers": {
+        "Content-Type": "application/json",
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "Bearer ",
+            {
+              "response": "data"
+            }
+          ]
+        }
+      }
     }
+  },
+  "pagination": {
+    "limitStop": {
+      "field": "total_count"
+    },
+    "method": "pagenum",
+    "limit": 1,
+    "limitParam": "searchCriteria[pageSize]",
+    "pageParam": "searchCriteria[currentPage]"
+  }
 }
