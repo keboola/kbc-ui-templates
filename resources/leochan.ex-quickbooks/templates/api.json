@@ -17,12 +17,6 @@
         "refresh_token": {
           "user": "refresh_token"
         },
-        "client_id": {
-          "consumer": "client_id"
-        },
-        "client_secret": {
-          "consumer": "client_secret"
-        },
         "grant_type": "refresh_token"
       },
       "headers": {
