@@ -32,11 +32,11 @@
                   "function": "concat",
                   "args": [
                     {
-                      "consumer": "client_id"
+                      "authorization": "appKey"
                     },
                     ":",
                     {
-                      "consumer": "client_secret"
+                      "authorization": "#appSecret"
                     }
                   ]
                 }
