@@ -35,11 +35,16 @@
               "function": "base64_encode",
               "args": [
                 {
-                  "consumer": "client_id"
-                },
-                ":",
-                {
-                  "consumer": "client_secret"
+                  "function": "concat",
+                  "args": [
+                    {
+                      "consumer": "client_id"
+                    },
+                    ":",
+                    {
+                      "consumer": "client_secret"
+                    }
+                  ]
                 }
               ]
             }
