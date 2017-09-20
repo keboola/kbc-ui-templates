@@ -9,17 +9,55 @@
     ]
   },
   "authentication": {
-    "type": "oauth20",
-    "format": "json",
-    "headers": {
-      "Authorization": {
-        "function": "concat",
-        "args": [
-          "Bearer ",
-          {
-            "authorization": "data.access_token"
-          }
-        ]
+    "type": "oauth20.login",
+    "loginRequest": {
+      "endpoint": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "method": "FORM",
+      "params": {
+        "refresh_token": {
+          "user": "refresh_token"
+        },
+        "client_id": {
+          "consumer": "client_id"
+        },
+        "client_secret": {
+          "consumer": "client_secret"
+        },
+        "grant_type": "refresh_token"
+      },
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "Basic ",
+            {
+              "function": "base64_encode",
+              "args": [
+                {
+                  "consumer": "client_id"
+                },
+                ":",
+                {
+                  "consumer": "client_secret"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "apiRequest": {
+      "headers": {
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "Bearer ",
+            {
+              "authorization": "access_token"
+            }
+          ]
+        }
       }
     }
   },
