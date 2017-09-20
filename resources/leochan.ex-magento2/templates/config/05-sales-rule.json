@@ -1,0 +1,18 @@
+{
+    "name":"SalesRule",
+    "description":"SalesRule Template\n- saleRules\n- coupons",
+    "data": {
+        "jobs": [
+            {
+                "endpoint":"saleRules/search",
+                "dataType":"saleRules",
+                "dataField":"items"
+            },
+            {
+                "endpoint":"coupons/search",
+                "dataType":"coupons",
+                "dataField":"items"
+            }
+        ]
+    }
+}

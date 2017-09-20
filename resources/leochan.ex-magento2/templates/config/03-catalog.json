@@ -1,0 +1,17 @@
+{
+    "name":"Catalog",
+    "description":"Catalog Template\n- products\n- categories",
+    "data": {
+        "jobs": [
+            {
+                "endpoint":"products",
+                "dataType":"products",
+                "dataField":"items"
+            },
+            {
+                "endpoint":"categories",
+                "dataType":"categories"
+            }
+        ]
+    }
+}

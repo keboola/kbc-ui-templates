@@ -1,0 +1,13 @@
+{
+    "name":"Customers",
+    "description":"Customers Template\n- customers",
+    "data": {
+        "jobs": [
+            {
+                "endpoint":"customers/search",
+                "dataType":"customers",
+                "dataField":"items"
+            }
+        ]
+    }
+}

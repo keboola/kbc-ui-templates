@@ -1,0 +1,33 @@
+{
+    "name":"Sales",
+    "description":"Sales Template\n- orders\n- invoices\n- creditmemos\n- shipments\n- transaction",
+    "data": {
+        "jobs": [
+            {
+                "endpoint":"orders",
+                "dataType":"orders",
+                "dataField":"items"
+            },
+            {
+                "endpoint":"invoices",
+                "dataType":"invoices",
+                "dataField":"items"
+            },
+            {
+                "endpoint":"creditmemos",
+                "dataType":"creditmemos",
+                "dataField":"items"
+            },
+            {
+                "endpoint":"shipments",
+                "dataType":"shipments",
+                "dataField":"items"
+            },
+            {
+                "endpoint":"transactions",
+                "dataType":"transactions",
+                "dataField":"items"
+            }
+        ]
+    }
+}

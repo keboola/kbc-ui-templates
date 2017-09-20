@@ -1,0 +1,13 @@
+{
+    "name":"Quote",
+    "description":"Quote Template\n- products",
+    "data": {
+        "jobs": [
+            {
+                "endpoint":"carts/search",
+                "dataType":"carts",
+                "dataField":"items"
+            }
+        ]
+    }
+}
