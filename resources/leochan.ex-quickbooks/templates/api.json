@@ -9,7 +9,13 @@
     ]
   },
   "authentication": {
-    "type": "oauth10"
+    "type": "oauth20",
+    "format": "json",
+    "headers": {
+      "Bearer": {
+        "authorization": "data.access_token"
+      }
+    }
   },
   "http": {
     "headers": {
