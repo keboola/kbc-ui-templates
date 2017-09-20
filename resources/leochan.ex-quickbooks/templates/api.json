@@ -12,8 +12,14 @@
     "type": "oauth20",
     "format": "json",
     "headers": {
-      "Bearer": {
-        "authorization": "data.access_token"
+      "Authorization": {
+        "function": "concat",
+        "args": [
+          "Bearer ",
+          {
+            "authorization": "data.access_token"
+          }
+        ]
       }
     }
   },
