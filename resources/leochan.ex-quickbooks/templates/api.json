@@ -32,11 +32,11 @@
                   "function": "concat",
                   "args": [
                     {
-                      "authorization": "appKey"
+                      "consumer": "client_id"
                     },
                     ":",
                     {
-                      "authorization": "#appSecret"
+                      "consumer": "client_secret"
                     }
                   ]
                 }
@@ -53,7 +53,7 @@
           "args": [
             "Bearer ",
             {
-              "authorization": "access_token"
+              "response": "access_token"
             }
           ]
         }
