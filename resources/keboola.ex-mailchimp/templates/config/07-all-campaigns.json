@@ -13,8 +13,7 @@
               "attr": "status"
           }
       }
-    ]
-  },
+    ],
     "iterations": [
         {
             "status": "sent"
@@ -29,4 +28,5 @@
             "status": "draft"
         }
     ]
+  }
 }
