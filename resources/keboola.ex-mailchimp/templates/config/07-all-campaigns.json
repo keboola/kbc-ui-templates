@@ -1,0 +1,32 @@
+{
+  "name": "All Campaigns (all status')",
+  "description": "Get campaigns (draft, sent, scheduled, paused)",
+  "data": {
+    "incrementalOutput": false,
+    "debug": 0,
+    "jobs": [
+      {
+          "endpoint": "campaigns",
+          "dataField": "campaigns",
+          "dataType": "campaigns",
+          "params": {
+              "attr": "status"
+          }
+      }
+    ],
+    "iterations": [
+        {
+            "status": "sent"
+        },
+        {
+            "status": "paused"
+        },
+        {
+            "status": "scheduled"
+        },
+        {
+            "status": "draft"
+        }
+    ]
+  }
+}
