@@ -1,0 +1,17 @@
+{
+    "name": "Custom",
+    "description": "*Custom Query Template*\n\t- Query",
+    "debug": true,
+    "outputBucket": "quickbooks",
+    "jobs": [
+        {
+            "endpoint": "query",
+            "params": {
+                "query": {
+                    "attr": "query"
+                }
+            },
+            "dataField": "QueryResponse"
+        }
+    ]
+}
