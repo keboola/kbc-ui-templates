@@ -2,6 +2,7 @@
     "name": "Tasks",
     "description": "Downloads tasks and task details.",
     "data": {
+        "#zsessionid": "APIKEY_HOLDER",
         "http": {
             "headers": {
                 "Accept": "application/json"

@@ -2,6 +2,7 @@
     "name": "Standard (Recommended)",
     "description": "Downloads projects, requirements, user stories, estimates and releases.",
     "data": {
+        "#zsessionid": "APIKEY_HOLDER",
         "http": {
             "headers": {
                 "Accept": "application/json"

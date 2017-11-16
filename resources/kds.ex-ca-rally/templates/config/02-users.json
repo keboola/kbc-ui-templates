@@ -2,6 +2,7 @@
     "name": "Users",
     "description": "Downloads users and portfolios.",
     "data": {
+        "#zsessionid": "APIKEY_HOLDER",
         "http": {
             "headers": {
                 "Accept": "application/json"

@@ -1,19 +1,35 @@
 {
-    "baseUrl": "https://rally1.rallydev.com/slm/webservice/v2.0",
-    "pagination": {
-        "method": "offset",
-        "limit": 200,
-        "limitParam": "pagesize",
-        "offsetParam": "start",
-        "offsetFromJob": true
-    },
-    "authentication": {
-        "type": "oauth20",
-        "format": "json",
-        "headers": {
-            "zsessionid": {
-                "authorization": "data.access_token"
-            }
-        }
-    }
+	"baseUrl": "https://us1.rallydev.com/slm/webservice/v2.0/",
+	"http": {
+		"headers": {
+			"Content-Type": "application/json",
+			"zsessionid": {
+				"attr": "#zsessionid"
+			}
+		}
+	},
+	"retryConfig": {
+		"http": {
+			"retryHeader": "X-RetryAfter",
+			"codes": [
+				500,
+				502,
+				503,
+				504,
+				408,
+				420,
+				429,
+				202,
+				524
+			]
+		},
+		"maxRetries": 3
+	},
+	"pagination": {
+		"method": "offset",
+		"limit": 200,
+		"limitParam": "pagesize",
+		"offsetParam": "start",
+		"offsetFromJob": true
+	}
 }
