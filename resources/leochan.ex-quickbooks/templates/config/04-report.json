@@ -1,73 +1,97 @@
 {
-    "name": "Report",
-    "description": "*Report*",
+  "name": "Report",
+  "description": "*Report*",
+  "data": {
     "debug": true,
     "outputBucket": "quickbooks",
     "jobs": [
-        {
-            "endpoint": "reports/CashFlow",
-            "dataField": ".",
-            "dataType": "reports"
-        }
+      {
+        "endpoint": "reports/CashFlow",
+        "dataField": ".",
+        "dataType": "reports"
+      }
     ],
-    "mappings":{
-        "reports":{
-            "Header":{
-                "type":"table",
-                "destination":"reports_header",
-                "tableMapping":{
-                    "Time":{
-                        "type":"column",
-                        "mapping":{"destination":"Time"}
-                    },
-                    "ReportName":{
-                        "type":"column",
-                        "mapping":{"destination":"ReportName"}
-                    },
-                    "ReportBasis":{
-                        "type":"column",
-                        "mapping":{"destination":"ReportBasis"}
-                    },
-                    "StartPeriod":{
-                        "type":"column",
-                        "mapping":{"destination":"StartPeriod"}
-                    },
-                    "EndPeriod":{
-                        "type":"column",
-                        "mapping":{"destination":"EndPeriod"}
-                    },
-                    "SummarizeColumnsBy":{
-                        "type":"column",
-                        "mapping":{"destination":"SummarizeColumnsBy"}
-                    },
-                    "Currency":{
-                        "type":"column",
-                        "mapping":{"destination":"Currency"}
-                    },
-                    "Option.name":{
-                        "type":"column",
-                        "mapping":{"destination":"Option_name"}
-                    },
-                    "Option.value":{
-                        "type":"column",
-                        "mapping":{"destination":"Option_value"}
-                    }
-                }
+    "mappings": {
+      "reports": {
+        "Header": {
+          "type": "table",
+          "destination": "reports_header",
+          "tableMapping": {
+            "Time": {
+              "type": "column",
+              "mapping": {
+                "destination": "Time"
+              }
             },
-            "Columns.Column":{
-                "type":"table",
-                "destination":"reports_columns",
-                "tableMapping":{
-                    "ColTitle":{
-                        "type":"column",
-                        "mapping":{"destination":"ColTitle"}
-                    },
-                    "ColType":{
-                        "type":"column",
-                        "mapping":{"destination":"ColType"}
-                    }
-                }
+            "ReportName": {
+              "type": "column",
+              "mapping": {
+                "destination": "ReportName"
+              }
+            },
+            "ReportBasis": {
+              "type": "column",
+              "mapping": {
+                "destination": "ReportBasis"
+              }
+            },
+            "StartPeriod": {
+              "type": "column",
+              "mapping": {
+                "destination": "StartPeriod"
+              }
+            },
+            "EndPeriod": {
+              "type": "column",
+              "mapping": {
+                "destination": "EndPeriod"
+              }
+            },
+            "SummarizeColumnsBy": {
+              "type": "column",
+              "mapping": {
+                "destination": "SummarizeColumnsBy"
+              }
+            },
+            "Currency": {
+              "type": "column",
+              "mapping": {
+                "destination": "Currency"
+              }
+            },
+            "Option.name": {
+              "type": "column",
+              "mapping": {
+                "destination": "Option_name"
+              }
+            },
+            "Option.value": {
+              "type": "column",
+              "mapping": {
+                "destination": "Option_value"
+              }
             }
+          }
+        },
+        "Columns.Column": {
+          "type": "table",
+          "destination": "reports_columns",
+          "tableMapping": {
+            "ColTitle": {
+              "type": "column",
+              "mapping": {
+                "destination": "ColTitle"
+              }
+            },
+            "ColType": {
+              "type": "column",
+              "mapping": {
+                "destination": "ColType"
+              }
+            }
+          }
         }
+      }
     }
+  }
 }

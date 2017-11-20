@@ -1,250 +1,350 @@
 {
-    "name": "Journal",
-    "description": "*Journal*\n\t- Journal Entry \n\t- Account",
+  "name": "Journal",
+  "description": "*Journal*\n\t- Journal Entry \n\t- Account",
+  "data": {
     "debug": true,
     "outputBucket": "quickbooks",
     "jobs": [
-        {
-            "endpoint": "query",
-            "params": {
-                "query": "select * from JournalEntry"
-            },
-            "dataField": "QueryResponse.JournalEntry",
-            "dataType": "JournalEntry"
+      {
+        "endpoint": "query",
+        "params": {
+          "query": "select * from JournalEntry"
         },
-        {
-            "endpoint": "query",
-            "params": {
-                "query": "select * from Account"
-            },
-            "dataField": "QueryResponse.Account",
-            "dataType": "Account"
-        }
+        "dataField": "QueryResponse.JournalEntry",
+        "dataType": "JournalEntry"
+      },
+      {
+        "endpoint": "query",
+        "params": {
+          "query": "select * from Account"
+        },
+        "dataField": "QueryResponse.Account",
+        "dataType": "Account"
+      }
     ],
-    "mappings":{
-        "JournalEntry":{
-            "Adjustment":{
-                "type":"column",
-                "mapping":{"destination":"Adjustment"}
-            },
-            "TotalAmt":{
-                "type":"column",
-                "mapping":{"destination":"TotalAmt"}
-            },
-            "HomeTotalAmt":{
-                "type":"column",
-                "mapping":{"destination":"HomeTotalAmt"}
-            },
-            "Id":{
-                "type":"column",
-                "mapping":{"destination":"ID"}
-            },
-            "DocNumber":{
-                "type":"column",
-                "mapping":{"destination":"DocNumber"}
-            },
-            "TxnDate":{
-                "type":"column",
-                "mapping":{"destination":"TxnDate"}
-            },
-            "CurrencyRef.value":{
-                "type":"column",
-                "mapping":{"destination":"Currency"}
-            },
-            "ExchangeRate":{
-                "type":"column",
-                "mapping":{"destination":"ExchangeRate"}
-            },
-            "Line":{
-                "type":"table",
-                "destination":"JournalEntry-Line",
-                "tableMapping":{
-                    "Id":{
-                        "type":"column",
-                        "mapping":{"destination":"ID"}
-                    },
-                    "Description":{
-                        "type":"column",
-                        "mapping":{"destination":"Description"}
-                    },
-                    "Amount":{
-                        "type":"column",
-                        "mapping":{"destination":"Amount"}
-                    },
-                    "DetailType":{
-                        "type":"column",
-                        "mapping":{"destination":"DetailType"}
-                    },
-                    "JournalEntryLineDetail":{
-                        "type":"table",
-                        "destination":"JournalEntry-Line-Detail",
-                        "tableMapping":{
-                            "PostingType":{
-                                "type":"column",
-                                "mapping":{"destination":"PostingType"}
-                            },
-                            "AccountRef.value":{
-                                "type":"column",
-                                "mapping":{"destination":"Account_ID"}
-                            },
-                            "AccountRef.name":{
-                                "type":"column",
-                                "mapping":{"destination":"Account_name"}
-                            },
-                            "Entity.Type":{
-                                "type":"column",
-                                "mapping":{"destination":"Entity_type"}
-                            },
-                            "Entity.EntityRef.value":{
-                                "type":"column",
-                                "mapping":{"destination":"Entity_ID"}
-                            },
-                            "Entity.EntityRef.name":{
-                                "type":"column",
-                                "mapping":{"destination":"Entity_name"}
-                            },
-                            "ClassRef.value":{
-                                "type":"column",
-                                "mapping":{"destination":"Class_ID"}
-                            },
-                            "ClassRef.name":{
-                                "type":"column",
-                                "mapping":{"destination":"Class_name"}
-                            },
-                            "DepartmentRef.value":{
-                                "type":"column",
-                                "mapping":{"destination":"Deparement_ID"}
-                            },
-                            "DepartmentRef.name":{
-                                "type":"column",
-                                "mapping":{"destination":"Department_name"}
-                            },
-                            "TaxCodeRef.value":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxCode_id"}
-                            },
-                            "TaxCodeRef.name":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxCode_name"}
-                            },
-                            "TaxApplicableOn":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxApplicableOn"}
-                            },
-                            "TaxAmount":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxAmount"}
-                            },
-                            "BillableStatus":{
-                                "type":"column",
-                                "mapping":{"destination":"BillableStatus"}
-                            }
-                        }
-                    }
-                }
-            },
-            "TxnTaxDetail":{
-                "type":"table",
-                "destination":"JournalEntry-TxnTaxDetail",
-                "tableMapping":{
-                    "TxnTaxCodeRef.value":{
-                        "type":"column",
-                        "mapping":{"destination":"TaxCode_ID"}
-                    },
-                    "TxnTaxCodeRef.name":{
-                        "type":"column",
-                        "mapping":{"destination":"TaxCode_name"}
-                    },
-                    "TotalTax":{
-                        "type":"column",
-                        "mapping":{"destination":"TotalTax"}
-                    },
-                    "TaxLine":{
-                        "type":"table",
-                        "destination":"JournalEntry-TxnTaxDetai-TaxLine",
-                        "tableMapping":{
-                            "Amount":{
-                                "type":"column",
-                                "mapping":{"destination":"Amount"}
-                            },
-                            "DetailType":{
-                                "type":"column",
-                                "mapping":{"destination":"DetailType"}
-                            },
-                            "TaxLineDetail.NetAmountTaxable":{
-                                "type":"column",
-                                "mapping":{"destination":"NetAmountTaxable"}
-                            },
-                            "TaxlineDetail.TaxInclusiveAmount":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxInclusiveAmount"}
-                            },
-                            "TaxlineDetail.TaxPercent":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxPercent"}
-                            },
-                            "TaxLineDetail.TaxRateRef.value":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxRate_ID"}
-                            },
-                            "TaxLineDetail.TaxRateRef.name":{
-                                "type":"column",
-                                "mapping":{"destination":"TaxRate_name"}
-                            }
-                        }
-                    }
-                }
-            }
+    "mappings": {
+      "JournalEntry": {
+        "Adjustment": {
+          "type": "column",
+          "mapping": {
+            "destination": "Adjustment"
+          }
         },
-        "Account":{
-            "Name":{
-                "type":"column",
-                "mapping":{"destination":"Name"}
+        "TotalAmt": {
+          "type": "column",
+          "mapping": {
+            "destination": "TotalAmt"
+          }
+        },
+        "HomeTotalAmt": {
+          "type": "column",
+          "mapping": {
+            "destination": "HomeTotalAmt"
+          }
+        },
+        "Id": {
+          "type": "column",
+          "mapping": {
+            "destination": "ID"
+          }
+        },
+        "DocNumber": {
+          "type": "column",
+          "mapping": {
+            "destination": "DocNumber"
+          }
+        },
+        "TxnDate": {
+          "type": "column",
+          "mapping": {
+            "destination": "TxnDate"
+          }
+        },
+        "CurrencyRef.value": {
+          "type": "column",
+          "mapping": {
+            "destination": "Currency"
+          }
+        },
+        "ExchangeRate": {
+          "type": "column",
+          "mapping": {
+            "destination": "ExchangeRate"
+          }
+        },
+        "Line": {
+          "type": "table",
+          "destination": "JournalEntry-Line",
+          "tableMapping": {
+            "Id": {
+              "type": "column",
+              "mapping": {
+                "destination": "ID"
+              }
             },
-            "SubAccount":{
-                "type":"column",
-                "mapping":{"destination":"SubAccount"}
+            "Description": {
+              "type": "column",
+              "mapping": {
+                "destination": "Description"
+              }
             },
-            "FullyQualifiedName":{
-                "type":"column",
-                "mapping":{"destination":"FullyQualifiedName"}
+            "Amount": {
+              "type": "column",
+              "mapping": {
+                "destination": "Amount"
+              }
             },
-            "Active":{
-                "type":"column",
-                "mapping":{"destination":"Active"}
+            "DetailType": {
+              "type": "column",
+              "mapping": {
+                "destination": "DetailType"
+              }
             },
-            "Classification":{
-                "type":"column",
-                "mapping":{"destination":"Classification"}
-            },
-            "AccountType":{
-                "type":"column",
-                "mapping":{"destination":"AccountType"}
-            },
-            "AccountSubType":{
-                "type":"column",
-                "mapping":{"destination":"AccountSubType"}
-            },
-            "CurrentBalance":{
-                "type":"column",
-                "mapping":{"destination":"CurrentBalance"}
-            },
-            "CurrentBalanceWithSubAccount":{
-                "type":"column",
-                "mapping":{"destination":"CurrentBalanceWithSubAccount"}
-            },
-            "CurrencyRef.value":{
-                "type":"column",
-                "mapping":{"destination":"Currency"}
-            },
-            "TaxCodeRef.value":{
-                "type":"column",
-                "mapping":{"destination":"TaxCode"}
-            },
-            "Id":{
-                "type":"column",
-                "mapping":{"destination":"ID"}
+            "JournalEntryLineDetail": {
+              "type": "table",
+              "destination": "JournalEntry-Line-Detail",
+              "tableMapping": {
+                "PostingType": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "PostingType"
+                  }
+                },
+                "AccountRef.value": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Account_ID"
+                  }
+                },
+                "AccountRef.name": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Account_name"
+                  }
+                },
+                "Entity.Type": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Entity_type"
+                  }
+                },
+                "Entity.EntityRef.value": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Entity_ID"
+                  }
+                },
+                "Entity.EntityRef.name": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Entity_name"
+                  }
+                },
+                "ClassRef.value": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Class_ID"
+                  }
+                },
+                "ClassRef.name": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Class_name"
+                  }
+                },
+                "DepartmentRef.value": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Deparement_ID"
+                  }
+                },
+                "DepartmentRef.name": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Department_name"
+                  }
+                },
+                "TaxCodeRef.value": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxCode_id"
+                  }
+                },
+                "TaxCodeRef.name": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxCode_name"
+                  }
+                },
+                "TaxApplicableOn": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxApplicableOn"
+                  }
+                },
+                "TaxAmount": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxAmount"
+                  }
+                },
+                "BillableStatus": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "BillableStatus"
+                  }
+                }
+              }
             }
+          }
+        },
+        "TxnTaxDetail": {
+          "type": "table",
+          "destination": "JournalEntry-TxnTaxDetail",
+          "tableMapping": {
+            "TxnTaxCodeRef.value": {
+              "type": "column",
+              "mapping": {
+                "destination": "TaxCode_ID"
+              }
+            },
+            "TxnTaxCodeRef.name": {
+              "type": "column",
+              "mapping": {
+                "destination": "TaxCode_name"
+              }
+            },
+            "TotalTax": {
+              "type": "column",
+              "mapping": {
+                "destination": "TotalTax"
+              }
+            },
+            "TaxLine": {
+              "type": "table",
+              "destination": "JournalEntry-TxnTaxDetail-TaxLine",
+              "tableMapping": {
+                "Amount": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "Amount"
+                  }
+                },
+                "DetailType": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "DetailType"
+                  }
+                },
+                "TaxLineDetail.NetAmountTaxable": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "NetAmountTaxable"
+                  }
+                },
+                "TaxlineDetail.TaxInclusiveAmount": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxInclusiveAmount"
+                  }
+                },
+                "TaxlineDetail.TaxPercent": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxPercent"
+                  }
+                },
+                "TaxLineDetail.TaxRateRef.value": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxRate_ID"
+                  }
+                },
+                "TaxLineDetail.TaxRateRef.name": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "TaxRate_name"
+                  }
+                }
+              }
+            }
+          }
         }
+      },
+      "Account": {
+        "Name": {
+          "type": "column",
+          "mapping": {
+            "destination": "Name"
+          }
+        },
+        "SubAccount": {
+          "type": "column",
+          "mapping": {
+            "destination": "SubAccount"
+          }
+        },
+        "FullyQualifiedName": {
+          "type": "column",
+          "mapping": {
+            "destination": "FullyQualifiedName"
+          }
+        },
+        "Active": {
+          "type": "column",
+          "mapping": {
+            "destination": "Active"
+          }
+        },
+        "Classification": {
+          "type": "column",
+          "mapping": {
+            "destination": "Classification"
+          }
+        },
+        "AccountType": {
+          "type": "column",
+          "mapping": {
+            "destination": "AccountType"
+          }
+        },
+        "AccountSubType": {
+          "type": "column",
+          "mapping": {
+            "destination": "AccountSubType"
+          }
+        },
+        "CurrentBalance": {
+          "type": "column",
+          "mapping": {
+            "destination": "CurrentBalance"
+          }
+        },
+        "CurrentBalanceWithSubAccount": {
+          "type": "column",
+          "mapping": {
+            "destination": "CurrentBalanceWithSubAccount"
+          }
+        },
+        "CurrencyRef.value": {
+          "type": "column",
+          "mapping": {
+            "destination": "Currency"
+          }
+        },
+        "TaxCodeRef.value": {
+          "type": "column",
+          "mapping": {
+            "destination": "TaxCode"
+          }
+        },
+        "Id": {
+          "type": "column",
+          "mapping": {
+            "destination": "ID"
+          }
+        }
+      }
     }
+  }
 }
