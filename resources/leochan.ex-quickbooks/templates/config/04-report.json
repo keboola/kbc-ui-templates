@@ -2,8 +2,6 @@
   "name": "Report",
   "description": "*Report*",
   "data": {
-    "debug": true,
-    "outputBucket": "quickbooks",
     "jobs": [
       {
         "endpoint": "reports/CashFlow",

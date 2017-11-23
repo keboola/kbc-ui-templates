@@ -2,8 +2,6 @@
   "name": "Procurement",
   "description": "*Procurement*\n\t-Purchase Order\n\t- Bill\n\t- Vendor ",
   "data": {
-    "debug": true,
-    "outputBucket": "quickbooks",
     "jobs": [
       {
         "endpoint": "query",

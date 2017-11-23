@@ -2,8 +2,6 @@
   "name": "Journal",
   "description": "*Journal*\n\t- Journal Entry \n\t- Account",
   "data": {
-    "debug": true,
-    "outputBucket": "quickbooks",
     "jobs": [
       {
         "endpoint": "query",
