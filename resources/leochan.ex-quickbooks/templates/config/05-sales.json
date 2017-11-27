@@ -2,8 +2,6 @@
   "name": "Sales",
   "description": "*Sales*\n\t- Customers\n\t- Invoices",
   "data": {
-    "debug": true,
-    "outputBucket": "quickbooks",
     "jobs": [
       {
         "endpoint": "query",
