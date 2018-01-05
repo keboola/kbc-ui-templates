@@ -31,7 +31,7 @@
         "access_token": "access_token"
       }
     }
-  }
+  },
   "pagination": {
     "method": "response.param",
     "responseParam": "nextPageToken",
