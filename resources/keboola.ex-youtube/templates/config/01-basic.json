@@ -1,0 +1,14 @@
+{
+  "name": "Channels List",
+  "description": "Download list of user's channels",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "channels?mine=true&part=snippet,contentDetails,statistics",
+        "dataType": "channels",
+        "dataField": "items"
+      }
+    ]
+  }
+
+}
