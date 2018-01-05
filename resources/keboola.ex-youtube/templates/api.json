@@ -1,0 +1,27 @@
+{
+  "baseUrl": "https://www.googleapis.com/youtube/v3/",
+  "http": {
+    "Accept": "application/json",
+    "Content-Type": "application/json;charset=UTF-8"
+  },
+  "authentication": {
+    "type": "oauth20",
+    "headers": {
+      "Authorization": {
+        "function": "concat",
+        "args": [
+          "Bearer ",
+          {
+            "authorization": "data"
+          }
+        ]
+      }
+    }
+  },
+  "pagination": {
+    "method": "response.param",
+    "responseParam": "nextPageToken",
+    "queryParam": "pageToken",
+    "includeParams": true
+  }
+}
