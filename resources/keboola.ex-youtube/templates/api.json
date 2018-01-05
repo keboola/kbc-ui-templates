@@ -12,7 +12,7 @@
         "args": [
           "Bearer ",
           {
-            "authorization": "data"
+            "authorization": "data.access_token"
           }
         ]
       }
