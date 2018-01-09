@@ -1,0 +1,14 @@
+{
+  "name": "Channels",
+  "description": "List of managed channels",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "channels?managedByMe=true&part=snippet,contentDetails,statistics",
+        "dataType": "channels",
+        "dataField": "items"
+      }
+    ]
+  }
+
+}

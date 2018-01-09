@@ -1,0 +1,34 @@
+{
+  "name": "Videos",
+  "description": "List of videos in my channels",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "channels?mine=true&part=id,snippet",
+        "dataType": "channels",
+        "dataField": "items",
+        "children": [
+          {
+            "endpoint": "playlists?channelId={channelId}&part=id,snippet",
+            "dataType": "playlists",
+            "dataField": "items",
+            "placeholders": {
+              "channelId": "id"
+            },
+            "children": [
+              {
+                "endpoint": "playlistItems?playlistId={playlistId}&part=id,snippet",
+                "dataType": "videos",
+                "dataField": "items",
+                "placeholders": {
+                  "playlistId": "id"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+
+}
