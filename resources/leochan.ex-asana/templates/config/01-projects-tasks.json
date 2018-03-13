@@ -3,14 +3,30 @@
     "description": "Get Projects and Tasks",
     "data": {
         "incrementalOutput": true,
+        "pageSize": 100,
         "debug": false,
-        "jobs": [
-            {
-                "endpoint": "projects",
+        "jobs": [{
+            "endpoint": "workspaces",
+            "dataType": "workspaces",
+            "dataField": "data",
+            "params": {
+                "limit": {
+                    "attr": "pageSize"
+                }
+            },
+            "children": [{
+                "endpoint": "workspaces/{1:workspaces_id}/projects",
+                "placeholders": {
+                    "1:workspaces_id": "id"
+                },
                 "dataType": "projects",
                 "dataField": "data",
-                "children": [
-                    {
+                "params": {
+                    "limit": {
+                        "attr": "pageSize"
+                    }
+                },
+                "children": [{
                         "endpoint": "projects/{1:projects_id}",
                         "placeholders": {
                             "1:projects_id": "id"
@@ -24,7 +40,12 @@
                             "1:project_id": "id"
                         },
                         "dataType": "sections",
-                        "dataField": "data"
+                        "dataField": "data",
+                        "params": {
+                            "limit": {
+                                "attr": "pageSize"
+                            }
+                        }
                     },
                     {
                         "endpoint": "projects/{1:project_id}/tasks",
@@ -33,8 +54,12 @@
                         },
                         "dataType": "tasks",
                         "dataField": "data",
-                        "children": [
-                            {
+                        "params": {
+                            "limit": {
+                                "attr": "pageSize"
+                            }
+                        },
+                        "children": [{
                                 "endpoint": "tasks/{1:task_id}",
                                 "placeholders": {
                                     "1:task_id": "id"
@@ -48,7 +73,12 @@
                                     "1:task_id": "id"
                                 },
                                 "dataType": "task_stories",
-                                "dataField": "data"
+                                "dataField": "data",
+                                "params": {
+                                    "limit": {
+                                        "attr": "pageSize"
+                                    }
+                                }
                             },
                             {
                                 "endpoint": "tasks/{1:task_id}/subtasks",
@@ -56,13 +86,18 @@
                                     "1:task_id": "id"
                                 },
                                 "dataType": "task_subtasks",
-                                "dataField": "data"
+                                "dataField": "data",
+                                "params": {
+                                    "limit": {
+                                        "attr": "pageSize"
+                                    }
+                                }
                             }
                         ]
                     }
                 ]
-            }
-        ],
+            }]
+        }],
         "mappings": {
             "projects_details": {
                 "id": {
