@@ -2,7 +2,7 @@
     "name": "Projects & Tasks",
     "description": "Get Projects and Tasks",
     "data": {
-        "incrementalOutput": true,
+        "incrementalOutput": false,
         "pageSize": 100,
         "debug": false,
         "jobs": [{
