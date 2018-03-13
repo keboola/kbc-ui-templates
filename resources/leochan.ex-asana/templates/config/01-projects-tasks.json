@@ -1,671 +1,673 @@
 {
     "name": "Projects & Tasks",
     "description": "Get Projects and Tasks",
-    "incrementalOutput": true,
-    "debug": false,
-    "jobs": [
-        {
-            "endpoint": "projects",
-            "dataType": "projects",
-            "dataField": "data",
-            "children": [
-                {
-                    "endpoint": "projects/{1:projects_id}",
-                    "placeholders": {
-                        "1:projects_id": "id"
-                    },
-                    "dataType": "projects_details",
-                    "dataField": "data"
-                },
-                {
-                    "endpoint": "projects/{1:project_id}/sections",
-                    "placeholders": {
-                        "1:project_id": "id"
-                    },
-                    "dataType": "sections",
-                    "dataField": "data"
-                },
-                {
-                    "endpoint": "projects/{1:project_id}/tasks",
-                    "placeholders": {
-                        "1:project_id": "id"
-                    },
-                    "dataType": "tasks",
-                    "dataField": "data",
-                    "children": [
-                        {
-                            "endpoint": "tasks/{1:task_id}",
-                            "placeholders": {
-                                "1:task_id": "id"
-                            },
-                            "dataType": "task_details",
-                            "dataField": "data"
+    "data": {
+        "incrementalOutput": true,
+        "debug": false,
+        "jobs": [
+            {
+                "endpoint": "projects",
+                "dataType": "projects",
+                "dataField": "data",
+                "children": [
+                    {
+                        "endpoint": "projects/{1:projects_id}",
+                        "placeholders": {
+                            "1:projects_id": "id"
                         },
-                        {
-                            "endpoint": "tasks/{1:task_id}/stories",
-                            "placeholders": {
-                                "1:task_id": "id"
-                            },
-                            "dataType": "task_stories",
-                            "dataField": "data"
-                        },
-                        {
-                            "endpoint": "tasks/{1:task_id}/subtasks",
-                            "placeholders": {
-                                "1:task_id": "id"
-                            },
-                            "dataType": "task_subtasks",
-                            "dataField": "data"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "mappings": {
-        "projects_details": {
-            "id": {
-                "mapping": {
-                    "destination": "id",
-                    "primaryKey": true
-                }
-            },
-            "name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "name"
-                }
-            },
-            "owner.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "owner_id"
-                }
-            },
-            "owner.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "owner_name"
-                }
-            },
-            "due_date": {
-                "type": "column",
-                "mapping": {
-                    "destination": "due_date"
-                }
-            },
-            "current_status.author.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "current_status_author_id"
-                }
-            },
-            "current_status.author.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "current_status_author_name"
-                }
-            },
-            "current_status.color": {
-                "type": "column",
-                "mapping": {
-                    "destination": "current_status_color"
-                }
-            },
-            "current_status.modified_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "current_status_modified_at"
-                }
-            },
-            "current_status.text": {
-                "type": "column",
-                "mapping": {
-                    "destination": "current_status_text"
-                }
-            },
-            "created_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "created_at"
-                }
-            },
-            "modified_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "modified_at"
-                }
-            },
-            "archived": {
-                "type": "column",
-                "mapping": {
-                    "destination": "archived"
-                }
-            },
-            "public": {
-                "type": "column",
-                "mapping": {
-                    "destination": "public"
-                }
-            },
-            "members": {
-                "type": "table",
-                "destination": "projects-members",
-                "tableMapping": {
-                    "id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "id"
-                        }
+                        "dataType": "projects_details",
+                        "dataField": "data"
                     },
-                    "name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "name"
+                    {
+                        "endpoint": "projects/{1:project_id}/sections",
+                        "placeholders": {
+                            "1:project_id": "id"
+                        },
+                        "dataType": "sections",
+                        "dataField": "data"
+                    },
+                    {
+                        "endpoint": "projects/{1:project_id}/tasks",
+                        "placeholders": {
+                            "1:project_id": "id"
+                        },
+                        "dataType": "tasks",
+                        "dataField": "data",
+                        "children": [
+                            {
+                                "endpoint": "tasks/{1:task_id}",
+                                "placeholders": {
+                                    "1:task_id": "id"
+                                },
+                                "dataType": "task_details",
+                                "dataField": "data"
+                            },
+                            {
+                                "endpoint": "tasks/{1:task_id}/stories",
+                                "placeholders": {
+                                    "1:task_id": "id"
+                                },
+                                "dataType": "task_stories",
+                                "dataField": "data"
+                            },
+                            {
+                                "endpoint": "tasks/{1:task_id}/subtasks",
+                                "placeholders": {
+                                    "1:task_id": "id"
+                                },
+                                "dataType": "task_subtasks",
+                                "dataField": "data"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "projects_details": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "owner.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "owner_id"
+                    }
+                },
+                "owner.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "owner_name"
+                    }
+                },
+                "due_date": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "due_date"
+                    }
+                },
+                "current_status.author.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "current_status_author_id"
+                    }
+                },
+                "current_status.author.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "current_status_author_name"
+                    }
+                },
+                "current_status.color": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "current_status_color"
+                    }
+                },
+                "current_status.modified_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "current_status_modified_at"
+                    }
+                },
+                "current_status.text": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "current_status_text"
+                    }
+                },
+                "created_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "modified_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "modified_at"
+                    }
+                },
+                "archived": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "archived"
+                    }
+                },
+                "public": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "public"
+                    }
+                },
+                "members": {
+                    "type": "table",
+                    "destination": "projects-members",
+                    "tableMapping": {
+                        "id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "name"
+                            }
                         }
+                    }
+                },
+                "followers": {
+                    "type": "table",
+                    "destination": "projects-followers",
+                    "tableMapping": {
+                        "id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        }
+                    }
+                },
+                "custom_field_settings": {
+                    "type": "table",
+                    "destination": "projects-custom_field_settings",
+                    "tableMapping": {
+                        "id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "custom_field.id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "custom_field_id"
+                            }
+                        },
+                        "custom_field.name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "custom_field_name"
+                            }
+                        },
+                        "custom_field.type": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "custom_field_type"
+                            }
+                        },
+                        "is_important": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "is_important"
+                            }
+                        },
+                        "project.id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "project_id"
+                            }
+                        },
+                        "project.name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "project_name"
+                            }
+                        },
+                        "custom_field.enum_options": {
+                            "type": "table",
+                            "destination": "projects-custom_field_settings-enum_options",
+                            "tableMapping": {
+                                "id": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "id"
+                                    }
+                                },
+                                "name": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "name"
+                                    }
+                                },
+                                "color": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "color"
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "enabled"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "color": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "color"
+                    }
+                },
+                "notes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "workspace.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "workspace_id"
+                    }
+                },
+                "workspace.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "workspace_name"
+                    }
+                },
+                "layout": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "layout"
                     }
                 }
             },
-            "followers": {
-                "type": "table",
-                "destination": "projects-followers",
-                "tableMapping": {
-                    "id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "id"
-                        }
-                    },
-                    "name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "name"
-                        }
+            "section": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "project_id"
                     }
                 }
             },
-            "custom_field_settings": {
-                "type": "table",
-                "destination": "projects-custom_field_settings",
-                "tableMapping": {
-                    "id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "id"
+            "tasks": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "project_id"
+                    }
+                }
+            },
+            "task_details": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "assignee.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "assignee_id"
+                    }
+                },
+                "assignee.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "assignee_name"
+                    }
+                },
+                "assignee_status": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "assignee_status"
+                    }
+                },
+                "created_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "completed": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "completed"
+                    }
+                },
+                "completed_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "completed_at"
+                    }
+                },
+                "due_on": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "due_on"
+                    }
+                },
+                "due_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "due_at"
+                    }
+                },
+                "modified_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "modified_at"
+                    }
+                },
+                "parent.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "parent_id"
+                    }
+                },
+                "parent.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "parent_name"
+                    }
+                },
+                "notes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "followers": {
+                    "type": "table",
+                    "destination": "task_details-followers",
+                    "tableMapping": {
+                        "id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "name"
+                            }
                         }
-                    },
-                    "custom_field.id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "custom_field_id"
+                    }
+                },
+                "memberships": {
+                    "type": "table",
+                    "destination": "task_details-memberships",
+                    "tableMapping": {
+                        "project.id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "project_id"
+                            }
+                        },
+                        "project.name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "project_name"
+                            }
+                        },
+                        "section.id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "section_id"
+                            }
+                        },
+                        "section.name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "section_name"
+                            }
                         }
-                    },
-                    "custom_field.name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "custom_field_name"
+                    }
+                },
+                "tags": {
+                    "type": "table",
+                    "destination": "task_details-tags",
+                    "tableMapping": {
+                        "id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "name"
+                            }
                         }
-                    },
-                    "custom_field.type": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "custom_field_type"
-                        }
-                    },
-                    "is_important": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "is_important"
-                        }
-                    },
-                    "project.id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "project_id"
-                        }
-                    },
-                    "project.name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "project_name"
-                        }
-                    },
-                    "custom_field.enum_options": {
-                        "type": "table",
-                        "destination": "projects-custom_field_settings-enum_options",
-                        "tableMapping": {
-                            "id": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "id"
-                                }
-                            },
-                            "name": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "name"
-                                }
-                            },
-                            "color": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "color"
-                                }
-                            },
-                            "enabled": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "enabled"
+                    }
+                },
+                "custom_fields": {
+                    "type": "table",
+                    "destination": "task_details-custom_fields",
+                    "tableMapping": {
+                        "id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        },
+                        "type": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "type"
+                            }
+                        },
+                        "enabled": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "enabled"
+                            }
+                        },
+                        "number_value": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "number_value"
+                            }
+                        },
+                        "precision": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "precision"
+                            }
+                        },
+                        "enum_value.id": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "enum_value_id"
+                            }
+                        },
+                        "enum_value.name": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "enum_value_name"
+                            }
+                        },
+                        "enum_value.color": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "enum_value_color"
+                            }
+                        },
+                        "enum_value.enabled": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "enum_value_enabled"
+                            }
+                        },
+                        "enum_options": {
+                            "type": "table",
+                            "destination": "task_details-custom_field-enum_options",
+                            "tableMapping": {
+                                "id": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "id"
+                                    }
+                                },
+                                "name": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "name"
+                                    }
+                                },
+                                "color": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "color"
+                                    }
+                                },
+                                "enabled": {
+                                    "type": "column",
+                                    "mapping": {
+                                        "destination": "enabled"
+                                    }
                                 }
                             }
                         }
                     }
                 }
             },
-            "color": {
-                "type": "column",
-                "mapping": {
-                    "destination": "color"
-                }
-            },
-            "notes": {
-                "type": "column",
-                "mapping": {
-                    "destination": "notes"
-                }
-            },
-            "workspace.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "workspace_id"
-                }
-            },
-            "workspace.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "workspace_name"
-                }
-            },
-            "layout": {
-                "type": "column",
-                "mapping": {
-                    "destination": "layout"
-                }
-            }
-        },
-        "section": {
-            "id": {
-                "mapping": {
-                    "destination": "id",
-                    "primaryKey": true
-                }
-            },
-            "name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "name"
-                }
-            },
-            "parent_id": {
-                "type": "user",
-                "mapping": {
-                    "destination": "project_id"
-                }
-            }
-        },
-        "tasks": {
-            "id": {
-                "mapping": {
-                    "destination": "id",
-                    "primaryKey": true
-                }
-            },
-            "name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "name"
-                }
-            },
-            "parent_id": {
-                "type": "user",
-                "mapping": {
-                    "destination": "project_id"
-                }
-            }
-        },
-        "task_details": {
-            "id": {
-                "mapping": {
-                    "destination": "id",
-                    "primaryKey": true
-                }
-            },
-            "name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "name"
-                }
-            },
-            "assignee.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "assignee_id"
-                }
-            },
-            "assignee.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "assignee_name"
-                }
-            },
-            "assignee_status": {
-                "type": "column",
-                "mapping": {
-                    "destination": "assignee_status"
-                }
-            },
-            "created_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "created_at"
-                }
-            },
-            "completed": {
-                "type": "column",
-                "mapping": {
-                    "destination": "completed"
-                }
-            },
-            "completed_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "completed_at"
-                }
-            },
-            "due_on": {
-                "type": "column",
-                "mapping": {
-                    "destination": "due_on"
-                }
-            },
-            "due_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "due_at"
-                }
-            },
-            "modified_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "modified_at"
-                }
-            },
-            "parent.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "parent_id"
-                }
-            },
-            "parent.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "parent_name"
-                }
-            },
-            "notes": {
-                "type": "column",
-                "mapping": {
-                    "destination": "notes"
-                }
-            },
-            "followers": {
-                "type": "table",
-                "destination": "task_details-followers",
-                "tableMapping": {
-                    "id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "id"
-                        }
-                    },
-                    "name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "name"
-                        }
+            "task_subtasks": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "task_id"
                     }
                 }
             },
-            "memberships": {
-                "type": "table",
-                "destination": "task_details-memberships",
-                "tableMapping": {
-                    "project.id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "project_id"
-                        }
-                    },
-                    "project.name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "project_name"
-                        }
-                    },
-                    "section.id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "section_id"
-                        }
-                    },
-                    "section.name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "section_name"
-                        }
+            "task_stories": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
                     }
-                }
-            },
-            "tags": {
-                "type": "table",
-                "destination": "task_details-tags",
-                "tableMapping": {
-                    "id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "id"
-                        }
-                    },
-                    "name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "name"
-                        }
+                },
+                "type": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "type"
                     }
-                }
-            },
-            "custom_fields": {
-                "type": "table",
-                "destination": "task_details-custom_fields",
-                "tableMapping": {
-                    "id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "id"
-                        }
-                    },
-                    "name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "name"
-                        }
-                    },
-                    "type": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "type"
-                        }
-                    },
-                    "enabled": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "enabled"
-                        }
-                    },
-                    "number_value": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "number_value"
-                        }
-                    },
-                    "precision": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "precision"
-                        }
-                    },
-                    "enum_value.id": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "enum_value_id"
-                        }
-                    },
-                    "enum_value.name": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "enum_value_name"
-                        }
-                    },
-                    "enum_value.color": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "enum_value_color"
-                        }
-                    },
-                    "enum_value.enabled": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "enum_value_enabled"
-                        }
-                    },
-                    "enum_options": {
-                        "type": "table",
-                        "destination": "task_details-custom_field-enum_options",
-                        "tableMapping": {
-                            "id": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "id"
-                                }
-                            },
-                            "name": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "name"
-                                }
-                            },
-                            "color": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "color"
-                                }
-                            },
-                            "enabled": {
-                                "type": "column",
-                                "mapping": {
-                                    "destination": "enabled"
-                                }
-                            }
-                        }
+                },
+                "source": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "source"
                     }
-                }
-            }
-        },
-        "task_subtasks": {
-            "id": {
-                "mapping": {
-                    "destination": "id",
-                    "primaryKey": true
-                }
-            },
-            "name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "name"
-                }
-            },
-            "parent_id": {
-                "type": "user",
-                "mapping": {
-                    "destination": "task_id"
-                }
-            }
-        },
-        "task_stories": {
-            "id": {
-                "mapping": {
-                    "destination": "id",
-                    "primaryKey": true
-                }
-            },
-            "type": {
-                "type": "column",
-                "mapping": {
-                    "destination": "type"
-                }
-            },
-            "source": {
-                "type": "column",
-                "mapping": {
-                    "destination": "source"
-                }
-            },
-            "created_at": {
-                "type": "column",
-                "mapping": {
-                    "destination": "created_at"
-                }
-            },
-            "created_by.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "created_by_id"
-                }
-            },
-            "created_by.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "created_by_name"
-                }
-            },
-            "text": {
-                "type": "column",
-                "mapping": {
-                    "destination": "text"
-                }
-            },
-            "html_text": {
-                "type": "column",
-                "mapping": {
-                    "destination": "html_text"
-                }
-            },
-            "target.id": {
-                "type": "column",
-                "mapping": {
-                    "destination": "target_id"
-                }
-            },
-            "target.name": {
-                "type": "column",
-                "mapping": {
-                    "destination": "target_name"
-                }
-            },
-            "parent_id": {
-                "type": "user",
-                "mapping": {
-                    "destination": "task_id"
+                },
+                "created_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "created_by.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_by_id"
+                    }
+                },
+                "created_by.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_by_name"
+                    }
+                },
+                "text": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "text"
+                    }
+                },
+                "html_text": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "html_text"
+                    }
+                },
+                "target.id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "target_id"
+                    }
+                },
+                "target.name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "target_name"
+                    }
+                },
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "task_id"
+                    }
                 }
             }
         }

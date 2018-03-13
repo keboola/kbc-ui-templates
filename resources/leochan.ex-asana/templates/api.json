@@ -1,7 +1,9 @@
 {
     "baseUrl": "https://app.asana.com/api/1.0/",
-    "pagination.method": "offset",
-    "pagination.limit": 100,
+    "pagination": {
+        "method": "offset",
+        "limit": 100
+    },
     "http": {
         "headers": {
             "authorization": {
