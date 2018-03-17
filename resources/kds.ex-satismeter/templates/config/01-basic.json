@@ -1,0 +1,101 @@
+{
+    "name": "Basic",
+    "description": "Downloads \n\n - users \n - responses",
+    "data": {
+        "#password": "X",
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "responses",
+                "dataField": "responses",
+                "dataType": "responses",
+                "params": {
+                    "project": {
+                        "attr": "project"
+                    },
+                    "startDate": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    {
+                                        "attr": "daysAgo"
+                                    },
+                                    {
+                                        "function": "time"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            },
+            {
+                "endpoint": "responses",
+                "dataField": "responses",
+                "dataType": "users",
+                "params": {
+                    "project": {
+                        "attr": "project"
+                    },
+                    "startDate": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    {
+                                        "attr": "daysAgo"
+                                    },
+                                    {
+                                        "function": "time"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings": {
+            "responses": {
+                "id": {
+                    "mapping": {
+                        "destination": "response_id",
+                        "primaryKey": true
+                    }
+                },
+                "user.id": "user_id",
+                "created": "created",
+                "project": "project",
+                "campaign": "campaign",
+                "location.country": "country_code",
+                "location.countryName": "country_name",
+                "city": "city",
+                "referrer": "referrer",
+                "method": "method",
+                "device.os": "device_os",
+                "device.type": "device_type",
+                "category": "category",
+                "feedback": "feedback",
+                "rating": "rating",
+                "score": "score"
+            },
+            "users": {
+                "user.id": {
+                    "mapping": {
+                        "destination": "user_id",
+                        "primaryKey": true
+                    }
+                },
+                "user.userId": "user_id_2",
+                "user.traits.name": "name",
+                "user.traits.email": "email",
+                "user.traits.createdAt": "created"
+            }
+        }
+    }
+}
