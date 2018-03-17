@@ -1,0 +1,9 @@
+{
+    "baseUrl": "https://app.satismeter.com/api/",
+    "pagination": {
+        "method": "pagenum"
+    },
+    "authentication": {
+        "type": "basic"
+    }
+}
