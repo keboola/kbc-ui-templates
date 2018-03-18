@@ -21,10 +21,7 @@
                                 "function": "strtotime",
                                 "args": [
                                     {
-                                        "attr": "daysAgo"
-                                    },
-                                    {
-                                        "function": "time"
+                                        "attr": "startDate"
                                     }
                                 ]
                             }
@@ -48,10 +45,7 @@
                                 "function": "strtotime",
                                 "args": [
                                     {
-                                        "attr": "daysAgo"
-                                    },
-                                    {
-                                        "function": "time"
+                                        "attr": "startDate"
                                     }
                                 ]
                             }
