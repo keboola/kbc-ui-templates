@@ -3,7 +3,28 @@
     "pagination": {
         "method": "pagenum"
     },
-    "authentication": {
-        "type": "basic"
+    "http": {
+        "headers": {
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Basic ",
+                    {
+                        "function": "base64_encode",
+                        "args": [
+                            {
+                                "function": "concat",
+                                "args": [
+                                    {
+                                        "attr": "#username"
+                                    },
+                                    ":X"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
     }
 }
