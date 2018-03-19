@@ -18,7 +18,7 @@
                                     {
                                         "attr": "#username"
                                     },
-                                    ":X"
+                                    ":no_password_required"
                                 ]
                             }
                         ]
