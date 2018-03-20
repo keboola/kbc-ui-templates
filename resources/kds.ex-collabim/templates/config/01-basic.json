@@ -1,6 +1,6 @@
 {
     "name": "Basic",
-    "description": "Downloads \n\n - Keywords \n - Positions",
+    "description": "Downloads \n\n - Keywords \n - Keyword's positions",
     "data": {
         "incrementalOutput": true,
         "jobs": [
@@ -18,8 +18,8 @@
                 },
                 "children": [
                     {
-                        "dataField": "data",
-                        "dataType": "keywords_ids",
+                        "dataField": "data.0.positions",
+                        "dataType": "keyword_positions",
                         "endpoint": "keyword-positions?projectKeywordIds={id}&showSearchEngineName=1",
                         "placeholders": {
                             "id": "id"
@@ -74,41 +74,32 @@
                 },
                 "keyword": "keyword"
             },
-            "keywords_ids": {
-                "projectKeywordId": {
+            "keyword_positions": {
+                "parent_id": {
+                    "type": "user",
                     "mapping": {
                         "destination": "keyword_id",
                         "primaryKey": true
                     }
                 },
-                "positions": {
-                    "type": "table",
-                    "destination": "keyword_positions",
-                    "parentKey": {
-                        "primaryKey": true,
-                        "destination": "keyword_id"
-                    },
-                    "tableMapping": {
-                        "searchEngineId": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "search_engine",
-                                "primaryKey": true
-                            }
-                        },
-                        "date": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "date",
-                                "primaryKey": true
-                            }
-                        },
-                        "position": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "position"
-                            }
-                        }
+                "searchEngineId": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "search_engine",
+                        "primaryKey": true
+                    }
+                },
+                "date": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "date",
+                        "primaryKey": true
+                    }
+                },
+                "position": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "position"
                     }
                 }
             }
