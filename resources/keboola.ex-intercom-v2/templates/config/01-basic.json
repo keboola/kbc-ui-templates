@@ -247,7 +247,7 @@
                 "session_count": "session_count",
                 "monthly_spend": "monthly_spend",
                 "user_count": "user_count",
-                "plan": "plan",
+                "plan.name": "plan",
                 "custom_attributes": {
                     "forceType": true,
                     "mapping": {
