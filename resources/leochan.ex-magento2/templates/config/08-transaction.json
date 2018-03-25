@@ -1,0 +1,57 @@
+{
+    "incrementalOutput": true,
+    "name":"Transactions",
+    "description":"Retrieve a list of transactions.",
+    "outputBucket":"magento",
+    "jobs":[
+        {
+            "endpoint":"transactions",
+            "dataType":"transactions",
+            "dataField":"items"
+        }
+    ],
+    "mappings":{
+        "transactions":{
+            "transaction_id":{
+                "mapping":{
+                    "destination":"transaction_id",
+                    "primaryKey":true
+                }
+            },
+            "order_id":{
+                "mapping":{
+                    "destination":"order_id",
+                    "primaryKey":true
+                }
+            },
+            "payment_id":{
+                "mapping":{
+                    "destination":"payment_id",
+                    "primaryKey":true
+                }
+            },
+            "txn_id":{
+                "mapping":{
+                    "destination":"txn_id",
+                    "primaryKey":true
+                }
+            },
+            "parent_txn_id":{
+                "type":"column",
+                "mapping":{"destination":"parent_txn_id"}
+            },
+            "txn_type":{
+                "type":"column",
+                "mapping":{"destination":"txn_type"}
+            },
+            "is_closed":{
+                "type":"column",
+                "mapping":{"destination":"is_closed"}
+            },
+            "created_at":{
+                "type":"column",
+                "mapping":{"destination":"created_at"}
+            }
+        }
+    }
+}
