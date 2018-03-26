@@ -1,47 +1,51 @@
 {
-    "incrementalOutput": true,
     "name":"Coupons",
     "description":"Retrieve a list of coupon using the specified search criteria.",
-    "outputBucket":"magento",
-    "jobs":[
-        {
-            "endpoint":"coupons/search",
-            "dataType":"coupones",
-            "dataField":"items"
-        }
-    ],
-    "mappings":{
-        "coupon_id":{
-            "mapping":{
-                "destination":"coupon_id",
-                "primaryKey":true
+    "data":{
+        "incrementalOutput": true,
+        "outputBucket":"magento",
+        "jobs":[
+            {
+                "endpoint":"coupons/search",
+                "dataType":"coupons",
+                "dataField":"items"
             }
-        },
-        "rule_id":{
-            "mapping":{
-                "destination":"rule_id",
-                "primaryKey":true
+        ],
+        "mappings":{
+            "coupons":{
+                "coupon_id":{
+                    "mapping":{
+                        "destination":"coupon_id",
+                        "primaryKey":true
+                    }
+                },
+                "rule_id":{
+                    "mapping":{
+                        "destination":"rule_id",
+                        "primaryKey":true
+                    }
+                },
+                "code":{
+                    "type":"column",
+                    "mapping":{"destination":"code"}
+                },
+                "times_used":{
+                    "type":"column",
+                    "mapping":{"destination":"times_used"}
+                },
+                "expiration_date":{
+                    "type":"column",
+                    "mapping":{"destination":"expiration_date"}
+                },
+                "is_primary":{
+                    "type":"column",
+                    "mapping":{"destination":"is_primary"}
+                },
+                "type":{
+                    "type":"column",
+                    "mapping":{"destination":"type"}
+                }
             }
-        },
-        "code":{
-            "type":"column",
-            "mapping":{"destination":"code"}
-        },
-        "times_used":{
-            "type":"column",
-            "mapping":{"destination":"times_used"}
-        },
-        "expiration_date":{
-            "type":"column",
-            "mapping":{"destination":"expiration_date"}
-        },
-        "is_primary":{
-            "type":"column",
-            "mapping":{"destination":"is_primary"}
-        },
-        "type":{
-            "type":"column",
-            "mapping":{"destination":"type"}
         }
     }
 }

@@ -1,57 +1,58 @@
 {
-    "incrementalOutput": true,
     "name":"Categories",
     "description":"Retrieve list of categories",
-    "outputBucket":"magento",
-    "jobs":[
-        {
-            "endpoint":"categories",
-            "dataType":"categories",
-            "dataField":"."
-        }
-    ],
-    "mappings":{
-        "categories":{
-            "id":{
-                "mapping":{
-                    "destination":"id",
-                    "primaryKey":true
-                }
-            },
-            "parent_id":{
-                "mapping":{
-                    "destination":"parent_id",
-                    "primaryKey":true
-                }
-            },
-            "name":{
-                "type":"column",
-                "mapping":{"destination":"name"}
-            },
-            "is_active":{
-                "type":"column",
-                "mapping":{"destination":"is_active"}
-            },
-            "position":{
-                "type":"column",
-                "mapping":{"destination":"position"}
-            },
-            "level":{
-                "type":"column",
-                "mapping":{"destination":"level"}
-            },
-            "product_count":{
-                "type":"column",
-                "mapping":{"destination":"product_count"}
-            },
-            "children_data":{
-                "type":"table",
-                "destination":"categories",
-                "parentKey":{
-                    "disable":true
+    "data":{
+        "incrementalOutput": true,
+        "outputBucket":"magento",
+        "jobs":[
+            {
+                "endpoint":"categories",
+                "dataType":"categories",
+                "dataField":"."
+            }
+        ],
+        "mappings":{
+            "categories":{
+                "id":{
+                    "mapping":{
+                        "destination":"id",
+                        "primaryKey":true
+                    }
+                },
+                "parent_id":{
+                    "mapping":{
+                        "destination":"parent_id",
+                        "primaryKey":true
+                    }
+                },
+                "name":{
+                    "type":"column",
+                    "mapping":{"destination":"name"}
+                },
+                "is_active":{
+                    "type":"column",
+                    "mapping":{"destination":"is_active"}
+                },
+                "position":{
+                    "type":"column",
+                    "mapping":{"destination":"position"}
+                },
+                "level":{
+                    "type":"column",
+                    "mapping":{"destination":"level"}
+                },
+                "product_count":{
+                    "type":"column",
+                    "mapping":{"destination":"product_count"}
+                },
+                "children_data":{
+                    "type":"table",
+                    "destination":"categories",
+                    "parentKey":{
+                        "disable":true
+                    }
                 }
             }
         }
     }
-
 }
