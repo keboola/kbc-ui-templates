@@ -1,0 +1,108 @@
+{
+    "name": "Basic",
+    "description": "Downloads \n\n - Keywords \n - Keyword's positions",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "keywords",
+                "dataField": "data",
+                "dataType": "keywords",
+                "params": {
+                    "projectId": {
+                        "attr": "projectId"
+                    },
+                    "tags": {
+                        "attr": "tags"
+                    }
+                },
+                "children": [
+                    {
+                        "dataField": "data.0.positions",
+                        "dataType": "keyword_positions",
+                        "endpoint": "keyword-positions?projectKeywordIds={id}&showSearchEngineName=1",
+                        "placeholders": {
+                            "id": "id"
+                        },
+                        "params": {
+                            "projectId": {
+                                "attr": "projectId"
+                            },
+                            "tags": {
+                                "attr": "tags"
+                            },
+                            "from": {
+                                "function": "date",
+                                "args": [
+                                    "Y-m-d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            {
+                                                "attr": "from"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "to": {
+                                "function": "date",
+                                "args": [
+                                    "Y-m-d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            {
+                                                "attr": "to"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "keywords": {
+                "id": {
+                    "mapping": {
+                        "destination": "keyword_id",
+                        "primaryKey": true
+                    }
+                },
+                "keyword": "keyword"
+            },
+            "keyword_positions": {
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "keyword_id",
+                        "primaryKey": true
+                    }
+                },
+                "searchEngineId": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "search_engine",
+                        "primaryKey": true
+                    }
+                },
+                "date": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "date",
+                        "primaryKey": true
+                    }
+                },
+                "position": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "position"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+{
+  "name": "Basic",
+  "description": "Basic template",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "cs/kbc-project",
+        "method": "post",
+        "params": {
+          "project_id": {
+            "attr": "projectId"
+          },
+          "date_from": {
+            "attr": "dateFrom"
+          },
+          "date_to": {
+            "attr": "dateTo"
+          },
+          "fields": [],
+          "hmac_checksum": {
+            "function": "hash_hmac",
+            "args": [
+              "sha256",
+              {
+                "function": "implode",
+                "args": [
+                  "|",
+                  [
+                    {
+                      "attr": "projectId"
+                    },
+                    {
+                      "attr": "dateFrom"
+                    },
+                    {
+                      "attr": "dateTo"
+                    }
+                  ]
+                ]
+              },
+              "5@av7N^W5BNZE2dREkft"
+            ]
+          }
+        },
+        "dataType": "serpPosition",
+        "dataField": "data"
+      }
+    ]
+  }
+}

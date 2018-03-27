@@ -1,0 +1,21 @@
+{
+    "baseUrl": "https://app.asana.com/api/1.0/",
+    "pagination": {
+        "method": "response.url",
+        "urlKey": "next_page.uri"
+    },
+    "http": {
+        "headers": {
+            "authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "attr": "#api_key"
+                    }
+                ]
+            },
+            "Content-Type": "application/json"
+        }
+    }
+}

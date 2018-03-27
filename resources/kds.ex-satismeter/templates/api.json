@@ -1,0 +1,30 @@
+{
+    "baseUrl": "https://app.satismeter.com/api/",
+    "pagination": {
+        "method": "pagenum"
+    },
+    "http": {
+        "headers": {
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Basic ",
+                    {
+                        "function": "base64_encode",
+                        "args": [
+                            {
+                                "function": "concat",
+                                "args": [
+                                    {
+                                        "attr": "#username"
+                                    },
+                                    ":no_password_required"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

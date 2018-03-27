@@ -27,7 +27,7 @@
 	},
 	"pagination": {
 		"method": "offset",
-		"limit": 200,
+		"limit": 2000,
 		"limitParam": "pagesize",
 		"offsetParam": "start",
 		"offsetFromJob": true

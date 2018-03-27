@@ -1,0 +1,14 @@
+{
+    "baseUrl": "https://api.oncollabim.com/",
+    "pagination": {
+        "method": "pagenum"
+    },
+    "http": {
+        "headers": {
+            "Accept": "application/json",
+            "Authorization": {
+                "attr": "#token"
+            }
+        }
+    }
+}

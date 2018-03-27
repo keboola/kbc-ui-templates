@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://www.marketingminer.com/",
+  "http": {
+    "Accept": "application/json",
+    "Content-Type": "application/json;charset=UTF-8",
+    "maxRetries": 5
+  }
+}
