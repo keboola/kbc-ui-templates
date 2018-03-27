@@ -3,7 +3,7 @@
     "description":"Retrieve list of customers.",
     "data":{
       "incrementalOutput": true,
-      "outputBucket":"magento",
+      "debug":true,
       "jobs":[
           {
               "endpoint":"customers/search",

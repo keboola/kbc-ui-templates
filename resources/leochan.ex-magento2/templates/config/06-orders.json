@@ -3,7 +3,7 @@
     "description":"Retrieve a list of orders.",
     "data":{
         "incrementalOutput": true,
-        "outputBucket":"magento",
+        "debug":true,
         "jobs":[
             {
                 "endpoint":"orders",
