@@ -53,7 +53,7 @@
       "field": "total_count"
     },
     "method": "pagenum",
-    "limit": 1,
+    "limit": 200,
     "limitParam": "searchCriteria[pageSize]",
     "pageParam": "searchCriteria[currentPage]"
   }

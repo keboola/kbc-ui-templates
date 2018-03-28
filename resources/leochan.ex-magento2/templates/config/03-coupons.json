@@ -3,7 +3,7 @@
     "description":"Retrieve a list of coupon using the specified search criteria.",
     "data":{
         "incrementalOutput": true,
-        "outputBucket":"magento",
+        "debug":true,
         "jobs":[
             {
                 "endpoint":"coupons/search",

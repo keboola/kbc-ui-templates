@@ -2,8 +2,8 @@
     "name":"Carts",
     "description":"Return list of  carts that match specified search criteria.",
     "data":{
+        "debug":true,
         "incrementalOutput": true,
-        "outputBucket":"magento",
         "jobs":[
             {
                 "endpoint":"carts/search",

@@ -3,7 +3,7 @@
     "description":"Retrieve list of categories",
     "data":{
         "incrementalOutput": true,
-        "outputBucket":"magento",
+        "debug":true,
         "jobs":[
             {
                 "endpoint":"categories",
