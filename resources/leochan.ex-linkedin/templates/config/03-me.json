@@ -1,0 +1,12 @@
+{
+    "name": "Myself",
+    "description": "Authorized Account Profile",
+    "data":{
+        "jobs":[
+            {
+                "endpoint": "people/me",
+                "dataField": "."
+            }
+        ]
+    }
+}
