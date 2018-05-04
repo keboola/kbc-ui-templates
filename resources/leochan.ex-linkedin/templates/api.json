@@ -1,23 +1,23 @@
 {
-    "baseUrl": "https://api.linkedin.com/v2/",
-    "authentication": {
-        "type": "oauth20",
-        "headers": {
-            "Authorization": {
-                "function": "concat",
-                "args": [
-                    "Bearer ",
-                    {
-                        "authorization": "data.access_token"
-                    }
-                ]
-            }
-        }
-    },
-    "pagination":{
-        "method": "offset",
-        "limit": 10,
-        "offsetParam": "start",
-        "limitParam": "count"
+  "baseUrl": "https://api.linkedin.com/v2/",
+  "authentication": {
+    "type": "oauth20",
+    "headers": {
+      "Authorization": {
+        "function": "concat",
+        "args": [
+          "Bearer ",
+          {
+            "authorization": "data.access_token"
+          }
+        ]
+      }
     }
+  },
+  "pagination": {
+    "method": "offset",
+    "limit": 10,
+    "offsetParam": "start",
+    "limitParam": "count"
+  }
 }
