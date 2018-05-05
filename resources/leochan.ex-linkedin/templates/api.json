@@ -2,6 +2,7 @@
   "baseUrl": "https://api.linkedin.com/v2/",
   "authentication": {
     "type": "oauth20",
+    "format": "json",
     "headers": {
       "Authorization": {
         "function": "concat",
