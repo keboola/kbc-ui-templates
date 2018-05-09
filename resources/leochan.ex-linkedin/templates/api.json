@@ -14,11 +14,5 @@
         ]
       }
     }
-  },
-  "pagination": {
-    "method": "offset",
-    "limit": 10,
-    "offsetParam": "start",
-    "limitParam": "count"
   }
 }
