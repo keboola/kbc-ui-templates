@@ -1,198 +1,537 @@
 {
-    "name": "Ads Reporting",
-    "description": "Endpoint: adAnalyticsV2",
+    "name": "Ads Statistics",
+    "description": "Active Campaigns' Ad Statistics",
     "data":{
-        "jobs":[
+        "jobs": [
             {
-                "endpoint": "adAnalyticsV2",
-                "params":{
-                    "q": "analytics",
-                    "pivot": {
-                        "attr": "pivot"
-                    },
-                    "timeGranularity":{
-                        "attr": "timeGranularity"
-                    },
-                    "dateRange.start.year":{
-                        "attr": "start_year"
-                    },
-                    "dateRange.start.month":{
-                        "attr": "start_month"
-                    },
-                    "dateRange.start.day":{
-                        "attr": "start_day"
-                    },
-                    "campaigns[0]":{
-                        "function":"concat",
-                        "args":[
-                            "urn:li:sponsoredCampaign:",
-                            {"attr":"campaign_id"}
-                        ]
-                    }
+                "endpoint": "adCampaignsV2",
+                "params": {
+                    "q": "statuses",
+                    "statuses": "ACTIVE"
                 },
-                "dataField": "elements"
+                "dataField": "elements",
+                "dataType": "active_campaigns",
+                "children":[
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "campaign_statistics",
+                        "params":{
+                            "q": "analytics",
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "dateRange.start.year": {
+                                "attr": "start_year"
+                            },
+                            "dateRange.start.month": {
+                                "attr": "start_month"
+                            },
+                            "dateRange.start.day": {
+                                "attr": "start_day"
+                            }
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "campaign_viral_statistics",
+                        "params":{
+                            "q": "analytics",
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "dateRange.start.year": {
+                                "attr": "start_year"
+                            },
+                            "dateRange.start.month": {
+                                "attr": "start_month"
+                            },
+                            "dateRange.start.day": {
+                                "attr": "start_day"
+                            }
+                        }
+                    }
+                ]
+
             }
         ],
-        "mappings":{
-            "elements":{
-                "pivot":{
-                    "type":"column",
-                    "mapping":{"destination":"pivot"}
+        "mappings": {
+            "campaign_statistics": {
+                "parent_id":{
+                    "type": "user",
+                    "mapping": {
+                        "destination": "campaign_id"
+                    }
+                },
+                "actionClicks": {
+                "type": "column",
+                "mapping": {
+                    "destination": "action_clicks"
+                }
+                },
+                "pivot": {
+                "type": "column",
+                "mapping": {
+                    "destination": "pivot"
+                }
+                },
+                "follows": {
+                "type": "column",
+                "mapping": {
+                    "destination": "follows"
+                }
+                },
+                "fullScreenPlays": {
+                "type": "column",
+                "mapping": {
+                    "destination": "full_screen_plays"
+                }
+                },
+                "otherEngagements": {
+                "type": "column",
+                "mapping": {
+                    "destination": "other_engagements"
+                }
+                },
+                "externalWebsitePostClickConversions": {
+                "type": "column",
+                "mapping": {
+                    "destination": "external_website_post_click_conversions"
+                }
+                },
+                "oneClickLeadFormOpens": {
+                "type": "column",
+                "mapping": {
+                    "destination": "one_click_lead_form_opens"
+                }
+                },
+                "externalWebsitePostViewConversions": {
+                "type": "column",
+                "mapping": {
+                    "destination": "external_website_post_view_conversions"
+                }
+                },
+                "dateRange.start.year": {
+                "type": "column",
+                "mapping": {
+                    "destination": "start_year"
+                }
+                },
+                "opens": {
+                "type": "column",
+                "mapping": {
+                    "destination": "opens"
+                }
+                },
+                "dateRange.end.day": {
+                "type": "column",
+                "mapping": {
+                    "destination": "end_day"
+                }
+                },
+                "impressions": {
+                "type": "column",
+                "mapping": {
+                    "destination": "impressions"
+                }
+                },
+                "costInLocalCurrency": {
+                "type": "column",
+                "mapping": {
+                    "destination": "cost_in_local_currency"
+                }
+                },
+                "clicks": {
+                "type": "column",
+                "mapping": {
+                    "destination": "clicks"
+                }
+                },
+                "videoStarts": {
+                "type": "column",
+                "mapping": {
+                    "destination": "video_starts"
+                }
+                },
+                "videoThirdQuartileCompleitions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "video_third_quartile_compleitions"
+                    }
+                },
+                "externalWebsiteConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "external_website_conversions"
+                    }
+                },
+                "textUrlClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "text_url_clicks"
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month"
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year"
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot_value"
+                    }
+                },
+                "totalEngagements": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "total_engagements"
+                    }
+                },
+                "landingPageClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "landing_page_clicks"
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day"
+                    }
+                },
+                "adUnitClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "ad_unit_clicks"
+                    }
+                },
+                "videoViews": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "video_views"
+                    }
+                },
+                "shares": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "shares"
+                    }
+                },
+                "comments": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "comments"
+                    }
+                },
+                "videoMidpointCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "video_midpoint_completions"
+                    }
+                },
+                "costInUsd": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "cost_in_usd"
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month"
+                    }
+                },
+                "oneClickLeads": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "one_click_leads"
+                    }
+                },
+                "leadGenerationMailContactInfoShares": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "lead_generation_mail_contact_info_shares"
+                    }
+                },
+                "companyPageClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "company_page_clicks"
+                    }
+                },
+                "videoCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "video_completions"
+                    }
+                },
+                "likes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "likes"
+                    }
+                },
+                "conversionValueInLocalCurrency": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "conversion_in_local_currency"
+                    }
+                },
+                "videoFirstQuartileCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "video_first_quartile_completions"
+                    }
+                },
+                "leadGenerationMailInterestedClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "lead_generation_mail_interested_clicks"
+                    }
+                }
+            },
+            "active_campaigns":{
+                "id":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "account":{
+                    "type": "column",
+                    "mapping":{
+                        "destination": "account"
+                    }
+                },
+                "status":{
+                    "type": "column",
+                    "mapping":{
+                        "destination": "status"
+                    }
+                },
+                "servingStatuses.0": {
+                    "type": "column",
+                    "mapping": {
+                    "destination": "servingStatuses"
+                    }
+                },
+                "type":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "type"
+                    }
+                },
+                "locale.language":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "language"
+                    }
+                },
+                "version.versionTag":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "version"
+                    }
+                },
+                "objectiveType":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "objectiveType"
+                    }
+                },
+                "runSchedule.start":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "runSchedule"
+                    }
+                },
+                "targeting.includedTargetingFacets.locations.0":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "targeting_locations"
+                    }
+                },
+                "changeAuditStamps.created.time":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created"
+                    }
+                },
+                "changeAuditStamps.lastModified.time":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "lastModified"
+                    }
+                },
+                "dailyBudget.amount":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dailyBudget"
+                    }
+                },
+                "dailyBudget.currencyCode":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dailyBudget_currency"
+                    }
+                },
+                "creativeSelection":{
+                    "type": "column",
+                    "mapping":{
+                        "destination": "creativeSelection"
+                    }
+                },
+                "costType":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "costType"
+                    }
+                },
+                "offsiteDeliveryEnabled":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "offsiteDeliveryEnabled"
+                    }
+                },
+                "audienceExpansionEnabled":{
+                    "type": "column",
+                    "mapping": {
+                        "destination": "audienceExpansionEnabled"
+                    }
+                }
+            },
+            "campaign_viral_statistics":{
+                "parent_id":{
+                    "type": "user",
+                    "mapping": {
+                        "destination": "campaign_id"
+                    }
                 },
                 "pivotValue":{
                     "type":"column",
                     "mapping":{"destination":"pivot_value"}
                 },
-                "dateRange.start.year":{
+                "viralLikes":{
                     "type":"column",
-                    "mapping":{"destination":"start_year"}
+                    "mapping":{"destination":"viral_likes"}
                 },
-                "dateRange.start.month":{
+                "viralFollows":{
                     "type":"column",
-                    "mapping":{"destination":"start_month"}
+                    "mapping":{"destination":"viral_follows"}
                 },
-                "dateRange.start.day":{
+                "viralImpressions":{
                     "type":"column",
-                    "mapping":{"destination":"start_day"}
+                    "mapping":{"destination":"viral_impressions"}
                 },
-                "dateRange.end.year":{
+                "viralShares":{
                     "type":"column",
-                    "mapping":{"destination":"end_year"}
+                    "mapping":{"destination":"viral_shares"}
                 },
-                "dateRange.end.month":{
+                "viralTotalEngagements":{
                     "type":"column",
-                    "mapping":{"destination":"end_month"}
+                    "mapping":{"destination":"viral_total_engagements"}
                 },
-                "dateRange.end.day":{
+                "viralOtherEngagements":{
                     "type":"column",
-                    "mapping":{"destination":"end_day"}
+                    "mapping":{"destination":"viral_other_engagements"}
                 },
-                "likes":{
+                "viralComments":{
                     "type":"column",
-                    "mapping":{"destination":"likes"}
+                    "mapping":{"destination":"viral_comments"}
                 },
-                "follows":{
+                "viralClicks":{
                     "type":"column",
-                    "mapping":{"destination":"follows"}
+                    "mapping":{"destination":"viral_clicks"}
                 },
-                "impressions":{
+                "viralCompanyPageClicks": {
                     "type":"column",
-                    "mapping":{"destination":"impressions"}
+                    "mapping":{"destination":"viral_company_page_clicks"}
                 },
-                "shares":{
+                "viralOneClickLeads":{
                     "type":"column",
-                    "mapping":{"destination":"shares"}
+                    "mapping":{"destination":"viral_one_click_leads"}
                 },
-                "leadGenerationMailContactInfoShares":{
+                "viralLandingPageClicks":{
                     "type":"column",
-                    "mapping":{"destination":"lead_generation_mail_contact_info_shares"}
+                    "mapping":{"destination":"viral_landing_page_clicks"}
                 },
-                "opens":{
+                "viralOneClickLeadFormOpens":{
                     "type":"column",
-                    "mapping":{"destination":"opens"}
+                    "mapping":{"destination":"viral_one_click_lead_form_opens"}
                 },
-                "totalEngagements":{
+                "viralExternalWebsiteConversations":{
                     "type":"column",
-                    "mapping":{"destination":"total_engagements"}
+                    "mapping":{"destination":"viral_external_website_conversations"}
                 },
-                "otherEngagements":{
+                "viralExternalWebsitePostClickConversions":{
                     "type":"column",
-                    "mapping":{"destination":"other_engagements"}
+                    "mapping":{"destination":"viral_external_website_post_click_conversions"}
                 },
-                "comments":{
+                "viralExternalWebsitePostViewConversions":{
                     "type":"column",
-                    "mapping":{"destination":"comments"}
+                    "mapping":{"destination":"viral_external_website_post_view_conversions"}
                 },
-                "clicks":{
+                "viralVideoViews":{
                     "type":"column",
-                    "mapping":{"destination":"clicks"}
+                    "mapping":{"destination":"viral_video_views"}
                 },
-                "actionClicks":{
+                "viralVideoStarts":{
                     "type":"column",
-                    "mapping":{"destination":"action_clicks"}
+                    "mapping":{"destination":"viral_video_starts"}
                 },
-                "adUnitClicks":{
+                "viralVideoCompletions":{
                     "type":"column",
-                    "mapping":{"destination":"ad_unit_clicks"}
+                    "mapping":{"destination":"viral_video_completions"}
                 },
-                "companyPageClicks":{
+                "viralVideoFirstQuartileCompletions":{
                     "type":"column",
-                    "mapping":{"destination":"company_page_clicks"}
+                    "mapping":{"destination":"viral_video_first_quartile_completions"}
                 },
-                "textUrlClicks":{
+                "viralVideoMidPointCompletions":{
                     "type":"column",
-                    "mapping":{"destination":"text_url_clicks"}
+                    "mapping":{"destination":"viral_video_midpoint_completions"}
                 },
-                "oneClickLeads":{
+                "viralVideoThirdQuartileCompletions":{
                     "type":"column",
-                    "mapping":{"destination":"one_click_leads"}
+                    "mapping":{"destination":"viral_video_third_quartile_completions"}
                 },
-                "leadGenerationMailInterestedClicks":{
+                "viralFullScreenPlays":{
                     "type":"column",
-                    "mapping":{"destination":"lead_generation_mail_interested_clicks"}
+                    "mapping":{"destination":"viral_full_screen_plays"}
                 },
-                "landingPageClicks":{
+                "viralExternalWebsiteConversions":{
                     "type":"column",
-                    "mapping":{"destination":"landing_page_clicks"}
-                },
-                "oneClickLeadFormOpens":{
-                    "type":"column",
-                    "mapping":{"destination":"one_click_lead_form_opens"}
-                },
-                "externalWebsiteConversions":{
-                    "type":"column",
-                    "mapping":{"destination":"external_website_conversions"}
-                },
-                "externalWebsitePostClickConversions":{
-                    "type":"column",
-                    "mapping":{"destination":"external_website_post_click_conversions"}
-                },
-                "externalWebsitePostViewConversions":{
-                    "type":"column",
-                    "mapping":{"destination":"external_website_post_view_conversions"}
-                },
-                "videoViews":{
-                    "type":"column",
-                    "mapping":{"destination":"video_views"}
-                },
-                "videoStarts":{
-                    "type":"column",
-                    "mapping":{"destination":"video_starts"}
-                },
-                "videoCompletions":{
-                    "type":"column",
-                    "mapping":{"destination":"video_completions"}
-                },
-                "videoMidpointCompletions":{
-                    "type":"column",
-                    "mapping":{"destination":"video_midpoint_completions"}
-                },
-                "videoFirstQuartileCompletions":{
-                    "type":"column",
-                    "mapping":{"destination":"video_first_quartile_completions"}
-                },
-                "videoThirdQuartileCompleitions":{
-                    "type":"column",
-                    "mapping":{"destination":"video_third_quartile_compleitions"}
-                },
-                "fullScreenPlays":{
-                    "type":"column",
-                    "mapping":{"destination":"full_screen_plays"}
-                },
-                "costInLocalCurrency":{
-                    "type":"column",
-                    "mapping":{"destination":"cost_in_local_currency"}
-                },
-                "costInUsd":{
-                    "type":"column",
-                    "mapping":{"destination":"cost_in_usd"}
-                },
-                "conversionValueInLocalCurrency":{
-                    "type":"column",
-                    "mapping":{"destination":"conversion_in_local_currency"}
+                    "mapping":{"destination":"viral_external_website_conversions"}
                 }
-                
             }
+        
         }
     }
 }
