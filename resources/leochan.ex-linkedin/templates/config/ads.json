@@ -73,98 +73,129 @@
                 "parent_id":{
                     "type": "user",
                     "mapping": {
-                        "destination": "campaign_id"
+                        "destination": "campaign_id",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
                     }
                 },
                 "actionClicks": {
-                "type": "column",
-                "mapping": {
-                    "destination": "action_clicks"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "action_clicks"
+                    }
                 },
                 "pivot": {
-                "type": "column",
-                "mapping": {
-                    "destination": "pivot"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot"
+                    }
                 },
                 "follows": {
-                "type": "column",
-                "mapping": {
-                    "destination": "follows"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "follows"
+                    }
                 },
                 "fullScreenPlays": {
-                "type": "column",
-                "mapping": {
-                    "destination": "full_screen_plays"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "full_screen_plays"
+                    }
                 },
                 "otherEngagements": {
-                "type": "column",
-                "mapping": {
-                    "destination": "other_engagements"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "other_engagements"
+                    }
                 },
                 "externalWebsitePostClickConversions": {
-                "type": "column",
-                "mapping": {
-                    "destination": "external_website_post_click_conversions"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "external_website_post_click_conversions"
+                    }
                 },
                 "oneClickLeadFormOpens": {
-                "type": "column",
-                "mapping": {
-                    "destination": "one_click_lead_form_opens"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "one_click_lead_form_opens"
+                    }
                 },
                 "externalWebsitePostViewConversions": {
-                "type": "column",
-                "mapping": {
-                    "destination": "external_website_post_view_conversions"
-                }
-                },
-                "dateRange.start.year": {
-                "type": "column",
-                "mapping": {
-                    "destination": "start_year"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "external_website_post_view_conversions"
+                    }
                 },
                 "opens": {
-                "type": "column",
-                "mapping": {
-                    "destination": "opens"
-                }
-                },
-                "dateRange.end.day": {
-                "type": "column",
-                "mapping": {
-                    "destination": "end_day"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "opens"
+                    }
                 },
                 "impressions": {
-                "type": "column",
-                "mapping": {
-                    "destination": "impressions"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "impressions"
+                    }
                 },
                 "costInLocalCurrency": {
-                "type": "column",
-                "mapping": {
-                    "destination": "cost_in_local_currency"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "cost_in_local_currency"
+                    }
                 },
                 "clicks": {
-                "type": "column",
-                "mapping": {
-                    "destination": "clicks"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "clicks"
+                    }
                 },
                 "videoStarts": {
-                "type": "column",
-                "mapping": {
-                    "destination": "video_starts"
-                }
+                    "type": "column",
+                    "mapping": {
+                        "destination": "video_starts"
+                    }
                 },
                 "videoThirdQuartileCompleitions": {
                     "type": "column",
@@ -184,18 +215,6 @@
                         "destination": "text_url_clicks"
                     }
                 },
-                "dateRange.end.month": {
-                    "type": "column",
-                    "mapping": {
-                        "destination": "end_month"
-                    }
-                },
-                "dateRange.end.year": {
-                    "type": "column",
-                    "mapping": {
-                        "destination": "end_year"
-                    }
-                },
                 "pivotValue": {
                     "type": "column",
                     "mapping": {
@@ -212,12 +231,6 @@
                     "type": "column",
                     "mapping": {
                         "destination": "landing_page_clicks"
-                    }
-                },
-                "dateRange.start.day": {
-                    "type": "column",
-                    "mapping": {
-                        "destination": "start_day"
                     }
                 },
                 "adUnitClicks": {
@@ -254,12 +267,6 @@
                     "type": "column",
                     "mapping": {
                         "destination": "cost_in_usd"
-                    }
-                },
-                "dateRange.start.month": {
-                    "type": "column",
-                    "mapping": {
-                        "destination": "start_month"
                     }
                 },
                 "oneClickLeads": {
@@ -315,7 +322,8 @@
                 "id":{
                     "type": "column",
                     "mapping": {
-                        "destination": "id"
+                        "destination": "id",
+                        "primaryKey": true
                     }
                 },
                 "name": {
@@ -431,7 +439,50 @@
                 "parent_id":{
                     "type": "user",
                     "mapping": {
-                        "destination": "campaign_id"
+                        "destination": "campaign_id",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
                     }
                 },
                 "pivotValue":{
