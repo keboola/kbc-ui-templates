@@ -11,6 +11,7 @@
                 },
                 "dataField": "elements",
                 "dataType": "active_campaigns",
+                "scroller": "campaign_scroller",
                 "children":[
                     {
                         "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
@@ -35,6 +36,15 @@
                             },
                             "dateRange.start.day": {
                                 "attr": "start_day"
+                            },
+                            "dateRange.end.year": {
+                                "attr": "end_year"
+                            },
+                            "dateRange.end.month": {
+                                "attr": "end_month"
+                            },
+                            "dateRange.end.day": {
+                                "attr": "end_day"
                             }
                         }
                     },
@@ -61,11 +71,19 @@
                             },
                             "dateRange.start.day": {
                                 "attr": "start_day"
+                            },
+                            "dateRange.end.year": {
+                                "attr": "end_year"
+                            },
+                            "dateRange.end.month": {
+                                "attr": "end_month"
+                            },
+                            "dateRange.end.day": {
+                                "attr": "end_day"
                             }
                         }
                     }
                 ]
-
             }
         ],
         "mappings": {
@@ -128,7 +146,8 @@
                 "pivot": {
                     "type": "column",
                     "mapping": {
-                        "destination": "pivot"
+                        "destination": "pivot",
+                        "primaryKey": true
                     }
                 },
                 "follows": {
@@ -485,9 +504,12 @@
                         "primaryKey": true
                     }
                 },
-                "pivotValue":{
-                    "type":"column",
-                    "mapping":{"destination":"pivot_value"}
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
                 },
                 "viralLikes":{
                     "type":"column",

@@ -15,10 +15,15 @@
       }
     }
   },
-  "pagination": {
-    "method": "offset",
-    "limit": 10,
-    "offsetParam": "start",
-    "limitParam": "count"
+  "pagination":{
+    "method": "multiple",
+    "scrollers": {
+        "campaign_scroller":{
+            "method": "offset",
+            "limit": 10,
+            "offsetParam": "start",
+            "limitParam": "count"
+        }
+    }
   }
 }
