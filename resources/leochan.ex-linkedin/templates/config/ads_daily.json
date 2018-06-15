@@ -8,6 +8,7 @@
         "jobs": [
             {
                 "endpoint": "adCampaignsV2",
+                "scroller": "campaign_scroller",
                 "params": {
                     "q": "statuses",
                     "statuses": "ACTIVE"
@@ -145,7 +146,8 @@
                 "pivot": {
                     "type": "column",
                     "mapping": {
-                        "destination": "pivot"
+                        "destination": "pivot",
+                        "primaryKey": true
                     }
                 },
                 "follows": {
@@ -502,9 +504,12 @@
                         "primaryKey": true
                     }
                 },
-                "pivotValue":{
-                    "type":"column",
-                    "mapping":{"destination":"pivot_value"}
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
                 },
                 "viralLikes":{
                     "type":"column",
