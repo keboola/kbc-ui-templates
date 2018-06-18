@@ -2,7 +2,6 @@
     "name": "Ads Statistics - Current Date",
     "description": "Extracting Current Date's Active Campaigns Ad Statistics",
     "data":{
-        "debug": true,
         "Granularity": "DAILY",
         "pivot": "CAMPAIGNS",
         "jobs": [
