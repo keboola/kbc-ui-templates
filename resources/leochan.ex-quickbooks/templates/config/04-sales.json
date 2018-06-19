@@ -6,7 +6,7 @@
       {
           "endpoint": "query",
           "params": {
-              "query": "select * from Customer"
+              "query": "select * from Customer MAXRESULTS 1000"
           },
           "dataField": "QueryResponse.Customer",
           "dataType": "Customer"
@@ -14,7 +14,7 @@
       {
           "endpoint": "query",
           "params": {
-              "query": "select * from Invoice"
+              "query": "select * from Invoice MAXRESULTS 1000"
           },
           "dataField": "QueryResponse.Invoice",
           "dataType":"Invoice"

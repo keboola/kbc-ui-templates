@@ -6,7 +6,7 @@
       {
           "endpoint": "query",
           "params": {
-              "query": "select * from Bill"
+              "query": "select * from Bill MAXRESULTS 1000"
           },
           "dataField": "QueryResponse.Bill",
           "dataType": "Bill"
@@ -14,7 +14,7 @@
       {
           "endpoint": "query",
           "params": {
-              "query": "select * from PurchaseOrder"
+              "query": "select * from PurchaseOrder MAXRESULTS 1000"
           },
           "dataField": "QueryResponse.PurchaseOrder",
           "dataType":"PurchaseOrder"
@@ -22,7 +22,7 @@
       {
           "endpoint": "query",
           "params": {
-              "query": "select * from Vendor"
+              "query": "select * from Vendor MAXRESULTS 1000"
           },
           "dataField": "QueryResponse.Vendor",
           "dataType":"Vendor"
