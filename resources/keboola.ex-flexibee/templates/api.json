@@ -2,7 +2,11 @@
   "baseUrl": {
     "function": "concat",
     "args": [
-      "https://firemni.flexibee.eu/c/",
+     "https://",
+     {
+      "attr": "host"
+     },
+     ".flexibee.eu/c/",
       {
         "attr": "domain"
       },
