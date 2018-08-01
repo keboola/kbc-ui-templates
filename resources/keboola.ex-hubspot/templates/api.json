@@ -9,6 +9,22 @@
       }
     }
   },
+  "retryConfig": {
+    "http": {
+     "retryHeader": "Retry-After",
+     "codes": [
+      500,
+      502,
+      503,
+      524,
+      504,
+      408,
+      420,
+      429
+     ],
+     "maxRetries": 10
+    }
+   },
   "baseUrl": "https://api.hubapi.com",
   "pagination": {
     "method": "multiple",
