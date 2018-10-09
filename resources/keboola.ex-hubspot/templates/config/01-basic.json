@@ -1,6 +1,6 @@
 {
   "name": "Basic",
-  "description": "Fastest for accounts with less than 10,000 records of Companies or Deals. \n\nDownloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages",
+  "description": "This configuration is only able to extract from accounts with than 10,000 companies or deals. \n\nDownloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages",
   "data": {
     "incrementalOutput": true,
     "jobs": [
