@@ -1,5 +1,5 @@
 {
-  "name": "All Campaigns (all status')",
+  "name": "All Campaigns (all status)",
   "description": "Get campaigns (draft, sent, scheduled, paused)",
   "data": {
     "incrementalOutput": false,
