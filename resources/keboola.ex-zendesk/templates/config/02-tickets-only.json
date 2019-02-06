@@ -487,6 +487,28 @@
           "destination": "via_channel"
         }
       },
+      "custom_fields": {
+        "type": "table",
+        "destination": "tickets_fields_values",
+        "parentKey": {
+          "primaryKey": true
+        },
+        "tableMapping": {
+          "id": {
+            "mapping": {
+              "destination": "tickets_fields_pk",
+              "primaryKey": true
+            }
+          },
+          "value": {
+            "forceType": "json",
+            "mapping": {
+              "destination": "value",
+              "primaryKey": true
+            }
+          }
+        }
+      },
       "satisfaction_rating": {
         "type": "table",
         "destination": "tickets_ratings",
