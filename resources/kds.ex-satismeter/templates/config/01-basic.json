@@ -25,6 +25,20 @@
                                 ]
                             }
                         ]
+                    },
+                    "endDate": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    {
+                                        "attr": "endDate"
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 }
             },
@@ -45,6 +59,20 @@
                                 "args": [
                                     {
                                         "attr": "startDate"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "endDate": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    {
+                                        "attr": "endDate"
                                     }
                                 ]
                             }
