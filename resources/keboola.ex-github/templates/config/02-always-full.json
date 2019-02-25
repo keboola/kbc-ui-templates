@@ -292,6 +292,12 @@
               "destination": "repo_name"
             }
           },
+          "parent_login": {
+            "type": "user",
+            "mapping": {
+              "destination": "repo_organization"
+            }
+          },
           "state": {
             "mapping": {
               "destination": "state"
@@ -421,6 +427,12 @@
             "type": "user",
             "mapping": {
               "destination": "repo_name"
+            }
+          },
+          "parent_login": {
+            "type": "user",
+            "mapping": {
+              "destination": "repo_organization"
             }
           },
           "author.login": {
