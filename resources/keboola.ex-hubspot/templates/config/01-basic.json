@@ -1,214 +1,284 @@
 {
-  "name": "Basic",
-  "description": "Downloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages\n\nLimitations: The extractor is only able to extract from accounts with less than 10,000 companies or less than 10,000 deals. Also a daily limit of 40,000 API requests for the account must not be exceeded.",
-  "data": {
-    "incrementalOutput": true,
-    "jobs": [
-      {
-        "dataField": "companies",
-        "dataType": "companies",
-        "endpoint": "companies/v2/companies/",
-        "scroller": "companies-offset",
-        "children": [
-          {
-            "dataField": "contacts",
-            "dataType": "companies_contacts",
-            "endpoint": "companies/v2/companies/{companyId}/contacts",
-            "placeholders": {
-              "companyId": "companyId"
+    "name": "Basic",
+    "description": "Downloads \n\n - companies \n - contacts \n - contacts detail \n - companies' contacts \n - deals \n - deals detail \n - owners \n - pipelines \n - stages\n\nLimitations: Daily limit of 40,000 API requests for the account must not be exceeded (https://developers.hubspot.com/apps/api_guidelines).",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "dataField": "companies",
+                "dataType": "companies",
+                "endpoint": "companies/v2/companies/",
+                "scroller": "offset",
+                "children": [
+                    {
+                        "dataField": "contacts",
+                        "dataType": "companies_contacts",
+                        "endpoint": "companies/v2/companies/{companyId}/contacts",
+                        "placeholders": {
+                            "companyId": "companyId"
+                        }
+                    }
+                ]
+            },
+            {
+                "dataField": "contacts",
+                "dataType": "contacts",
+                "endpoint": "contacts/v1/lists/all/contacts/all/",
+                "scroller": "vid-offset",
+                "children": [
+                    {
+                        "dataField": ".",
+                        "dataType": "contacts_detail",
+                        "endpoint": "contacts/v1/contact/vid/{vid}/profile/",
+                        "placeholders": {
+                            "vid": "vid"
+                        }
+                    }
+                ]
+            },
+            {
+                "dataField": ".",
+                "dataType": "owners",
+                "endpoint": "owners/v2/owners/"
+            },
+            {
+                "dataField": "deals",
+                "dataType": "deals",
+                "endpoint": "deals/v1/deal/paged/",
+                "scroller": "offset",
+                "children": [
+                    {
+                        "dataField": ".",
+                        "dataType": "deals_detail",
+                        "endpoint": "deals/v1/deal/{dealId}",
+                        "placeholders": {
+                            "dealId": "dealId"
+                        }
+                    }
+                ]
+            },
+            {
+                "dataField": ".",
+                "dataType": "pipelines",
+                "endpoint": "deals/v1/pipelines/",
+                "children": [
+                    {
+                        "dataField": "stages",
+                        "dataType": "stages",
+                        "endpoint": "deals/v1/pipelines/{pipelineId}",
+                        "placeholders": {
+                            "pipelineId": "pipelineId"
+                        }
+                    }
+                ]
             }
-          }
-        ]
-      },
-      {
-        "dataField": "contacts",
-        "dataType": "contacts",
-        "endpoint": "contacts/v1/lists/all/contacts/all/",
-        "scroller": "contacts-offset"
-      },
-      {
-        "dataField": ".",
-        "dataType": "owners",
-        "endpoint": "owners/v2/owners/"
-      },
-      {
-        "dataField": "results",
-        "dataType": "deals",
-        "endpoint": "deals/v1/deal/recent/modified/"
-      },
-      {
-        "dataField": ".",
-        "dataType": "pipelines",
-        "endpoint": "deals/v1/pipelines/",
-        "children": [
-          {
-            "dataField": "stages",
-            "dataType": "stages",
-            "endpoint": "deals/v1/pipelines/{pipelineId}",
-            "placeholders": {
-              "pipelineId": "pipelineId"
+        ],
+        "mappings": {
+            "companies": {
+                "companyId": {
+                    "mapping": {
+                        "destination": "company_id",
+                        "primaryKey": true
+                    }
+                },
+                "properties.name.value": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "properties.website.value": {
+                    "mapping": {
+                        "destination": "website"
+                    }
+                },
+                "properties.createdate.value": {
+                    "mapping": {
+                        "destination": "created_date"
+                    }
+                },
+                "properties.notes_last_updated.value": {
+                    "mapping": {
+                        "destination": "last_updated_date"
+                    }
+                }
+            },
+            "companies_contacts": {
+                "parent_companyId": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "company_id",
+                        "primaryKey": true
+                    }
+                },
+                "vid": {
+                    "mapping": {
+                        "destination": "contact_id",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "contacts": {
+                "vid": {
+                    "mapping": {
+                        "destination": "contact_id",
+                        "primaryKey": true
+                    }
+                },
+                "properties.firstname.value": {
+                    "mapping": {
+                        "destination": "first_name"
+                    }
+                },
+                "properties.lastname.value": {
+                    "mapping": {
+                        "destination": "last_name"
+                    }
+                },
+                "profile-url": "profile_url"
+            },
+            "contacts_detail": {
+                "vid": {
+                    "mapping": {
+                        "destination": "contact_id",
+                        "primaryKey": true
+                    }
+                },
+                "properties.createdate.value": {
+                    "mapping": {
+                        "destination": "created_date"
+                    }
+                },
+                "properties.hubspot_owner_id.value": {
+                    "mapping": {
+                        "destination": "owner_id"
+                    }
+                },
+                "properties.email.value": {
+                    "mapping": {
+                        "destination": "email"
+                    }
+                },
+                "properties.email.versions.0.source-type": {
+                    "mapping": {
+                        "destination": "email_source"
+                    }
+                }
+            },
+            "owners": {
+                "ownerId": {
+                    "mapping": {
+                        "destination": "owner_id",
+                        "primaryKey": true
+                    }
+                },
+                "firstName": "first_name",
+                "lastName": "last_name",
+                "email": "email",
+                "type": "type"
+            },
+            "deals": {
+                "dealId": {
+                    "mapping": {
+                        "destination": "deal_id",
+                        "primaryKey": true
+                    }
+                },
+                "isDeleted": {
+                    "mapping": {
+                        "destination": "is_deleted"
+                    }
+                }
+            },
+            "deals_detail": {
+                "dealId": {
+                    "mapping": {
+                        "destination": "deal_id",
+                        "primaryKey": true
+                    }
+                },
+                "properties.dealname.value": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "properties.notes_last_updated.value": {
+                    "mapping": {
+                        "destination": "last_updated_date"
+                    }
+                },
+                "properties.createdate.value": {
+                    "mapping": {
+                        "destination": "created_date"
+                    }
+                },
+                "properties.closedate.value": {
+                    "mapping": {
+                        "destination": "closed_date"
+                    }
+                },
+                "properties.hubspot_owner_id.value": {
+                    "mapping": {
+                        "destination": "owner_id"
+                    }
+                },
+                "associations.associatedCompanyIds.0": {
+                    "mapping": {
+                        "destination": "company_id"
+                    }
+                },
+                "properties.pipeline.value": {
+                    "mapping": {
+                        "destination": "pipeline_id"
+                    }
+                },
+                "properties.dealstage.value": {
+                    "mapping": {
+                        "destination": "stage_id"
+                    }
+                },
+                "properties.dealtype.value": {
+                    "mapping": {
+                        "destination": "type"
+                    }
+                },
+                "properties.amount.value": {
+                    "mapping": {
+                        "destination": "amount"
+                    }
+                }
+            },
+            "pipelines": {
+                "pipelineId": {
+                    "mapping": {
+                        "destination": "pipeline_id",
+                        "primaryKey": true
+                    }
+                },
+                "label": {
+                    "mapping": {
+                        "destination": "label"
+                    }
+                }
+            },
+            "stages": {
+                "parent_pipelineId": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "pipeline_id"
+                    }
+                },
+                "stageId": {
+                    "mapping": {
+                        "destination": "stage_id",
+                        "primaryKey": true
+                    }
+                },
+                "label": {
+                    "mapping": {
+                        "destination": "label"
+                    }
+                }
             }
-          }
-        ]
-      }
-    ],
-      "mappings": {
-        "companies": {
-          "companyId": {
-            "mapping": {
-              "destination": "company_id",
-              "primaryKey": true
-            }
-          },
-          "properties.name.value": {
-            "mapping": {
-              "destination": "name"
-            }
-          },
-          "properties.website.value": {
-            "mapping": {
-              "destination": "website"
-            }
-          },
-          "properties.createdate.value": {
-            "mapping": {
-              "destination": "created_date"
-            }
-          },
-          "properties.notes_last_updated.value": {
-            "mapping": {
-              "destination": "last_updated_date"
-            }
-          }
-        },
-        "companies_contacts": {
-          "parent_companyId": {
-            "type": "user",
-            "mapping": {
-              "destination": "company_id",
-              "primaryKey": true
-            }
-          },
-          "vid": {
-            "mapping": {
-              "destination": "contact_id",
-              "primaryKey": true
-            }
-          }
-        },
-        "contacts": {
-          "vid": {
-            "mapping": {
-              "destination": "contact_id",
-              "primaryKey": true
-            }
-          },
-          "properties.firstname.value": {
-            "mapping": {
-              "destination": "first_name"
-            }
-          },
-          "properties.lastname.value": {
-            "mapping": {
-              "destination": "last_name"
-            }
-          },
-          "profile-url": "profile_url"
-        },
-        "owners": {
-          "ownerId": {
-            "mapping": {
-              "destination": "owner_id",
-              "primaryKey": true
-            }
-          },
-          "firstName": "first_name",
-          "lastName": "last_name",
-          "email": "email",
-          "type": "type"
-        },
-        "deals": {
-          "dealId": {
-            "mapping": {
-              "destination": "deal_id",
-              "primaryKey": true
-            }
-          },
-          "properties.dealname.value": {
-            "mapping": {
-              "destination": "name"
-            }
-          },
-          "properties.notes_last_updated.value": {
-            "mapping": {
-              "destination": "last_updated_date"
-            }
-          },
-          "properties.createdate.value": {
-            "mapping": {
-              "destination": "created_date"
-            }
-          },
-          "properties.closedate.value": {
-            "mapping": {
-              "destination": "closed_date"
-            }
-          },
-          "properties.hubspot_owner_id.value": {
-            "mapping": {
-              "destination": "owner_id"
-            }
-          },
-          "associations.associatedCompanyIds.0": {
-            "mapping": {
-              "destination": "company_id"
-            }
-          },
-          "properties.pipeline.value": {
-            "mapping": {
-              "destination": "pipeline_id"
-            }
-          },
-          "properties.dealstage.value": {
-            "mapping": {
-              "destination": "stage_id"
-            }
-          },
-          "properties.dealtype.value": {
-            "mapping": {
-              "destination": "type"
-            }
-          },
-          "properties.amount.value": {
-            "mapping": {
-              "destination": "amount"
-            }
-          }
-        },
-        "pipelines": {
-          "pipelineId": {
-            "mapping": {
-              "destination": "pipeline_id",
-              "primaryKey": true
-            }
-          },
-          "label": "label"
-        },
-        "stages": {
-          "parent_pipelineId": {
-            "type": "user",
-            "mapping": {
-              "destination": "pipeline_id"
-            }
-          },
-          "stageId": {
-            "mapping": {
-              "destination": "stage_id",
-              "primaryKey": true
-            }
-          },
-          "label": "label"
         }
-      }
-  }
+    }
 }
