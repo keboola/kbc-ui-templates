@@ -1,6 +1,6 @@
 {
     "name": "Basic",
-    "description": "Downloads \n\n - companies \n - contacts \n - contacts detail \n - companies' contacts \n - deals \n - deals detail \n - owners \n - pipelines \n - stages\n\nLimitations: Daily limit of 40,000 API requests for the account must not be exceeded (https://developers.hubspot.com/apps/api_guidelines).",
+    "description": "Downloads \n\n - companies \n - contacts \n - contacts detail \n - companies' contacts \n - deals \n - deals detail \n - deals contacts \n - owners \n - pipelines \n - stages\n\nLimitations: Daily limit of 40,000 API requests for the account must not be exceeded (https://developers.hubspot.com/apps/api_guidelines).",
     "data": {
         "incrementalOutput": true,
         "jobs": [
@@ -244,6 +244,23 @@
                 "properties.amount.value": {
                     "mapping": {
                         "destination": "amount"
+                    }
+                },
+                "associations.associatedVids": {
+                    "type": "table",
+                    "destination": "deals_contacts",
+                    "parentKey": {
+                        "primaryKey": true,
+                        "destination": "deal_id"
+                    },
+                    "tableMapping": {
+                        ".": {
+                            "type": "column",
+                            "mapping": {
+                                "destination": "contact_id",
+                                "primaryKey": true
+                            }
+                        }
                     }
                 }
             },
