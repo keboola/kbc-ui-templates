@@ -1,0 +1,51 @@
+{
+    "name": "Standard",
+    "description": "Downloads surveys, results and all questions and responses.",
+    "data": {
+        "debug": false,
+        "http": {
+            "headers": {
+                "authorization": {
+                    "function": "concat",
+                    "args": [
+                        {
+                            "attr": "bearer"
+                        },
+                        {
+                            "attr": "#token"
+                        }
+                    ]
+                },
+                "Content-Type": "application/json"
+            }
+        },
+        "api_key": "",
+        "bearer": "bearer ",
+        "#token": "#secret",
+        "jobs": [
+            {
+                "endpoint": "surveys",
+                "dataType": "surveys_final",
+                "dataField": "data",
+                "children": [
+                    {
+                        "endpoint": "surveys/{survey_id}/details",
+                        "dataType": "survey_details_final",
+                        "dataField": "pages",
+                        "placeholders": {
+                            "survey_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "surveys/{survey_id}/responses/bulk",
+                        "dataType": "survey_responses_final",
+                        "dataField": "data",
+                        "placeholders": {
+                            "survey_id": "id"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
