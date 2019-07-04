@@ -21,7 +21,7 @@
         },
         "api_key": "",
         "bearer": "bearer ",
-        "#token": "secret",
+        "#token": "#secret",
         "jobs": [
             {
                 "endpoint": "surveys",
