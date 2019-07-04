@@ -1,5 +1,5 @@
 {
-    "name": "Standard",
+    "name": "Basic",
     "description": "Downloads surveys, results and all questions and responses.",
     "data": {
         "debug": false,
