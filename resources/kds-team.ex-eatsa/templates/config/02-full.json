@@ -1,0 +1,358 @@
+{
+    "name": "Full",
+    "description": "",
+    "data": {
+        "debug": true,
+   "incrementalOutput": true,
+   "outputBucket": "eatsa",
+   "#api_token": "#api_token",
+   "jobs": [
+    {
+     "endpoint": "v1/order-analytics",
+     "dataType": "orders",
+     "dataField": "orders"
+    }
+   ],
+   "mappings": {
+    "orders": {
+     "id": {
+      "type": "column",
+      "mapping": {
+       "destination": "id",
+       "primaryKey": true
+      }
+     },
+     "ref_id": {
+      "type": "column",
+      "mapping": {
+       "destination": "ref_id"
+      }
+     },
+     "customer.id": {
+      "type": "column",
+      "mapping": {
+       "destination": "customer_id"
+      }
+     },
+     "customer.user_ref_id": {
+      "type": "column",
+      "mapping": {
+       "destination": "customer_user_ref_id"
+      }
+     },
+     "customer.first_name": {
+      "type": "column",
+      "mapping": {
+       "destination": "first_name"
+      }
+     },
+     "customer.last_name": {
+      "type": "column",
+      "mapping": {
+       "destination": "last_name"
+      }
+     },
+     "customer.marketing_opt_out": {
+      "type": "column",
+      "mapping": {
+       "destination": "marketing_opt_out"
+      }
+     },
+     "customer.in_store_receipt_email": {
+      "type": "column",
+      "mapping": {
+       "destination": "in_store_receipt_email"
+      }
+     },
+     "customer.created_at": {
+      "type": "column",
+      "mapping": {
+       "destination": "customer_created_at"
+      }
+     },
+     "store.id": {
+      "type": "column",
+      "mapping": {
+       "destination": "store_id"
+      }
+     },
+     "store.store_id": {
+      "type": "column",
+      "mapping": {
+       "destination": "store_store_id"
+      }
+     },
+     "store.address": {
+      "type": "column",
+      "mapping": {
+       "destination": "store_address"
+      }
+     },
+     "store.timezone": {
+      "type": "column",
+      "mapping": {
+       "destination": "store_timezone"
+      }
+     },
+     "created_at": {
+      "type": "column",
+      "mapping": {
+       "destination": "created_at"
+      }
+     },
+     "updated_at": {
+      "type": "column",
+      "mapping": {
+       "destination": "updated_at"
+      }
+     },
+     "started_at": {
+      "type": "column",
+      "mapping": {
+       "destination": "started_at"
+      }
+     },
+     "delivered_at": {
+      "type": "column",
+      "mapping": {
+       "destination": "delivered_at"
+      }
+     },
+     "served_at": {
+      "type": "column",
+      "mapping": {
+       "destination": "served_at"
+      }
+     },
+     "scheduled_time": {
+      "type": "column",
+      "mapping": {
+       "destination": "scheduled_time"
+      }
+     },
+     "status": {
+      "type": "column",
+      "mapping": {
+       "destination": "status"
+      }
+     },
+     "special_instructions": {
+      "type": "column",
+      "mapping": {
+       "destination": "special_instructions"
+      }
+     },
+     "promo.promo_id": {
+      "type": "column",
+      "mapping": {
+       "destination": "promo_id"
+      }
+     },
+     "promo.promo_campaign_id": {
+      "type": "column",
+      "mapping": {
+       "destination": "promo_campaign_id"
+      }
+     },
+     "promo.code": {
+      "type": "column",
+      "mapping": {
+       "destination": "promo_code"
+      }
+     },
+     "promo.amount": {
+      "type": "column",
+      "mapping": {
+       "destination": "promo_amount"
+      }
+     },
+     "total": {
+      "type": "column",
+      "mapping": {
+       "destination": "total"
+      }
+     },
+     "is_refunded": {
+      "type": "column",
+      "mapping": {
+       "destination": "is_refunded"
+      }
+     },
+     "refunds": {
+      "type": "table",
+      "destination": "order_refunds",
+      "parentKey": {
+       "destination": "order_id",
+       "primaryKey": true
+      },
+      "tableMapping": {
+       "id": {
+        "type": "column",
+        "mapping": {
+         "destination": "id",
+         "primaryKey": true
+        }
+       },
+       "refunded_amount": {
+        "type": "column",
+        "mapping": {
+         "destination": "refunded_amount"
+        }
+       },
+       "refunded_taxes": {
+        "type": "column",
+        "mapping": {
+         "destination": "refunded_taxes"
+        }
+       }
+      }
+     },
+     "channel": {
+      "type": "column",
+      "mapping": {
+       "destination": "channel"
+      }
+     },
+     "payment_transactions": {
+      "type": "table",
+      "destination": "order_payment_transactions",
+      "parentKey": {
+       "destination": "order_id"
+      },
+      "tableMapping": {
+       "payment_processor_transaction_id": {
+        "type": "column",
+        "mapping": {
+         "destination": "transaction_id",
+         "primaryKey": true
+        }
+       },
+       "payment_processor": {
+        "type": "column",
+        "mapping": {
+         "destination": "payment_processor"
+        }
+       },
+       "payment_type": {
+        "type": "column",
+        "mapping": {
+         "destination": "payment_type"
+        }
+       },
+       "transaction_amount": {
+        "type": "column",
+        "mapping": {
+         "destination": "transaction_amount"
+        }
+       },
+       "created_at": {
+        "type": "column",
+        "mapping": {
+         "destination": "created_at"
+        }
+       },
+       "currency": {
+        "type": "column",
+        "mapping": {
+         "destination": "currency"
+        }
+       }
+      }
+     },
+     "line_items": {
+      "type": "table",
+      "destination": "order_line_items",
+      "parentKey": {
+       "destination": "order_id",
+       "primaryKey": true
+      },
+      "tableMapping": {
+       "id": {
+        "type": "column",
+        "mapping": {
+         "destination": "id",
+         "primaryKey": true
+        }
+       },
+       "item_id": {
+        "type": "column",
+        "mapping": {
+         "destination": "item_id"
+        }
+       },
+       "item_name": {
+        "type": "column",
+        "mapping": {
+         "destination": "item_name"
+        }
+       },
+       "line_item_total": {
+        "type": "column",
+        "mapping": {
+         "destination": "line_item_total"
+        }
+       },
+       "line_item_total_taxes": {
+        "type": "column",
+        "mapping": {
+         "destination": "line_item_total_taxes"
+        }
+       },
+       "modifications": {
+        "type": "table",
+        "destination": "order_line_items_modifications",
+        "tableMapping": {
+         "id": {
+          "type": "column",
+          "mapping": {
+           "destination": "id",
+           "primaryKey": true
+          }
+         },
+         "modifier_id": {
+          "type": "column",
+          "mapping": {
+           "destination": "modifier_id"
+          }
+         },
+         "modifier_name": {
+          "type": "column",
+          "mapping": {
+           "destination": "modifier_name"
+          }
+         }
+        }
+       }
+      }
+     },
+     "applied_taxes": {
+      "type": "table",
+      "destination": "order_applied_taxes",
+      "parentKey": {
+       "destination": "order_id",
+       "primaryKey": true
+      },
+      "tableMapping": {
+       "id": {
+        "type": "column",
+        "mapping": {
+         "destination": "id",
+         "primaryKey": true
+        }
+       },
+       "name": {
+        "type": "column",
+        "mapping": {
+         "destination": "name"
+        }
+       },
+       "amount": {
+        "type": "column",
+        "mapping": {
+         "destination": "amount"
+        }
+       }
+      }
+     }
+    }
+ 
