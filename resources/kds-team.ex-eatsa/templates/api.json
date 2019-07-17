@@ -1,0 +1,15 @@
+{
+    "baseUrl": "https://api.eatsa.com/",
+    "pagination": {
+        "method": "pagenum",
+        "limit": 200,
+        "limitParam": "per_page"
+    },
+    "http": {
+        "headers": {
+            "X-AuthToken": {
+                "attr": "#api_token"
+            }
+        }
+    }
+}
