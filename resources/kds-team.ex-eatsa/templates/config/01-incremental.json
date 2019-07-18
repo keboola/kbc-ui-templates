@@ -2,10 +2,6 @@
     "name": "Incremental",
     "description": "",
     "data": {
-        "debug": true,
-        "incrementalOutput": true,
-        "outputBucket": "eatsa",
-        "#api_token": "#api_token",
         "jobs": [
             {
                 "endpoint": "v1/order-analytics",
