@@ -19,6 +19,20 @@
     "requiredHeaders": [
      "authorization",
      "Content-Type"
-    ]
+    ],
+      "headers": {
+          "authorization": {
+              "function": "concat",
+              "args": [
+                  {
+                      "attr": "bearer"
+                  },
+                  {
+                      "attr": "#secret"
+                  }
+              ]
+          },
+          "Content-Type": "application/json"
+      }
    }
 }
