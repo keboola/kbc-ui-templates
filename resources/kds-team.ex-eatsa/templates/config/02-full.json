@@ -1,5 +1,5 @@
 {
-    "name": "Incremental",
+    "name": "Full Load",
     "description": "",
     "data": {
         "incrementalOutput": true,
