@@ -17,4 +17,4 @@ deploy:
   skip_cleanup: true
   script: ./scripts/deploy-script.sh
   on:
-    tags: true
+    branch: master
