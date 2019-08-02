@@ -4,7 +4,7 @@
   "data": {
     "jobs": [
       {
-        "endpoint": "channels?managedByMe=true&part=snippet,contentDetails,statistics",
+        "endpoint": "channels?part=snippet,contentDetails,statistics",
         "dataType": "channels",
         "dataField": "items"
       }
