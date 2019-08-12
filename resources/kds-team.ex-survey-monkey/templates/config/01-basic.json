@@ -3,22 +3,6 @@
     "description": "Downloads surveys, results and all questions and bulk responses.",
     "data": {
         "debug": false,
-        "http": {
-            "headers": {
-                "authorization": {
-                    "function": "concat",
-                    "args": [
-                        {
-                            "attr": "bearer "
-                        },
-                        {
-                            "attr": "#access_token"
-                        }
-                    ]
-                },
-                "Content-Type": "application/json"
-            }
-        },
         "jobs": [
             {
                 "endpoint": "surveys",
