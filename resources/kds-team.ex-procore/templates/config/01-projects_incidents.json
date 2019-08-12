@@ -1,0 +1,26 @@
+{
+    "name": "Projects and Incidents",
+    "description": "",
+    "data": {
+   "debug": false,
+   "outputBucket": "procore",
+   "jobs": [
+    {
+     "endpoint": "projects",
+     "dataType": "projects",
+     "params": {
+      "company_id": "companyId"
+     },
+     "children": [
+      {
+       "endpoint": "projects/{project_id}/incidents",
+       "dataType": "incidents",
+       "placeholders": {
+        "project_id": "id"
+       }
+      }
+     ]
+    }
+   ]
+  }
+}
