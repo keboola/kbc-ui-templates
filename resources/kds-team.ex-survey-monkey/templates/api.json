@@ -16,9 +16,19 @@
     }
    },
    "http": {
-    "requiredHeaders": [
-     "authorization",
-     "Content-Type"
-    ]
-   }
+            "headers": {
+                "authorization": {
+                    "function": "concat",
+                    "args": [
+                        {
+                            "attr": "bearer "
+                        },
+                        {
+                            "attr": "#access_token"
+                        }
+                    ]
+                },
+                "Content-Type": "application/json"
+            }
+        }
 }
