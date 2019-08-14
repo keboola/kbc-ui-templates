@@ -1,8 +1,7 @@
 {
-    "name": "Incremental",
+    "name": "Full",
     "description": "",
     "data": {
-        "incrementalOutput": true,
         "jobs": [
             {
                 "endpoint": "v1/order-analytics",
