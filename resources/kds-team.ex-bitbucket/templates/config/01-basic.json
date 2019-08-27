@@ -1,0 +1,99 @@
+{
+    "name": "Basic",
+    "description": "Downloads \n\n - Teams \n - Projects \n - Repositories \n - Commits",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "teams",
+                "dataField": "values",
+                "dataType": "team",
+                "params": {
+                    "role": "member"
+                },
+                "children": [
+                    {
+                        "endpoint": "teams/{username}/projects/",
+                        "dataField": "values",
+                        "dataType": "project",
+                        "placeholders": {
+                            "username": "username"
+                        }
+                    },
+                    {
+                        "endpoint": "repositories/{username}",
+                        "dataField": "values",
+                        "dataType": "repository",
+                        "placeholders": {
+                            "username": "username"
+                        },
+                        "children": [
+                            {
+                                "endpoint": "repositories/{username}/{name}/commits/",
+                                "dataField": "values",
+                                "dataType": "repository_commit",
+                                "placeholders": {
+                                    "username": "owner.username",
+                                    "name": "name"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "team": {
+                "uuid": {
+                    "mapping": {
+                        "destination": "team_id",
+                        "primaryKey": true
+                    }
+                },
+                "username": "username",
+                "display_name": "display_name",
+                "created_on": "created_on"
+            },
+            "project": {
+                "uuid": {
+                    "mapping": {
+                        "destination": "project_id",
+                        "primaryKey": true
+                    }
+                },
+                "owner.uuid": "team_id",
+                "name": "name",
+                "key": "key",
+                "is_private": "is_private",
+                "created_on": "created_on"
+            },
+            "repository": {
+                "uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "project.uuid": "project_id",
+                "name": "name",
+                "mainbranch.name": "main_branch",
+                "has_wiki": "has_wiki",
+                "description": "description",
+                "created_on": "created_on",
+                "updated_on": "updated_on"
+            },
+            "repository_commit": {
+                "hash": {
+                    "mapping": {
+                        "destination": "repository_commit_id",
+                        "primaryKey": true
+                    }
+                },
+                "repository.uuid": "repository_id",
+                "message": "message",
+                "author.raw": "author",
+                "date": "date"
+            }
+        }
+    }
+}

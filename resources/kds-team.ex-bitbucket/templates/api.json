@@ -1,0 +1,15 @@
+{
+    "authentication": {
+        "type": "basic"
+    },
+    "baseUrl": "https://api.bitbucket.org/2.0/",
+    "pagination": {
+        "method": "pagenum",
+        "pageParam": "page"
+    },
+    "http": {
+        "headers": {
+            "Accept": "application/json"
+        }
+    }
+}
