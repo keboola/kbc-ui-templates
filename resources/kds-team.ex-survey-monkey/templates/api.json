@@ -1,25 +1,24 @@
 {
-   "baseUrl": "https://api.surveymonkey.net/v3/",
-   "pagination": {
-    "method": "response.url",
-    "urlKey": "links.next",
-    "limitStop": {
-     "field": "total"
+    "baseUrl": "https://api.surveymonkey.net/v3/",
+    "pagination": {
+        "method": "response.url",
+        "urlKey": "links.next",
+        "limitStop": {
+            "field": "total"
+        }
+    },
+    "http": {
+        "headers": {
+            "authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "attr": "#access_token"
+                    }
+                ]
+            },
+            "Content-Type": "application/json"
+        }
     }
-   },
-   "http": {
-    "headers": {
-     "authorization": {
-      "function": "concat",
-      "args": [
-       "Bearer ",
-       {
-        "attr": "#access_token"
-       }
-      ]
-     },
-     "Content-Type": "application/json"
-    }
-   }
-  }
 }
