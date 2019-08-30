@@ -13,28 +13,28 @@
                 },
                 "children": [
                     {
-                        "endpoint": "teams/{username}/projects/",
+                        "endpoint": "teams/{team_uuid}/projects/",
                         "dataField": "values",
                         "dataType": "project",
                         "placeholders": {
-                            "username": "username"
+                            "team_uuid": "uuid"
                         }
                     },
                     {
-                        "endpoint": "repositories/{username}",
+                        "endpoint": "repositories/{team_uuid}",
                         "dataField": "values",
                         "dataType": "repository",
                         "placeholders": {
-                            "username": "username"
+                            "team_uuid": "uuid"
                         },
                         "children": [
                             {
-                                "endpoint": "repositories/{username}/{name}/commits/",
+                                "endpoint": "repositories/{team_uuid}/{repo_uuid}/commits/",
                                 "dataField": "values",
                                 "dataType": "repository_commit",
                                 "placeholders": {
-                                    "username": "owner.username",
-                                    "name": "name"
+                                    "team_uuid": "owner.uuid",
+                                    "repo_uuid": "uuid"
                                 }
                             }
                         ]
