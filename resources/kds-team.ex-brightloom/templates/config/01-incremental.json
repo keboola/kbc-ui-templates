@@ -16,7 +16,9 @@
                             {
                                 "function": "strtotime",
                                 "args": [
-                                    "days_back"
+                                    {
+                                        "attr": "days_back"
+                                    }
                                 ]
                             }
                         ]
