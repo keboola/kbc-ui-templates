@@ -1,6 +1,6 @@
 {
     "name": "Incremental",
-    "description": "Get only specified several last days of Brightloom orders, refunds, transactions, line items, and taxes ",
+    "description": "Get only specified several last days of Brightloom orders, refunds, transactions, line items, and taxes",
     "data": {
         "incrementalOutput": true,
         "jobs": [
