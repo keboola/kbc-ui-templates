@@ -1,12 +1,29 @@
 {
-    "name": "Full",
-    "description": "",
+    "name": "Incremental",
+    "description": "Get only specified several last days of Brightloom orders, refunds, transactions, line items, and taxes",
     "data": {
+        "incrementalOutput": true,
         "jobs": [
             {
                 "endpoint": "v1/order-analytics",
                 "dataType": "orders",
-                "dataField": "orders"
+                "dataField": "orders",
+                "params": {
+                    "created_at_after": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    {
+                                        "attr": "days_back"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "mappings": {
@@ -173,171 +190,171 @@
                     "mapping": {
                         "destination": "is_refunded"
                     }
+                }
+            },
+            "refunds": {
+                "type": "table",
+                "destination": "order_refunds",
+                "parentKey": {
+                    "destination": "order_id",
+                    "primaryKey": true
                 },
-                "refunds": {
-                    "type": "table",
-                    "destination": "order_refunds",
-                    "parentKey": {
-                        "destination": "order_id",
-                        "primaryKey": true
-                    },
-                    "refunded_amount": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "refunded_amount"
-                        }
-                    },
-                    "refunded_taxes": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "refunded_taxes"
-                        }
-                    },
-                    "channel": {
-                        "type": "column",
-                        "mapping": {
-                            "destination": "channel"
-                        }
+                "refunded_amount": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "refunded_amount"
                     }
                 },
-                "payment_transactions": {
-                    "type": "table",
-                    "destination": "order_payment_transactions",
-                    "parentKey": {
-                        "destination": "order_id"
-                    },
-                    "tableMapping": {
-                        "payment_processor_transaction_id": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "transaction_id",
-                                "primaryKey": true
-                            }
-                        },
-                        "payment_processor": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "payment_processor"
-                            }
-                        },
-                        "payment_type": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "payment_type"
-                            }
-                        },
-                        "transaction_amount": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "transaction_amount"
-                            }
-                        },
-                        "created_at": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "created_at"
-                            }
-                        },
-                        "currency": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "currency"
-                            }
-                        }
+                "refunded_taxes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "refunded_taxes"
                     }
                 },
-                "line_items": {
-                    "type": "table",
-                    "destination": "order_line_items",
-                    "parentKey": {
-                        "destination": "order_id",
-                        "primaryKey": true
+                "channel": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "channel"
+                    }
+                }
+            },
+            "payment_transactions": {
+                "type": "table",
+                "destination": "order_payment_transactions",
+                "parentKey": {
+                    "destination": "order_id"
+                },
+                "tableMapping": {
+                    "payment_processor_transaction_id": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "transaction_id",
+                            "primaryKey": true
+                        }
                     },
-                    "tableMapping": {
-                        "id": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "id",
-                                "primaryKey": true
-                            }
-                        },
-                        "item_id": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "item_id"
-                            }
-                        },
-                        "item_name": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "item_name"
-                            }
-                        },
-                        "line_item_total": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "line_item_total"
-                            }
-                        },
-                        "line_item_total_taxes": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "line_item_total_taxes"
-                            }
-                        },
-                        "modifications": {
-                            "type": "table",
-                            "destination": "order_line_items_modifications",
-                            "tableMapping": {
-                                "id": {
-                                    "type": "column",
-                                    "mapping": {
-                                        "destination": "id",
-                                        "primaryKey": true
-                                    }
-                                },
-                                "modifier_id": {
-                                    "type": "column",
-                                    "mapping": {
-                                        "destination": "modifier_id"
-                                    }
-                                },
-                                "modifier_name": {
-                                    "type": "column",
-                                    "mapping": {
-                                        "destination": "modifier_name"
-                                    }
+                    "payment_processor": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "payment_processor"
+                        }
+                    },
+                    "payment_type": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "payment_type"
+                        }
+                    },
+                    "transaction_amount": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "transaction_amount"
+                        }
+                    },
+                    "created_at": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "created_at"
+                        }
+                    },
+                    "currency": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "currency"
+                        }
+                    }
+                }
+            },
+            "line_items": {
+                "type": "table",
+                "destination": "order_line_items",
+                "parentKey": {
+                    "destination": "order_id",
+                    "primaryKey": true
+                },
+                "tableMapping": {
+                    "id": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "id",
+                            "primaryKey": true
+                        }
+                    },
+                    "item_id": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "item_id"
+                        }
+                    },
+                    "item_name": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "item_name"
+                        }
+                    },
+                    "line_item_total": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "line_item_total"
+                        }
+                    },
+                    "line_item_total_taxes": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "line_item_total_taxes"
+                        }
+                    },
+                    "modifications": {
+                        "type": "table",
+                        "destination": "order_line_items_modifications",
+                        "tableMapping": {
+                            "id": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "id",
+                                    "primaryKey": true
+                                }
+                            },
+                            "modifier_id": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "modifier_id"
+                                }
+                            },
+                            "modifier_name": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "modifier_name"
                                 }
                             }
                         }
                     }
+                }
+            },
+            "applied_taxes": {
+                "type": "table",
+                "destination": "order_applied_taxes",
+                "parentKey": {
+                    "destination": "order_id",
+                    "primaryKey": true
                 },
-                "applied_taxes": {
-                    "type": "table",
-                    "destination": "order_applied_taxes",
-                    "parentKey": {
-                        "destination": "order_id",
-                        "primaryKey": true
+                "tableMapping": {
+                    "id": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "id",
+                            "primaryKey": true
+                        }
                     },
-                    "tableMapping": {
-                        "id": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "id",
-                                "primaryKey": true
-                            }
-                        },
-                        "name": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "name"
-                            }
-                        },
-                        "amount": {
-                            "type": "column",
-                            "mapping": {
-                                "destination": "amount"
-                            }
+                    "name": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "name"
+                        }
+                    },
+                    "amount": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "amount"
                         }
                     }
                 }
