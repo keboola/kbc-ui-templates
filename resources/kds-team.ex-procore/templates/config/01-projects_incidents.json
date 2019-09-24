@@ -1,0 +1,39 @@
+{
+    "name": "Projects, Incidents, and Observations",
+    "description": "",
+    "data": {
+        "debug": false,
+        "outputBucket": "procore",
+        "jobs": [
+            {
+                "endpoint": "companies",
+                "dataType": "companies",
+                "children": [
+                    {
+                        "endpoint": "projects?company_id={company_id}",
+                        "dataType": "projects",
+                        "placeholders": {
+                            "company_id": "id"
+                        },
+                        "children": [
+                            {
+                                "endpoint": "projects/{project_id}/incidents",
+                                "dataType": "incidents",
+                                "placeholders": {
+                                    "project_id": "id"
+                                }
+                            },
+                            {
+                                "endpoint": "observations/items?project_id={project_id}",
+                                "dataType": "observations",
+                                "placeholders": {
+                                    "project_id": "id"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

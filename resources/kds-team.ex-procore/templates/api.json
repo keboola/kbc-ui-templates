@@ -1,0 +1,18 @@
+
+{
+   "baseUrl": "https://sandbox.procore.com/vapid/",
+   "authentication": {
+    "type": "oauth20",
+    "headers": {
+     "Authorization": {
+      "function": "concat",
+      "args": [
+       "Bearer ",
+       {
+        "authorization": "data"
+       }
+      ]
+     }
+    }
+   }
+ }
