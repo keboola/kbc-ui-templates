@@ -1,6 +1,6 @@
 
 {
-   "baseUrl": "https://sandbox.procore.com/vapid/",
+   "baseUrl": "https://api.procore.com/vapid/",
    "authentication": {
     "type": "oauth20",
     "headers": {
