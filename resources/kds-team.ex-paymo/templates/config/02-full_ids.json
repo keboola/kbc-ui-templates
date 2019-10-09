@@ -1,0 +1,45 @@
+{
+    "name": "Full Entry IDs",
+    "description": "Downloads all Entries, so you're able to determine in Transformations which were deleted (so you can keep getting data incrementally in primary configuration).",
+    "data": {
+        "password": "X",
+        "incrementalOutput": false,
+        "jobs": [
+            {
+                "endpoint": "clients",
+                "dataType": "client",
+                "dataField": "clients",
+                "children": [
+                    {
+                        "endpoint": "entries?where=client_id={id}",
+                        "dataType": "entry",
+                        "dataField": "entries",
+                        "placeholders": {
+                            "id": "id"
+                        }
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "client": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "client_id",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "entry": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "entry_id",
+                        "primaryKey": true
+                    }
+                }
+            }
+        }
+    }
+}
