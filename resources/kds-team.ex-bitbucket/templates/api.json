@@ -10,6 +10,9 @@
     "http": {
         "headers": {
             "Accept": "application/json"
-        }
+        },
+        "ignoreErrors": [
+         404
+        ]
     }
 }
