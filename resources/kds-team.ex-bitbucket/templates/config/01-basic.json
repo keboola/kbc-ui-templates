@@ -296,7 +296,7 @@
                         "primaryKey": true
                     }
                 },
-                "repository.uuid": {
+                "issue.repository.uuid": {
                     "mapping": {
                         "destination": "repository_id",
                         "primaryKey": true
