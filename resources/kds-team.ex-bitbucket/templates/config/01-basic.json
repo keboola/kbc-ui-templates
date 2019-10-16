@@ -1,6 +1,6 @@
 {
     "name": "Basic",
-    "description": "Downloads \n\n - Teams \n - Projects \n - Repositories \n - Commits",
+    "description": "Downloads \n\n - Teams \n - Projects \n - Repositories \n - Commits \n - Issues \n - Issues Comments \n - Pull Requests (separate tables for different request statuses)",
     "data": {
         "incrementalOutput": true,
         "jobs": [
@@ -36,6 +36,75 @@
                                     "team_uuid": "owner.uuid",
                                     "repo_uuid": "uuid"
                                 }
+                            },
+                            {
+                                "endpoint": "repositories/{team_uuid}/{repo_uuid}/pullrequests/",
+                                "dataField": "values",
+                                "dataType": "pull_request_open",
+                                "params": {
+                                    "state": "OPEN"
+                                },
+                                "placeholders": {
+                                    "team_uuid": "owner.uuid",
+                                    "repo_uuid": "uuid"
+                                }
+                            },
+                            {
+                                "endpoint": "repositories/{team_uuid}/{repo_uuid}/pullrequests/",
+                                "dataField": "values",
+                                "dataType": "pull_request_merged",
+                                "params": {
+                                    "state": "MERGED"
+                                },
+                                "placeholders": {
+                                    "team_uuid": "owner.uuid",
+                                    "repo_uuid": "uuid"
+                                }
+                            },
+                            {
+                                "endpoint": "repositories/{team_uuid}/{repo_uuid}/pullrequests/",
+                                "dataField": "values",
+                                "dataType": "pull_request_superseded",
+                                "params": {
+                                    "state": "SUPERSEDED"
+                                },
+                                "placeholders": {
+                                    "team_uuid": "owner.uuid",
+                                    "repo_uuid": "uuid"
+                                }
+                            },
+                            {
+                                "endpoint": "repositories/{team_uuid}/{repo_uuid}/pullrequests/",
+                                "dataField": "values",
+                                "dataType": "pull_request_declined",
+                                "params": {
+                                    "state": "DECLINED"
+                                },
+                                "placeholders": {
+                                    "team_uuid": "owner.uuid",
+                                    "repo_uuid": "uuid"
+                                }
+                            },
+                            {
+                                "endpoint": "repositories/{team_uuid}/{repo_uuid}/issues/",
+                                "dataField": "values",
+                                "dataType": "issue",
+                                "placeholders": {
+                                    "team_uuid": "owner.uuid",
+                                    "repo_uuid": "uuid"
+                                },
+                                "children": [
+                                    {
+                                        "endpoint": "repositories/{2:team_uuid}/{2:repo_uuid}/issues/{1:id}/comments/",
+                                        "dataField": "values",
+                                        "dataType": "issue_comment",
+                                        "placeholders": {
+                                            "2:team_uuid": "owner.uuid",
+                                            "2:repo_uuid": "uuid",
+                                            "1:id": "id"
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -93,6 +162,155 @@
                 "message": "message",
                 "author.raw": "author",
                 "date": "date"
+            },
+            "pull_request_open": {
+                "id": {
+                    "mapping": {
+                        "destination": "pull_request_id",
+                        "primaryKey": true
+                    }
+                },
+                "source.repository.uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "title": "title",
+                "description": "description",
+                "state": "state",
+                "created_on": "created_on",
+                "updated_on": "updated_on",
+                "author.uuid": "author_id",
+                "author.display_name": "author",
+                "author.type": "author_type",
+                "links.html.href": "html_url"
+            },
+            "pull_request_merged": {
+                "id": {
+                    "mapping": {
+                        "destination": "pull_request_id",
+                        "primaryKey": true
+                    }
+                },
+                "source.repository.uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "title": "title",
+                "description": "description",
+                "state": "state",
+                "created_on": "created_on",
+                "updated_on": "updated_on",
+                "author.uuid": "author_id",
+                "author.display_name": "author",
+                "author.type": "author_type",
+                "links.html.href": "html_url"
+            },
+            "pull_request_superseded": {
+                "id": {
+                    "mapping": {
+                        "destination": "pull_request_id",
+                        "primaryKey": true
+                    }
+                },
+                "source.repository.uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "title": "title",
+                "description": "description",
+                "state": "state",
+                "created_on": "created_on",
+                "updated_on": "updated_on",
+                "author.uuid": "author_id",
+                "author.display_name": "author",
+                "author.type": "author_type",
+                "links.html.href": "html_url"
+            },
+            "pull_request_declined": {
+                "id": {
+                    "mapping": {
+                        "destination": "pull_request_id",
+                        "primaryKey": true
+                    }
+                },
+                "source.repository.uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "title": "title",
+                "description": "description",
+                "state": "state",
+                "created_on": "created_on",
+                "updated_on": "updated_on",
+                "author.uuid": "author_id",
+                "author.display_name": "author",
+                "author.type": "author_type",
+                "links.html.href": "html_url"
+            },
+            "issue": {
+                "id": {
+                    "mapping": {
+                        "destination": "issue_id",
+                        "primaryKey": true
+                    }
+                },
+                "repository.uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "title": "title",
+                "content.raw": "text",
+                "priority": "priority",
+                "kind": "kind",
+                "state": "state",
+                "created_on": "created_on",
+                "updated_on": "updated_on",
+                "reporter.uuid": "reporter_id",
+                "reporter.display_name": "reporter",
+                "reporter.type": "reporter_type",
+                "assignee.uuid": "assignee_id",
+                "assignee.display_name": "assignee",
+                "assignee.type": "assignee_type",
+                "links.html.href": "html_url"
+            },
+            "issue_comment": {
+                "id": {
+                    "mapping": {
+                        "destination": "issue_comment_id",
+                        "primaryKey": true
+                    }
+                },
+                "issue.id": {
+                    "mapping": {
+                        "destination": "issue_id",
+                        "primaryKey": true
+                    }
+                },
+                "issue.repository.uuid": {
+                    "mapping": {
+                        "destination": "repository_id",
+                        "primaryKey": true
+                    }
+                },
+                "content.raw": "text",
+                "type": "type",
+                "state": "state",
+                "created_on": "created_on",
+                "updated_on": "updated_on",
+                "user.uuid": "user_id",
+                "user.display_name": "user",
+                "user.type": "user_type",
+                "links.html.href": "html_url"
             }
         }
     }
