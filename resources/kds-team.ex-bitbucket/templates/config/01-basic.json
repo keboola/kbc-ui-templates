@@ -1,6 +1,6 @@
 {
     "name": "Basic",
-    "description": "Downloads \n\n - Teams \n - Projects \n - Repositories \n - Commits \n - Issues \n - Issues Comments \n - Pull Requests (separate tables for different request statuses)",
+    "description": "Downloads \n\n - Teams \n - Members \n - Projects \n - Repositories \n - Commits \n - Issues \n - Issues Comments \n - Pull Requests (separate tables for different request statuses)",
     "data": {
         "incrementalOutput": true,
         "jobs": [
@@ -12,6 +12,14 @@
                     "role": "member"
                 },
                 "children": [
+                    {
+                        "endpoint": "teams/{team_uuid}/members/",
+                        "dataField": "values",
+                        "dataType": "member",
+                        "placeholders": {
+                            "team_uuid": "uuid"
+                        }
+                    },
                     {
                         "endpoint": "teams/{team_uuid}/projects/",
                         "dataField": "values",
@@ -122,6 +130,25 @@
                 "username": "username",
                 "display_name": "display_name",
                 "created_on": "created_on"
+            },
+            "member": {
+                "uuid": {
+                    "mapping": {
+                        "destination": "member_id",
+                        "primaryKey": true
+                    }
+                },
+                "parent_uuid": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "team_id"
+                    }
+                },
+                "display_name": "display_name",
+                "created_on": "created_on",
+                "type": "type",
+                "is_staff": "is_staff",
+                "account_status": "account_status"
             },
             "project": {
                 "uuid": {
