@@ -240,7 +240,8 @@
                 "language": "language",
                 "description": "description",
                 "created_on": "created_on",
-                "updated_on": "updated_on"
+                "updated_on": "updated_on",
+                "links.html.href": "html_url"
             },
             "repository_commit": {
                 "hash": {
