@@ -254,7 +254,8 @@
                 "message": "message",
                 "author.raw": "author",
                 "author.user.uuid": "author_id",
-                "date": "date"
+                "date": "date",
+                "links.html.href": "html_url"
             },
             "pull_request_open": {
                 "id": {
