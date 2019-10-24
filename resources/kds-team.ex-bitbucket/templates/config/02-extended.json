@@ -398,7 +398,6 @@
                 },
                 "content.raw": "text",
                 "type": "type",
-                "state": "state",
                 "created_on": "created_on",
                 "updated_on": "updated_on",
                 "user.uuid": "user_id",
