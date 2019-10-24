@@ -253,6 +253,7 @@
                 "repository.uuid": "repository_id",
                 "message": "message",
                 "author.raw": "author",
+                "author.user.uuid": "author_id",
                 "date": "date"
             },
             "pull_request_open": {
