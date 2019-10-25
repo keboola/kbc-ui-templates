@@ -1,0 +1,75 @@
+{
+    "name":"Transactions - Last 7 Days",
+    "description":"Retrieve a list of transactions.",
+    "data":{
+        "incrementalOutput": true,
+        "debug":true,
+        "jobs":[
+            {
+                "endpoint":"transactions",
+                "dataType":"transactions",
+                "dataField":"items",
+                "params": {
+                    "searchCriteria[filter_groups][0][filters][0][field]": "created_at",
+                    "searchCriteria[filter_groups][0][filters][0][condition_type]": "gteq",
+                    "searchCriteria[filter_groups][0][filters][0][value]": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings":{
+            "transactions":{
+                "transaction_id":{
+                    "mapping":{
+                        "destination":"transaction_id",
+                        "primaryKey":true
+                    }
+                },
+                "order_id":{
+                    "mapping":{
+                        "destination":"order_id",
+                        "primaryKey":true
+                    }
+                },
+                "payment_id":{
+                    "mapping":{
+                        "destination":"payment_id",
+                        "primaryKey":true
+                    }
+                },
+                "txn_id":{
+                    "mapping":{
+                        "destination":"txn_id",
+                        "primaryKey":true
+                    }
+                },
+                "parent_txn_id":{
+                    "type":"column",
+                    "mapping":{"destination":"parent_txn_id"}
+                },
+                "txn_type":{
+                    "type":"column",
+                    "mapping":{"destination":"txn_type"}
+                },
+                "is_closed":{
+                    "type":"column",
+                    "mapping":{"destination":"is_closed"}
+                },
+                "created_at":{
+                    "type":"column",
+                    "mapping":{"destination":"created_at"}
+                }
+            }
+        }
+    }
+}

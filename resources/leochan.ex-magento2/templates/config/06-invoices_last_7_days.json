@@ -1,0 +1,99 @@
+{
+    "name":"Invoices - Last 7 Days",
+    "description":"Retrieve a list of invoices.",
+    "data":{
+        "incrementalOutput": true,
+        "debug":true,
+        "jobs":[
+            {
+                "endpoint":"invoices",
+                "dataType":"invoices",
+                "dataField":"items",
+                "params": {
+                    "searchCriteria[filter_groups][0][filters][0][field]": "created_at",
+                    "searchCriteria[filter_groups][0][filters][0][condition_type]": "gteq",
+                    "searchCriteria[filter_groups][0][filters][0][value]": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings":{
+            "invoices":{
+                "created_at":{
+                    "type":"column",
+                    "mapping":{"destination":"created_at"}
+                },
+                "discount_amount":{
+                    "type":"column",
+                    "mapping":{"destination":"discount_amount"}
+                },
+                "entity_id":{
+                    "mapping":{
+                        "destination":"entity_id",
+                        "primaryKey":true
+                    }
+                },
+                "global_currency_code":{
+                    "type":"column",
+                    "mapping":{"destination":"currency_code"}
+                },
+                "grand_total":{
+                    "type":"column",
+                    "mapping":{"destination":"grand_total"}
+                },
+                "order_id":{
+                    "mapping":{
+                        "destination":"order_id",
+                        "primaryKey":true
+                    }
+                },
+                "shipping_amount":{
+                    "type":"column",
+                    "mapping":{"destination":"shipping_amount"}
+                },
+                "state":{
+                    "type":"column",
+                    "mapping":{"destination":"state"}
+                },
+                "store_id":{
+                    "type":"column",
+                    "mapping":{"destination":"store_id"}
+                },
+                "subtotal":{
+                    "type":"column",
+                    "mapping":{"destination":"subtotal"}
+                },
+                "subtotal_incl_tax":{
+                    "type":"column",
+                    "mapping":{"destination":"subtotal_incl_tax"}
+                },
+                "tax_amount":{
+                    "type":"column",
+                    "mapping":{"destination":"tax_amount"}
+                },
+                "total_qty":{
+                    "type":"column",
+                    "mapping":{"destination":"total_qty"}
+                },
+                "transaction_id":{
+                    "type":"column",
+                    "mapping":{"destination":"transaction_id"}
+                },
+                "updated_at":{
+                    "type":"column",
+                    "mapping":{"destination":"updated_at"}
+                }
+            }
+        }
+    }
+}
