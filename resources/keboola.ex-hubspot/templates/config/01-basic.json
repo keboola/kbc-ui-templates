@@ -1,6 +1,6 @@
 {
   "name": "Basic",
-  "description": "Downloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages",
+  "description": "Downloads \n\n - companies \n - contacts \n - deals \n - owners \n - pipelines \n - stages\n\nLimitations: The extractor is only able to extract from accounts with less than 10,000 companies or less than 10,000 deals. Also a daily limit of 40,000 API requests for the account must not be exceeded.",
   "data": {
     "incrementalOutput": true,
     "jobs": [

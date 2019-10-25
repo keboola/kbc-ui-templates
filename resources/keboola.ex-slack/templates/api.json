@@ -17,11 +17,11 @@
       "params": {
         "count": "1000"
       }
-    },
-    "pagination": {
-      "method": "response.param",
-      "responseParam": "messages.999.ts",
-      "queryParam": "latest"
     }
+  },
+  "pagination": {
+    "method": "response.param",
+    "responseParam": "messages.999.ts",
+    "queryParam": "latest"
   }
 }

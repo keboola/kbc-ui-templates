@@ -17,6 +17,7 @@
       "pagination": {
         "method": "response.param",
         "responseParam": "data.9.id",
-        "queryParam": "starting_after"
+        "queryParam": "starting_after",
+        "includeParams": true
       }
     }

@@ -10,4 +10,4 @@ Example of creating Generic Extractor template is available in the [Developer Do
 
 ## Deployment
 
-Only tagged releases are deployed to production 
+All pushes to master are automatically deployed

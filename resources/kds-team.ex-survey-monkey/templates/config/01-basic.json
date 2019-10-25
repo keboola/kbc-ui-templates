@@ -1,0 +1,32 @@
+{
+    "name": "Basic",
+    "description": "Downloads surveys, results and all questions and bulk responses.",
+    "data": {
+        "debug": false,
+        "jobs": [
+            {
+                "endpoint": "surveys",
+                "dataType": "surveys",
+                "dataField": "data",
+                "children": [
+                    {
+                        "endpoint": "surveys/{survey_id}/details",
+                        "dataType": "survey_details",
+                        "dataField": "pages",
+                        "placeholders": {
+                            "survey_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "surveys/{survey_id}/responses/bulk",
+                        "dataType": "survey_responses",
+                        "dataField": "data",
+                        "placeholders": {
+                            "survey_id": "id"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
