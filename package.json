@@ -5,7 +5,7 @@
   "main": "src/scripts/app",
   "dependencies": {
     "aws-sdk": "^2.2.15",
-    "lodash": "^3.10.1",
+    "lodash": "^4.17.15",
     "node-uuid": "^1.4.3",
     "rmdir-recursive": "0.0.1"
   },
