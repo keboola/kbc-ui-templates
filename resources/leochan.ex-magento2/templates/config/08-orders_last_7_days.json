@@ -1,0 +1,323 @@
+{
+    "name":"Orders - Last 7 Days",
+    "description":"Retrieve orders made within the last 7 days.",
+    "data":{
+        "incrementalOutput": true,
+        "debug":true,
+        "jobs":[
+            {
+                "endpoint":"orders",
+                "dataType":"orders",
+                "dataField":"items",
+                "params": {
+                    "searchCriteria[filter_groups][0][filters][0][field]": "created_at",
+                    "searchCriteria[filter_groups][0][filters][0][condition_type]": "gteq",
+                    "searchCriteria[filter_groups][0][filters][0][value]": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings":{
+            "orders":{
+                "coupon_code":{
+                    "type": "column",
+                    "mapping":{"destination":"coupon_code"}
+                },
+                "created_at":{
+                    "type": "column",
+                    "mapping":{"destination":"created_at"}
+                },
+                "customer_email":{
+                    "type": "column",
+                    "mapping":{"destination":"customer_email"}
+                },
+                "discount_amount":{
+                    "type": "column",
+                    "mapping":{"destination":"discount_amount"}
+                },
+                "entity_id":{
+                    "mapping":{
+                        "destination":"entity_id",
+                        "primaryKey": true
+                    }
+                },
+                "grand_total":{
+                    "type": "column",
+                    "mapping":{"destination":"grand_total"}
+                },
+                "shipping_amount":{
+                    "type": "column",
+                    "mapping":{"destination":"shipping_amount"}
+                },
+                "store_currency_code":{
+                    "type": "column",
+                    "mapping":{"destination":"currency_code"}
+                },
+                "store_id":{
+                    "type": "column",
+                    "mapping":{"destination":"store_id"}
+                },
+                "store_name":{
+                    "type": "column",
+                    "mapping":{"destination":"store_name"}
+                },
+                "subtotal":{
+                    "type": "column",
+                    "mapping":{"destination":"subtotal"}
+                },
+                "tax_amount":{
+                    "type": "column",
+                    "mapping":{"destination":"tax_amount"}
+                },
+                "total_due":{
+                    "type": "column",
+                    "mapping":{"destination":"total_due"}
+                },
+                "total_item_count":{
+                    "type": "column",
+                    "mapping":{"destination":"total_item_count"}
+                },
+                "total_paid":{
+                    "type": "column",
+                    "mapping":{"destination":"total_paid"}
+                },
+                "updated_at":{
+                    "type":"column",
+                    "mapping":{"destination":"updated_at"}
+                },
+                "items":{
+                    "type": "table",
+                    "destination": "orders-items",
+                    "tableMapping":{
+                        "amount_refunded":{
+                            "type":"column",
+                            "mapping":{"destination":"amount_refunded"}
+                        },
+                        "created_at":{
+                            "type":"column",
+                            "mapping":{"destination":"created_at"}
+                        },
+                        "discount_amount":{
+                            "type":"column",
+                            "mapping":{"destination":"discount_amount"}
+                        },
+                        "free_shipping":{
+                            "type":"column",
+                            "mapping":{"destination":"free_shipping"}
+                        },
+                        "is_virtual":{
+                            "type":"column",
+                            "mapping":{"destination":"is_virtual"}
+                        },
+                        "item_id":{
+                            "mapping":{
+                                "destination":"item_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "name":{
+                            "type":"column",
+                            "mapping":{"destination":"name"}
+                        },
+                        "order_id":{
+                            "mapping":{
+                                "destination":"order_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "original_price":{
+                            "type":"column",
+                            "mapping":{"destination":"original_price"}
+                        },
+                        "price":{
+                            "type":"column",
+                            "mapping":{"destination":"price"}
+                        },
+                        "price_incl_tax":{
+                            "type":"column",
+                            "mapping":{"destination":"price_incl_tax"}
+                        },
+                        "product_id":{
+                            "mapping":{
+                                "destination":"product_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "product_type":{
+                            "type":"column",
+                            "mapping":{"destination":"product_type"}
+                        },
+                        "qty_canceled":{
+                            "type":"column",
+                            "mapping":{"destination":"qty_canceled"}
+                        },
+                        "qty_invoiced":{
+                            "type":"column",
+                            "mapping":{"destination":"qty_invoiced"}
+                        },
+                        "qty_ordered":{
+                            "type":"column",
+                            "mapping":{"destination":"qty_ordered"}
+                        },
+                        "qty_refunded":{
+                            "type":"column",
+                            "mapping":{"destination":"qty_refunded"}
+                        },
+                        "sku":{
+                            "type":"column",
+                            "mapping":{"destination":"sku"}
+                        },
+                        "store_id":{
+                            "type":"column",
+                            "mapping":{"destination":"store_id"}
+                        },
+                        "tax_amount":{
+                            "type":"column",
+                            "mapping":{"destination":"tax_amount"}
+                        },
+                        "updated_at":{
+                            "type":"column",
+                            "mapping":{"destination":"updated_at"}
+                        }
+                    }
+                },
+                "billing_address":{
+                    "type":"table",
+                    "destination":"orders-billing_address",
+                    "tableMapping":{
+                        "address_type":{
+                            "type":"column",
+                            "mapping":{"destination":"address_type"}
+                        },
+                        "city":{
+                            "type":"column",
+                            "mapping":{"destination":"city"}
+                        },
+                        "country_id":{
+                            "type":"column",
+                            "mapping":{"destination":"country_id"}
+                        },
+                        "email":{
+                            "type":"column",
+                            "mapping":{"destination":"email"}
+                        },
+                        "entity_id":{
+                            "mapping":{
+                                "destination":"entity_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "firstname":{
+                            "type":"column",
+                            "mapping":{"destination":"firstname"}
+                        },
+                        "lastname":{
+                            "type":"column",
+                            "mapping":{"destination":"lastname"}
+                        },
+                        "parent_id":{
+                            "mapping":{
+                                "destination":"parent_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "postcode":{
+                            "type":"column",
+                            "mapping":{"destination":"postcode"}
+                        },
+                        "region":{
+                            "type":"column",
+                            "mapping":{"destination":"region"}
+                        },
+                        "region_id":{
+                            "type":"column",
+                            "mapping":{"destination":"region_id"}
+                        },
+                        "street.0":{
+                            "type":"column",
+                            "mapping":{"destination":"primary_address"}
+                        },
+                        "street.1":{
+                            "type":"column",
+                            "mapping":{"destination":"secondary_address"}
+                        },
+                        "telephone":{
+                            "type":"column",
+                            "mapping":{"destination":"telephone"}
+                        }
+                    }
+                },
+                "payment":{
+                    "type":"table",
+                    "destination":"orders-payment",
+                    "tableMapping":{
+                        "amount_ordered":{
+                            "type":"column",
+                            "mapping":{"destination":"amount_ordered"}
+                        },
+                        "amount_paid":{
+                            "type":"column",
+                            "mapping":{"destination":"amount_paid"}
+                        },
+                        "amount_refunded":{
+                            "type":"column",
+                            "mapping":{"destination":"amount_refunded"}
+                        },
+                        "cc_exp_month":{
+                            "type":"column",
+                            "mapping":{"destination":"cc_exp_month"}
+                        },
+                        "cc_exp_year":{
+                            "type":"column",
+                            "mapping":{"destination":"cc_exp_year"}
+                        },
+                        "cc_last4":{
+                            "type":"column",
+                            "mapping":{"destination":"cc_last4"}
+                        },
+                        "cc_trans_id":{
+                            "mapping":{
+                                "destination":"cc_trans_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "cc_type":{
+                            "type":"column",
+                            "mapping":{"destination":"cc_type"}
+                        },
+                        "entity_id":{
+                            "mapping":{
+                                "destination":"entity_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "method":{
+                            "type":"column",
+                            "mapping":{"destination":"method"}
+                        },
+                        "parent_id":{
+                            "mapping":{
+                                "destination":"parent_id",
+                                "primaryKey": true
+                            }
+                        },
+                        "shipping_amount":{
+                            "type":"column",
+                            "mapping":{"destination":"shipping_amount"}
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
