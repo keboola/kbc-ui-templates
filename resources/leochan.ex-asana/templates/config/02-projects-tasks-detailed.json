@@ -1,6 +1,6 @@
 {
-    "name": "Projects & Tasks - Simple",
-    "description": "Getting projects and tasks, not containing the details of the tasks (task stories, tags)",
+    "name": "Projects & Tasks - Detailed",
+    "description": "Get projects and tasks in details. If this reaches the runtime limit, please use the simple version of the template.",
     "data": {
         "incrementalOutput": false,
         "pageSize": 100,
@@ -58,7 +58,42 @@
                             "limit": {
                                 "attr": "pageSize"
                             }
-                        }
+                        },
+                        "children": [{
+                                "endpoint": "tasks/{1:task_id}",
+                                "placeholders": {
+                                    "1:task_id": "id"
+                                },
+                                "dataType": "task_details",
+                                "dataField": "data"
+                            },
+                            {
+                                "endpoint": "tasks/{1:task_id}/stories",
+                                "placeholders": {
+                                    "1:task_id": "id"
+                                },
+                                "dataType": "task_stories",
+                                "dataField": "data",
+                                "params": {
+                                    "limit": {
+                                        "attr": "pageSize"
+                                    }
+                                }
+                            },
+                            {
+                                "endpoint": "tasks/{1:task_id}/subtasks",
+                                "placeholders": {
+                                    "1:task_id": "id"
+                                },
+                                "dataType": "task_subtasks",
+                                "dataField": "data",
+                                "params": {
+                                    "limit": {
+                                        "attr": "pageSize"
+                                    }
+                                }
+                            }
+                        ]
                     }
                 ]
             }]
