@@ -5,74 +5,44 @@
         "incrementalOutput": false,
         "pageSize": 100,
         "debug": false,
-        "jobs": [{
-            "endpoint": "workspaces",
-            "dataType": "workspaces",
-            "dataField": "data",
-            "params": {
-                "limit": {
-                    "attr": "pageSize"
-                }
-            },
-            "children": [{
-                "endpoint": "workspaces/{1:workspaces_id}/projects",
-                "placeholders": {
-                    "1:workspaces_id": "id"
-                },
-                "dataType": "projects",
+        "jobs": [
+            {
+                "endpoint": "workspaces",
+                "dataType": "workspaces",
                 "dataField": "data",
                 "params": {
                     "limit": {
                         "attr": "pageSize"
                     }
                 },
-                "children": [{
-                        "endpoint": "projects/{1:projects_id}",
-                        "placeholders": {
-                            "1:projects_id": "id"
-                        },
-                        "dataType": "projects_details",
-                        "dataField": "data"
-                    },
+                "children": [
                     {
-                        "endpoint": "projects/{1:project_id}/sections",
+                        "endpoint": "workspaces/{1:workspaces_id}/projects",
                         "placeholders": {
-                            "1:project_id": "id"
+                            "1:workspaces_id": "gid"
                         },
-                        "dataType": "sections",
-                        "dataField": "data",
-                        "params": {
-                            "limit": {
-                                "attr": "pageSize"
-                            }
-                        }
-                    },
-                    {
-                        "endpoint": "projects/{1:project_id}/tasks",
-                        "placeholders": {
-                            "1:project_id": "id"
-                        },
-                        "dataType": "tasks",
+                        "dataType": "projects",
                         "dataField": "data",
                         "params": {
                             "limit": {
                                 "attr": "pageSize"
                             }
                         },
-                        "children": [{
-                                "endpoint": "tasks/{1:task_id}",
+                        "children": [
+                            {
+                                "endpoint": "projects/{1:projects_id}",
                                 "placeholders": {
-                                    "1:task_id": "id"
+                                    "1:projects_id": "gid"
                                 },
-                                "dataType": "task_details",
+                                "dataType": "projects_details",
                                 "dataField": "data"
                             },
                             {
-                                "endpoint": "tasks/{1:task_id}/stories",
+                                "endpoint": "projects/{1:project_id}/sections",
                                 "placeholders": {
-                                    "1:task_id": "id"
+                                    "1:project_id": "gid"
                                 },
-                                "dataType": "task_stories",
+                                "dataType": "sections",
                                 "dataField": "data",
                                 "params": {
                                     "limit": {
@@ -81,26 +51,49 @@
                                 }
                             },
                             {
-                                "endpoint": "tasks/{1:task_id}/subtasks",
+                                "endpoint": "projects/{1:project_id}/tasks",
                                 "placeholders": {
-                                    "1:task_id": "id"
+                                    "1:project_id": "gid"
                                 },
-                                "dataType": "task_subtasks",
+                                "dataType": "tasks",
                                 "dataField": "data",
                                 "params": {
                                     "limit": {
                                         "attr": "pageSize"
                                     }
-                                }
+                                },
+                                "children": [
+                                    {
+                                        "endpoint": "tasks/{1:task_id}",
+                                        "placeholders": {
+                                            "1:task_id": "gid"
+                                        },
+                                        "dataType": "task_details",
+                                        "dataField": "data"
+                                    },
+                                    {
+                                        "endpoint": "tasks/{1:task_id}/subtasks",
+                                        "placeholders": {
+                                            "1:task_id": "gid"
+                                        },
+                                        "dataType": "task_subtasks",
+                                        "dataField": "data",
+                                        "params": {
+                                            "limit": {
+                                                "attr": "pageSize"
+                                            }
+                                        }
+                                    }
+                                ]
                             }
                         ]
                     }
                 ]
-            }]
-        }],
+            }
+        ],
         "mappings": {
             "projects_details": {
-                "id": {
+                "gid": {
                     "mapping": {
                         "destination": "id",
                         "primaryKey": true
@@ -112,7 +105,7 @@
                         "destination": "name"
                     }
                 },
-                "owner.id": {
+                "owner.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "owner_id"
@@ -130,7 +123,7 @@
                         "destination": "due_date"
                     }
                 },
-                "current_status.author.id": {
+                "current_status.author.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "current_status_author_id"
@@ -188,7 +181,7 @@
                     "type": "table",
                     "destination": "projects-members",
                     "tableMapping": {
-                        "id": {
+                        "gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "id"
@@ -206,7 +199,7 @@
                     "type": "table",
                     "destination": "projects-followers",
                     "tableMapping": {
-                        "id": {
+                        "gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "id"
@@ -224,13 +217,13 @@
                     "type": "table",
                     "destination": "projects-custom_field_settings",
                     "tableMapping": {
-                        "id": {
+                        "gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "id"
                             }
                         },
-                        "custom_field.id": {
+                        "custom_field.gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "custom_field_id"
@@ -254,7 +247,7 @@
                                 "destination": "is_important"
                             }
                         },
-                        "project.id": {
+                        "project.gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "project_id"
@@ -270,7 +263,7 @@
                             "type": "table",
                             "destination": "projects-custom_field_settings-enum_options",
                             "tableMapping": {
-                                "id": {
+                                "gid": {
                                     "type": "column",
                                     "mapping": {
                                         "destination": "id"
@@ -310,7 +303,7 @@
                         "destination": "notes"
                     }
                 },
-                "workspace.id": {
+                "workspace.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "workspace_id"
@@ -329,8 +322,8 @@
                     }
                 }
             },
-            "section": {
-                "id": {
+            "sections": {
+                "gid": {
                     "mapping": {
                         "destination": "id",
                         "primaryKey": true
@@ -342,7 +335,7 @@
                         "destination": "name"
                     }
                 },
-                "parent_id": {
+                "parent_gid": {
                     "type": "user",
                     "mapping": {
                         "destination": "project_id"
@@ -350,7 +343,7 @@
                 }
             },
             "tasks": {
-                "id": {
+                "gid": {
                     "mapping": {
                         "destination": "id",
                         "primaryKey": true
@@ -362,7 +355,7 @@
                         "destination": "name"
                     }
                 },
-                "parent_id": {
+                "parent_gid": {
                     "type": "user",
                     "mapping": {
                         "destination": "project_id"
@@ -370,7 +363,7 @@
                 }
             },
             "task_details": {
-                "id": {
+                "gid": {
                     "mapping": {
                         "destination": "id",
                         "primaryKey": true
@@ -382,7 +375,7 @@
                         "destination": "name"
                     }
                 },
-                "assignee.id": {
+                "assignee.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "assignee_id"
@@ -436,7 +429,7 @@
                         "destination": "modified_at"
                     }
                 },
-                "parent.id": {
+                "parent.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "parent_id"
@@ -458,7 +451,7 @@
                     "type": "table",
                     "destination": "task_details-followers",
                     "tableMapping": {
-                        "id": {
+                        "gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "id"
@@ -476,7 +469,7 @@
                     "type": "table",
                     "destination": "task_details-memberships",
                     "tableMapping": {
-                        "project.id": {
+                        "project.gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "project_id"
@@ -488,7 +481,7 @@
                                 "destination": "project_name"
                             }
                         },
-                        "section.id": {
+                        "section.gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "section_id"
@@ -506,7 +499,7 @@
                     "type": "table",
                     "destination": "task_details-tags",
                     "tableMapping": {
-                        "id": {
+                        "gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "id"
@@ -524,7 +517,7 @@
                     "type": "table",
                     "destination": "task_details-custom_fields",
                     "tableMapping": {
-                        "id": {
+                        "gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "id"
@@ -560,7 +553,7 @@
                                 "destination": "precision"
                             }
                         },
-                        "enum_value.id": {
+                        "enum_value.gid": {
                             "type": "column",
                             "mapping": {
                                 "destination": "enum_value_id"
@@ -588,7 +581,7 @@
                             "type": "table",
                             "destination": "task_details-custom_field-enum_options",
                             "tableMapping": {
-                                "id": {
+                                "gid": {
                                     "type": "column",
                                     "mapping": {
                                         "destination": "id"
@@ -618,7 +611,7 @@
                 }
             },
             "task_subtasks": {
-                "id": {
+                "gid": {
                     "mapping": {
                         "destination": "id",
                         "primaryKey": true
@@ -638,7 +631,7 @@
                 }
             },
             "task_stories": {
-                "id": {
+                "gid": {
                     "mapping": {
                         "destination": "id",
                         "primaryKey": true
@@ -662,7 +655,7 @@
                         "destination": "created_at"
                     }
                 },
-                "created_by.id": {
+                "created_by.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "created_by_id"
@@ -686,7 +679,7 @@
                         "destination": "html_text"
                     }
                 },
-                "target.id": {
+                "target.gid": {
                     "type": "column",
                     "mapping": {
                         "destination": "target_id"
@@ -702,6 +695,52 @@
                     "type": "user",
                     "mapping": {
                         "destination": "task_id"
+                    }
+                }
+            },
+            "projects": {
+                "gid": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "resource_type": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "resource_type"
+                    }
+                },
+                "parent_gid": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "parent_id"
+                    }
+                }
+            },
+            "workspaces": {
+                "gid": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "resource_type": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "resource_type"
                     }
                 }
             }
