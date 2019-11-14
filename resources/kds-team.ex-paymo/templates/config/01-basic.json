@@ -1,6 +1,6 @@
 {
     "name": "Basic",
-    "description": "Downloads \n\n - Clients \n - Clients' contatcs \n - Projects \n - Tasks \n - Tasklists \n - Entries \n - Users \n - Users' tasks",
+    "description": "Downloads \n\n - Clients \n - Clients' contacts \n - Projects \n - Tasks \n - Tasklists \n - Entries \n - Users \n - Users' tasks",
     "data": {
         "incrementalOutput": true,
         "jobs": [

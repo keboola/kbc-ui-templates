@@ -27,6 +27,12 @@
                         "primaryKey":true
                     }
                 },
+                "increment_id": {
+                    "mapping":{
+                        "destination":"invoice_number",
+                        "primaryKey":true
+                    }
+                },
                 "global_currency_code":{
                     "type":"column",
                     "mapping":{"destination":"currency_code"}
