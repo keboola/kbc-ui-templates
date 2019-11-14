@@ -41,6 +41,10 @@
                         "primaryKey": true
                     }
                 },
+                "status": {
+                    "type": "column",
+                    "mapping":{"destination":"status"}
+                },
                 "grand_total":{
                     "type": "column",
                     "mapping":{"destination":"grand_total"}
