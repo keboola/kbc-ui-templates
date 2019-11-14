@@ -51,6 +51,12 @@
                         "primaryKey": true
                     }
                 },
+                "increment_id": {
+                    "mapping": {
+                        "destination":"order_number",
+                        "primaryKey": true
+                    }
+                },
                 "grand_total":{
                     "type": "column",
                     "mapping":{"destination":"grand_total"}
