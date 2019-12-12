@@ -1,0 +1,34 @@
+
+{
+   "baseUrl": "https://console.drivebusinessintelligence.com/api/",
+   "authentication": {
+    "type": "query",
+    "query": {
+     "Signature": {
+      "function": "md5",
+      "args": [
+       {
+        "function": "concat",
+        "args": [
+         {
+          "attr": "#api_key"
+         },
+         {
+          "function": "date",
+          "args": [
+           "Y-m-d",
+           {
+            "function": "strtotime",
+            "args": [
+             "-1 days"
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    }
+   }
+ }
