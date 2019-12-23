@@ -2,102 +2,536 @@
     "name": "Standard (Recommended)",
     "description": "Downloads list of forms, form details, questions and responses.",
     "data": {
-        "incrementalOutput": true,
         "debug": false,
-        "http": {
-            "headers": {
-                "Accept": "application/json"
+        "#token": "api_token",
+        "outputBucket": "Typeform",
+        "jobs": [
+            {
+                "endpoint": "forms",
+                "scroller": "pagenum",
+                "dataType": "forms",
+                "dataField": "items",
+                "children": [
+                    {
+                        "endpoint": "forms/{id}",
+                        "placeholders": {
+                            "id": "id"
+                        },
+                        "dataType": "form",
+                        "dataField": "."
+                    },
+                    {
+                        "endpoint": "forms/{id}/responses",
+                        "scroller": "pagenum",
+                        "placeholders": {
+                            "id": "id"
+                        },
+                        "dataType": "responses",
+                        "dataField": "items"
+                    }
+                ]
             }
-        },
-        "jobs": [{
-            "endpoint": "forms",
-            "dataType": "forms",
-            "dataField": ".",
-            "children": [{
-                "endpoint": "/v1/form/{id}",
-                "placeholders": {
-                    "id": "id"
-                },
-                "dataType": "form",
-                "dataField": "."
-            }]
-        }],
+        ],
         "mappings": {
             "forms": {
                 "id": {
                     "mapping": {
                         "destination": "id",
-                        "primaryKey": true,
-                        "propertyOrder": 1
+                        "primaryKey": true
                     }
                 },
-                "name": {
+                "title": {
                     "mapping": {
-                        "destination": "name"
+                        "destination": "title"
+                    }
+                },
+                "last_updated_at": {
+                    "mapping": {
+                        "destination": "last_updated_at"
+                    }
+                },
+                "settings_is_public": {
+                    "mapping": {
+                        "destination": "settings_is_public"
+                    }
+                },
+                "settings_is_trial": {
+                    "mapping": {
+                        "destination": "settings_is_trial"
+                    }
+                },
+                "self_href": {
+                    "mapping": {
+                        "destination": "self_href"
+                    }
+                },
+                "theme_href": {
+                    "mapping": {
+                        "destination": "theme_href"
+                    }
+                },
+                "links_display": {
+                    "mapping": {
+                        "destination": "links_display"
                     }
                 }
             },
             "form": {
-                "parent_id": {
-                    "type": "user",
+                "id": {
                     "mapping": {
-                        "destination": "form_id",
+                        "destination": "id",
                         "primaryKey": true
                     }
                 },
-                "stats.responses.showing": {
+                "title": {
                     "mapping": {
-                        "destination": "stats_responses_showing"
+                        "destination": "title"
                     }
                 },
-                "stats.responses.total": {
+                "theme.href": {
                     "mapping": {
-                        "destination": "stats_responses_total"
+                        "destination": "theme_href"
                     }
                 },
-                "stats.responses.completed": {
+                "workspace.href": {
                     "mapping": {
-                        "destination": "stats_responses_completed"
+                        "destination": "workspace_href"
                     }
                 },
-                "questions": {
-                    "destination": "questions",
+                "settings.is_public": {
+                    "mapping": {
+                        "destination": "settings_is_public"
+                    }
+                },
+                "settings.is_trial": {
+                    "mapping": {
+                        "destination": "settings_is_trial"
+                    }
+                },
+                "settings.language": {
+                    "mapping": {
+                        "destination": "settings_language"
+                    }
+                },
+                "settings.progress_bar": {
+                    "mapping": {
+                        "destination": "settings_progress_bar"
+                    }
+                },
+                "settings.show_progress_bar": {
+                    "mapping": {
+                        "destination": "settings_show_progress_bar"
+                    }
+                },
+                "settings.show_typeform_branding": {
+                    "mapping": {
+                        "destination": "settings_show_typeform_branding"
+                    }
+                },
+                "settings.meta.google_analytics": {
+                    "mapping": {
+                        "destination": "settings_meta_google_analytics"
+                    }
+                },
+                "settings.meta.facebook_pixel": {
+                    "mapping": {
+                        "destination": "settings_meta_facebook_pixel"
+                    }
+                },
+                "settings.meta.google_tag_manager": {
+                    "mapping": {
+                        "destination": "settings_meta_google_tag_manager"
+                    }
+                },
+                "fields": {
                     "type": "table",
+                    "destination": "form_fields",
                     "tableMapping": {
                         "id": {
                             "mapping": {
-                                "destination": "id",
-                                "primaryKey": true
+                                "destination": "fields_id"
                             }
                         },
-                        "question": "question",
-                        "field_id": "fieldId",
-                        "group": "group"
+                        "title": {
+                            "mapping": {
+                                "destination": "fields_title"
+                            }
+                        },
+                        "ref": {
+                            "mapping": {
+                                "destination": "fields_ref"
+                            }
+                        },
+                        "validations.required": {
+                            "mapping": {
+                                "destination": "fields_validations_required"
+                            }
+                        },
+                        "type": {
+                            "mapping": {
+                                "destination": "fields_type"
+                            }
+                        },
+                        "properties": {
+                            "type": "table",
+                            "destination": "form_fields_properties",
+                            "tableMapping": {
+                                "description": {
+                                    "mapping": {
+                                        "destination": "description"
+                                    }
+                                },
+                                "choices": {
+                                    "type": "table",
+                                    "destination": "form_fields_properties_choices",
+                                    "tableMapping": {
+                                        "id": {
+                                            "mapping": {
+                                                "destination": "id"
+                                            }
+                                        },
+                                        "ref": {
+                                            "mapping": {
+                                                "destination": "ref"
+                                            }
+                                        },
+                                        "label": {
+                                            "mapping": {
+                                                "destination": "label"
+                                            }
+                                        }
+                                    }
+                                },
+                                "allow_multiple_selection": {
+                                    "mapping": {
+                                        "destination": "allow_multiple_selection"
+                                    }
+                                },
+                                "randomize": {
+                                    "mapping": {
+                                        "destination": "randomize"
+                                    }
+                                },
+                                "allow_other_choice": {
+                                    "mapping": {
+                                        "destination": "allow_other_choice"
+                                    }
+                                },
+                                "vertical_alignment": {
+                                    "mapping": {
+                                        "destination": "vertical_alignment"
+                                    }
+                                },
+                                "supersized": {
+                                    "mapping": {
+                                        "destination": "supersized"
+                                    }
+                                },
+                                "show_labels": {
+                                    "mapping": {
+                                        "destination": "show_labels"
+                                    }
+                                },
+                                "alphabetical_order": {
+                                    "mapping": {
+                                        "destination": "alphabetical_order"
+                                    }
+                                },
+                                "hide_marks": {
+                                    "mapping": {
+                                        "destination": "hide_marks"
+                                    }
+                                },
+                                "button_text": {
+                                    "mapping": {
+                                        "destination": "button_text"
+                                    }
+                                },
+                                "steps": {
+                                    "mapping": {
+                                        "destination": "steps"
+                                    }
+                                },
+                                "shape": {
+                                    "mapping": {
+                                        "destination": "shape"
+                                    }
+                                },
+                                "fields.properties.labels": {
+                                    "type": "table",
+                                    "destination": "form_fields_properties_labels",
+                                    "tableMapping": {
+                                        "id": {
+                                            "mapping": {
+                                                "destination": "id"
+                                            }
+                                        },
+                                        "left": {
+                                            "mapping": {
+                                                "destination": "left"
+                                            }
+                                        },
+                                        "right": {
+                                            "mapping": {
+                                                "destination": "right"
+                                            }
+                                        },
+                                        "center": {
+                                            "mapping": {
+                                                "destination": "center"
+                                            }
+                                        }
+                                    }
+                                },
+                                "structure": {
+                                    "mapping": {
+                                        "destination": "structure"
+                                    }
+                                },
+                                "separator": {
+                                    "mapping": {
+                                        "destination": "separator"
+                                    }
+                                }
+                            },
+                            "fields.properties.currency": {
+                                "type": "table",
+                                "destination": "form_fields_properties_currency",
+                                "tableMapping": {
+                                    "id": {
+                                        "mapping": {
+                                            "destination": "id"
+                                        }
+                                    },
+                                    "type": {
+                                        "mapping": {
+                                            "destination": "type"
+                                        }
+                                    },
+                                    "value": {
+                                        "mapping": {
+                                            "destination": "value"
+                                        }
+                                    }
+                                }
+                            },
+                            "show_button": {
+                                "mapping": {
+                                    "destination": "show_button"
+                                }
+                            }
+                        },
+                        "fields.validations": {
+                            "type": "table",
+                            "destination": "form_fields_validations",
+                            "tableMapping": {
+                                "id": {
+                                    "mapping": {
+                                        "destination": "id"
+                                    }
+                                },
+                                "max_length": {
+                                    "mapping": {
+                                        "destination": "required"
+                                    }
+                                },
+                                "min_value": {
+                                    "mapping": {
+                                        "destination": "right"
+                                    }
+                                },
+                                "max_value": {
+                                    "mapping": {
+                                        "destination": "center"
+                                    }
+                                }
+                            }
+                        },
+                        "fields.attachment": {
+                            "type": "table",
+                            "destination": "form_fields_attachment",
+                            "tableMapping": {
+                                "id": {
+                                    "mapping": {
+                                        "destination": "id"
+                                    }
+                                },
+                                "type": {
+                                    "mapping": {
+                                        "destination": "type"
+                                    }
+                                },
+                                "href": {
+                                    "mapping": {
+                                        "destination": "href"
+                                    }
+                                },
+                                "scale": {
+                                    "mapping": {
+                                        "destination": "scale"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "hidden": {
+                        "mapping": {
+                            "destination": "hidden"
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "response_id": {
+                    "mapping": {
+                        "destination": "response_id",
+                        "primaryKey": true
                     }
                 },
-                "responses": {
-                    "destination": "responses",
+                "parent_id": {
+                    "mapping": {
+                        "destination": "parent_id",
+                        "primaryKey": true
+                    }
+                },
+                "landed_at": {
+                    "mapping": {
+                        "destination": "landed_at"
+                    }
+                },
+                "submitted_at": {
+                    "mapping": {
+                        "destination": "submitted_at"
+                    }
+                },
+                "metadata.user_agent": {
+                    "mapping": {
+                        "destination": "user_agent"
+                    }
+                },
+                "metadata.platform": {
+                    "mapping": {
+                        "destination": "platform"
+                    }
+                },
+                "metadata.referer": {
+                    "mapping": {
+                        "destination": "referer"
+                    }
+                },
+                "metadata.network_id": {
+                    "mapping": {
+                        "destination": "network_id"
+                    }
+                },
+                "hidden.id": {
+                    "mapping": {
+                        "destination": "hidden_id"
+                    }
+                },
+                "calculated.score": {
+                    "mapping": {
+                        "destination": "score"
+                    }
+                },
+                "answers": {
                     "type": "table",
+                    "destination": "responses_answers",
                     "tableMapping": {
-                        "completed": "completed",
-                        "token": {
+                        "field.id": {
                             "mapping": {
-                                "destination": "id",
-                                "primaryKey": true
+                                "destination": "field_id"
                             }
                         },
-                        "metadata.browser": "metadata_browser",
-                        "metadata.platform": "metadata_platform",
-                        "metadata.date_land": "metadata_date_land",
-                        "metadata.date_submit": "metadata_date_submit",
-                        "metadata.user_agent": "metadata_user_agent",
-                        "metadata.referer": "metadata_referer",
-                        "metadata.network_id": "metadata_network_id",
-                        "answers": {
+                        "field.type": {
                             "mapping": {
-                                "destination": "answers"
-                            },
-                            "forceType": "json"
+                                "destination": "field_type"
+                            }
+                        },
+                        "field.ref": {
+                            "mapping": {
+                                "destination": "field_ref"
+                            }
+                        },
+                        "field.title": {
+                            "mapping": {
+                                "destination": "field_title"
+                            }
+                        },
+                        "type": {
+                            "mapping": {
+                                "destination": "type"
+                            }
+                        },
+                        "choice.label": {
+                            "mapping": {
+                                "destination": "choice_label"
+                            }
+                        },
+                        "choice.other": {
+                            "mapping": {
+                                "destination": "choice_other"
+                            }
+                        },
+                        "choices.label": {
+                            "mapping": {
+                                "destination": "choices_label"
+                            }
+                        },
+                        "choices.other": {
+                            "mapping": {
+                                "destination": "choices_other"
+                            }
+                        },
+                        "date": {
+                            "mapping": {
+                                "destination": "date"
+                            }
+                        },
+                        "email": {
+                            "mapping": {
+                                "destination": "email"
+                            }
+                        },
+                        "file_url": {
+                            "mapping": {
+                                "destination": "file_url"
+                            }
+                        },
+                        "number": {
+                            "mapping": {
+                                "destination": "number"
+                            }
+                        },
+                        "boolean": {
+                            "mapping": {
+                                "destination": "boolean"
+                            }
+                        },
+                        "text": {
+                            "mapping": {
+                                "destination": "text"
+                            }
+                        },
+                        "url": {
+                            "mapping": {
+                                "destination": "url"
+                            }
+                        },
+                        "payment.amount": {
+                            "mapping": {
+                                "destination": "payment_amount"
+                            }
+                        },
+                        "payment.last4": {
+                            "mapping": {
+                                "destination": "payment_last4"
+                            }
+                        },
+                        "payment.name": {
+                            "mapping": {
+                                "destination": "payment_name"
+                            }
                         }
                     }
                 }
