@@ -1,16 +1,14 @@
 {
-    "name": "Unsubscribed Contacts",
-    "description": "Unsubscribed Contacts",
-    "data": {
-        "debug": false,
-         "jobs": [
-    {
-     "endpoint": "contacts",
-     "dataField": "contacts",
-     "params": {
-      "status": "2",
-     }
-    }
-   ]
-    }
+	"name": "Unsubscribed Contacts",
+	"description": "Unsubscribed Contacts",
+	"data": {
+		"debug": false,
+		"jobs": [{
+			"endpoint": "contacts",
+			"dataField": "contacts",
+			"params": {
+				"status": "2"
+			}
+		}]
+	}
 }
