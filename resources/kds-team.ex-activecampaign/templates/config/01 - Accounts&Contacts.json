@@ -1,0 +1,46 @@
+{
+    "name": "Contacts, Accounts, Deals",
+    "description": "Downloads Contacts + Accounts + Deals + Campaigns + Messages + Automations",
+    "data": {
+        "debug": false,
+         "jobs": [
+    {
+     "endpoint": "contacts",
+     "dataField": "contacts",
+     "params": {
+      "id_greater": "0"
+     }
+    },
+    {
+     "endpoint": "accounts",
+     "dataField": "accounts"
+    },
+    {
+     "endpoint": "deals",
+     "dataField": "deals"
+    },
+    {
+     "endpoint": "campaigns",
+     "dataField": "campaigns",
+	 "children": [
+                    {
+                        "endpoint": "campaigns/{campaign_id}/links",
+                        "dataType": "survey_details",
+                        "dataField": "links",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        }
+                    }
+                ]
+    },
+    {
+     "endpoint": "messages",
+     "dataField": "messages"
+    },
+	{
+     "endpoint": "automations",
+     "dataField": "automations"
+    },
+   ]
+    }
+}

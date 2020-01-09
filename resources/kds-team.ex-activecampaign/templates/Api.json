@@ -1,0 +1,14 @@
+  "api": {
+   "baseUrl": "apiurl",
+   "pagination": {
+    "method": "offset",
+    "limitParam": "limit",
+    "offsetParam": "offset",
+    "limit": "100"
+   },
+   "http": {
+    "requiredHeaders": [
+     "Api-Token"
+    ]
+   }
+  },
