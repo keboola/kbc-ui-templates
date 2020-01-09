@@ -6,10 +6,7 @@
          "jobs": [
     {
      "endpoint": "contacts",
-     "dataField": "contacts",
-     "params": {
-      "id_greater": "0"
-     }
+     "dataField": "contacts"
     },
     {
      "endpoint": "accounts",
@@ -25,7 +22,7 @@
 	 "children": [
                     {
                         "endpoint": "campaigns/{campaign_id}/links",
-                        "dataType": "survey_details",
+                        "dataType": "link_details",
                         "dataField": "links",
                         "placeholders": {
                             "campaign_id": "id"
