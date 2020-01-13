@@ -9,8 +9,10 @@
         ]
     },
     "http": {
-        "Headers": {
-            "Api-Token": "#apikey"
+        "headers": {
+            "Api-Token": {
+                "attr": "#apikey"
+            }
         }
     },
     "pagination": {
