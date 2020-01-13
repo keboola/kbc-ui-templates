@@ -1,0 +1,15 @@
+{
+    "name": "Unsubscribed Contacts",
+    "description": "Unsubscribed Contacts",
+    "data": {
+        "jobs": [
+            {
+                "endpoint": "contacts",
+                "dataField": "contacts",
+                "params": {
+                    "status": "2"
+                }
+            }
+        ]
+    }
+}
