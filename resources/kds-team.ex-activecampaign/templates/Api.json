@@ -2,8 +2,10 @@
 	"baseUrl": {
         "function": "concat",
         "args": [
-             "http://",
-            "apiurl"
+            "https://",
+            {
+                "attr": "apiurl"
+            }
         ]
     },
 	"http": {
