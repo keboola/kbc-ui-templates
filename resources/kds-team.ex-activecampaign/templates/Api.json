@@ -1,5 +1,11 @@
 {
-	"baseUrl": "apiurl",
+	"baseUrl": {
+        "function": "concat",
+        "args": [
+             "http://",
+            "apiurl"
+        ]
+    },
 	"http": {
 		"Headers": {
 			"Api-Token": "#apikey"
