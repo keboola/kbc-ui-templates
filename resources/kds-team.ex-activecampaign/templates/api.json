@@ -4,14 +4,15 @@
         "args": [
             "https://",
             {
-                "attr": "apiurl"
-            }
+                "attr": "accountName"
+            },
+            ".api-us1.com/api/3/"
         ]
     },
     "http": {
         "headers": {
             "Api-Token": {
-                "attr": "#apikey"
+                "attr": "#apiKey"
             }
         }
     },
