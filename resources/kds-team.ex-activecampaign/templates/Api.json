@@ -1,5 +1,5 @@
 {
-	"baseUrl": {
+    "baseUrl": {
         "function": "concat",
         "args": [
             "https://",
@@ -8,15 +8,15 @@
             }
         ]
     },
-	"http": {
-		"Headers": {
-			"Api-Token": "#apikey"
-		}
-	},
-"pagination": {
-	"method": "offset",
-	"limitParam": "limit",
-	"offsetParam": "offset",
-	"limit": "100"
-}
+    "http": {
+        "Headers": {
+            "Api-Token": "#apikey"
+        }
+    },
+    "pagination": {
+        "method": "offset",
+        "limitParam": "limit",
+        "offsetParam": "offset",
+        "limit": "100"
+    }
 }
