@@ -2,7 +2,6 @@
     "name": "Unsubscribed Contacts",
     "description": "Unsubscribed Contacts",
     "data": {
-        "debug": false,
         "jobs": [
             {
                 "endpoint": "contacts",

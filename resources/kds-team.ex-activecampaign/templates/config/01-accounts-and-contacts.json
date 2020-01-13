@@ -2,7 +2,6 @@
     "name": "Contacts, Accounts, Deals",
     "description": "Downloads Contacts + Accounts + Deals + Campaigns + Messages + Automations",
     "data": {
-        "debug": false,
         "jobs": [
             {
                 "endpoint": "contacts",
