@@ -5,8 +5,6 @@
         "debug": false,
         "incrementalOutput": false,
         "outputBucket": "DriveCX",
-        "#api_key": "api_key",
-        "client_id": "client_id",
         "jobs": [
             {
                 "endpoint": "client/fetch_omnivore_locations",
