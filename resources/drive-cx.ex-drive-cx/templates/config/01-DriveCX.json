@@ -2,9 +2,6 @@
     "name": "Locations, Purchase Details, Employees and Surveys",
     "description": "",
     "data": {
-        "debug": false,
-        "incrementalOutput": false,
-        "outputBucket": "DriveCX",
         "jobs": [
             {
                 "endpoint": "client/fetch_omnivore_locations",
