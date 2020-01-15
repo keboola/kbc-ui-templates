@@ -1,5 +1,5 @@
 {
-    "name":"Invoices",
+    "name":"Invoices - Last 7 Days",
     "description":"Retrieve a list of invoices.",
     "data":{
         "incrementalOutput": true,
@@ -8,7 +8,23 @@
             {
                 "endpoint":"invoices",
                 "dataType":"invoices",
-                "dataField":"items"
+                "dataField":"items",
+                "params": {
+                    "searchCriteria[filter_groups][0][filters][0][field]": "created_at",
+                    "searchCriteria[filter_groups][0][filters][0][condition_type]": "gteq",
+                    "searchCriteria[filter_groups][0][filters][0][value]": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
             }
         ],
         "mappings":{
