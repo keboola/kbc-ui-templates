@@ -1,25 +1,26 @@
 {
-    "authentication": {
-        "type": "url.query"
-    },
-    "baseUrl": "https://api.typeform.com/v1/",
-    "pagination": {
-        "method": "offset",
-        "limit": 100
-    },
+    "baseUrl": "https://api.typeform.com/",
     "http": {
         "headers": {
-            "Accept": "application/json"
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "attr": "#token"
+                    }
+                ]
+            }
         }
     },
-    "query": {
-        "key": {
-            "function": "concat",
-            "args": [
-                {
-                    "attr": "#token"
-                }
-            ]
+    "pagination": {
+        "method": "multiple",
+        "scrollers": {
+            "pagenum": {
+                "method": "pagenum"
+            }
         }
     }
 }
