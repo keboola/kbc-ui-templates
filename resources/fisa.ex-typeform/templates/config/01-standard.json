@@ -2,9 +2,6 @@
     "name": "Standard (Recommended)",
     "description": "Downloads list of forms, form details, questions and responses.",
     "data": {
-        "debug": false,
-        "#token": "api_token",
-        "outputBucket": "Typeform",
         "jobs": [
             {
                 "endpoint": "forms",
