@@ -1,5 +1,5 @@
 {
-    "name": "Extended",
+    "name": "Extended (Extracts all data)",
     "description": "Downloads \n\n - Organizations \n - Teams \n - Members \n - Members Detail - some additional info (like email). \n - Repositories \n - Commits \n - Commits Files Changes - what has been changed by the commit. \n - Issues \n - Issues Comments \n - Pull Requests \n - Pull Request Comments - comments on the part of the code. \n - Pull Request Issue Comments - comments on the pull request from Issues endpoint. \n - Pull Request Reviews",
     "data": {
         "incrementalOutput": true,
