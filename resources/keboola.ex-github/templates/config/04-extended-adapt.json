@@ -1,6 +1,6 @@
 {
     "name": "Extended (Extracts only new data since the last run)",
-    "description": "Downloads \n\n - Organizations \n - Teams \n - Members \n - Members Detail - some additional info (like email). \n - Repositories \n - Commits \n - Commits Files Changes - what has been changed by the commit. \n - Issues \n - Issues Comments \n - Pull Requests \n - Pull Request Comments - comments on the part of the code. \n - Pull Request Issue Comments - comments on the pull request from Issues endpoint. \n - Pull Request Reviews",
+    "description": "Downloads \n\n - Organizations \n - Teams \n - Members \n - Members Detail - some additional info (like email). \n - Repositories \n - Commits \n - Issues \n - Issues Comments \n - Pull Requests \n - Pull Request Comments - comments on the part of the code. \n - Pull Request Issue Comments - comments on the pull request from Issues endpoint. \n - Pull Request Reviews",
     "data": {
         "incrementalOutput": true,
         "jobs": [
@@ -57,19 +57,7 @@
                                             }
                                         ]
                                     }
-                                },
-                                "children": [
-                                    {
-                                        "endpoint": "repos/{3:login}/{2:name}/commits/{1:sha}",
-                                        "dataField": ".",
-                                        "dataType": "commit_detail",
-                                        "placeholders": {
-                                            "1:sha": "sha",
-                                            "2:name": "name",
-                                            "3:login": "login"
-                                        }
-                                    }
-                                ]
+                                }
                             },
                             {
                                 "endpoint": "repos/{2:login}/{1:name}/issues",
@@ -966,71 +954,6 @@
                 "html_url": {
                     "mapping": {
                         "destination": "html_url"
-                    }
-                }
-            },
-            "commit_detail": {
-                "sha": {
-                    "mapping": {
-                        "destination": "sha",
-                        "primaryKey": true,
-                        "propertyOrder": 1
-                    }
-                },
-                "stats.total": {
-                    "mapping": {
-                        "destination": "total"
-                    }
-                },
-                "stats.additions": {
-                    "mapping": {
-                        "destination": "additions"
-                    }
-                },
-                "stats.deletions": {
-                    "mapping": {
-                        "destination": "deletions"
-                    }
-                },
-                "files": {
-                    "type": "table",
-                    "destination": "commit_files_changes",
-                    "parentKey": {
-                        "primaryKey": true
-                    },
-                    "tableMapping": {
-                        "filename": {
-                            "mapping": {
-                                "destination": "filename",
-                                "primaryKey": true
-                            }
-                        },
-                        "status": {
-                            "mapping": {
-                                "destination": "status",
-                                "primaryKey": true
-                            }
-                        },
-                        "previous_filename": {
-                            "mapping": {
-                                "destination": "previous_filename"
-                            }
-                        },
-                        "additions": {
-                            "mapping": {
-                                "destination": "additions"
-                            }
-                        },
-                        "deletions": {
-                            "mapping": {
-                                "destination": "deletions"
-                            }
-                        },
-                        "changes": {
-                            "mapping": {
-                                "destination": "changes"
-                            }
-                        }
                     }
                 }
             }
