@@ -10,12 +10,20 @@
                 "children": [
                     {
                         "endpoint": "surveys/{survey_id}/collectors",
-                        "dataType": "survey_collectors",
+                        "dataType": "survey_collectors_bridge",
                         "dataField": "data",
                         "placeholders": {
                             "survey_id": "id"
                         },
                         "children": [
+                            {
+                                "endpoint": "collectors/{collector_id}",
+                                "dataType": "survey_collectors",
+                                "dataField": ".",
+                                "placeholders": {
+                                    "collector_id": "id"
+                                }
+                            },
                             {
                                 "endpoint": "collectors/{collector_id}/stats",
                                 "dataType": "survey_collectors_stats",
@@ -54,30 +62,9 @@
                 }
             },
             "survey_collectors": {
-                "id": {
+                "edit_response_type": {
                     "mapping": {
-                        "destination": "id",
-                        "primaryKey": true
-                    }
-                },
-                "name": {
-                    "mapping": {
-                        "destination": "name"
-                    }
-                },
-                "status": {
-                    "mapping": {
-                        "destination": "status"
-                    }
-                },
-                "type": {
-                    "mapping": {
-                        "destination": "type"
-                    }
-                },
-                "thank_you_message": {
-                    "mapping": {
-                        "destination": "thank_you_message"
+                        "destination": "edit_response_type"
                     }
                 },
                 "disqualification_message": {
@@ -85,14 +72,9 @@
                         "destination": "disqualification_message"
                     }
                 },
-                "disqualification_url": {
+                "open": {
                     "mapping": {
-                        "destination": "disqualification_url"
-                    }
-                },
-                "close_date": {
-                    "mapping": {
-                        "destination": "close_date"
+                        "destination": "open"
                     }
                 },
                 "closed_page_message": {
@@ -100,9 +82,24 @@
                         "destination": "closed_page_message"
                     }
                 },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                },
                 "redirect_url": {
                     "mapping": {
                         "destination": "redirect_url"
+                    }
+                },
+                "anonymous_type": {
+                    "mapping": {
+                        "destination": "anonymous_type"
                     }
                 },
                 "display_survey_results": {
@@ -110,14 +107,39 @@
                         "destination": "display_survey_results"
                     }
                 },
-                "edit_response_type": {
+                "url": {
                     "mapping": {
-                        "destination": "edit_response_type"
+                        "destination": "url"
                     }
                 },
-                "anonymous_type": {
+                "disqualification_url": {
                     "mapping": {
-                        "destination": "anonymous_type"
+                        "destination": "disqualification_url"
+                    }
+                },
+                "sender_email": {
+                    "mapping": {
+                        "destination": "sender_email"
+                    }
+                },
+                "thank_you_message": {
+                    "mapping": {
+                        "destination": "thank_you_message"
+                    }
+                },
+                "status": {
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "close_date": {
+                    "mapping": {
+                        "destination": "close_date"
+                    }
+                },
+                "date_created": {
+                    "mapping": {
+                        "destination": "date_created"
                     }
                 },
                 "allow_multiple_responses": {
@@ -130,19 +152,20 @@
                         "destination": "date_modified"
                     }
                 },
-                "url": {
+                "type": {
                     "mapping": {
-                        "destination": "url"
+                        "destination": "type"
                     }
                 },
-                "open": {
+                "id": {
                     "mapping": {
-                        "destination": "open"
+                        "destination": "id",
+                        "primaryKey": true
                     }
                 },
-                "date_created": {
+                "survey_id": {
                     "mapping": {
-                        "destination": "date_created"
+                        "destination": "survey_id"
                     }
                 },
                 "password_enabled": {
@@ -150,24 +173,14 @@
                         "destination": "napassword_enabledme"
                     }
                 },
-                "sender_email": {
-                    "mapping": {
-                        "destination": "sender_email"
-                    }
-                },
-                "response_limit": {
-                    "mapping": {
-                        "destination": "response_limit"
-                    }
-                },
                 "redirect_type": {
                     "mapping": {
                         "destination": "redirect_type"
                     }
                 },
-                "href": {
+                "response_limit": {
                     "mapping": {
-                        "destination": "href"
+                        "destination": "response_limit"
                     }
                 }
             }
