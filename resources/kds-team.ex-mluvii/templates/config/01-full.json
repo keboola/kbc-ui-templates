@@ -1,0 +1,1200 @@
+{
+  "name": "All",
+  "description": "Get all Users, Email Messages, Email Threads and Sessions from mluvii",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "api/v1/Users",
+        "dataType": "Users"
+      },
+      {
+        "endpoint": "api/v1/EmailMessages",
+        "dataType": "EmailMessages"
+      },
+      {
+        "endpoint": "/api/v1/EmailThreads",
+        "dataType": "EmailThreads"
+      },
+      {
+        "endpoint": "/api/v1/Sessions",
+        "dataType": "Sessions"
+      }
+    ],
+    "mappings": {
+      "Users": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "firstName": "firstName",
+        "lastName": "lastName",
+        "username": "username",
+        "email": "email"
+      },
+      "EmailMessages": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "companyId": "companyId",
+        "departmentId": "departmentId",
+        "threadId": "threadId",
+        "state": "state",
+        "created": "created",
+        "slaExpires": "slaExpires",
+        "senderName": "senderName",
+        "subject": "subject",
+        "clientEmail": "clientEmail",
+        "senderAddress": "senderAddress",
+        "recipientAddress": "recipientAddress",
+        "inboxName": "inboxName",
+        "inboxAddress": "inboxAddress",
+        "operators.0": {
+          "type": "table",
+          "destination": "EmailMessagesOperators-primary",
+          "tableMapping": {
+            "UserId": {
+              "type": "column",
+              "mapping": {
+                "destination": "UserId"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            }
+          }
+        },
+        "operators.1": {
+          "type": "table",
+          "destination": "EmailMessagesOperators-secondary",
+          "tableMapping": {
+            "UserId": {
+              "type": "column",
+              "mapping": {
+                "destination": "UserId"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            }
+          }
+        },
+        "body": "body"
+      },
+      "EmailThreads": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "companyId": "companyId",
+        "departmentId": "departmentId",
+        "tags.0": {
+          "type": "table",
+          "destination": "tag-primary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            }
+          }
+        },
+        "tags.1": {
+          "type": "table",
+          "destination": "tag-secondary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            }
+          }
+        },
+        "state": "state",
+        "created": "created",
+        "lastClientMessage": "lastClientMessage",
+        "subject": "subject",
+        "clientName": "clientName",
+        "clientEmail": "clientEmail",
+        "recipientAddress": "recipientAddress",
+        "inboxName": "inboxName",
+        "inboxAddress": "inboxAddress",
+        "initiator": "initiator",
+        "operators.0": {
+          "type": "table",
+          "destination": "EmailThreads-operators-primary",
+          "tableMapping": {
+            "assigned": {
+              "type": "column",
+              "mapping": {
+                "destination": "assigned"
+              }
+            },
+            "unassigned": {
+              "type": "column",
+              "mapping": {
+                "destination": "unasssigned"
+              }
+            },
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "userName": {
+              "type": "column",
+              "mapping": {
+                "destination": "userName"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            }
+          }
+        },
+        "operators.1": {
+          "type": "table",
+          "destination": "EmailThreads-operators-secondary",
+          "tableMapping": {
+            "assigned": {
+              "type": "column",
+              "mapping": {
+                "destination": "assigned"
+              }
+            },
+            "unassigned": {
+              "type": "column",
+              "mapping": {
+                "destination": "unasssigned"
+              }
+            },
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "userName": {
+              "type": "column",
+              "mapping": {
+                "destination": "userName"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            }
+          }
+        },
+        "messageCount": "messageCount",
+        "autoReplySent": "autoReplySent"
+      },
+      "Sessions": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "companyId": "companyId",
+        "departmentId": "departmentId",
+        "guest.tempId": "guest-tempId",
+        "guest.ipAddress": "guest-ipAddress",
+        "guest.trackedId": "guest-trackedId",
+        "guest.identity": "guest-identity",
+        "guest.os": "guest-operating-system",
+        "guest.browser": "guest-browser",
+        "guest.language": "guest-language",
+        "guest.callParams.additionalProp1": "guest-callParams-additionalProp1",
+        "guest.callParams.additionalProp2": "guest-callParams-additionalProp2",
+        "guest.callParams.additionalProp3": "guest-callParams-additionalProp3",
+        "guest.gdprVersion": "guest-gdprVersion",
+        "channel": "channel",
+        "source": "source",
+        "status": "status",
+        "avSupport": "avSupport",
+        "directCallNumber": "directCallNumber",
+        "phoneCallbackNumber": "phoneCallbackNumber",
+        "isDirectChat": "isDirectChat",
+        "url": "url",
+        "widget": "widget",
+        "operators.0": {
+          "type": "table",
+          "destination": "sessions-operators-primary",
+          "tableMapping": {
+            "joined": {
+              "type": "column",
+              "mapping": {
+                "destination": "joined"
+              }
+            },
+            "left": {
+              "type": "column",
+              "mapping": {
+                "destination": "left"
+              }
+            },
+            "concluded": {
+              "type": "column",
+              "mapping": {
+                "destination": "concluded"
+              }
+            },
+            "feedbackResult": {
+              "type": "column",
+              "mapping": {
+                "destination": "feedbackResult"
+              }
+            },
+            "feedbackText": {
+              "type": "column",
+              "mapping": {
+                "destination": "feedbackText"
+              }
+            },
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "userName": {
+              "type": "column",
+              "mapping": {
+                "destination": "userName"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            }
+          }
+        },
+        "operators.1": {
+          "type": "table",
+          "destination": "sessions-operators-secondary",
+          "tableMapping": {
+            "joined": {
+              "type": "column",
+              "mapping": {
+                "destination": "joined"
+              }
+            },
+            "left": {
+              "type": "column",
+              "mapping": {
+                "destination": "left"
+              }
+            },
+            "concluded": {
+              "type": "column",
+              "mapping": {
+                "destination": "concluded"
+              }
+            },
+            "feedbackResult": {
+              "type": "column",
+              "mapping": {
+                "destination": "feedbackResult"
+              }
+            },
+            "feedbackText": {
+              "type": "column",
+              "mapping": {
+                "destination": "feedbackText"
+              }
+            },
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "userName": {
+              "type": "column",
+              "mapping": {
+                "destination": "userName"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            }
+          }
+        },
+        "reviewers.0": {
+          "type": "table",
+          "destination": "sessions-reviewers-primary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "userName": {
+              "type": "column",
+              "mapping": {
+                "destination": "userName"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            },
+            "feedbackText": {
+              "type": "column",
+              "mapping": {
+                "destination": "feedbackText"
+              }
+            }
+          }
+        },
+        "reviewers.1": {
+          "type": "table",
+          "destination": "sessions-reviewers-secondary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "userName": {
+              "type": "column",
+              "mapping": {
+                "destination": "userName"
+              }
+            },
+            "firstName": {
+              "type": "column",
+              "mapping": {
+                "destination": "firstName"
+              }
+            },
+            "lastName": {
+              "type": "column",
+              "mapping": {
+                "destination": "lastName"
+              }
+            },
+            "feedbackText": {
+              "type": "column",
+              "mapping": {
+                "destination": "feedbackText"
+              }
+            }
+          }
+        },
+        "enteredQueue": "enteredQueue",
+        "started": "started",
+        "ended": "ended",
+        "waited": "waited",
+        "length": "length",
+        "blacklisted": "blacklisted",
+        "phoneCallbackDialed": "phoneCallbackDialed",
+        "activities.0": {
+          "type": "table",
+          "destination": "sessions-activities-primary",
+          "tableMapping": {
+            "activityId": {
+              "type": "column",
+              "mapping": {
+                "destination": "activityId",
+                "primaryKey": true
+              }
+            },
+            "time": {
+              "type": "column",
+              "mapping": {
+                "destination": "time"
+              }
+            },
+            "type": {
+              "type": "column",
+              "mapping": {
+                "destination": "type"
+              }
+            },
+            "sender": {
+              "type": "column",
+              "mapping": {
+                "destination": "sender"
+              }
+            },
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "file.operatorOwner": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-operatorOwner"
+              }
+            },
+            "file.departmentOwner": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-departmentOwner"
+              }
+            },
+            "file.name": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-name"
+              }
+            },
+            "file.downloadUrl": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-downloadUrl"
+              }
+            },
+            "text": {
+              "type": "column",
+              "mapping": {
+                "destination": "text"
+              }
+            },
+            "response": {
+              "type": "column",
+              "mapping": {
+                "destination": "response"
+              }
+            },
+            "result": {
+              "type": "column",
+              "mapping": {
+                "destination": "result"
+              }
+            },
+            "streamAvailable": {
+              "type": "column",
+              "mapping": {
+                "destination": "streamAvailable"
+              }
+            },
+            "toOperatorUserId": {
+              "type": "column",
+              "mapping": {
+                "destination": "toOperatorUserId"
+              }
+            },
+            "toOperatorFullName": {
+              "type": "column",
+              "mapping": {
+                "destination": "toOperatorFullName"
+              }
+            },
+            "toGroupId": {
+              "type": "column",
+              "mapping": {
+                "destination": "toGroupId"
+              }
+            },
+            "toGroupName": {
+              "type": "column",
+              "mapping": {
+                "destination": "toGroupName"
+              }
+            },
+            "note": {
+              "type": "column",
+              "mapping": {
+                "destination": "note"
+              }
+            },
+            "heroCard.0": {
+              "type": "table",
+              "destination": "sessions-activities-primary-activity-heroCard-primary",
+              "tableMapping": {
+                "key": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "key"
+                  }
+                },
+                "label": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "label"
+                  }
+                },
+                "required": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "required"
+                  }
+                },
+                "inputType": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "inputType"
+                  }
+                },
+                "country": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "country"
+                  }
+                },
+                "choiceOptions.0": {
+                  "type": "table",
+                  "destination": "sessions-activities-primary-activity-heroCard-primary-choiceOptions-primary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                },
+                "choiceOptions.1": {
+                  "type": "table",
+                  "destination": "sessions-activities-primary-activity-heroCard-primary-choiceOptions-secondary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "heroCard.1": {
+              "type": "table",
+              "destination": "sessions-activities-primary-activity-heroCard-secondary",
+              "tableMapping": {
+                "key": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "key"
+                  }
+                },
+                "label": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "label"
+                  }
+                },
+                "required": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "required"
+                  }
+                },
+                "inputType": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "inputType"
+                  }
+                },
+                "country": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "country"
+                  }
+                },
+                "choiceOptions.0": {
+                  "type": "table",
+                  "destination": "sessions-activities-primary-activity-heroCard-secondary-choiceOptions-primary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                },
+                "choiceOptions.1": {
+                  "type": "table",
+                  "destination": "sessions-activities-primary-activity-heroCard-secondary-choiceOptions-secondary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "submissionOfActivityId": {
+              "type": "column",
+              "mapping": {
+                "destination": "submissionOfActivityId"
+              }
+            },
+            "submissionResult": {
+              "type": "column",
+              "mapping": {
+                "destination": "submissionResult"
+              }
+            },
+            "submissionParams.additionalProp1": "submissionParams-additionalProp1",
+            "submissionParams.additionalProp2": "submissionParams-additionalProp2",
+            "submissionParams.additionalProp3": "submissionParams-additionalProp3"
+          }
+        },
+        "activities.1": {
+          "type": "table",
+          "destination": "sessions-activities-secondary",
+          "tableMapping": {
+            "activityId": {
+              "type": "column",
+              "mapping": {
+                "destination": "activityId",
+                "primaryKey": true
+              }
+            },
+            "time": {
+              "type": "column",
+              "mapping": {
+                "destination": "time"
+              }
+            },
+            "type": {
+              "type": "column",
+              "mapping": {
+                "destination": "type"
+              }
+            },
+            "sender": {
+              "type": "column",
+              "mapping": {
+                "destination": "sender"
+              }
+            },
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "file.operatorOwner": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-operatorOwner"
+              }
+            },
+            "file.departmentOwner": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-departmentOwner"
+              }
+            },
+            "file.name": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-name"
+              }
+            },
+            "file.downloadUrl": {
+              "type": "column",
+              "mapping": {
+                "destination": "file-downloadUrl"
+              }
+            },
+            "text": {
+              "type": "column",
+              "mapping": {
+                "destination": "text"
+              }
+            },
+            "response": {
+              "type": "column",
+              "mapping": {
+                "destination": "response"
+              }
+            },
+            "result": {
+              "type": "column",
+              "mapping": {
+                "destination": "result"
+              }
+            },
+            "streamAvailable": {
+              "type": "column",
+              "mapping": {
+                "destination": "streamAvailable"
+              }
+            },
+            "toOperatorUserId": {
+              "type": "column",
+              "mapping": {
+                "destination": "toOperatorUserId"
+              }
+            },
+            "toOperatorFullName": {
+              "type": "column",
+              "mapping": {
+                "destination": "toOperatorFullName"
+              }
+            },
+            "toGroupId": {
+              "type": "column",
+              "mapping": {
+                "destination": "toGroupId"
+              }
+            },
+            "toGroupName": {
+              "type": "column",
+              "mapping": {
+                "destination": "toGroupName"
+              }
+            },
+            "note": {
+              "type": "column",
+              "mapping": {
+                "destination": "note"
+              }
+            },
+            "heroCard.0": {
+              "type": "table",
+              "destination": "sessions-activities-secondary-activity-heroCard-primary",
+              "tableMapping": {
+                "key": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "key"
+                  }
+                },
+                "label": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "label"
+                  }
+                },
+                "required": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "required"
+                  }
+                },
+                "inputType": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "inputType"
+                  }
+                },
+                "country": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "country"
+                  }
+                },
+                "choiceOptions.0": {
+                  "type": "table",
+                  "destination": "sessions-activities-secondary-activity-heroCard-primary-choiceOptions-primary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                },
+                "choiceOptions.1": {
+                  "type": "table",
+                  "destination": "sessions-activities-secondary-activity-heroCard-primary-choiceOptions-secondary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "heroCard.1": {
+              "type": "table",
+              "destination": "sessions-activities-secondary-activity-heroCard-secondary",
+              "tableMapping": {
+                "key": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "key"
+                  }
+                },
+                "label": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "label"
+                  }
+                },
+                "required": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "required"
+                  }
+                },
+                "inputType": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "inputType"
+                  }
+                },
+                "country": {
+                  "type": "column",
+                  "mapping": {
+                    "destination": "country"
+                  }
+                },
+                "choiceOptions.0": {
+                  "type": "table",
+                  "destination": "sessions-activities-secondary-activity-heroCard-secondary-choiceOptions-primary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                },
+                "choiceOptions.1": {
+                  "type": "table",
+                  "destination": "sessions-activities-secondary-activity-heroCard-secondary-choiceOptions-secondary",
+                  "tableMapping": {
+                    "value": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "value"
+                      }
+                    },
+                    "label": {
+                      "type": "column",
+                      "mapping": {
+                        "destination": "label"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "submissionOfActivityId": {
+              "type": "column",
+              "mapping": {
+                "destination": "submissionOfActivityId"
+              }
+            },
+            "submissionResult": {
+              "type": "column",
+              "mapping": {
+                "destination": "submissionResult"
+              }
+            },
+            "submissionParams.additionalProp1": "submissionParams-additionalProp1",
+            "submissionParams.additionalProp2": "submissionParams-additionalProp2",
+            "submissionParams.additionalProp3": "submissionParams-additionalProp3"
+          }
+        },
+        "tags.0": {
+          "type": "table",
+          "destination": "sessions-tags-primary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            }
+          }
+        },
+        "tags.1": {
+          "type": "table",
+          "destination": "sessions-tags-secondary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            }
+          }
+        },
+        "tags.2": {
+          "type": "table",
+          "destination": "sessions-tags-tertiary",
+          "tableMapping": {
+            "userId": {
+              "type": "column",
+              "mapping": {
+                "destination": "userId"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            }
+          }
+        },
+        "chatbots.0": {
+          "type": "table",
+          "destination": "sessions-chatbots-primary",
+          "tableMapping": {
+            "chatbotId": {
+              "type": "column",
+              "mapping": {
+                "destination": "Id"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            },
+            "joined": {
+              "type": "column",
+              "mapping": {
+                "destination": "joined"
+              }
+            },
+            "left": {
+              "type": "column",
+              "mapping": {
+                "destination": "left"
+              }
+            }
+          }
+        },
+        "chatbots.1": {
+          "type": "table",
+          "destination": "sessions-chatbots-secondary",
+          "tableMapping": {
+            "chatbotId": {
+              "type": "column",
+              "mapping": {
+                "destination": "Id"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            },
+            "joined": {
+              "type": "column",
+              "mapping": {
+                "destination": "joined"
+              }
+            },
+            "left": {
+              "type": "column",
+              "mapping": {
+                "destination": "left"
+              }
+            }
+          }
+        },
+        "guestFeedbackStars": "guestFeedbackStars",
+        "guestFeedbackScale": "guestFeedbackScale",
+        "guestFeedbackText": "guestFeedbackText",
+        "autoAccepted": "autoAccepted",
+        "guestFeedbackCustomFields.additionalProp1": "guestFeedbackCustomFields-additionalProp1",
+        "guestFeedbackCustomFields.additionalProp2": "guestFeedbackCustomFields-additionalProp2",
+        "guestFeedbackCustomFields.additionalProp3": "guestFeedbackCustomFields-additionalProp3",
+        "recordings.0": {
+          "type": "table",
+          "destination": "sessions-recordings-primary",
+          "tableMapping": {
+            "id": {
+              "type": "column",
+              "mapping": {
+                "destination": "id"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            },
+            "downloadUrl": {
+              "type": "column",
+              "mapping": {
+                "destination": "downloadUrl"
+              }
+            }
+          }
+        },
+        "recordings.1": {
+          "type": "table",
+          "destination": "sessions-recordings-secondary",
+          "tableMapping": {
+            "id": {
+              "type": "column",
+              "mapping": {
+                "destination": "id"
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            },
+            "downloadUrl": {
+              "type": "column",
+              "mapping": {
+                "destination": "downloadUrl"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
