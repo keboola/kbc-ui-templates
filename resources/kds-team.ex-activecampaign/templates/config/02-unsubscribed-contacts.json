@@ -1,6 +1,6 @@
 {
-    "name": "Unsubscribed Contacts",
-    "description": "Unsubscribed Contacts",
+    "name": "Unsubscribed Contacts Only",
+    "description": "Downloads only Unsubscribed Contacts where status = 2",
     "data": {
         "jobs": [
             {
