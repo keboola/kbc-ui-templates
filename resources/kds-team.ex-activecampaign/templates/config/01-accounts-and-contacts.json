@@ -1,6 +1,6 @@
 {
-    "name": "Contacts, Accounts, Deals",
-    "description": "Downloads Contacts + Accounts + Deals + Campaigns + Messages + Automations",
+    "name": "Contacts + Accounts + Deals + Campaigns + Messages + Automations",
+    "description": "Downloads all data from the above listed endpoints",
     "data": {
         "jobs": [
             {
