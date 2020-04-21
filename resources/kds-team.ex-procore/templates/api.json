@@ -1,0 +1,39 @@
+{
+    "baseUrl": "https://api.procore.com/vapid/",
+    "authentication": {
+        "type": "login",
+        "loginRequest": {
+            "endpoint": "https://login.procore.com/oauth/token",
+            "method": "POST",
+            "params": {
+                "grant_type": "client_credentials",
+                "client_id": {
+                    "attr": "#client_id"
+                },
+                "client_secret": {
+                    "attr": "#client_secret"
+                }
+            }
+        },
+        "apiRequest": {
+            "headers": {
+                "Authorization": {
+                    "function": "concat",
+                    "args": [
+                        "Bearer ",
+                        {
+                            "response": "access_token"
+                        }
+                    ]
+                },
+                "Procore-Company-ID": {
+                    "attr": "company_id"
+                }
+            }
+        },
+        "expires": {
+            "response": "expires_in",
+            "relative": true
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "name": "Unsubscribed Contacts Only",
+    "description": "Downloads only Unsubscribed Contacts where status = 2",
+    "data": {
+        "jobs": [
+            {
+                "endpoint": "contacts",
+                "dataField": "contacts",
+                "params": {
+                    "status": "2"
+                }
+            }
+        ]
+    }
+}

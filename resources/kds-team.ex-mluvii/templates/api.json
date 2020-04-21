@@ -1,0 +1,63 @@
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://",
+      {
+        "attr": "accountName"
+      },
+      "/"
+    ]
+  },
+  "pagination": {
+    "method": "offset",
+    "limitParam": "limit",
+    "offsetParam": "offset",
+    "limit": "1000"
+  },
+  "authentication": {
+    "type": "oauth20.login",
+    "expires": 3600,
+    "loginRequest": {
+      "endpoint": "login/connect/token",
+      "method": "FORM",
+      "params": {
+        "refresh_token": {
+          "user": "refresh_token"
+        },
+        "grant_type": "refresh_token"
+      },
+      "headers": {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      "params": {
+        "client_id": {
+          "attr": "user_name"
+        },
+        "client_secret": {
+          "attr": "#client_secret"
+        },
+        "response_type": "token",
+        "grant_type": "client_credentials"
+      }
+    },
+    "apiRequest": {
+      "headers": {
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "Bearer ",
+            {
+              "response": "access_token"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "http": {
+    "headers": {
+      "Accept": "application/json"
+    }
+  }
+}

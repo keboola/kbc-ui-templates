@@ -1,0 +1,4411 @@
+{
+    "name": "Basic Template",
+    "description": "Downloads Company details (incl. Users, Insurances, Vendors), Projects (incl. Vendors, Users, People, Insurances, Incidents, Observation), Task Items, Timecard Entries, RFIs, Submittals, and Observations",
+    "data": {
+        "http": {
+            "headers": {
+                "Procore-Company-ID": {
+                    "attr": "company_id"
+                }
+            },
+            "ignoreErrors": 404
+        },
+        "jobs": [
+            {
+                "endpoint": "companies",
+                "dataType": "company",
+                "children": [
+                    {
+                        "endpoint": "companies/{company_id}/users",
+                        "dataType": "company_users",
+                        "placeholders": {
+                            "company_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "companies/{company_id}/insurances",
+                        "dataType": "company_insurances",
+                        "placeholders": {
+                            "company_id": "id"
+                        }
+                    }
+                ]
+            },
+            {
+                "endpoint": "vendors",
+                "dataType": "company_vendors",
+                "params": {
+                    "company_id": {
+                        "attr": "company_id"
+                    }
+                }
+            },
+            {
+                "endpoint": "projects",
+                "dataType": "projects",
+                "params": {
+                    "company_id": {
+                        "attr": "company_id"
+                    }
+                },
+                "children": [
+                    {
+                        "endpoint": "projects/{project_id}/incidents",
+                        "dataType": "incidents",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "observations/items?project_id={project_id}",
+                        "dataType": "observations",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "task_items?project_id={project_id}",
+                        "dataType": "task_items",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "timecard_entries?project_id={project_id}",
+                        "dataType": "timecard_entries",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/rfis",
+                        "dataType": "rfis",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/vendors",
+                        "dataType": "project_vendors",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/users",
+                        "dataType": "project_users",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/people",
+                        "dataType": "project_people",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/insurances",
+                        "dataType": "project_insurances",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/submittals",
+                        "dataType": "submittals",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "projects/{project_id}/instructions",
+                        "dataType": "instructions",
+                        "placeholders": {
+                            "project_id": "id"
+                        }
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "company": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "is_active": {
+                    "mapping": {
+                        "destination": "is_active"
+                    }
+                }
+            },
+            "company_users": {
+                "address": {
+                    "mapping": {
+                        "destination": "address"
+                    }
+                },
+                "avatar": {
+                    "mapping": {
+                        "destination": "avatar"
+                    }
+                },
+                "business_phone": {
+                    "mapping": {
+                        "destination": "business_phone"
+                    }
+                },
+                "business_phone_extension": {
+                    "mapping": {
+                        "destination": "business_phone_extension"
+                    }
+                },
+                "city": {
+                    "mapping": {
+                        "destination": "city"
+                    }
+                },
+                "country_code": {
+                    "mapping": {
+                        "destination": "country_code"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "email_address": {
+                    "mapping": {
+                        "destination": "email_address"
+                    }
+                },
+                "email_signature": {
+                    "mapping": {
+                        "destination": "email_signature"
+                    }
+                },
+                "employee_id": {
+                    "mapping": {
+                        "destination": "employee_id"
+                    }
+                },
+                "erp_integrated_accountant": {
+                    "mapping": {
+                        "destination": "erp_integrated_accountant"
+                    }
+                },
+                "fax_number": {
+                    "mapping": {
+                        "destination": "fax_number"
+                    }
+                },
+                "first_name": {
+                    "mapping": {
+                        "destination": "first_name"
+                    }
+                },
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "initials": {
+                    "mapping": {
+                        "destination": "initials"
+                    }
+                },
+                "is_active": {
+                    "mapping": {
+                        "destination": "is_active"
+                    }
+                },
+                "is_employee": {
+                    "mapping": {
+                        "destination": "is_employee"
+                    }
+                },
+                "job_title": {
+                    "mapping": {
+                        "destination": "job_title"
+                    }
+                },
+                "last_login_at": {
+                    "mapping": {
+                        "destination": "last_login_at"
+                    }
+                },
+                "last_name": {
+                    "mapping": {
+                        "destination": "last_name"
+                    }
+                },
+                "mobile_phone": {
+                    "mapping": {
+                        "destination": "mobile_phone"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "notes": {
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "origin_data": {
+                    "mapping": {
+                        "destination": "origin_data"
+                    }
+                },
+                "origin_id": {
+                    "mapping": {
+                        "destination": "origin_id"
+                    }
+                },
+                "state_code": {
+                    "mapping": {
+                        "destination": "state_code"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "welcome_email_sent_at": {
+                    "mapping": {
+                        "destination": "welcome_email_sent_at"
+                    }
+                },
+                "zip": {
+                    "mapping": {
+                        "destination": "zip"
+                    }
+                },
+                "vendor.id": {
+                    "mapping": {
+                        "destination": "vendor_id"
+                    }
+                },
+                "vendor.name": {
+                    "mapping": {
+                        "destination": "vendor_name"
+                    }
+                },
+                "default_permission_template_id": {
+                    "mapping": {
+                        "destination": "default_permission_template_id"
+                    }
+                },
+                "permission_template.id": {
+                    "mapping": {
+                        "destination": "permission_template_id"
+                    }
+                },
+                "permission_template.name": {
+                    "mapping": {
+                        "destination": "permission_template_name"
+                    }
+                },
+                "permission_template.project_specific": {
+                    "mapping": {
+                        "destination": "permission_template_project_specific"
+                    }
+                }
+            },
+            "company_insurances": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "effective_date": {
+                    "mapping": {
+                        "destination": "effective_date"
+                    }
+                },
+                "enable_expired_insurance_notifications": {
+                    "mapping": {
+                        "destination": "enable_expired_insurance_notifications"
+                    }
+                },
+                "exempt": {
+                    "mapping": {
+                        "destination": "exempt"
+                    }
+                },
+                "expiration_date": {
+                    "mapping": {
+                        "destination": "expiration_date"
+                    }
+                },
+                "info_received": {
+                    "mapping": {
+                        "destination": "info_received"
+                    }
+                },
+                "insurance_provider": {
+                    "mapping": {
+                        "destination": "insurance_provider"
+                    }
+                },
+                "insurance_type": {
+                    "mapping": {
+                        "destination": "insurance_type"
+                    }
+                },
+                "limit": {
+                    "mapping": {
+                        "destination": "limit"
+                    }
+                },
+                "notes": {
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "policy_number": {
+                    "mapping": {
+                        "destination": "policy_number"
+                    }
+                },
+                "status": {
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "vendor_id": {
+                    "mapping": {
+                        "destination": "vendor_id"
+                    }
+                },
+                "additional_insured": {
+                    "mapping": {
+                        "destination": "additional_insured"
+                    }
+                },
+                "division_template": {
+                    "mapping": {
+                        "destination": "division_template"
+                    }
+                },
+                "insurance_sets": {
+                    "mapping": {
+                        "destination": "insurance_sets"
+                    }
+                },
+                "origin_data": {
+                    "mapping": {
+                        "destination": "origin_data"
+                    }
+                },
+                "origin_id": {
+                    "mapping": {
+                        "destination": "origin_id"
+                    }
+                }
+            },
+            "company_vendors": {
+                "project_ids": {
+                    "mapping": {
+                        "destination": "project_ids"
+                    },
+                    "forceType": true
+                },
+                "standard_cost_codes": {
+                    "type": "table",
+                    "destination": "company_vendors_standard_cost_codes",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "standard_cost_code_list_id": {
+                            "mapping": {
+                                "destination": "standard_cost_code_list_id"
+                            }
+                        },
+                        "parent_id": {
+                            "mapping": {
+                                "destination": "parent_id"
+                            }
+                        },
+                        "code": {
+                            "mapping": {
+                                "destination": "code"
+                            }
+                        },
+                        "full_code": {
+                            "mapping": {
+                                "destination": "full_code"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        },
+                        "origin_data": {
+                            "mapping": {
+                                "destination": "origin_data"
+                            }
+                        },
+                        "origin_id": {
+                            "mapping": {
+                                "destination": "origin_id"
+                            }
+                        }
+                    }
+                },
+                "children_count": {
+                    "mapping": {
+                        "destination": "children_count"
+                    }
+                },
+                "legal_name": {
+                    "mapping": {
+                        "destination": "legal_name"
+                    }
+                },
+                "parent.id": {
+                    "mapping": {
+                        "destination": "parent_id"
+                    }
+                },
+                "parent.name": {
+                    "mapping": {
+                        "destination": "parent_name"
+                    }
+                },
+                "trades": {
+                    "type": "table",
+                    "destination": "company_vendors_trades",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        },
+                        "active": {
+                            "mapping": {
+                                "destination": "active"
+                            }
+                        },
+                        "updated_at": {
+                            "mapping": {
+                                "destination": "updated_at"
+                            }
+                        }
+                    }
+                },
+                "bidding_distribution_list": {
+                    "type": "table",
+                    "destination": "company_vendors_bidding_distribution_list",
+                    "tableMapping": {
+                        "login": {
+                            "mapping": {
+                                "destination": "login"
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        }
+                    }
+                },
+                "bidding.affirmative_action": {
+                    "mapping": {
+                        "destination": "bidding_affirmative_action"
+                    }
+                },
+                "bidding.small_business": {
+                    "mapping": {
+                        "destination": "bidding_small_business"
+                    }
+                },
+                "bidding.african_american_business": {
+                    "mapping": {
+                        "destination": "bidding_african_american_business"
+                    }
+                },
+                "bidding.hispanic_business": {
+                    "mapping": {
+                        "destination": "bidding_hispanic_business"
+                    }
+                },
+                "bidding.womens_business": {
+                    "mapping": {
+                        "destination": "bidding_womens_business"
+                    }
+                },
+                "bidding.historically_underutilized_business": {
+                    "mapping": {
+                        "destination": "bidding_historically_underutilized_business"
+                    }
+                },
+                "bidding.sdvo_business": {
+                    "mapping": {
+                        "destination": "bidding_sdvo_business"
+                    }
+                },
+                "bidding.certified_business_enterprise": {
+                    "mapping": {
+                        "destination": "bidding_certified_business_enterprise"
+                    }
+                },
+                "bidding.asian_american_business": {
+                    "mapping": {
+                        "destination": "bidding_asian_american_business"
+                    }
+                },
+                "bidding.native_american_business": {
+                    "mapping": {
+                        "destination": "bidding_native_american_business"
+                    }
+                },
+                "bidding.disadvantaged_business": {
+                    "mapping": {
+                        "destination": "bidding_disadvantaged_business"
+                    }
+                },
+                "bidding.minority_business_enterprise": {
+                    "mapping": {
+                        "destination": "bidding_minority_business_enterprise"
+                    }
+                },
+                "bidding.eight_a_business": {
+                    "mapping": {
+                        "destination": "bidding_eight_a_business"
+                    }
+                },
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "abbreviated_name": {
+                    "mapping": {
+                        "destination": "abbreviated_name"
+                    }
+                },
+                "address": {
+                    "mapping": {
+                        "destination": "address"
+                    }
+                },
+                "authorized_bidder": {
+                    "mapping": {
+                        "destination": "authorized_bidder"
+                    }
+                },
+                "business_phone": {
+                    "mapping": {
+                        "destination": "business_phone"
+                    }
+                },
+                "city": {
+                    "mapping": {
+                        "destination": "city"
+                    }
+                },
+                "contact_count": {
+                    "mapping": {
+                        "destination": "contact_count"
+                    }
+                },
+                "company": {
+                    "mapping": {
+                        "destination": "company"
+                    }
+                },
+                "country_code": {
+                    "mapping": {
+                        "destination": "country_code"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "email_address": {
+                    "mapping": {
+                        "destination": "email_address"
+                    }
+                },
+                "fax_number": {
+                    "mapping": {
+                        "destination": "fax_number"
+                    }
+                },
+                "is_active": {
+                    "mapping": {
+                        "destination": "is_active"
+                    }
+                },
+                "labor_union": {
+                    "mapping": {
+                        "destination": "labor_union"
+                    }
+                },
+                "license_number": {
+                    "mapping": {
+                        "destination": "license_number"
+                    }
+                },
+                "logo": {
+                    "mapping": {
+                        "destination": "logo"
+                    }
+                },
+                "mobile_phone": {
+                    "mapping": {
+                        "destination": "mobile_phone"
+                    }
+                },
+                "non_union_prevailing_wage": {
+                    "mapping": {
+                        "destination": "non_union_prevailing_wage"
+                    }
+                },
+                "notes": {
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "origin_data": {
+                    "mapping": {
+                        "destination": "origin_data"
+                    }
+                },
+                "origin_id": {
+                    "mapping": {
+                        "destination": "origin_id"
+                    }
+                },
+                "origin_code": {
+                    "mapping": {
+                        "destination": "origin_code"
+                    }
+                },
+                "prequalified": {
+                    "mapping": {
+                        "destination": "prequalified"
+                    }
+                },
+                "state_code": {
+                    "mapping": {
+                        "destination": "state_code"
+                    }
+                },
+                "synced_to_erp": {
+                    "mapping": {
+                        "destination": "synced_to_erp"
+                    }
+                },
+                "trade_name": {
+                    "mapping": {
+                        "destination": "trade_name"
+                    }
+                },
+                "union_member": {
+                    "mapping": {
+                        "destination": "union_member"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "website": {
+                    "mapping": {
+                        "destination": "website"
+                    }
+                },
+                "zip": {
+                    "mapping": {
+                        "destination": "zip"
+                    }
+                },
+                "business_register.id": {
+                    "mapping": {
+                        "destination": "business_register_id"
+                    }
+                },
+                "business_register.type": {
+                    "mapping": {
+                        "destination": "business_register_type"
+                    }
+                },
+                "business_register.identifier": {
+                    "mapping": {
+                        "destination": "business_register_identifier"
+                    }
+                },
+                "business_register.verified_at": {
+                    "mapping": {
+                        "destination": "business_register_verified_at"
+                    }
+                },
+                "business_register.verification_status": {
+                    "mapping": {
+                        "destination": "business_register_verification_status"
+                    }
+                },
+                "vendor_group.id": {
+                    "mapping": {
+                        "destination": "vendor_group_id"
+                    }
+                },
+                "vendor_group.name": {
+                    "mapping": {
+                        "destination": "vendor_group_name"
+                    }
+                },
+                "primary_contact.id": {
+                    "mapping": {
+                        "destination": "primary_contact_id"
+                    }
+                },
+                "primary_contact.first_name": {
+                    "mapping": {
+                        "destination": "primary_contact_first_name"
+                    }
+                },
+                "primary_contact.last_name": {
+                    "mapping": {
+                        "destination": "primary_contact_last_name"
+                    }
+                },
+                "primary_contact.business_phone": {
+                    "mapping": {
+                        "destination": "primary_contact_business_phone"
+                    }
+                },
+                "primary_contact.business_phone_extension": {
+                    "mapping": {
+                        "destination": "primary_contact_business_phone_extension"
+                    }
+                },
+                "primary_contact.fax_number": {
+                    "mapping": {
+                        "destination": "primary_contact_fax_number"
+                    }
+                },
+                "primary_contact.mobile_phone": {
+                    "mapping": {
+                        "destination": "primary_contact_mobile_phone"
+                    }
+                },
+                "primary_contact.email_address": {
+                    "mapping": {
+                        "destination": "primary_contact_email_address"
+                    }
+                },
+                "primary_contact.created_at": {
+                    "mapping": {
+                        "destination": "primary_contact_created_at"
+                    }
+                },
+                "primary_contact.updated_at": {
+                    "mapping": {
+                        "destination": "primary_contact_updated_at"
+                    }
+                }
+            },
+            "observations": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "deleted_at": {
+                    "mapping": {
+                        "destination": "deleted_at"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "number": {
+                    "mapping": {
+                        "destination": "number"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "description": {
+                    "mapping": {
+                        "destination": "description"
+                    }
+                },
+                "status": {
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "priority": {
+                    "mapping": {
+                        "destination": "priority"
+                    }
+                },
+                "date_notified": {
+                    "mapping": {
+                        "destination": "date_notified"
+                    }
+                },
+                "due_date": {
+                    "mapping": {
+                        "destination": "due_date"
+                    }
+                },
+                "personal": {
+                    "mapping": {
+                        "destination": "personal"
+                    }
+                },
+                "assignee.id": {
+                    "mapping": {
+                        "destination": "assignee_id"
+                    }
+                },
+                "assignee.name": {
+                    "mapping": {
+                        "destination": "assignee_name"
+                    }
+                },
+                "assignee.vendor.id": {
+                    "mapping": {
+                        "destination": "assignee_vendor_id"
+                    }
+                },
+                "assignee.vendor.name": {
+                    "mapping": {
+                        "destination": "assignee_vendor_name"
+                    }
+                },
+                "created_by.id": {
+                    "mapping": {
+                        "destination": "created_by_id"
+                    }
+                },
+                "created_by.login": {
+                    "mapping": {
+                        "destination": "created_by_login"
+                    }
+                },
+                "created_by.name": {
+                    "mapping": {
+                        "destination": "created_by_name"
+                    }
+                },
+                "location.id": {
+                    "mapping": {
+                        "destination": "location_id"
+                    }
+                },
+                "location.name": {
+                    "mapping": {
+                        "destination": "location_name"
+                    }
+                },
+                "location.node_name": {
+                    "mapping": {
+                        "destination": "location_node_name"
+                    }
+                },
+                "location.parent_id": {
+                    "mapping": {
+                        "destination": "location_parent_id"
+                    }
+                },
+                "location.created_at": {
+                    "mapping": {
+                        "destination": "location_created_at"
+                    }
+                },
+                "location.updated_at": {
+                    "mapping": {
+                        "destination": "location_updated_at"
+                    }
+                },
+                "specification_section.id": {
+                    "mapping": {
+                        "destination": "specification_section_id"
+                    }
+                },
+                "specification_section.description": {
+                    "mapping": {
+                        "destination": "specification_section_description"
+                    }
+                },
+                "specification_section.number": {
+                    "mapping": {
+                        "destination": "specification_section_number"
+                    }
+                },
+                "specification_section.latest_revision_url": {
+                    "mapping": {
+                        "destination": "specification_section_latest_revision_url"
+                    }
+                },
+                "trade.id": {
+                    "mapping": {
+                        "destination": "trade_id"
+                    }
+                },
+                "trade.name": {
+                    "mapping": {
+                        "destination": "trade_name"
+                    }
+                },
+                "trade.active": {
+                    "mapping": {
+                        "destination": "trade_active"
+                    }
+                },
+                "trade.updated_at": {
+                    "mapping": {
+                        "destination": "trade_updated_at"
+                    }
+                },
+                "type.id": {
+                    "mapping": {
+                        "destination": "type_id"
+                    }
+                },
+                "type.category": {
+                    "mapping": {
+                        "destination": "type_category"
+                    }
+                },
+                "type.category_key": {
+                    "mapping": {
+                        "destination": "type_category_key"
+                    }
+                },
+                "type.name": {
+                    "mapping": {
+                        "destination": "type_name"
+                    }
+                }
+            },
+            "project_people": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "employee_id": {
+                    "mapping": {
+                        "destination": "employee_id"
+                    }
+                },
+                "first_name": {
+                    "mapping": {
+                        "destination": "first_name"
+                    }
+                },
+                "is_employee": {
+                    "mapping": {
+                        "destination": "is_employee"
+                    }
+                },
+                "last_name": {
+                    "mapping": {
+                        "destination": "last_name"
+                    }
+                },
+                "user_id": {
+                    "mapping": {
+                        "destination": "user_id"
+                    }
+                },
+                "contact.is_active": {
+                    "mapping": {
+                        "destination": "contact_is_active"
+                    }
+                },
+                "work_classification_id": {
+                    "mapping": {
+                        "destination": "work_classification_id"
+                    }
+                }
+            },
+            "project_users": {
+                "address": {
+                    "mapping": {
+                        "destination": "address"
+                    }
+                },
+                "avatar": {
+                    "mapping": {
+                        "destination": "avatar"
+                    }
+                },
+                "business_phone": {
+                    "mapping": {
+                        "destination": "business_phone"
+                    }
+                },
+                "business_phone_extension": {
+                    "mapping": {
+                        "destination": "business_phone_extension"
+                    }
+                },
+                "city": {
+                    "mapping": {
+                        "destination": "city"
+                    }
+                },
+                "country_code": {
+                    "mapping": {
+                        "destination": "country_code"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "email_address": {
+                    "mapping": {
+                        "destination": "email_address"
+                    }
+                },
+                "email_signature": {
+                    "mapping": {
+                        "destination": "email_signature"
+                    }
+                },
+                "employee_id": {
+                    "mapping": {
+                        "destination": "employee_id"
+                    }
+                },
+                "erp_integrated_accountant": {
+                    "mapping": {
+                        "destination": "erp_integrated_accountant"
+                    }
+                },
+                "fax_number": {
+                    "mapping": {
+                        "destination": "fax_number"
+                    }
+                },
+                "first_name": {
+                    "mapping": {
+                        "destination": "first_name"
+                    }
+                },
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "initials": {
+                    "mapping": {
+                        "destination": "initials"
+                    }
+                },
+                "is_active": {
+                    "mapping": {
+                        "destination": "is_active"
+                    }
+                },
+                "is_employee": {
+                    "mapping": {
+                        "destination": "is_employee"
+                    }
+                },
+                "job_title": {
+                    "mapping": {
+                        "destination": "job_title"
+                    }
+                },
+                "last_login_at": {
+                    "mapping": {
+                        "destination": "last_login_at"
+                    }
+                },
+                "last_name": {
+                    "mapping": {
+                        "destination": "last_name"
+                    }
+                },
+                "mobile_phone": {
+                    "mapping": {
+                        "destination": "mobile_phone"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "notes": {
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "state_code": {
+                    "mapping": {
+                        "destination": "state_code"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "welcome_email_sent_at": {
+                    "mapping": {
+                        "destination": "welcome_email_sent_at"
+                    }
+                },
+                "zip": {
+                    "mapping": {
+                        "destination": "zip"
+                    }
+                },
+                "permission_template.id": {
+                    "mapping": {
+                        "destination": "permission_template_id"
+                    }
+                },
+                "permission_template.name": {
+                    "mapping": {
+                        "destination": "permission_template_name"
+                    }
+                },
+                "permission_template.project_specific": {
+                    "mapping": {
+                        "destination": "permission_template_project_specific"
+                    }
+                },
+                "vendor.id": {
+                    "mapping": {
+                        "destination": "vendor_id"
+                    }
+                },
+                "vendor.name": {
+                    "mapping": {
+                        "destination": "vendor_name"
+                    }
+                }
+            },
+            "project_vendors": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "abbreviated_name": {
+                    "mapping": {
+                        "destination": "abbreviated_name"
+                    }
+                },
+                "address": {
+                    "mapping": {
+                        "destination": "address"
+                    }
+                },
+                "authorized_bidder": {
+                    "mapping": {
+                        "destination": "authorized_bidder"
+                    }
+                },
+                "business_phone": {
+                    "mapping": {
+                        "destination": "business_phone"
+                    }
+                },
+                "city": {
+                    "mapping": {
+                        "destination": "city"
+                    }
+                },
+                "contact_count": {
+                    "mapping": {
+                        "destination": "contact_count"
+                    }
+                },
+                "company": {
+                    "mapping": {
+                        "destination": "company"
+                    }
+                },
+                "country_code": {
+                    "mapping": {
+                        "destination": "country_code"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "email_address": {
+                    "mapping": {
+                        "destination": "email_address"
+                    }
+                },
+                "fax_number": {
+                    "mapping": {
+                        "destination": "fax_number"
+                    }
+                },
+                "is_active": {
+                    "mapping": {
+                        "destination": "is_active"
+                    }
+                },
+                "labor_union": {
+                    "mapping": {
+                        "destination": "labor_union"
+                    }
+                },
+                "license_number": {
+                    "mapping": {
+                        "destination": "license_number"
+                    }
+                },
+                "logo": {
+                    "mapping": {
+                        "destination": "logo"
+                    }
+                },
+                "mobile_phone": {
+                    "mapping": {
+                        "destination": "mobile_phone"
+                    }
+                },
+                "non_union_prevailing_wage": {
+                    "mapping": {
+                        "destination": "non_union_prevailing_wage"
+                    }
+                },
+                "notes": {
+                    "mapping": {
+                        "destination": "notes"
+                    }
+                },
+                "origin_data": {
+                    "mapping": {
+                        "destination": "origin_data"
+                    }
+                },
+                "origin_id": {
+                    "mapping": {
+                        "destination": "origin_id"
+                    }
+                },
+                "origin_code": {
+                    "mapping": {
+                        "destination": "origin_code"
+                    }
+                },
+                "prequalified": {
+                    "mapping": {
+                        "destination": "prequalified"
+                    }
+                },
+                "state_code": {
+                    "mapping": {
+                        "destination": "state_code"
+                    }
+                },
+                "synced_to_erp": {
+                    "mapping": {
+                        "destination": "synced_to_erp"
+                    }
+                },
+                "trade_name": {
+                    "mapping": {
+                        "destination": "trade_name"
+                    }
+                },
+                "union_member": {
+                    "mapping": {
+                        "destination": "union_member"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "website": {
+                    "mapping": {
+                        "destination": "website"
+                    }
+                },
+                "zip": {
+                    "mapping": {
+                        "destination": "zip"
+                    }
+                },
+                "business_register.id": {
+                    "mapping": {
+                        "destination": "business_register_id"
+                    }
+                },
+                "business_register.type": {
+                    "mapping": {
+                        "destination": "business_register_type"
+                    }
+                },
+                "business_register.identifier": {
+                    "mapping": {
+                        "destination": "business_register_identifier"
+                    }
+                },
+                "business_register.verified_at": {
+                    "mapping": {
+                        "destination": "business_register_verified_at"
+                    }
+                },
+                "business_register.verification_status": {
+                    "mapping": {
+                        "destination": "business_register_verification_status"
+                    }
+                },
+                "vendor_group.id": {
+                    "mapping": {
+                        "destination": "vendor_group_id"
+                    }
+                },
+                "vendor_group.name": {
+                    "mapping": {
+                        "destination": "vendor_group_name"
+                    }
+                },
+                "primary_contact.id": {
+                    "mapping": {
+                        "destination": "primary_contact_id"
+                    }
+                },
+                "primary_contact.first_name": {
+                    "mapping": {
+                        "destination": "primary_contact_first_name"
+                    }
+                },
+                "primary_contact.last_name": {
+                    "mapping": {
+                        "destination": "primary_contact_last_name"
+                    }
+                },
+                "primary_contact.business_phone": {
+                    "mapping": {
+                        "destination": "primary_contact_business_phone"
+                    }
+                },
+                "primary_contact.business_phone_extension": {
+                    "mapping": {
+                        "destination": "primary_contact_business_phone_extension"
+                    }
+                },
+                "primary_contact.fax_number": {
+                    "mapping": {
+                        "destination": "primary_contact_fax_number"
+                    }
+                },
+                "primary_contact.mobile_phone": {
+                    "mapping": {
+                        "destination": "primary_contact_mobile_phone"
+                    }
+                },
+                "primary_contact.email_address": {
+                    "mapping": {
+                        "destination": "primary_contact_email_address"
+                    }
+                },
+                "primary_contact.created_at": {
+                    "mapping": {
+                        "destination": "primary_contact_created_at"
+                    }
+                },
+                "primary_contact.updated_at": {
+                    "mapping": {
+                        "destination": "primary_contact_updated_at"
+                    }
+                }
+            },
+            "projects": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "display_name": {
+                    "mapping": {
+                        "destination": "display_name"
+                    }
+                },
+                "project_number": {
+                    "mapping": {
+                        "destination": "project_number"
+                    }
+                },
+                "address": {
+                    "mapping": {
+                        "destination": "address"
+                    }
+                },
+                "city": {
+                    "mapping": {
+                        "destination": "city"
+                    }
+                },
+                "state_code": {
+                    "mapping": {
+                        "destination": "state_code"
+                    }
+                },
+                "country_code": {
+                    "mapping": {
+                        "destination": "country_code"
+                    }
+                },
+                "zip": {
+                    "mapping": {
+                        "destination": "zip"
+                    }
+                },
+                "county": {
+                    "mapping": {
+                        "destination": "county"
+                    }
+                },
+                "time_zone": {
+                    "mapping": {
+                        "destination": "time_zone"
+                    }
+                },
+                "latitude": {
+                    "mapping": {
+                        "destination": "latitude"
+                    }
+                },
+                "longitude": {
+                    "mapping": {
+                        "destination": "longitude"
+                    }
+                },
+                "stage": {
+                    "mapping": {
+                        "destination": "stage"
+                    }
+                },
+                "phone": {
+                    "mapping": {
+                        "destination": "phone"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "active": {
+                    "mapping": {
+                        "destination": "active"
+                    }
+                },
+                "origin_id": {
+                    "mapping": {
+                        "destination": "origin_id"
+                    }
+                },
+                "origin_data": {
+                    "mapping": {
+                        "destination": "origin_data"
+                    }
+                },
+                "origin_code": {
+                    "mapping": {
+                        "destination": "origin_code"
+                    }
+                },
+                "estimated_value": {
+                    "mapping": {
+                        "destination": "estimated_value"
+                    }
+                },
+                "project_region_id": {
+                    "mapping": {
+                        "destination": "project_region_id"
+                    }
+                },
+                "project_bid_type_id": {
+                    "mapping": {
+                        "destination": "project_bid_type_id"
+                    }
+                },
+                "project_owner_type_id": {
+                    "mapping": {
+                        "destination": "project_owner_type_id"
+                    }
+                },
+                "photo_id": {
+                    "mapping": {
+                        "destination": "photo_id"
+                    }
+                },
+                "company.id": {
+                    "mapping": {
+                        "destination": "company_id"
+                    }
+                },
+                "company.name": {
+                    "mapping": {
+                        "destination": "company_name"
+                    }
+                }
+            },
+            "rfis": {
+                "created_by.login": {
+                    "mapping": {
+                        "destination": "created_by_login"
+                    }
+                },
+                "created_by.id": {
+                    "mapping": {
+                        "destination": "created_by_id"
+                    }
+                },
+                "created_by.name": {
+                    "mapping": {
+                        "destination": "created_by_name"
+                    }
+                },
+                "link": {
+                    "mapping": {
+                        "destination": "link"
+                    }
+                },
+                "location_id": {
+                    "mapping": {
+                        "destination": "location_id"
+                    }
+                },
+                "questions": {
+                    "type": "table",
+                    "destination": "rfis_questions",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "body": {
+                            "mapping": {
+                                "destination": "body"
+                            }
+                        },
+                        "errors": {
+                            "type": "table",
+                            "destination": "rfis_questions_errors",
+                            "tableMapping": {
+                                "errors": {
+                                    "mapping": {
+                                        "destination": "errors"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "assignee.login": {
+                    "mapping": {
+                        "destination": "assignee_login"
+                    }
+                },
+                "assignee.id": {
+                    "mapping": {
+                        "destination": "assignee_id"
+                    }
+                },
+                "assignee.name": {
+                    "mapping": {
+                        "destination": "assignee_name"
+                    }
+                },
+                "assignees": {
+                    "type": "table",
+                    "destination": "rfis_assignees",
+                    "tableMapping": {
+                        "login": {
+                            "mapping": {
+                                "destination": "login"
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        }
+                    }
+                },
+                "ball_in_court.login": {
+                    "mapping": {
+                        "destination": "ball_in_court_login"
+                    }
+                },
+                "ball_in_court.id": {
+                    "mapping": {
+                        "destination": "ball_in_court_id"
+                    }
+                },
+                "ball_in_court.name": {
+                    "mapping": {
+                        "destination": "ball_in_court_name"
+                    }
+                },
+                "ball_in_courts": {
+                    "type": "table",
+                    "destination": "rfis_ball_in_courts",
+                    "tableMapping": {
+                        "login": {
+                            "mapping": {
+                                "destination": "login"
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        }
+                    }
+                },
+                "cost_code.id": {
+                    "mapping": {
+                        "destination": "cost_code_id"
+                    }
+                },
+                "cost_code.name": {
+                    "mapping": {
+                        "destination": "cost_code_name"
+                    }
+                },
+                "cost_impact.status": {
+                    "mapping": {
+                        "destination": "cost_impact_status"
+                    }
+                },
+                "cost_impact.value": {
+                    "mapping": {
+                        "destination": "cost_impact_value"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "deleted": {
+                    "mapping": {
+                        "destination": "deleted"
+                    }
+                },
+                "deleted_at": {
+                    "mapping": {
+                        "destination": "deleted_at"
+                    }
+                },
+                "due_date": {
+                    "mapping": {
+                        "destination": "due_date"
+                    }
+                },
+                "initiated_at": {
+                    "mapping": {
+                        "destination": "initiated_at"
+                    }
+                },
+                "location.id": {
+                    "mapping": {
+                        "destination": "location_location_id"
+                    }
+                },
+                "location.name": {
+                    "mapping": {
+                        "destination": "location_location_name"
+                    }
+                },
+                "location.node_name": {
+                    "mapping": {
+                        "destination": "location_location_node_name"
+                    }
+                },
+                "location.parent_id": {
+                    "mapping": {
+                        "destination": "location_location_parent_id"
+                    }
+                },
+                "location.created_at": {
+                    "mapping": {
+                        "destination": "location_location_created_at"
+                    }
+                },
+                "location.updated_at": {
+                    "mapping": {
+                        "destination": "location_location_updated_at"
+                    }
+                },
+                "number": {
+                    "mapping": {
+                        "destination": "number"
+                    }
+                },
+                "private": {
+                    "mapping": {
+                        "destination": "private"
+                    }
+                },
+                "received_from.login": {
+                    "mapping": {
+                        "destination": "received_from_login"
+                    }
+                },
+                "received_from.id": {
+                    "mapping": {
+                        "destination": "received_from_id"
+                    }
+                },
+                "received_from.name": {
+                    "mapping": {
+                        "destination": "received_from_name"
+                    }
+                },
+                "reference": {
+                    "mapping": {
+                        "destination": "reference"
+                    }
+                },
+                "responsible_contractor.id": {
+                    "mapping": {
+                        "destination": "responsible_contractor_id"
+                    }
+                },
+                "responsible_contractor.name": {
+                    "mapping": {
+                        "destination": "responsible_contractor_name"
+                    }
+                },
+                "rfi_manager.login": {
+                    "mapping": {
+                        "destination": "rfi_manager_login"
+                    }
+                },
+                "rfi_manager.id": {
+                    "mapping": {
+                        "destination": "rfi_manager_id"
+                    }
+                },
+                "rfi_manager.name": {
+                    "mapping": {
+                        "destination": "rfi_manager_name"
+                    }
+                },
+                "schedule_impact.status": {
+                    "mapping": {
+                        "destination": "schedule_impact_status"
+                    }
+                },
+                "schedule_impact.value": {
+                    "mapping": {
+                        "destination": "schedule_impact_value"
+                    }
+                },
+                "status": {
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "translated_status": {
+                    "mapping": {
+                        "destination": "translated_status"
+                    }
+                },
+                "subject": {
+                    "mapping": {
+                        "destination": "subject"
+                    }
+                },
+                "time_resolved": {
+                    "mapping": {
+                        "destination": "time_resolved"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                }
+            },
+            "submittals": {
+                "approvers": {
+                    "type": "table",
+                    "destination": "submittals_approvers",
+                    "tableMapping": {
+                        "approver_type": {
+                            "mapping": {
+                                "destination": "approver_type"
+                            }
+                        },
+                        "comment": {
+                            "mapping": {
+                                "destination": "comment"
+                            }
+                        },
+                        "distributed": {
+                            "mapping": {
+                                "destination": "distributed"
+                            }
+                        },
+                        "response.name": {
+                            "mapping": {
+                                "destination": "response_name"
+                            }
+                        },
+                        "response.considered": {
+                            "mapping": {
+                                "destination": "response_considered"
+                            }
+                        },
+                        "response.id": {
+                            "mapping": {
+                                "destination": "response_id"
+                            }
+                        },
+                        "returned_date": {
+                            "mapping": {
+                                "destination": "returned_date"
+                            }
+                        },
+                        "sent_date": {
+                            "mapping": {
+                                "destination": "sent_date"
+                            }
+                        },
+                        "due_date": {
+                            "mapping": {
+                                "destination": "due_date"
+                            }
+                        },
+                        "user.login": {
+                            "mapping": {
+                                "destination": "user_login"
+                            }
+                        },
+                        "user.id": {
+                            "mapping": {
+                                "destination": "user_id"
+                            }
+                        },
+                        "user.name": {
+                            "mapping": {
+                                "destination": "user_name"
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        }
+                    }
+                },
+                "attachments_count": {
+                    "mapping": {
+                        "destination": "attachments_count"
+                    }
+                },
+                "ball_in_court": {
+                    "type": "table",
+                    "destination": "submittals_ball_in_court",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "login": {
+                            "mapping": {
+                                "destination": "login"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        }
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "created_by.id": {
+                    "mapping": {
+                        "destination": "created_by_id"
+                    }
+                },
+                "created_by.login": {
+                    "mapping": {
+                        "destination": "created_by_login"
+                    }
+                },
+                "created_by.name": {
+                    "mapping": {
+                        "destination": "created_by_name"
+                    }
+                },
+                "current_revision": {
+                    "mapping": {
+                        "destination": "current_revision"
+                    }
+                },
+                "distributed_at": {
+                    "mapping": {
+                        "destination": "distributed_at"
+                    }
+                },
+                "due_date": {
+                    "mapping": {
+                        "destination": "due_date"
+                    }
+                },
+                "issue_date": {
+                    "mapping": {
+                        "destination": "issue_date"
+                    }
+                },
+                "private": {
+                    "mapping": {
+                        "destination": "private"
+                    }
+                },
+                "received_date": {
+                    "mapping": {
+                        "destination": "received_date"
+                    }
+                },
+                "received_from.id": {
+                    "mapping": {
+                        "destination": "received_from_id"
+                    }
+                },
+                "received_from.login": {
+                    "mapping": {
+                        "destination": "received_from_login"
+                    }
+                },
+                "received_from.name": {
+                    "mapping": {
+                        "destination": "received_from_name"
+                    }
+                },
+                "responsible_contractor.id": {
+                    "mapping": {
+                        "destination": "responsible_contractor_id"
+                    }
+                },
+                "responsible_contractor.name": {
+                    "mapping": {
+                        "destination": "responsible_contractor_name"
+                    }
+                },
+                "specification_section.id": {
+                    "mapping": {
+                        "destination": "specification_section_id"
+                    }
+                },
+                "specification_section.number": {
+                    "mapping": {
+                        "destination": "specification_section_number"
+                    }
+                },
+                "specification_section.description": {
+                    "mapping": {
+                        "destination": "specification_section_description"
+                    }
+                },
+                "specification_section.label": {
+                    "mapping": {
+                        "destination": "specification_section_label"
+                    }
+                },
+                "specification_section.current_revision_id": {
+                    "mapping": {
+                        "destination": "specification_section_current_revision_id"
+                    }
+                },
+                "sub_job.id": {
+                    "mapping": {
+                        "destination": "sub_job_id"
+                    }
+                },
+                "sub_job.name": {
+                    "mapping": {
+                        "destination": "sub_job_name"
+                    }
+                },
+                "sub_job.code": {
+                    "mapping": {
+                        "destination": "sub_job_code"
+                    }
+                },
+                "submit_by": {
+                    "mapping": {
+                        "destination": "submit_by"
+                    }
+                },
+                "submittal_log_status.id": {
+                    "mapping": {
+                        "destination": "submittal_log_status_id"
+                    }
+                },
+                "submittal_log_status.name": {
+                    "mapping": {
+                        "destination": "submittal_log_status_name"
+                    }
+                },
+                "submittal_log_status.status": {
+                    "mapping": {
+                        "destination": "submittal_log_status_status"
+                    }
+                },
+                "type.id": {
+                    "mapping": {
+                        "destination": "type_id"
+                    }
+                },
+                "type.name": {
+                    "mapping": {
+                        "destination": "type_name"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "submittal_manager.id": {
+                    "mapping": {
+                        "destination": "submittal_manager_id"
+                    }
+                },
+                "submittal_manager.login": {
+                    "mapping": {
+                        "destination": "submittal_manager_login"
+                    }
+                },
+                "submittal_manager.name": {
+                    "mapping": {
+                        "destination": "submittal_manager_name"
+                    }
+                },
+                "submittal_package.attachments_count": {
+                    "mapping": {
+                        "destination": "submittal_package_attachments_count"
+                    }
+                },
+                "submittal_package.created_by.login": {
+                    "mapping": {
+                        "destination": "submittal_package_created_by_login"
+                    }
+                },
+                "submittal_package.created_by.id": {
+                    "mapping": {
+                        "destination": "submittal_package_created_by_id"
+                    }
+                },
+                "submittal_package.created_by.name": {
+                    "mapping": {
+                        "destination": "submittal_package_created_by_name"
+                    }
+                },
+                "submittal_package.description": {
+                    "mapping": {
+                        "destination": "submittal_package_description"
+                    }
+                },
+                "submittal_package.submittal_ids": {
+                    "mapping": {
+                        "destination": "submittal_package_submittal_ids"
+                    },
+                    "forceType": true
+                },
+                "submittal_package.id": {
+                    "mapping": {
+                        "destination": "submittal_package_id"
+                    }
+                },
+                "submittal_package.number": {
+                    "mapping": {
+                        "destination": "submittal_package_number"
+                    }
+                },
+                "submittal_package.title": {
+                    "mapping": {
+                        "destination": "submittal_package_title"
+                    }
+                },
+                "location.id": {
+                    "mapping": {
+                        "destination": "location_id"
+                    }
+                },
+                "location.name": {
+                    "mapping": {
+                        "destination": "location_name"
+                    }
+                },
+                "location.node_name": {
+                    "mapping": {
+                        "destination": "location_node_name"
+                    }
+                },
+                "location.parent_id": {
+                    "mapping": {
+                        "destination": "location_parent_id"
+                    }
+                },
+                "location.created_at": {
+                    "mapping": {
+                        "destination": "location_created_at"
+                    }
+                },
+                "location.updated_at": {
+                    "mapping": {
+                        "destination": "location_updated_at"
+                    }
+                },
+                "open_date": {
+                    "mapping": {
+                        "destination": "open_date"
+                    }
+                },
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "number": {
+                    "mapping": {
+                        "destination": "number"
+                    }
+                },
+                "revision": {
+                    "mapping": {
+                        "destination": "revision"
+                    }
+                },
+                "title": {
+                    "mapping": {
+                        "destination": "title"
+                    }
+                }
+            },
+            "incidents": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "created_at": {
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "deleted_at": {
+                    "mapping": {
+                        "destination": "deleted_at"
+                    }
+                },
+                "description": {
+                    "mapping": {
+                        "destination": "description"
+                    }
+                },
+                "event_date": {
+                    "mapping": {
+                        "destination": "event_date"
+                    }
+                },
+                "number": {
+                    "mapping": {
+                        "destination": "number"
+                    }
+                },
+                "private": {
+                    "mapping": {
+                        "destination": "private"
+                    }
+                },
+                "recordable": {
+                    "mapping": {
+                        "destination": "recordable"
+                    }
+                },
+                "records_count": {
+                    "mapping": {
+                        "destination": "records_count"
+                    }
+                },
+                "open_observations_count": {
+                    "mapping": {
+                        "destination": "open_observations_count"
+                    }
+                },
+                "closed_observations_count": {
+                    "mapping": {
+                        "destination": "closed_observations_count"
+                    }
+                },
+                "actions_count": {
+                    "mapping": {
+                        "destination": "actions_count"
+                    }
+                },
+                "witness_statements_count": {
+                    "mapping": {
+                        "destination": "witness_statements_count"
+                    }
+                },
+                "status": {
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "time_unknown": {
+                    "mapping": {
+                        "destination": "time_unknown"
+                    }
+                },
+                "title": {
+                    "mapping": {
+                        "destination": "title"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "created_by_login": {
+                    "mapping": {
+                        "destination": "created_by_login"
+                    }
+                },
+                "created_by_id": {
+                    "mapping": {
+                        "destination": "created_by_id"
+                    }
+                },
+                "created_by_name": {
+                    "mapping": {
+                        "destination": "created_by_name"
+                    }
+                },
+                "contributing_behavior.id": {
+                    "mapping": {
+                        "destination": "contributing_behavior_id"
+                    }
+                },
+                "contributing_behavior.name": {
+                    "mapping": {
+                        "destination": "contributing_behavior_name"
+                    }
+                },
+                "contributing_behavior.active": {
+                    "mapping": {
+                        "destination": "contributing_behavior_active"
+                    }
+                },
+                "contributing_behavior.global": {
+                    "mapping": {
+                        "destination": "contributing_behavior_global"
+                    }
+                },
+                "contributing_behavior.created_at": {
+                    "mapping": {
+                        "destination": "contributing_behavior_created_at"
+                    }
+                },
+                "contributing_behavior.updated_at": {
+                    "mapping": {
+                        "destination": "contributing_behavior_updated_at"
+                    }
+                },
+                "contributing_condition.id": {
+                    "mapping": {
+                        "destination": "contributing_condition_id"
+                    }
+                },
+                "contributing_condition.name": {
+                    "mapping": {
+                        "destination": "contributing_condition_name"
+                    }
+                },
+                "contributing_condition.active": {
+                    "mapping": {
+                        "destination": "contributing_condition_active"
+                    }
+                },
+                "contributing_condition.global": {
+                    "mapping": {
+                        "destination": "contributing_condition_global"
+                    }
+                },
+                "contributing_condition.created_at": {
+                    "mapping": {
+                        "destination": "contributing_condition_created_at"
+                    }
+                },
+                "contributing_condition.updated_at": {
+                    "mapping": {
+                        "destination": "contributing_condition_updated_at"
+                    }
+                },
+                "hazard.id": {
+                    "mapping": {
+                        "destination": "hazard_id"
+                    }
+                },
+                "hazard.name": {
+                    "mapping": {
+                        "destination": "hazard_name"
+                    }
+                },
+                "hazard.active": {
+                    "mapping": {
+                        "destination": "hazard_active"
+                    }
+                },
+                "hazard.global": {
+                    "mapping": {
+                        "destination": "hazard_global"
+                    }
+                },
+                "hazard.created_at": {
+                    "mapping": {
+                        "destination": "hazard_created_at"
+                    }
+                },
+                "hazard.updated_at": {
+                    "mapping": {
+                        "destination": "hazard_updated_at"
+                    }
+                },
+                "location.id": {
+                    "mapping": {
+                        "destination": "location_id"
+                    }
+                },
+                "location.name": {
+                    "mapping": {
+                        "destination": "location_name"
+                    }
+                },
+                "location.node_name": {
+                    "mapping": {
+                        "destination": "location_node_name"
+                    }
+                },
+                "location.parent_id": {
+                    "mapping": {
+                        "destination": "location_parent_id"
+                    }
+                },
+                "location.created_at": {
+                    "mapping": {
+                        "destination": "location_created_at"
+                    }
+                },
+                "location.updated_at": {
+                    "mapping": {
+                        "destination": "location_updated_at"
+                    }
+                },
+                "attachments_count": {
+                    "mapping": {
+                        "destination": "attachments_count"
+                    }
+                },
+                "attachments": {
+                    "type": "table",
+                    "destination": "incidents_attachments",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "url": {
+                            "mapping": {
+                                "destination": "url"
+                            }
+                        },
+                        "thumbnail_url": {
+                            "mapping": {
+                                "destination": "thumbnail_url"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        },
+                        "content_type": {
+                            "mapping": {
+                                "destination": "content_type"
+                            }
+                        }
+                    }
+                },
+                "distribution_members": {
+                    "type": "table",
+                    "destination": "incidents_distribution_members",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "login": {
+                            "mapping": {
+                                "destination": "login"
+                            }
+                        },
+                        "name": {
+                            "mapping": {
+                                "destination": "name"
+                            }
+                        }
+                    }
+                },
+                "environmentals": {
+                    "type": "table",
+                    "destination": "incidents_environmentals",
+                    "tableMapping": {
+                        "type": {
+                            "mapping": {
+                                "destination": "type"
+                            }
+                        },
+                        "environmental_type.id": {
+                            "mapping": {
+                                "destination": "environmental_type_id"
+                            }
+                        },
+                        "environmental_type.name": {
+                            "mapping": {
+                                "destination": "environmental_type_name"
+                            }
+                        },
+                        "environmental_type.active": {
+                            "mapping": {
+                                "destination": "environmental_type_active"
+                            }
+                        },
+                        "environmental_type.global": {
+                            "mapping": {
+                                "destination": "environmental_type_global"
+                            }
+                        },
+                        "environmental_type.created_at": {
+                            "mapping": {
+                                "destination": "environmental_type_created_at"
+                            }
+                        },
+                        "environmental_type.updated_at": {
+                            "mapping": {
+                                "destination": "environmental_type_updated_at"
+                            }
+                        },
+                        "estimated_cost_impact": {
+                            "mapping": {
+                                "destination": "estimated_cost_impact"
+                            }
+                        },
+                        "quantity_value": {
+                            "mapping": {
+                                "destination": "quantity_value"
+                            }
+                        },
+                        "quantity_unit_of_measure": {
+                            "mapping": {
+                                "destination": "quantity_unit_of_measure"
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "number": {
+                            "mapping": {
+                                "destination": "number"
+                            }
+                        },
+                        "full_number": {
+                            "mapping": {
+                                "destination": "full_number"
+                            }
+                        },
+                        "incident_id": {
+                            "mapping": {
+                                "destination": "incident_id"
+                            }
+                        },
+                        "recordable": {
+                            "mapping": {
+                                "destination": "recordable"
+                            }
+                        },
+                        "incident_title": {
+                            "mapping": {
+                                "destination": "incident_title"
+                            }
+                        },
+                        "incident_private": {
+                            "mapping": {
+                                "destination": "incident_private"
+                            }
+                        },
+                        "summary": {
+                            "mapping": {
+                                "destination": "summary"
+                            }
+                        },
+                        "description_plain_text": {
+                            "mapping": {
+                                "destination": "description_plain_text"
+                            }
+                        },
+                        "description": {
+                            "mapping": {
+                                "destination": "description"
+                            }
+                        },
+                        "affected_company.id": {
+                            "mapping": {
+                                "destination": "affected_company_id"
+                            }
+                        },
+                        "affected_company.name": {
+                            "mapping": {
+                                "destination": "affected_company_name"
+                            }
+                        },
+                        "created_at": {
+                            "mapping": {
+                                "destination": "created_at"
+                            }
+                        },
+                        "deleted_at": {
+                            "mapping": {
+                                "destination": "deleted_at"
+                            }
+                        },
+                        "managed_equipment.id": {
+                            "mapping": {
+                                "destination": "managed_equipment_id"
+                            }
+                        },
+                        "managed_equipment.name": {
+                            "mapping": {
+                                "destination": "managed_equipment_name"
+                            }
+                        },
+                        "incident_created_by.login": {
+                            "mapping": {
+                                "destination": "incident_created_by_login"
+                            }
+                        },
+                        "incident_created_by.id": {
+                            "mapping": {
+                                "destination": "incident_created_by_id"
+                            }
+                        },
+                        "incident_created_by.name": {
+                            "mapping": {
+                                "destination": "incident_created_by_name"
+                            }
+                        },
+                        "updated_at": {
+                            "mapping": {
+                                "destination": "updated_at"
+                            }
+                        },
+                        "work_activity.id": {
+                            "mapping": {
+                                "destination": "work_activity_id"
+                            }
+                        },
+                        "work_activity.name": {
+                            "mapping": {
+                                "destination": "work_activity_name"
+                            }
+                        },
+                        "work_activity.active": {
+                            "mapping": {
+                                "destination": "work_activity_active"
+                            }
+                        },
+                        "work_activity.global": {
+                            "mapping": {
+                                "destination": "work_activity_global"
+                            }
+                        },
+                        "work_activity.created_at": {
+                            "mapping": {
+                                "destination": "work_activity_created_at"
+                            }
+                        },
+                        "work_activity.updated_at": {
+                            "mapping": {
+                                "destination": "work_activity_updated_at"
+                            }
+                        }
+                    }
+                },
+                "injuries": {
+                    "type": "table",
+                    "destination": "incidents_injuries",
+                    "tableMapping": {
+                        "type": {
+                            "mapping": {
+                                "destination": "type"
+                            }
+                        },
+                        "date_returned_to_work": {
+                            "mapping": {
+                                "destination": "date_returned_to_work"
+                            }
+                        },
+                        "affected_party.id": {
+                            "mapping": {
+                                "destination": "affected_party_id"
+                            }
+                        },
+                        "affected_party.name": {
+                            "mapping": {
+                                "destination": "affected_party_name"
+                            }
+                        },
+                        "affected_person.login": {
+                            "mapping": {
+                                "destination": "affected_person_login"
+                            }
+                        },
+                        "affected_person.id": {
+                            "mapping": {
+                                "destination": "affected_person_id"
+                            }
+                        },
+                        "affected_person.name": {
+                            "mapping": {
+                                "destination": "affected_person_name"
+                            }
+                        },
+                        "harm_source.id": {
+                            "mapping": {
+                                "destination": "harm_source_id"
+                            }
+                        },
+                        "harm_source.name": {
+                            "mapping": {
+                                "destination": "harm_source_name"
+                            }
+                        },
+                        "harm_source.active": {
+                            "mapping": {
+                                "destination": "harm_source_active"
+                            }
+                        },
+                        "harm_source.global": {
+                            "mapping": {
+                                "destination": "harm_source_global"
+                            }
+                        },
+                        "harm_source.created_at": {
+                            "mapping": {
+                                "destination": "harm_source_created_at"
+                            }
+                        },
+                        "harm_source.updated_at": {
+                            "mapping": {
+                                "destination": "harm_source_updated_at"
+                            }
+                        },
+                        "date_of_death": {
+                            "mapping": {
+                                "destination": "date_of_death"
+                            }
+                        },
+                        "filing_type": {
+                            "mapping": {
+                                "destination": "filing_type"
+                            }
+                        },
+                        "hospitalized_overnight": {
+                            "mapping": {
+                                "destination": "hospitalized_overnight"
+                            }
+                        },
+                        "recordable": {
+                            "mapping": {
+                                "destination": "recordable"
+                            }
+                        },
+                        "treated_in_er": {
+                            "mapping": {
+                                "destination": "treated_in_er"
+                            }
+                        },
+                        "treatment_facility_address": {
+                            "mapping": {
+                                "destination": "treatment_facility_address"
+                            }
+                        },
+                        "treatment_facility": {
+                            "mapping": {
+                                "destination": "treatment_facility"
+                            }
+                        },
+                        "treatment_provider": {
+                            "mapping": {
+                                "destination": "treatment_provider"
+                            }
+                        },
+                        "work_days_absent": {
+                            "mapping": {
+                                "destination": "work_days_absent"
+                            }
+                        },
+                        "work_days_restricted": {
+                            "mapping": {
+                                "destination": "work_days_restricted"
+                            }
+                        },
+                        "work_days_transferred": {
+                            "mapping": {
+                                "destination": "work_days_transferred"
+                            }
+                        },
+                        "affliction_type.id": {
+                            "mapping": {
+                                "destination": "affliction_type_id"
+                            }
+                        },
+                        "affliction_type.name": {
+                            "mapping": {
+                                "destination": "affliction_type_name"
+                            }
+                        },
+                        "affliction_type.active": {
+                            "mapping": {
+                                "destination": "affliction_type_active"
+                            }
+                        },
+                        "affliction_type.global": {
+                            "mapping": {
+                                "destination": "affliction_type_global"
+                            }
+                        },
+                        "affliction_type.created_at": {
+                            "mapping": {
+                                "destination": "affliction_type_created_at"
+                            }
+                        },
+                        "affliction_type.updated_at": {
+                            "mapping": {
+                                "destination": "affliction_type_updated_at"
+                            }
+                        },
+                        "affected_body_part": {
+                            "mapping": {
+                                "destination": "affected_body_part"
+                            }
+                        },
+                        "affected_body_parts": {
+                            "mapping": {
+                                "destination": "affected_body_parts"
+                            },
+                            "forceType": true
+                        },
+                        "afflictions": {
+                            "type": "table",
+                            "destination": "incidents_injuries_afflictions",
+                            "tableMapping": {
+                                "id": {
+                                    "mapping": {
+                                        "destination": "id"
+                                    }
+                                },
+                                "affliction_type.id": {
+                                    "mapping": {
+                                        "destination": "affliction_type_id"
+                                    }
+                                },
+                                "affliction_type.name": {
+                                    "mapping": {
+                                        "destination": "affliction_type_name"
+                                    }
+                                },
+                                "affliction_type.active": {
+                                    "mapping": {
+                                        "destination": "affliction_type_active"
+                                    }
+                                },
+                                "affliction_type.global": {
+                                    "mapping": {
+                                        "destination": "affliction_type_global"
+                                    }
+                                },
+                                "affliction_type.created_at": {
+                                    "mapping": {
+                                        "destination": "affliction_type_created_at"
+                                    }
+                                },
+                                "affliction_type.updated_at": {
+                                    "mapping": {
+                                        "destination": "affliction_type_updated_at"
+                                    }
+                                },
+                                "affected_body_part": {
+                                    "mapping": {
+                                        "destination": "affected_body_part"
+                                    }
+                                }
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "number": {
+                            "mapping": {
+                                "destination": "number"
+                            }
+                        },
+                        "full_number": {
+                            "mapping": {
+                                "destination": "full_number"
+                            }
+                        },
+                        "incident_id": {
+                            "mapping": {
+                                "destination": "incident_id"
+                            }
+                        },
+                        "incident_title": {
+                            "mapping": {
+                                "destination": "incident_title"
+                            }
+                        },
+                        "incident_private": {
+                            "mapping": {
+                                "destination": "incident_private"
+                            }
+                        },
+                        "summary": {
+                            "mapping": {
+                                "destination": "summary"
+                            }
+                        },
+                        "description_plain_text": {
+                            "mapping": {
+                                "destination": "description_plain_text"
+                            }
+                        },
+                        "description": {
+                            "mapping": {
+                                "destination": "description"
+                            }
+                        },
+                        "affected_company.id": {
+                            "mapping": {
+                                "destination": "affected_company_id"
+                            }
+                        },
+                        "affected_company.name": {
+                            "mapping": {
+                                "destination": "affected_company_name"
+                            }
+                        },
+                        "created_at": {
+                            "mapping": {
+                                "destination": "created_at"
+                            }
+                        },
+                        "deleted_at": {
+                            "mapping": {
+                                "destination": "deleted_at"
+                            }
+                        },
+                        "managed_equipment.id": {
+                            "mapping": {
+                                "destination": "managed_equipment_id"
+                            }
+                        },
+                        "managed_equipment.name": {
+                            "mapping": {
+                                "destination": "managed_equipment_name"
+                            }
+                        },
+                        "incident_created_by.login": {
+                            "mapping": {
+                                "destination": "incident_created_by_login"
+                            }
+                        },
+                        "incident_created_by.id": {
+                            "mapping": {
+                                "destination": "incident_created_by_id"
+                            }
+                        },
+                        "incident_created_by.name": {
+                            "mapping": {
+                                "destination": "incident_created_by_name"
+                            }
+                        },
+                        "updated_at": {
+                            "mapping": {
+                                "destination": "updated_at"
+                            }
+                        },
+                        "work_activity.id": {
+                            "mapping": {
+                                "destination": "work_activity_id"
+                            }
+                        },
+                        "work_activity.name": {
+                            "mapping": {
+                                "destination": "work_activity_name"
+                            }
+                        },
+                        "work_activity.active": {
+                            "mapping": {
+                                "destination": "work_activity_active"
+                            }
+                        },
+                        "work_activity.global": {
+                            "mapping": {
+                                "destination": "work_activity_global"
+                            }
+                        },
+                        "work_activity.created_at": {
+                            "mapping": {
+                                "destination": "work_activity_created_at"
+                            }
+                        },
+                        "work_activity.updated_at": {
+                            "mapping": {
+                                "destination": "work_activity_updated_at"
+                            }
+                        }
+                    }
+                },
+                "near_misses": {
+                    "type": "table",
+                    "destination": "incidents_near_misses",
+                    "tableMapping": {
+                        "type": {
+                            "mapping": {
+                                "destination": "type"
+                            }
+                        },
+                        "affected_party.id": {
+                            "mapping": {
+                                "destination": "affected_party_id"
+                            }
+                        },
+                        "affected_party.name": {
+                            "mapping": {
+                                "destination": "affected_party_name"
+                            }
+                        },
+                        "affected_person.login": {
+                            "mapping": {
+                                "destination": "affected_person_login"
+                            }
+                        },
+                        "affected_person.id": {
+                            "mapping": {
+                                "destination": "affected_person_id"
+                            }
+                        },
+                        "affected_person.name": {
+                            "mapping": {
+                                "destination": "affected_person_name"
+                            }
+                        },
+                        "harm_source.id": {
+                            "mapping": {
+                                "destination": "harm_source_id"
+                            }
+                        },
+                        "harm_source.name": {
+                            "mapping": {
+                                "destination": "harm_source_name"
+                            }
+                        },
+                        "harm_source.active": {
+                            "mapping": {
+                                "destination": "harm_source_active"
+                            }
+                        },
+                        "harm_source.global": {
+                            "mapping": {
+                                "destination": "harm_source_global"
+                            }
+                        },
+                        "harm_source.created_at": {
+                            "mapping": {
+                                "destination": "harm_source_created_at"
+                            }
+                        },
+                        "harm_source.updated_at": {
+                            "mapping": {
+                                "destination": "harm_source_updated_at"
+                            }
+                        },
+                        "id": {
+                            "mapping": {
+                                "destination": "id"
+                            }
+                        },
+                        "number": {
+                            "mapping": {
+                                "destination": "number"
+                            }
+                        },
+                        "full_number": {
+                            "mapping": {
+                                "destination": "full_number"
+                            }
+                        },
+                        "incident_id": {
+                            "mapping": {
+                                "destination": "incident_id"
+                            }
+                        },
+                        "recordable": {
+                            "mapping": {
+                                "destination": "recordable"
+                            }
+                        },
+                        "incident_title": {
+                            "mapping": {
+                                "destination": "incident_title"
+                            }
+                        },
+                        "incident_private": {
+                            "mapping": {
+                                "destination": "incident_private"
+                            }
+                        },
+                        "summary": {
+                            "mapping": {
+                                "destination": "summary"
+                            }
+                        },
+                        "description_plain_text": {
+                            "mapping": {
+                                "destination": "description_plain_text"
+                            }
+                        },
+                        "description": {
+                            "mapping": {
+                                "destination": "description"
+                            }
+                        },
+                        "affected_company.id": {
+                            "mapping": {
+                                "destination": "affected_company_id"
+                            }
+                        },
+                        "affected_company.name": {
+                            "mapping": {
+                                "destination": "affected_company_name"
+                            }
+                        },
+                        "created_at": {
+                            "mapping": {
+                                "destination": "created_at"
+                            }
+                        },
+                        "deleted_at": {
+                            "mapping": {
+                                "destination": "deleted_at"
+                            }
+                        },
+                        "managed_equipment.id": {
+                            "mapping": {
+                                "destination": "managed_equipment_id"
+                            }
+                        },
+                        "managed_equipment.name": {
+                            "mapping": {
+                                "destination": "managed_equipment_name"
+                            }
+                        },
+                        "incident_created_by.login": {
+                            "mapping": {
+                                "destination": "incident_created_by_login"
+                            }
+                        },
+                        "incident_created_by.id": {
+                            "mapping": {
+                                "destination": "incident_created_by_id"
+                            }
+                        },
+                        "incident_created_by.name": {
+                            "mapping": {
+                                "destination": "incident_created_by_name"
+                            }
+                        },
+                        "updated_at": {
+                            "mapping": {
+                                "destination": "updated_at"
+                            }
+                        },
+                        "work_activity.id": {
+                            "mapping": {
+                                "destination": "work_activity_id"
+                            }
+                        },
+                        "work_activity.name": {
+                            "mapping": {
+                                "destination": "work_activity_name"
+                            }
+                        },
+                        "work_activity.active": {
+                            "mapping": {
+                                "destination": "work_activity_active"
+                            }
+                        },
+                        "work_activity.global": {
+                            "mapping": {
+                                "destination": "work_activity_global"
+                            }
+                        },
+                        "work_activity.created_at": {
+                            "mapping": {
+                                "destination": "work_activity_created_at"
+                            }
+                        },
+                        "work_activity.updated_at": {
+                            "mapping": {
+                                "destination": "work_activity_updated_at"
+                            }
+                        }
+                    }
+                }
+            },
+            "property_damages": {
+                "type": "table",
+                "destination": "incidents_property_damages",
+                "tableMapping": {
+                    "type": {
+                        "mapping": {
+                            "destination": "type"
+                        }
+                    },
+                    "estimated_cost_impact": {
+                        "mapping": {
+                            "destination": "estimated_cost_impact"
+                        }
+                    },
+                    "responsible_company.id": {
+                        "mapping": {
+                            "destination": "responsible_company_id"
+                        }
+                    },
+                    "responsible_company.name": {
+                        "mapping": {
+                            "destination": "responsible_company_name"
+                        }
+                    },
+                    "id": {
+                        "mapping": {
+                            "destination": "id"
+                        }
+                    },
+                    "number": {
+                        "mapping": {
+                            "destination": "number"
+                        }
+                    },
+                    "full_number": {
+                        "mapping": {
+                            "destination": "full_number"
+                        }
+                    },
+                    "incident_id": {
+                        "mapping": {
+                            "destination": "incident_id"
+                        }
+                    },
+                    "recordable": {
+                        "mapping": {
+                            "destination": "recordable"
+                        }
+                    },
+                    "incident_title": {
+                        "mapping": {
+                            "destination": "incident_title"
+                        }
+                    },
+                    "incident_private": {
+                        "mapping": {
+                            "destination": "incident_private"
+                        }
+                    },
+                    "summary": {
+                        "mapping": {
+                            "destination": "summary"
+                        }
+                    },
+                    "description_plain_text": {
+                        "mapping": {
+                            "destination": "description_plain_text"
+                        }
+                    },
+                    "description": {
+                        "mapping": {
+                            "destination": "description"
+                        }
+                    },
+                    "affected_company.id": {
+                        "mapping": {
+                            "destination": "affected_company_id"
+                        }
+                    },
+                    "affected_company.name": {
+                        "mapping": {
+                            "destination": "affected_company_name"
+                        }
+                    },
+                    "created_at": {
+                        "mapping": {
+                            "destination": "created_at"
+                        }
+                    },
+                    "deleted_at": {
+                        "mapping": {
+                            "destination": "deleted_at"
+                        }
+                    },
+                    "managed_equipment.id": {
+                        "mapping": {
+                            "destination": "managed_equipment_id"
+                        }
+                    },
+                    "managed_equipment.name": {
+                        "mapping": {
+                            "destination": "managed_equipment_name"
+                        }
+                    },
+                    "incident_created_by.login": {
+                        "mapping": {
+                            "destination": "incident_created_by_login"
+                        }
+                    },
+                    "incident_created_by.id": {
+                        "mapping": {
+                            "destination": "incident_created_by_id"
+                        }
+                    },
+                    "incident_created_by.name": {
+                        "mapping": {
+                            "destination": "incident_created_by_name"
+                        }
+                    },
+                    "updated_at": {
+                        "mapping": {
+                            "destination": "updated_at"
+                        }
+                    },
+                    "work_activity.id": {
+                        "mapping": {
+                            "destination": "work_activity_id"
+                        }
+                    },
+                    "work_activity.name": {
+                        "mapping": {
+                            "destination": "work_activity_name"
+                        }
+                    },
+                    "work_activity.active": {
+                        "mapping": {
+                            "destination": "work_activity_active"
+                        }
+                    },
+                    "work_activity.global": {
+                        "mapping": {
+                            "destination": "work_activity_global"
+                        }
+                    },
+                    "work_activity.created_at": {
+                        "mapping": {
+                            "destination": "work_activity_created_at"
+                        }
+                    },
+                    "work_activity.updated_at": {
+                        "mapping": {
+                            "destination": "work_activity_updated_at"
+                        }
+                    }
+                }
+            },
+            "witness_statements": {
+                "type": "table",
+                "destination": "incidents_witness_statements",
+                "tableMapping": {
+                    "id": {
+                        "mapping": {
+                            "destination": "id"
+                        }
+                    },
+                    "incident_id": {
+                        "mapping": {
+                            "destination": "incident_id"
+                        }
+                    },
+                    "statement": {
+                        "mapping": {
+                            "destination": "statement"
+                        }
+                    },
+                    "statement_plain_text": {
+                        "mapping": {
+                            "destination": "statement_plain_text"
+                        }
+                    },
+                    "date_received": {
+                        "mapping": {
+                            "destination": "date_received"
+                        }
+                    },
+                    "created_at": {
+                        "mapping": {
+                            "destination": "created_at"
+                        }
+                    },
+                    "deleted_at": {
+                        "mapping": {
+                            "destination": "deleted_at"
+                        }
+                    },
+                    "updated_at": {
+                        "mapping": {
+                            "destination": "updated_at"
+                        }
+                    },
+                    "witness.id": {
+                        "mapping": {
+                            "destination": "witness_id"
+                        }
+                    },
+                    "witness.name": {
+                        "mapping": {
+                            "destination": "witness_name"
+                        }
+                    }
+                }
+            },
+            "actions": {
+                "type": "table",
+                "destination": "incidents_actions",
+                "tableMapping": {
+                    "id": {
+                        "mapping": {
+                            "destination": "id"
+                        }
+                    },
+                    "incident_id": {
+                        "mapping": {
+                            "destination": "incident_id"
+                        }
+                    },
+                    "action_type.id": {
+                        "mapping": {
+                            "destination": "action_type_id"
+                        }
+                    },
+                    "action_type.name": {
+                        "mapping": {
+                            "destination": "action_type_name"
+                        }
+                    },
+                    "action_type.active": {
+                        "mapping": {
+                            "destination": "action_type_active"
+                        }
+                    },
+                    "action_type.global": {
+                        "mapping": {
+                            "destination": "action_type_global"
+                        }
+                    },
+                    "action_type.created_at": {
+                        "mapping": {
+                            "destination": "action_type_created_at"
+                        }
+                    },
+                    "action_type.updated_at": {
+                        "mapping": {
+                            "destination": "action_type_updated_at"
+                        }
+                    },
+                    "description": {
+                        "mapping": {
+                            "destination": "description"
+                        }
+                    },
+                    "description_plain_text": {
+                        "mapping": {
+                            "destination": "description_plain_text"
+                        }
+                    },
+                    "created_at": {
+                        "mapping": {
+                            "destination": "created_at"
+                        }
+                    },
+                    "deleted_at": {
+                        "mapping": {
+                            "destination": "deleted_at"
+                        }
+                    },
+                    "updated_at": {
+                        "mapping": {
+                            "destination": "updated_at"
+                        }
+                    },
+                    "observation_id": {
+                        "mapping": {
+                            "destination": "observation_id"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "task_items": {
+        "created_at": {
+            "mapping": {
+                "destination": "created_at"
+            }
+        },
+        "created_by.login": {
+            "mapping": {
+                "destination": "created_by_login"
+            }
+        },
+        "created_by.id": {
+            "mapping": {
+                "destination": "created_by_id"
+            }
+        },
+        "created_by.name": {
+            "mapping": {
+                "destination": "created_by_name"
+            }
+        },
+        "updated_at": {
+            "mapping": {
+                "destination": "updated_at"
+            }
+        },
+        "number": {
+            "mapping": {
+                "destination": "number"
+            }
+        },
+        "date_notified": {
+            "mapping": {
+                "destination": "date_notified"
+            }
+        },
+        "description": {
+            "mapping": {
+                "destination": "description"
+            }
+        },
+        "due_date": {
+            "mapping": {
+                "destination": "due_date"
+            }
+        },
+        "status": {
+            "mapping": {
+                "destination": "status"
+            }
+        },
+        "private": {
+            "mapping": {
+                "destination": "private"
+            }
+        },
+        "task_item_category.name": {
+            "mapping": {
+                "destination": "task_item_category_name"
+            }
+        },
+        "task_item_category.id": {
+            "mapping": {
+                "destination": "task_item_category_id"
+            }
+        },
+        "assignee.login": {
+            "mapping": {
+                "destination": "assignee_login"
+            }
+        },
+        "assignee.id": {
+            "mapping": {
+                "destination": "assignee_id"
+            }
+        },
+        "assignee.name": {
+            "mapping": {
+                "destination": "assignee_name"
+            }
+        },
+        "id": {
+            "mapping": {
+                "destination": "id"
+            }
+        },
+        "title": {
+            "mapping": {
+                "destination": "title"
+            }
+        }
+    },
+    "company_insurance": {
+        "id": {
+            "mapping": {
+                "destination": "id"
+            }
+        },
+        "effective_date": {
+            "mapping": {
+                "destination": "effective_date"
+            }
+        },
+        "enable_expired_insurance_notifications": {
+            "mapping": {
+                "destination": "enable_expired_insurance_notifications"
+            }
+        },
+        "exempt": {
+            "mapping": {
+                "destination": "exempt"
+            }
+        },
+        "expiration_date": {
+            "mapping": {
+                "destination": "expiration_date"
+            }
+        },
+        "info_received": {
+            "mapping": {
+                "destination": "info_received"
+            }
+        },
+        "insurance_provider": {
+            "mapping": {
+                "destination": "insurance_provider"
+            }
+        },
+        "insurance_type": {
+            "mapping": {
+                "destination": "insurance_type"
+            }
+        },
+        "limit": {
+            "mapping": {
+                "destination": "limit"
+            }
+        },
+        "notes": {
+            "mapping": {
+                "destination": "notes"
+            }
+        },
+        "policy_number": {
+            "mapping": {
+                "destination": "policy_number"
+            }
+        },
+        "status": {
+            "mapping": {
+                "destination": "status"
+            }
+        },
+        "vendor_id": {
+            "mapping": {
+                "destination": "vendor_id"
+            }
+        },
+        "additional_insured": {
+            "mapping": {
+                "destination": "additional_insured"
+            }
+        },
+        "division_template": {
+            "mapping": {
+                "destination": "division_template"
+            }
+        },
+        "insurance_sets": {
+            "mapping": {
+                "destination": "insurance_sets"
+            }
+        },
+        "origin_data": {
+            "mapping": {
+                "destination": "origin_data"
+            }
+        },
+        "origin_id": {
+            "mapping": {
+                "destination": "origin_id"
+            }
+        }
+    },
+    "timecard_entries": {
+        "id": {
+            "mapping": {
+                "destination": "id"
+            }
+        },
+        "billable": {
+            "mapping": {
+                "destination": "billable"
+            }
+        },
+        "created_at": {
+            "mapping": {
+                "destination": "created_at"
+            }
+        },
+        "date": {
+            "mapping": {
+                "destination": "date"
+            }
+        },
+        "deleted_at": {
+            "mapping": {
+                "destination": "deleted_at"
+            }
+        },
+        "description": {
+            "mapping": {
+                "destination": "description"
+            }
+        },
+        "hours": {
+            "mapping": {
+                "destination": "hours"
+            }
+        },
+        "timesheet_status": {
+            "mapping": {
+                "destination": "timesheet_status"
+            }
+        },
+        "approval_status": {
+            "mapping": {
+                "destination": "approval_status"
+            }
+        },
+        "lunch_time": {
+            "mapping": {
+                "destination": "lunch_time"
+            }
+        },
+        "time_in": {
+            "mapping": {
+                "destination": "time_in"
+            }
+        },
+        "time_out": {
+            "mapping": {
+                "destination": "time_out"
+            }
+        },
+        "injured": {
+            "mapping": {
+                "destination": "injured"
+            }
+        },
+        "signed": {
+            "mapping": {
+                "destination": "signed"
+            }
+        },
+        "origin_id": {
+            "mapping": {
+                "destination": "origin_id"
+            }
+        },
+        "origin_data": {
+            "mapping": {
+                "destination": "origin_data"
+            }
+        },
+        "timesheet.id": {
+            "mapping": {
+                "destination": "timesheet_id"
+            }
+        },
+        "timesheet.created_at": {
+            "mapping": {
+                "destination": "timesheet_created_at"
+            }
+        },
+        "timesheet.updated_at": {
+            "mapping": {
+                "destination": "timesheet_updated_at"
+            }
+        },
+        "timesheet.date": {
+            "mapping": {
+                "destination": "timesheet_date"
+            }
+        },
+        "timesheet.number": {
+            "mapping": {
+                "destination": "timesheet_number"
+            }
+        },
+        "timesheet.created_by.id": {
+            "mapping": {
+                "destination": "timesheet_created_by_id"
+            }
+        },
+        "timesheet.created_by.login": {
+            "mapping": {
+                "destination": "timesheet_created_by_login"
+            }
+        },
+        "timesheet.created_by.name": {
+            "mapping": {
+                "destination": "timesheet_created_by_name"
+            }
+        },
+        "timesheet.name": {
+            "mapping": {
+                "destination": "timesheet_name"
+            }
+        },
+        "updated_at": {
+            "mapping": {
+                "destination": "updated_at"
+            }
+        },
+        "cost_code.id": {
+            "mapping": {
+                "destination": "cost_code_id"
+            }
+        },
+        "cost_code.name": {
+            "mapping": {
+                "destination": "cost_code_name"
+            }
+        },
+        "crew.id": {
+            "mapping": {
+                "destination": "crew_id"
+            }
+        },
+        "crew.name": {
+            "mapping": {
+                "destination": "crew_name"
+            }
+        },
+        "crew.project_id": {
+            "mapping": {
+                "destination": "crew_project_id"
+            }
+        },
+        "crew.company_id": {
+            "mapping": {
+                "destination": "crew_company_id"
+            }
+        },
+        "crew_employees": {
+            "type": "table",
+            "destination": "timecard_entries_crew_employees",
+            "tableMapping": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "login": {
+                    "mapping": {
+                        "destination": "login"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                }
+            }
+        },
+        "crew.created_by.id": {
+            "mapping": {
+                "destination": "crew_created_by_id"
+            }
+        },
+        "crew.created_by.login": {
+            "mapping": {
+                "destination": "crew_created_by_login"
+            }
+        },
+        "crew.created_by.name": {
+            "mapping": {
+                "destination": "crew_created_by_name"
+            }
+        },
+        "crew.lead.id": {
+            "mapping": {
+                "destination": "crew_lead_id"
+            }
+        },
+        "crew.lead.login": {
+            "mapping": {
+                "destination": "crew_lead_login"
+            }
+        },
+        "crew.lead.name": {
+            "mapping": {
+                "destination": "crew_lead_name"
+            }
+        },
+        "crew.created_at": {
+            "mapping": {
+                "destination": "crew_created_at"
+            }
+        },
+        "crew.updated_at": {
+            "mapping": {
+                "destination": "crew_updated_at"
+            }
+        },
+        "location.id": {
+            "mapping": {
+                "destination": "location_id"
+            }
+        },
+        "location.name": {
+            "mapping": {
+                "destination": "location_name"
+            }
+        },
+        "location.node_name": {
+            "mapping": {
+                "destination": "location_node_name"
+            }
+        },
+        "location.parent_id": {
+            "mapping": {
+                "destination": "location_parent_id"
+            }
+        },
+        "location.created_at": {
+            "mapping": {
+                "destination": "location_created_at"
+            }
+        },
+        "location.updated_at": {
+            "mapping": {
+                "destination": "location_updated_at"
+            }
+        },
+        "party.id": {
+            "mapping": {
+                "destination": "party_id"
+            }
+        },
+        "party.name": {
+            "mapping": {
+                "destination": "party_name"
+            }
+        },
+        "procore_signature.id": {
+            "mapping": {
+                "destination": "procore_signature_id"
+            }
+        },
+        "procore_signature.signature_text": {
+            "mapping": {
+                "destination": "procore_signature_signature_text"
+            }
+        },
+        "procore_signature.file_name": {
+            "mapping": {
+                "destination": "procore_signature_file_name"
+            }
+        },
+        "procore_signature.url": {
+            "mapping": {
+                "destination": "procore_signature_url"
+            }
+        },
+        "procore_signature.medium_thumbnail_url": {
+            "mapping": {
+                "destination": "procore_signature_medium_thumbnail_url"
+            }
+        },
+        "procore_signature.large_thumbnail_url": {
+            "mapping": {
+                "destination": "procore_signature_large_thumbnail_url"
+            }
+        },
+        "procore_signature.created_by.id": {
+            "mapping": {
+                "destination": "procore_signature_created_by_id"
+            }
+        },
+        "procore_signature.created_by.login": {
+            "mapping": {
+                "destination": "procore_signature_created_by_login"
+            }
+        },
+        "procore_signature.created_by.name": {
+            "mapping": {
+                "destination": "procore_signature_created_by_name"
+            }
+        },
+        "sub_job.id": {
+            "mapping": {
+                "destination": "sub_job_id"
+            }
+        },
+        "sub_job.name": {
+            "mapping": {
+                "destination": "sub_job_name"
+            }
+        },
+        "sub_job.code": {
+            "mapping": {
+                "destination": "sub_job_code"
+            }
+        },
+        "created_by.id": {
+            "mapping": {
+                "destination": "created_by_id"
+            }
+        },
+        "created_by.login": {
+            "mapping": {
+                "destination": "created_by_login"
+            }
+        },
+        "created_by.name": {
+            "mapping": {
+                "destination": "created_by_name"
+            }
+        },
+        "login_information.id": {
+            "mapping": {
+                "destination": "login_information_id"
+            }
+        },
+        "login_information.login": {
+            "mapping": {
+                "destination": "login_information_login"
+            }
+        },
+        "login_information.name": {
+            "mapping": {
+                "destination": "login_information_name"
+            }
+        },
+        "timecard_time_type.id": {
+            "mapping": {
+                "destination": "timecard_time_type_id"
+            }
+        },
+        "timecard_time_type.abbreviated_time_type": {
+            "mapping": {
+                "destination": "timecard_time_type_abbreviated_time_type"
+            }
+        },
+        "timecard_time_type.company_id": {
+            "mapping": {
+                "destination": "timecard_time_type_company_id"
+            }
+        },
+        "timecard_time_type.global": {
+            "mapping": {
+                "destination": "timecard_time_type_global"
+            }
+        },
+        "timecard_time_type.time_type": {
+            "mapping": {
+                "destination": "timecard_time_type_time_type"
+            }
+        }
+    },
+    "project_insurances": {
+        "id": {
+            "mapping": {
+                "destination": "id"
+            }
+        },
+        "effective_date": {
+            "mapping": {
+                "destination": "effective_date"
+            }
+        },
+        "enable_expired_insurance_notifications": {
+            "mapping": {
+                "destination": "enable_expired_insurance_notifications"
+            }
+        },
+        "exempt": {
+            "mapping": {
+                "destination": "exempt"
+            }
+        },
+        "expiration_date": {
+            "mapping": {
+                "destination": "expiration_date"
+            }
+        },
+        "info_received": {
+            "mapping": {
+                "destination": "info_received"
+            }
+        },
+        "insurance_provider": {
+            "mapping": {
+                "destination": "insurance_provider"
+            }
+        },
+        "insurance_type": {
+            "mapping": {
+                "destination": "insurance_type"
+            }
+        },
+        "limit": {
+            "mapping": {
+                "destination": "limit"
+            }
+        },
+        "notes": {
+            "mapping": {
+                "destination": "notes"
+            }
+        },
+        "policy_number": {
+            "mapping": {
+                "destination": "policy_number"
+            }
+        },
+        "status": {
+            "mapping": {
+                "destination": "status"
+            }
+        },
+        "vendor_id": {
+            "mapping": {
+                "destination": "vendor_id"
+            }
+        },
+        "additional_insured": {
+            "mapping": {
+                "destination": "additional_insured"
+            }
+        },
+        "division_template": {
+            "mapping": {
+                "destination": "division_template"
+            }
+        },
+        "insurance_sets": {
+            "mapping": {
+                "destination": "insurance_sets"
+            }
+        },
+        "origin_data": {
+            "mapping": {
+                "destination": "origin_data"
+            }
+        },
+        "origin_id": {
+            "mapping": {
+                "destination": "origin_id"
+            }
+        }
+    },
+    "instructions": {
+        "id": {
+            "mapping": {
+                "destination": "id"
+            }
+        },
+        "number": {
+            "mapping": {
+                "destination": "number"
+            }
+        },
+        "title": {
+            "mapping": {
+                "destination": "title"
+            }
+        },
+        "rich_text_description": {
+            "mapping": {
+                "destination": "rich_text_description"
+            }
+        },
+        "plain_text_description": {
+            "mapping": {
+                "destination": "plain_text_description"
+            }
+        },
+        "created_at": {
+            "mapping": {
+                "destination": "created_at"
+            }
+        },
+        "date_received": {
+            "mapping": {
+                "destination": "date_received"
+            }
+        },
+        "date_issued": {
+            "mapping": {
+                "destination": "date_issued"
+            }
+        },
+        "status": {
+            "mapping": {
+                "destination": "status"
+            }
+        },
+        "private": {
+            "mapping": {
+                "destination": "private"
+            }
+        },
+        "schedule_impact.status": {
+            "mapping": {
+                "destination": "schedule_impact_status"
+            }
+        },
+        "schedule_impact.value": {
+            "mapping": {
+                "destination": "schedule_impact_value"
+            }
+        },
+        "cost_impact.status": {
+            "mapping": {
+                "destination": "cost_impact_status"
+            }
+        },
+        "cost_impact.value": {
+            "mapping": {
+                "destination": "cost_impact_value"
+            }
+        },
+        "instruction_type.id": {
+            "mapping": {
+                "destination": "instruction_type_id"
+            }
+        },
+        "instruction_type.name": {
+            "mapping": {
+                "destination": "instruction_type_name"
+            }
+        },
+        "instruction_type._prefix": {
+            "mapping": {
+                "destination": "instruction_type_prefix"
+            }
+        },
+        "created_by.id": {
+            "mapping": {
+                "destination": "created_by_id"
+            }
+        },
+        "created_by.login": {
+            "mapping": {
+                "destination": "created_by_login"
+            }
+        },
+        "created_by.name": {
+            "mapping": {
+                "destination": "created_by_name"
+            }
+        },
+        "instruction_from.id": {
+            "mapping": {
+                "destination": "instruction_from_id"
+            }
+        },
+        "instruction_from.login": {
+            "mapping": {
+                "destination": "instruction_from_login"
+            }
+        },
+        "instruction_from.name": {
+            "mapping": {
+                "destination": "instruction_from_name"
+            }
+        },
+        "distribution_members": {
+            "type": "table",
+            "destination": "instructions_distribution_members",
+            "tableMapping": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "login": {
+                    "mapping": {
+                        "destination": "login"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                }
+            }
+        },
+        "attentions": {
+            "type": "table",
+            "destination": "instructions_attentions",
+            "tableMapping": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "login": {
+                    "mapping": {
+                        "destination": "login"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                }
+            }
+        },
+        "trades": {
+            "type": "table",
+            "destination": "instructions_trades",
+            "tableMapping": {
+                "id": {
+                    "mapping": {
+                        "destination": "id"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "active": {
+                    "mapping": {
+                        "destination": "active"
+                    }
+                },
+                "updated_at": {
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                }
+            }
+        }
+    }
+}

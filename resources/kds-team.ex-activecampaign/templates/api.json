@@ -1,0 +1,25 @@
+{
+    "baseUrl": {
+        "function": "concat",
+        "args": [
+            "https://",
+            {
+                "attr": "accountName"
+            },
+            ".api-us1.com/api/3/"
+        ]
+    },
+    "http": {
+        "headers": {
+            "Api-Token": {
+                "attr": "#apiKey"
+            }
+        }
+    },
+    "pagination": {
+        "method": "offset",
+        "limitParam": "limit",
+        "offsetParam": "offset",
+        "limit": "100"
+    }
+}

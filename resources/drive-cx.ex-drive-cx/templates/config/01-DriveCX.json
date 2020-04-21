@@ -1,0 +1,48 @@
+{
+    "name": "Locations, Purchase Details, Employees and Surveys",
+    "description": "",
+    "data": {
+        "jobs": [
+            {
+                "endpoint": "client/fetch_omnivore_locations",
+                "dataType": "locations",
+                "dataField": "Locations",
+                "params": {
+                    "ClientID": {
+                        "attr": "client_id"
+                    }
+                }
+            },
+            {
+                "endpoint": "client/fetch_purchase_details",
+                "dataType": "purchase_details",
+                "dataField": "PurchaseDetails",
+                "params": {
+                    "ClientID": {
+                        "attr": "client_id"
+                    }
+                }
+            },
+            {
+                "endpoint": "client/fetch_employees",
+                "dataType": "employees",
+                "dataField": "Employees",
+                "params": {
+                    "ClientID": {
+                        "attr": "client_id"
+                    }
+                }
+            },
+            {
+                "endpoint": "survey/fetch_surveys",
+                "dataType": "surveys",
+                "dataField": "Surveys",
+                "params": {
+                    "ClientID": {
+                        "attr": "client_id"
+                    }
+                }
+            }
+        ]
+    }
+}
