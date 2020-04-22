@@ -1,10 +1,10 @@
 {
-    "name": "Ads Statistics - Last 7 days",
-    "description": "Extracting active campaigns ad statistics for the last 7 days", 
+    "name": "Ads Analytics - Last 7 days",
+    "description": "Extracting active campaigns ad analytics for the last 7 days", 
     "data": {
         "incrementalOutput": true,
         "mappings": {
-            "campaign_statistics": {
+            "campaign_analytics": {
                 "pivot": {
                     "type": "column",
                     "mapping": {
@@ -404,7 +404,7 @@
                     }
                 }
             },
-            "active_campaigns": {
+            "campaigns": {
                 "targeting.includedTargetingFacets.locations.0": {
                     "type": "column",
                     "mapping": {
@@ -530,7 +530,7 @@
                     "search.status.values[0]": "ACTIVE"
                 },
                 "dataField": "elements",
-                "dataType": "active_campaigns",
+                "dataType": "campaigns",
                 "scroller": "campaign_scroller",
                 "children": [
                     {
@@ -539,7 +539,7 @@
                             "campaign_id": "id"
                         },
                         "dataField": "elements",
-                        "dataType": "campaign_statistics",
+                        "dataType": "campaign_analytics",
                         "params": {
                             "q": "analytics",
                             "timeGranularity": {
