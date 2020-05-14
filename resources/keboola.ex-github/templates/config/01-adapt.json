@@ -1,6 +1,6 @@
 {
   "name": "Smart Mode - always get just missing data (Recommended)",
-  "description": "Download from GitHub\n\n - Your Organizations\n\n - Org Members\n - Org Teams\n - Org Repositories\n - Repo Issues\n - Repo Commits",
+  "description": "Downloads:\n\n - Your Organizations\n - Org Members\n - Org Teams\n - Org Repositories\n - Repo Issues\n - Repo Commits",
   "data": {
     "incrementalOutput": true,
     "jobs": [
