@@ -1,46 +1,26 @@
 {
-  "address": [],
-  "bankovni_karty": [],
-  "byl_jste_v_karantene": [],
-  "datum_odberu": [],
-  "edalsi_navstivene_zeme": [],
-  "edatum_navratu_ze_zahranici": [],
-  "edatum_odjezdu_do_zahranici": [],
-  "efirma_kde_pracuje": [],
-  "ejak_vam_je": [],
-  "ejake_mate_priznaky": [],
-  "ejaky_z_priznaku_byl_prvni": [],
-  "ejine_priznaky": [],
-  "ekde_jste_se_v_poslednich_dnech_pohyboval": [],
-  "ekdy_se_objevil": [],
-  "enavstivena_zeme": [],
-  "enavstivena_zemepopis": [],
-  "evelke_riziko": [],
-  "evelke_riziko__vysvetleni": [],
-  "evite_kde_jste_se_mohl_nakazit": [],
-  "ezdravotnik": [],
-  "first_name": [
-    "p"
-  ],
-  "karantena_narizena_do_dne": [],
-  "kdy_byl_naposled_v_praci": [],
-  "last_name": [
-    "b"
-  ],
-  "lekar__jmeno": [],
-  "lekar__misto_ordinace": [],
-  "lekar__telefonni_cislo": [],
-  "ma_erousku": [],
-  "note": [],
-  "odberpozitivni_dne": [],
-  "odbertyp": [],
-  "pojistovna": [],
-  "povolani": [],
-  "rodne_cislo": [
-    "7584627895"
-  ],
-  "souhlas_s_bankovnimi_udaji": [],
-  "souhlas_s_geolokacnimi_udaji": [
-    "Ne"
-  ]
+   "baseUrl":"http://api.zoom.us/v2/",
+   "pagination":{
+      "method":"pagenum",
+      "limit":300,
+      "limitParam":"page_size",
+      "pageParam":"page_number"
+   },
+   "http":{
+      "ignoreErrors":[
+         404,
+         400
+      ],
+      "headers":{
+         "authorization":{
+            "function":"concat",
+            "args":[
+               "Bearer ",
+               {
+                  "attr":"credentials.#token"
+               }
+            ]
+         }
+      }
+   }
 }
