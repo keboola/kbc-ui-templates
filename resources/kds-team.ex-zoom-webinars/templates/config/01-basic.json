@@ -1,0 +1,233 @@
+{
+  "name": "Basic Template",
+  "description": "Basic template extracts all Webinars and its details from your Zoom Account",
+  "data": {
+    "jobs": [
+      {
+        "endpoint": "users",
+        "children": [
+          {
+            "endpoint": "users/{user-id}/webinars",
+            "dataField": "webinars",
+            "dataType": "webinars",
+            "placeholders": {
+              "user-id": "id"
+            },
+            "children": [
+              {
+                "endpoint": "webinars/{webinar-id}/registrants",
+                "dataField": "registrants",
+                "dataType": "webinars-registrants",
+                "placeholders": {
+                  "webinar-id": "id"
+                }
+              },
+              {
+                "endpoint": "webinars/{webinar-id}",
+                "dataType": "webinars-detail",
+                "dataField": ".",
+                "placeholders": {
+                  "webinar-id": "id"
+                }
+              },
+              {
+                "endpoint": "webinars/{webinar-id}/polls",
+                "dataField": "polls",
+                "dataType": "webinars-polls",
+                "placeholders": {
+                  "webinar-id": "id"
+                }
+              },
+              {
+                "endpoint": "webinars/{webinar-id}/registrants/questions",
+                "dataField": "questions",
+                "dataType": "webinars-registrants-questions",
+                "placeholders": {
+                  "webinar-id": "id"
+                }
+              },
+              {
+                "endpoint": "past_webinars/{webinar-id}/instances",
+                "dataField": "webinars",
+                "dataType": "webinars-past",
+                "placeholders": {
+                  "webinar-id": "id"
+                },
+                "children": [
+                  {
+                    "endpoint": "past_webinars/{webinar-uuid}/absentees",
+                    "dataField": "registrants",
+                    "dataType": "webinars-past-absentees",
+                    "placeholders": {
+                      "webinar-uuid": "uuid"
+                    }
+                  },
+                  {
+                    "endpoint": "past_webinars/{webinar-uuid}/polls",
+                    "dataField": "questions",
+                    "dataType": "webinars-past-polls",
+                    "placeholders": {
+                      "webinar-uuid": "uuid"
+                    }
+                  },
+                  {
+                    "endpoint": "past_webinars/{webinar-uuid}/qa",
+                    "dataField": "questions",
+                    "dataType": "webinars-past-qa",
+                    "placeholders": {
+                      "webinar-uuid": "uuid"
+                    }
+                  },
+                  {
+                    "endpoint": "metrics/webinars/{webinar-uuid}/participants?type=past",
+                    "dataType": "webinars-past-participants",
+                    "dataField": "participants",
+                    "placeholders": {
+                      "webinar-uuid": "uuid"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "mappings": {
+      "webinars-detail": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "webinar_id"
+          }
+        },
+        "host_id": {
+          "type": "column",
+          "mapping": {
+            "destination": "host_id"
+          }
+        },
+        "topic": {
+          "type": "column",
+          "mapping": {
+            "destination": "topic"
+          }
+        },
+        "agenda": {
+          "type": "column",
+          "mapping": {
+            "destination": "agenda"
+          }
+        },
+        "created_at": {
+          "type": "column",
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "start_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "start_url"
+          }
+        },
+        "join_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "join_url"
+          }
+        },
+        "registration_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "registration_url"
+          }
+        },
+        "settings.registration_type": {
+          "type": "column",
+          "mapping": {
+            "destination": "registration_type"
+          }
+        },
+        "settings.approval_type": {
+          "type": "column",
+          "mapping": {
+            "destination": "approval_type"
+          }
+        },
+        "settings.contact_name": {
+          "type": "column",
+          "mapping": {
+            "destination": "contact_name"
+          }
+        },
+        "settings.contact_email": {
+          "type": "column",
+          "mapping": {
+            "destination": "contact_email"
+          }
+        },
+        "settings.registrants_restrict_number": {
+          "type": "column",
+          "mapping": {
+            "destination": "registrants_restrict_number"
+          }
+        },
+        "settings.registrants_email_notification": {
+          "type": "column",
+          "mapping": {
+            "destination": "registrants_email_notification"
+          }
+        },
+        "settings.post_webinar_survey": {
+          "type": "column",
+          "mapping": {
+            "destination": "post_webinar_survey"
+          }
+        },
+        "settings.enforce_login": {
+          "type": "column",
+          "mapping": {
+            "destination": "enforce_login"
+          }
+        },
+        "settings.close_registration": {
+          "type": "column",
+          "mapping": {
+            "destination": "close_registration"
+          }
+        },
+        "settings.registrants_confirmation_email": {
+          "type": "column",
+          "mapping": {
+            "destination": "registrants_confirmation_email"
+          }
+        },
+        "recurrence.type": {
+          "type": "column",
+          "mapping": {
+            "destination": "recurrence_type"
+          }
+        },
+        "recurrence.repeat_interval": {
+          "type": "column",
+          "mapping": {
+            "destination": "recurrence_interval"
+          }
+        },
+        "recurrence.weekly_days": {
+          "type": "column",
+          "mapping": {
+            "destination": "recurrence_weekly_days"
+          }
+        },
+        "recurrence.end_times": {
+          "type": "column",
+          "mapping": {
+            "destination": "recurrence_end_times"
+          }
+        }
+      }
+    }
+  }
+}
