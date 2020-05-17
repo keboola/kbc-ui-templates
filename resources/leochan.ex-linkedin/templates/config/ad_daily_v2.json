@@ -1,0 +1,1389 @@
+{
+    "name": "V2 - Ads Analytics - Last 7 days",
+    "description": "Extracting all campaigns ad analytics for the last 7 days", 
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "adCampaignsV2",
+                "params": {
+                    "q": "search",
+                    "search.status.values[0]": "ACTIVE",
+                    "search.status.values[1]": "COMPLETED",
+                    "search.status.values[2]": "PAUSED",
+                    "search.status.values[3]": "ARCHIVED",
+                    "search.status.values[4]": "CANCELED",
+                    "search.status.values[5]": "DRAFT"
+                },
+                "dataField": "elements",
+                "dataType": "campaigns",
+                "scroller": "campaign_scroller",
+                "children": [
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_inmail_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,actionClicks,adUnitClicks,leadGenerationMailContactInfoShares,leadGenerationMailInterestedClicks,opens,sends,textUrlClicks"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_basic_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,clicks,commentLikes,comments,companyPageClicks,follows,impressions,landingPageClicks,likes,otherEngagements,reactions,shares,totalEngagements"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_cost",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,conversionValueInLocalCurrency,costInLocalCurrency,costInUsd"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_other_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,externalWebsiteConversions,externalWebsitePostClickConversions,externalWebsitePostViewConversions,oneClickLeadFormOpens,oneClickLeads"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_video_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,fullScreenPlays,videoCompletions,videoFirstQuartileCompletions,videoMidpointCompletions,videoStarts,videoThirdQuartileCompletions,videoViews"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_basic_viral_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,viralClicks,viralCommentLikes,viralComments,viralCompanyPageClicks,viralFollows,viralImpressions,viralLandingPageClicks,viralLikes,viralOtherEngagements,viralReactions,viralShares,viralTotalEngagements"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_other_viral_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,viralExternalWebsiteConversions,viralExternalWebsitePostClickConversions,viralExternalWebsitePostViewConversions,viralOneClickLeadFormOpens,viralOneClickLeads"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_video_viral_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,viralFullScreenPlays,viralVideoCompletions,viralVideoFirstQuartileCompletions,viralVideoMidpointCompletions,viralVideoStarts,viralVideoThirdQuartileCompletions,viralVideoViews"
+                        }
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "campaigns": {
+                "targeting.includedTargetingFacets.locations.0": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "targeting_locations"
+                    }
+                },
+                "changeAuditStamps.created.time": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created"
+                    }
+                },
+                "audienceExpansionEnabled": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "audienceExpansionEnabled"
+                    }
+                },
+                "costType": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "costType"
+                    }
+                },
+                "dailyBudget.amount": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dailyBudget"
+                    }
+                },
+                "changeAuditStamps.lastModified.time": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "lastModified"
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "locale.language": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "language"
+                    }
+                },
+                "account": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "account"
+                    }
+                },
+                "dailyBudget.currencyCode": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dailyBudget_currency"
+                    }
+                },
+                "servingStatuses.0": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "servingStatuses"
+                    }
+                },
+                "status": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "objectiveType": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "objectiveType"
+                    }
+                },
+                "runSchedule.start": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "runSchedule"
+                    }
+                },
+                "offsiteDeliveryEnabled": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "offsiteDeliveryEnabled"
+                    }
+                },
+                "version.versionTag": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "version"
+                    }
+                },
+                "type": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "type"
+                    }
+                },
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "creativeSelection": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "creativeSelection"
+                    }
+                }
+            },
+            "ads_inmail_stats": {
+                "actionClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "actionClicks"
+                    }
+                },
+                "adUnitClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "adUnitClicks"
+                    }
+                },
+                "leadGenerationMailContactInfoShares": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "leadGenerationMailContactInfoShares"
+                    }
+                },
+                "leadGenerationMailInterestedClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "leadGenerationMailInterestedClicks"
+                    }
+                },
+                "opens": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "opens"
+                    }
+                },
+                "sends": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "sends"
+                    }
+                },
+                "textUrlClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "textUrlClicks"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_basic_stats": {
+                "clicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "clicks"
+                    }
+                },
+                "commentLikes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "commentLikes"
+                    }
+                },
+                "comments": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "comments"
+                    }
+                },
+                "companyPageClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "companyPageClicks"
+                    }
+                },
+                "follows": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "follows"
+                    }
+                },
+                "impressions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "impressions"
+                    }
+                },
+                "landingPageClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "landingPageClicks"
+                    }
+                },
+                "likes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "likes"
+                    }
+                },
+                "otherEngagements": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "otherEngagements"
+                    }
+                },
+                "reactions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "reactions"
+                    }
+                },
+                "shares": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "shares"
+                    }
+                },
+                "totalEngagements": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "totalEngagements"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_cost": {
+                "conversionValueInLocalCurrency": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "conversionValueInLocalCurrency"
+                    }
+                },
+                "costInLocalCurrency": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "costInLocalCurrency"
+                    }
+                },
+                "costInUsd": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "costInUsd"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_other_stats": {
+                "externalWebsiteConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "externalWebsiteConversions"
+                    }
+                },
+                "externalWebsitePostClickConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "externalWebsitePostClickConversions"
+                    }
+                },
+                "externalWebsitePostViewConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "externalWebsitePostViewConversions"
+                    }
+                },
+                "oneClickLeadFormOpens": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "oneClickLeadFormOpens"
+                    }
+                },
+                "oneClickLeads": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "oneClickLeads"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_video_stats": {
+                "fullScreenPlays": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "fullScreenPlays"
+                    }
+                },
+                "videoCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "videoCompletions"
+                    }
+                },
+                "videoFirstQuartileCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "videoFirstQuartileCompletions"
+                    }
+                },
+                "videoMidpointCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "videoMidpointCompletions"
+                    }
+                },
+                "videoStarts": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "videoStarts"
+                    }
+                },
+                "videoThirdQuartileCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "videoThirdQuartileCompletions"
+                    }
+                },
+                "videoViews": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "videoViews"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_basic_viral_stats": {
+                "viralClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralClicks"
+                    }
+                },
+                "viralCommentLikes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralCommentLikes"
+                    }
+                },
+                "viralComments": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralComments"
+                    }
+                },
+                "viralCompanyPageClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralCompanyPageClicks"
+                    }
+                },
+                "viralFollows": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralFollows"
+                    }
+                },
+                "viralImpressions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralImpressions"
+                    }
+                },
+                "viralLandingPageClicks": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralLandingPageClicks"
+                    }
+                },
+                "viralLikes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralLikes"
+                    }
+                },
+                "viralOtherEngagements": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralOtherEngagements"
+                    }
+                },
+                "viralReactions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralReactions"
+                    }
+                },
+                "viralShares": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralShares"
+                    }
+                },
+                "viralTotalEngagements": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralTotalEngagements"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_other_viral_stats": {
+                "viralExternalWebsiteConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralExternalWebsiteConversions"
+                    }
+                },
+                "viralExternalWebsitePostClickConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralExternalWebsitePostClickConversions"
+                    }
+                },
+                "viralExternalWebsitePostViewConversions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralExternalWebsitePostViewConversions"
+                    }
+                },
+                "viralOneClickLeadFormOpens": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralOneClickLeadFormOpens"
+                    }
+                },
+                "viralOneClickLeads": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralOneClickLeads"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "ads_video_viral_stats": {
+                "viralFullScreenPlays": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralFullScreenPlays"
+                    }
+                },
+                "viralVideoCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralVideoCompletions"
+                    }
+                },
+                "viralVideoFirstQuartileCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralVideoFirstQuartileCompletions"
+                    }
+                },
+                "viralVideoMidpointCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralVideoMidpointCompletions"
+                    }
+                },
+                "viralVideoStarts": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralVideoStarts"
+                    }
+                },
+                "viralVideoThirdQuartileCompletions": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralVideoThirdQuartileCompletions"
+                    }
+                },
+                "viralVideoViews": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "viralVideoViews"
+                    }
+                },
+                "pivot": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivot",
+                        "primaryKey": true
+                    }
+                },
+                "pivotValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pivotValue",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.start.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "start_day",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.year": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_year",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.month": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_month",
+                        "primaryKey": true
+                    }
+                },
+                "dateRange.end.day": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "end_day",
+                        "primaryKey": true
+                    }
+                }
+            }
+        }
+    }
+}
