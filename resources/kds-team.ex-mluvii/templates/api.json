@@ -21,25 +21,19 @@
     "loginRequest": {
       "endpoint": "login/connect/token",
       "method": "FORM",
+	  "headers": {
+      "Content-Type": "application/x-www-form-urlencoded"
+     },
       "params": {
-        "refresh_token": {
-          "user": "refresh_token"
-        },
-        "grant_type": "refresh_token"
+      "client_id": {
+       "attr": "user_name"
       },
-      "headers": {
-        "Content-Type": "application/x-www-form-urlencoded"
+      "client_secret": {
+       "attr": "#client_secret"
       },
-      "params": {
-        "client_id": {
-          "attr": "user_name"
-        },
-        "client_secret": {
-          "attr": "#client_secret"
-        },
-        "response_type": "token",
-        "grant_type": "client_credentials"
-      }
+      "response_type": "token",
+      "grant_type": "client_credentials"
+     }
     },
     "apiRequest": {
       "headers": {
@@ -53,11 +47,6 @@
           ]
         }
       }
-    }
-  },
-  "http": {
-    "headers": {
-      "Accept": "application/json"
     }
   }
 }
