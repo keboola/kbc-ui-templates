@@ -1,0 +1,165 @@
+{
+    "name": "Basic",
+    "description": "Downloads `Segments` and `Users` with default attributes. \n\nTo include additional fields update the template in the json mode.",
+    "data": {
+            "jobs": [{
+                    "endpoint": "segment",
+                    "dataField": "data",
+                    "dataType": "segment",
+                    "children": [{
+                            "dataField": "data",
+                            "dataType": "users",
+                            "recursionFilter": "name==All",
+                            "endpoint": "segment/{segment_id}/scan",
+                            "placeholders": {
+                                "segment_id": "id"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "mappings": {
+                "segment": {
+                    "id": {
+                        "mapping": {
+                            "destination": "id",
+                            "primaryKey": true
+                        }
+                    },
+                    "updated": "updated",
+                    "created": "created",
+                    "aid": "aid",
+                    "account_id": "account_id",
+                    "short_id": "short_id",
+                    "name": "name",
+                    "kind": "kind",
+                    "is_public": "is_public",
+                    "slug_name": "slug_name",
+                    "description": "description",
+                    "table": "table",
+                    "author_id": "author_id",
+                    "invalid": "invalid",
+                    "invalid_reason": "invalid_reason",
+                    "deleted": "deleted",
+                    "datemath_calc": "datemath_calc",
+                    "forward_datemath": "forward_datemath",
+                    "save_hist": "save_hist",
+                    "field_updates": "field_updates",
+                    "field_changes_fields": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "field_changes_fields"
+                        },
+                        "forceType": true
+                    },
+                    "schedule_exit": "schedule_exit",
+                    "segment_ql": "segment_ql",
+                    "tags": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "tags"
+                        },
+                        "forceType": true
+                    }
+                },
+                "users": {
+                    "_uid": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "uid",
+                            "primaryKey": true
+                        }
+                    },
+                    "_uids": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "uids"
+                        },
+                        "forceType": true
+                    },
+                    "email": "email",
+                    "name": "name",
+                    "_streamnames": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "stream_names"
+                        },
+                        "forceType": true
+                    },
+                    "_created": "created",
+                    "_cust_sz": "cust_sz",
+                    "_internal_sz": "internal_sz",
+                    "_modified": "modified",
+                    "_num_aliases": "num_aliases",
+                    "_num_conflicts": "num_conflicts",
+                    "_num_days": "num_days",
+                    "_num_events": "num_events",
+                    "_num_streams": "num_streams",
+                    "_scorebuckets": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "score_buckets"
+                        },
+                        "forceType": true
+                    },
+                    "lytics_content": {
+                        "type": "column",
+                        "mapping": {
+                            "destination": "lytics_content"
+                        },
+                        "forceType": true
+                    },
+                    "_segs": {
+                        "type": "table",
+                        "destination": "segment_movement",
+                        "parentKey": {
+                            "destination": "user_uid",
+                            "primaryKey": true
+                        },
+                        "tableMapping": {
+                            "k": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "segment_id",
+                                    "primaryKey": true
+                                }
+                            },
+                            "in": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "in",
+                                    "primaryKey": true
+                                }
+                            },
+                            "out": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "out",
+                                    "primaryKey": true
+                                }
+                            }
+                        }
+                    },
+                    "_split": "split",
+                    "_total_sz": "total_sz",
+                    "segments": {
+                        "type": "table",
+                        "destination": "user_segments",
+                        "parentKey": {
+                            "destination": "user_uid",
+                            "primaryKey": true
+                        },
+                        "tableMapping": {
+                            ".": {
+                                "type": "column",
+                                "mapping": {
+                                    "destination": "segment_slug_name",
+                                    "primaryKey": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+}
