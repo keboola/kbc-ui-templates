@@ -24,6 +24,14 @@
                         }
                      },
                      {
+                        "endpoint":"webinars/{webinar-id}/panelists",
+                        "dataField":"panelists",
+                        "dataType":"webinars-panelists",
+                        "placeholders":{
+                           "webinar-id":"id"
+                        }
+                     },
+                     {
                         "endpoint":"webinars/{webinar-id}",
                         "dataType":"webinars-detail",
                         "dataField":".",
@@ -399,6 +407,24 @@
                   "destination":"join_url"
                }
             }
+         },
+         "webinars-panelists":{
+            "parent_id":{
+               "type":"user",
+               "mapping":{
+                  "destination":"webinar_id"
+               }
+            },
+            "id":{
+               "type":"column",
+               "mapping":{
+                  "destination":"panelist_id",
+                  "primaryKey":true
+               }
+            },
+            "email":"email",
+            "name":"name",
+            "join_url":"join_url"
          },
          "webinars-detail":{
             "id":{
