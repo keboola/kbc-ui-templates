@@ -6,31 +6,16 @@
         "incrementalOutput": false,
         "jobs": [
             {
-                "endpoint": "clients",
-                "dataType": "client",
-                "dataField": "clients",
-                "children": [
-                    {
-                        "endpoint": "entries?where=client_id={id}",
-                        "dataType": "entry",
-                        "dataField": "entries",
-                        "placeholders": {
-                            "id": "id"
-                        }
-                    }
-                ]
+                "endpoint": "entries",
+                "dataType": "entry",
+                "dataField": "entries",
+                "scroller": "pagenum_scroller",
+                "placeholders": {
+                    "id": "id"
+                }
             }
         ],
         "mappings": {
-            "client": {
-                "id": {
-                    "type": "column",
-                    "mapping": {
-                        "destination": "client_id",
-                        "primaryKey": true
-                    }
-                }
-            },
             "entry": {
                 "id": {
                     "type": "column",

@@ -1,0 +1,17 @@
+{
+   "pagination": {
+    "method": "response.param",
+    "responseParam": "_next",
+    "queryParam": "start",
+    "includeParams": true
+   },
+   "baseUrl": "https://api.lytics.io/api/",
+   "http": {
+    "headers": {
+     "Accept": "application/json",
+     "Authorization": {
+      "attr": "#token"
+     }
+    }
+   }
+  }

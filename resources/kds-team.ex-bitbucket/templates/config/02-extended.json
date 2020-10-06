@@ -1,6 +1,6 @@
 {
     "name": "Extended",
-    "description": "Downloads \n\n - Teams \n - Members \n - Projects \n - Repositories \n - Commits \n - Commit File Changes \n - Issues \n - Issues Comments \n - Pull Requests (separate tables for different request statuses) \n - Pull Request Activities (separate tables for different request statuses)",
+    "description": "Downloads \n\n - Teams \n - Members \n - Projects \n - Repositories \n - Commits \n - Issues \n - Issues Comments \n - Pull Requests (separate tables for different request statuses) \n - Pull Request Activities (separate tables for different request statuses)",
     "data": {
         "incrementalOutput": true,
         "jobs": [
@@ -43,26 +43,34 @@
                                 "placeholders": {
                                     "team_uuid": "owner.uuid",
                                     "repo_uuid": "uuid"
-                                },
-                                "children": [
-                                    {
-                                        "endpoint": "repositories/{2:team_uuid}/{2:repo_uuid}/diffstat/{1:id}",
-                                        "dataField": "values",
-                                        "dataType": "repository_commit_change",
-                                        "placeholders": {
-                                            "2:team_uuid": "owner.uuid",
-                                            "2:repo_uuid": "uuid",
-                                            "1:id": "hash"
-                                        }
-                                    }
-                                ]
+                                }
                             },
                             {
                                 "endpoint": "repositories/{team_uuid}/{repo_uuid}/pullrequests/",
                                 "dataField": "values",
                                 "dataType": "pull_request_open",
                                 "params": {
-                                    "state": "OPEN"
+                                    "state": "OPEN",
+                                    "q": {
+                                        "function": "concat",
+                                        "args": [
+                                            "updated_on >= ",
+                                            {
+                                                "function": "date",
+                                                "args": [
+                                                    "Y-m-d",
+                                                    {
+                                                        "function": "strtotime",
+                                                        "args": [
+                                                            {
+                                                                "attr": "startDate"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 },
                                 "placeholders": {
                                     "team_uuid": "owner.uuid",
@@ -86,7 +94,27 @@
                                 "dataField": "values",
                                 "dataType": "pull_request_merged",
                                 "params": {
-                                    "state": "MERGED"
+                                    "state": "MERGED",
+                                    "q": {
+                                        "function": "concat",
+                                        "args": [
+                                            "updated_on >= ",
+                                            {
+                                                "function": "date",
+                                                "args": [
+                                                    "Y-m-d",
+                                                    {
+                                                        "function": "strtotime",
+                                                        "args": [
+                                                            {
+                                                                "attr": "startDate"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 },
                                 "placeholders": {
                                     "team_uuid": "owner.uuid",
@@ -110,7 +138,27 @@
                                 "dataField": "values",
                                 "dataType": "pull_request_superseded",
                                 "params": {
-                                    "state": "SUPERSEDED"
+                                    "state": "SUPERSEDED",
+                                    "q": {
+                                        "function": "concat",
+                                        "args": [
+                                            "updated_on >= ",
+                                            {
+                                                "function": "date",
+                                                "args": [
+                                                    "Y-m-d",
+                                                    {
+                                                        "function": "strtotime",
+                                                        "args": [
+                                                            {
+                                                                "attr": "startDate"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 },
                                 "placeholders": {
                                     "team_uuid": "owner.uuid",
@@ -134,7 +182,27 @@
                                 "dataField": "values",
                                 "dataType": "pull_request_declined",
                                 "params": {
-                                    "state": "DECLINED"
+                                    "state": "DECLINED",
+                                    "q": {
+                                        "function": "concat",
+                                        "args": [
+                                            "updated_on >= ",
+                                            {
+                                                "function": "date",
+                                                "args": [
+                                                    "Y-m-d",
+                                                    {
+                                                        "function": "strtotime",
+                                                        "args": [
+                                                            {
+                                                                "attr": "startDate"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
                                 },
                                 "placeholders": {
                                     "team_uuid": "owner.uuid",
@@ -157,6 +225,28 @@
                                 "endpoint": "repositories/{team_uuid}/{repo_uuid}/issues/",
                                 "dataField": "values",
                                 "dataType": "issue",
+                                "params": {
+                                    "q": {
+                                        "function": "concat",
+                                        "args": [
+                                            "updated_on >= ",
+                                            {
+                                                "function": "date",
+                                                "args": [
+                                                    "Y-m-d",
+                                                    {
+                                                        "function": "strtotime",
+                                                        "args": [
+                                                            {
+                                                                "attr": "startDate"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                },
                                 "placeholders": {
                                     "team_uuid": "owner.uuid",
                                     "repo_uuid": "uuid"
@@ -404,32 +494,6 @@
                 "user.display_name": "user",
                 "user.type": "user_type",
                 "links.html.href": "html_url"
-            },
-            "repository_commit_change": {
-                "parent_hash": {
-                    "type": "user",
-                    "mapping": {
-                        "destination": "repository_commit_id",
-                        "primaryKey": true
-                    }
-                },
-                "status": {
-                    "mapping": {
-                        "destination": "status",
-                        "primaryKey": true
-                    }
-                },
-                "new.path": {
-                    "mapping": {
-                        "destination": "new_path",
-                        "primaryKey": true
-                    }
-                },
-                "new.type": "new_type",
-                "old.path": "old_path",
-                "old.type": "old_type",
-                "lines_removed": "lines_removed",
-                "lines_added": "lines_added"
             },
             "pull_request_open_activity": {
                 "pull_request.id": {

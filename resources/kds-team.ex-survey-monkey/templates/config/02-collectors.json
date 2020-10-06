@@ -1,0 +1,189 @@
+{
+    "name": "Collectors",
+    "description": "Downloads results from Collectors endpoints and Collectors Stats",
+    "data": {
+        "jobs": [
+            {
+                "endpoint": "surveys",
+                "dataType": "surveys",
+                "dataField": "data",
+                "children": [
+                    {
+                        "endpoint": "surveys/{survey_id}/collectors",
+                        "dataType": "survey_collectors_bridge",
+                        "dataField": "data",
+                        "placeholders": {
+                            "survey_id": "id"
+                        },
+                        "children": [
+                            {
+                                "endpoint": "collectors/{collector_id}",
+                                "dataType": "survey_collectors",
+                                "dataField": ".",
+                                "placeholders": {
+                                    "collector_id": "id"
+                                }
+                            },
+                            {
+                                "endpoint": "collectors/{collector_id}/stats",
+                                "dataType": "survey_collectors_stats",
+                                "dataField": ".",
+                                "placeholders": {
+                                    "collector_id": "id"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "surveys": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "title": {
+                    "mapping": {
+                        "destination": "title"
+                    }
+                },
+                "nickname": {
+                    "mapping": {
+                        "destination": "nickname"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                }
+            },
+            "survey_collectors": {
+                "edit_response_type": {
+                    "mapping": {
+                        "destination": "edit_response_type"
+                    }
+                },
+                "disqualification_message": {
+                    "mapping": {
+                        "destination": "disqualification_message"
+                    }
+                },
+                "open": {
+                    "mapping": {
+                        "destination": "open"
+                    }
+                },
+                "closed_page_message": {
+                    "mapping": {
+                        "destination": "closed_page_message"
+                    }
+                },
+                "name": {
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                },
+                "redirect_url": {
+                    "mapping": {
+                        "destination": "redirect_url"
+                    }
+                },
+                "anonymous_type": {
+                    "mapping": {
+                        "destination": "anonymous_type"
+                    }
+                },
+                "display_survey_results": {
+                    "mapping": {
+                        "destination": "display_survey_results"
+                    }
+                },
+                "url": {
+                    "mapping": {
+                        "destination": "url"
+                    }
+                },
+                "disqualification_url": {
+                    "mapping": {
+                        "destination": "disqualification_url"
+                    }
+                },
+                "sender_email": {
+                    "mapping": {
+                        "destination": "sender_email"
+                    }
+                },
+                "thank_you_message": {
+                    "mapping": {
+                        "destination": "thank_you_message"
+                    }
+                },
+                "status": {
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "close_date": {
+                    "mapping": {
+                        "destination": "close_date"
+                    }
+                },
+                "date_created": {
+                    "mapping": {
+                        "destination": "date_created"
+                    }
+                },
+                "allow_multiple_responses": {
+                    "mapping": {
+                        "destination": "allow_multiple_responses"
+                    }
+                },
+                "date_modified": {
+                    "mapping": {
+                        "destination": "date_modified"
+                    }
+                },
+                "type": {
+                    "mapping": {
+                        "destination": "type"
+                    }
+                },
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "survey_id": {
+                    "mapping": {
+                        "destination": "survey_id"
+                    }
+                },
+                "password_enabled": {
+                    "mapping": {
+                        "destination": "napassword_enabledme"
+                    }
+                },
+                "redirect_type": {
+                    "mapping": {
+                        "destination": "redirect_type"
+                    }
+                },
+                "response_limit": {
+                    "mapping": {
+                        "destination": "response_limit"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://",
+      {
+        "attr": "accountName"
+      },
+      "/"
+    ]
+  },
+  "pagination": {
+    "method": "offset",
+    "limitParam": "limit",
+    "offsetParam": "offset",
+    "limit": "1000"
+  },
+  "authentication": {
+    "type": "login",
+    "expires": 3600,
+    "loginRequest": {
+     "endpoint": {
+	"function": "concat",
+    "args": [
+      "https://",
+      {
+        "attr": "accountName"
+      },
+      "/login/connect/token"
+    ]},
+      "method": "POST",
+      "params": {
+      "client_id": {
+       "attr": "user_name"
+      },
+      "client_secret": {
+       "attr": "#client_secret"
+      },
+      "response_type": "token",
+      "grant_type": "client_credentials"
+     }
+	  },
+    "apiRequest": {
+      "headers": {
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "Bearer ",
+            {
+              "response": "access_token"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

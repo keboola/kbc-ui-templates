@@ -517,8 +517,7 @@
             "value": {
               "forceType": "json",
               "mapping": {
-                "destination": "value",
-                "primaryKey": true
+                "destination": "value"
               }
             }
           }

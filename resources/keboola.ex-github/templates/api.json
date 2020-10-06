@@ -1,5 +1,14 @@
 {
     "baseUrl": "https://api.github.com/",
+    "retryConfig": {
+     "http": {
+      "retryHeader": "X-RetryAfter",
+      "codes": [
+       403
+      ]
+     },
+     "maxRetries": 14
+    },
     "authentication": {
       "type": "oauth20",
       "format": "json",

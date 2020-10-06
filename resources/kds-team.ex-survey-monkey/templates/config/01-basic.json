@@ -1,8 +1,7 @@
 {
     "name": "Basic",
-    "description": "Downloads surveys, results and all questions and bulk responses.",
+    "description": "Downloads surveys, questions, answers, and responses.",
     "data": {
-        "debug": false,
         "jobs": [
             {
                 "endpoint": "surveys",
@@ -12,7 +11,7 @@
                     {
                         "endpoint": "surveys/{survey_id}/details",
                         "dataType": "survey_details",
-                        "dataField": "pages",
+                        "dataField": ".",
                         "placeholders": {
                             "survey_id": "id"
                         }
@@ -27,6 +26,612 @@
                     }
                 ]
             }
-        ]
+        ],
+        "mappings": {
+            "surveys": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "title": {
+                    "mapping": {
+                        "destination": "title"
+                    }
+                },
+                "nickname": {
+                    "mapping": {
+                        "destination": "nickname"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                }
+            },
+            "survey_details": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "title": {
+                    "mapping": {
+                        "destination": "title"
+                    }
+                },
+                "nickname": {
+                    "mapping": {
+                        "destination": "nickname"
+                    }
+                },
+                "language": {
+                    "mapping": {
+                        "destination": "language"
+                    }
+                },
+                "question_count": {
+                    "mapping": {
+                        "destination": "question_count"
+                    }
+                },
+                "page_count": {
+                    "mapping": {
+                        "destination": "page_count"
+                    }
+                },
+                "date_created": {
+                    "mapping": {
+                        "destination": "date_created"
+                    }
+                },
+                "date_modified": {
+                    "mapping": {
+                        "destination": "date_modified"
+                    }
+                },
+                "folder_id": {
+                    "mapping": {
+                        "destination": "folder_id"
+                    }
+                },
+                "position": {
+                    "mapping": {
+                        "destination": "position"
+                    }
+                },
+                "description": {
+                    "mapping": {
+                        "destination": "description"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                },
+                "pages": {
+                    "destination": "survey_details_pages",
+                    "type": "table",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id",
+                                "primaryKey": true
+                            }
+                        },
+                        "title": {
+                            "mapping": {
+                                "destination": "title"
+                            }
+                        },
+                        "position": {
+                            "mapping": {
+                                "destination": "position"
+                            }
+                        },
+                        "question_count": {
+                            "mapping": {
+                                "destination": "question_count"
+                            }
+                        },
+                        "description": {
+                            "mapping": {
+                                "destination": "description"
+                            }
+                        },
+                        "href": {
+                            "mapping": {
+                                "destination": "href"
+                            }
+                        },
+                        "questions": {
+                            "destination": "survey_details_questions",
+                            "type": "table",
+                            "tableMapping": {
+                                "id": {
+                                    "mapping": {
+                                        "destination": "id",
+                                        "primaryKey": true
+                                    }
+                                },
+                                "family": {
+                                    "mapping": {
+                                        "destination": "family"
+                                    }
+                                },
+                                "sorting": {
+                                    "mapping": {
+                                        "destination": "sorting"
+                                    }
+                                },
+                                "sorting.type": {
+                                    "mapping": {
+                                        "destination": "sorting_type"
+                                    }
+                                },
+                                "sorting.ignore_last": {
+                                    "mapping": {
+                                        "destination": "sorting_ignore_last"
+                                    }
+                                },
+                                "subtype": {
+                                    "mapping": {
+                                        "destination": "subtype"
+                                    }
+                                },
+                                "position": {
+                                    "mapping": {
+                                        "destination": "position"
+                                    }
+                                },
+                                "required.text": {
+                                    "mapping": {
+                                        "destination": "required_text"
+                                    }
+                                },
+                                "required.amount": {
+                                    "mapping": {
+                                        "destination": "required_amount"
+                                    }
+                                },
+                                "required.type": {
+                                    "mapping": {
+                                        "destination": "required_type"
+                                    }
+                                },
+                                "visible": {
+                                    "mapping": {
+                                        "destination": "visible"
+                                    }
+                                },
+                                "title": {
+                                    "mapping": {
+                                        "destination": "title"
+                                    }
+                                },
+                                "validation.min": {
+                                    "mapping": {
+                                        "destination": "validation_min"
+                                    }
+                                },
+                                "validation.max": {
+                                    "mapping": {
+                                        "destination": "validation_max"
+                                    }
+                                },
+                                "validation.text": {
+                                    "mapping": {
+                                        "destination": "validation_text"
+                                    }
+                                },
+                                "validation.sum": {
+                                    "mapping": {
+                                        "destination": "validation_sum"
+                                    }
+                                },
+                                "validation.sum.text": {
+                                    "mapping": {
+                                        "destination": "validation_sum_text"
+                                    }
+                                },
+                                "validation.type": {
+                                    "mapping": {
+                                        "destination": "validation_type"
+                                    }
+                                },
+                                "forced.ranking": {
+                                    "mapping": {
+                                        "destination": "forced_ranking"
+                                    }
+                                },
+                                "display.options.show_display_number": {
+                                    "mapping": {
+                                        "destination": "display_options_show_display_number"
+                                    }
+                                },
+                                "nickname": {
+                                    "mapping": {
+                                        "destination": "nickname"
+                                    }
+                                },
+                                "href": {
+                                    "mapping": {
+                                        "destination": "href"
+                                    }
+                                },
+                                "answers.choices": {
+                                    "destination": "survey_details_questions_answers_choices",
+                                    "type": "table",
+                                    "tableMapping": {
+                                        "id": {
+                                            "mapping": {
+                                                "destination": "id",
+                                                "primaryKey": true
+                                            }
+                                        },
+                                        "visible": {
+                                            "mapping": {
+                                                "destination": "visible"
+                                            }
+                                        },
+                                        "text": {
+                                            "mapping": {
+                                                "destination": "text"
+                                            }
+                                        },
+                                        "weight": {
+                                            "mapping": {
+                                                "destination": "weight"
+                                            }
+                                        },
+                                        "position": {
+                                            "mapping": {
+                                                "destination": "position"
+                                            }
+                                        },
+                                        "is_na": {
+                                            "mapping": {
+                                                "destination": "is_na"
+                                            }
+                                        },
+                                        "image.url": {
+                                            "mapping": {
+                                                "destination": "image_url"
+                                            }
+                                        },
+                                        "quiz_options.score": {
+                                            "mapping": {
+                                                "destination": "quiz_options_score"
+                                            }
+                                        }
+                                    }
+                                },
+                                "answers.rows": {
+                                    "destination": "survey_details_questions_answers_rows",
+                                    "type": "table",
+                                    "tableMapping": {
+                                        "id": {
+                                            "mapping": {
+                                                "destination": "id",
+                                                "primaryKey": true
+                                            }
+                                        },
+                                        "text": {
+                                            "mapping": {
+                                                "destination": "text"
+                                            }
+                                        },
+                                        "position": {
+                                            "mapping": {
+                                                "destination": "position"
+                                            }
+                                        },
+                                        "required": {
+                                            "mapping": {
+                                                "destination": "required"
+                                            }
+                                        },
+                                        "type": {
+                                            "mapping": {
+                                                "destination": "type"
+                                            }
+                                        },
+                                        "visible": {
+                                            "mapping": {
+                                                "destination": "visible"
+                                            }
+                                        }
+                                    }
+                                },
+                                "answers.cols": {
+                                    "destination": "survey_details_questions_answers_cols",
+                                    "type": "table",
+                                    "tableMapping": {
+                                        "id": {
+                                            "mapping": {
+                                                "destination": "id",
+                                                "primaryKey": true
+                                            }
+                                        },
+                                        "answers.cols.text": {
+                                            "mapping": {
+                                                "destination": "answers_cols_text"
+                                            }
+                                        },
+                                        "answers.cols.choices": {
+                                            "destination": "survey_details_questions_answers_cols_choices",
+                                            "type": "table",
+                                            "tableMapping": {
+                                                "id": {
+                                                    "mapping": {
+                                                        "destination": "id",
+                                                        "primaryKey": true
+                                                    }
+                                                },
+                                                "text": {
+                                                    "mapping": {
+                                                        "destination": "text"
+                                                    }
+                                                },
+                                                "visible": {
+                                                    "mapping": {
+                                                        "destination": "visible"
+                                                    }
+                                                },
+                                                "position": {
+                                                    "mapping": {
+                                                        "destination": "position"
+                                                    }
+                                                },
+                                                "is_na": {
+                                                    "mapping": {
+                                                        "destination": "choices"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "answers.other": {
+                                    "destination": "survey_details_questions_answers_other",
+                                    "type": "table",
+                                    "tableMapping": {
+                                        "id": {
+                                            "mapping": {
+                                                "destination": "id",
+                                                "primaryKey": true
+                                            }
+                                        },
+                                        "text": {
+                                            "mapping": {
+                                                "destination": "text"
+                                            }
+                                        },
+                                        "position": {
+                                            "mapping": {
+                                                "destination": "position"
+                                            }
+                                        },
+                                        "visible": {
+                                            "mapping": {
+                                                "destination": "visible"
+                                            }
+                                        },
+                                        "num_chars": {
+                                            "mapping": {
+                                                "destination": "num_chars"
+                                            }
+                                        },
+                                        "num_lines": {
+                                            "mapping": {
+                                                "destination": "num_lines"
+                                            }
+                                        }
+                                    }
+                                },
+                                "headings": {
+                                    "destination": "survey_details_questions_headings",
+                                    "type": "table",
+                                    "tableMapping": {
+                                        "heading": {
+                                            "mapping": {
+                                                "destination": "heading"
+                                            }
+                                        },
+                                        "description": {
+                                            "mapping": {
+                                                "destination": "description"
+                                            }
+                                        },
+                                        "image": {
+                                            "mapping": {
+                                                "destination": "image"
+                                            }
+                                        },
+                                        "image_url": {
+                                            "mapping": {
+                                                "destination": "image_url"
+                                            }
+                                        },
+                                        "random_assignment": {
+                                            "mapping": {
+                                                "destination": "random_assignment"
+                                            }
+                                        },
+                                        "random_assignment.percent": {
+                                            "mapping": {
+                                                "destination": "random_assignment_percent"
+                                            }
+                                        },
+                                        "random_assignment.position": {
+                                            "mapping": {
+                                                "destination": "random_assignment_position"
+                                            }
+                                        },
+                                        "random_assignment.variable_name": {
+                                            "mapping": {
+                                                "destination": "random_assignment_variable_name"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "survey_responses": {
+                "id": {
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "parent_id": {
+                    "mapping": {
+                        "destination": "parent_id"
+                    }
+                },
+                "href": {
+                    "mapping": {
+                        "destination": "href"
+                    }
+                },
+                "survey_id": {
+                    "mapping": {
+                        "destination": "survey_id"
+                    }
+                },
+                "collector_id": {
+                    "mapping": {
+                        "destination": "collector_id"
+                    }
+                },
+                "recipient_id": {
+                    "mapping": {
+                        "destination": "recipient_id"
+                    }
+                },
+                "total_time": {
+                    "mapping": {
+                        "destination": "total_time"
+                    }
+                },
+                "custom_value": {
+                    "mapping": {
+                        "destination": "custom_value"
+                    }
+                },
+                "edit_url": {
+                    "mapping": {
+                        "destination": "edit_url"
+                    }
+                },
+                "analyze_url": {
+                    "mapping": {
+                        "destination": "analyze_url"
+                    }
+                },
+                "ip_address": {
+                    "mapping": {
+                        "destination": "ip_address"
+                    }
+                },
+                "response_status": {
+                    "mapping": {
+                        "destination": "response_status"
+                    }
+                },
+                "collection_mode": {
+                    "mapping": {
+                        "destination": "collection_mode"
+                    }
+                },
+                "date_created": {
+                    "mapping": {
+                        "destination": "date_created"
+                    }
+                },
+                "date_modified": {
+                    "mapping": {
+                        "destination": "date_modified"
+                    }
+                },
+                "pages": {
+                    "destination": "survey_response_pages",
+                    "type": "table",
+                    "tableMapping": {
+                        "id": {
+                            "mapping": {
+                                "destination": "id",
+                                "primaryKey": true
+                            }
+                        },
+                        "questions": {
+                            "destination": "survey_response_pages_questions",
+                            "type": "table",
+                            "tableMapping": {
+                                "id": {
+                                    "mapping": {
+                                        "destination": "id",
+                                        "primaryKey": true
+                                    }
+                                },
+                                "variable_id": {
+                                    "mapping": {
+                                        "destination": "variable_id"
+                                    }
+                                },
+                                "answers": {
+                                    "destination": "survey_response_pages_questions_answers",
+                                    "type": "table",
+                                    "tableMapping": {
+                                        "choice_id": {
+                                            "mapping": {
+                                                "destination": "choice_id"
+                                            }
+                                        },
+                                        "row_id": {
+                                            "mapping": {
+                                                "destination": "row_id"
+                                            }
+                                        },
+                                        "col_id": {
+                                            "mapping": {
+                                                "destination": "col_id"
+                                            }
+                                        },
+                                        "other_id": {
+                                            "mapping": {
+                                                "destination": "other_id"
+                                            }
+                                        },
+                                        "text": {
+                                            "mapping": {
+                                                "destination": "text"
+                                            }
+                                        },
+                                        "download_url": {
+                                            "mapping": {
+                                                "destination": "download_url"
+                                            }
+                                        },
+                                        "content_type": {
+                                            "mapping": {
+                                                "destination": "content_type"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
