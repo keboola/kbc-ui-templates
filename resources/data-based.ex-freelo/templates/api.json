@@ -1,0 +1,20 @@
+{
+  "baseUrl": "https://api.freelo.cz/v1/",
+  "authentication": {
+    "type": "basic"
+  },
+  "http": {
+    "headers": {
+      "User-Agent": "Keboola extractor (contact@data-based.io)"
+    }
+  },
+  "pagination": {
+    "method": "pagenum",
+    "pageParam": "p",
+    "firstPage": 0,
+    "firstPageParams": false,
+    "limitStop": {
+      "field": "total"
+    }
+  }
+}

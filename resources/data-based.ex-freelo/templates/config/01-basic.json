@@ -1,0 +1,129 @@
+{
+  "name": "01 - Basic",
+  "description": "Downloads \n\n - Users \n - Projects \n - Tasks \n - Tasklists",
+  "data": {
+    "incrementalOutput": true,
+    "jobs": [
+      {
+        "endpoint": "users",
+        "dataField": "data.users",
+        "dataType": "users"
+      },
+      {
+        "endpoint": "all-projects",
+        "dataField": "data.projects",
+        "dataType": "projects",
+        "children": [
+          {
+            "endpoint": "project/{project_id}",
+            "dataField": "tasklists",
+            "dataType": "tasklists",
+            "placeholders": {
+              "project_id": "id"
+            }
+          }
+        ]
+      }
+    ],
+    "mappings": {
+      "users": {
+        "id": {
+          "mapping": {
+            "destination": "user_id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "fullname": {
+          "mapping": {
+            "destination": "user_name"
+          },
+          "type": "column"
+        }
+      },
+      "projects": {
+        "id": {
+          "mapping": {
+            "destination": "project_id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "name": {
+          "mapping": {
+            "destination": "project_name"
+          },
+          "type": "column"
+        },
+        "owner.id": {
+          "mapping": {
+            "destination": "owner_id"
+          },
+          "type": "column"
+        }
+      },
+      "tasklists": {
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "project_id"
+          }
+        },
+        "id": {
+          "mapping": {
+            "destination": "tasklist_id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "name": {
+          "mapping": {
+            "destination": "tasklist_name"
+          },
+          "type": "column"
+        },
+        "tasks": {
+          "type": "table",
+          "destination": "tasks",
+          "parentKey": {
+            "destination": "tasklist_id",
+            "primaryKey": false
+          },
+          "tableMapping": {
+            "id": {
+              "type": "column",
+              "mapping": {
+                "destination": "task_id",
+                "primaryKey": true
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "task_name"
+              }
+            },
+            "due_date": {
+              "type": "column",
+              "mapping": {
+                "destination": "due_date"
+              }
+            },
+            "due_date_end": {
+              "type": "column",
+              "mapping": {
+                "destination": "due_date_end"
+              }
+            },
+            "worker.id": {
+              "type": "column",
+              "mapping": {
+                "destination": "worker_id"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
