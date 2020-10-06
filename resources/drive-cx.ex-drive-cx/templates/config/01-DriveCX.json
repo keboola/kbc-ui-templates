@@ -47,7 +47,17 @@
        "attr": "client_id"
       }
      }
-    }
+    },
+     {
+       "endpoint": "survey/fetch_customers",
+       "dataType": "customers",
+       "dataField": "Customers",
+       "params": {
+         "ClientID": {
+           "attr": "client_id"
+         }
+       }
+     }
    ]
   }
 }
