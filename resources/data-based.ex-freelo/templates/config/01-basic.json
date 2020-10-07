@@ -3,7 +3,6 @@
   "description": "Downloads \n\n - work reports from specific date",
   "data": {
     "incrementalOutput": true,
-    "outputBucket": "ex-freelo",
     "jobs": [
       {
         "endpoint": "work-reports",
