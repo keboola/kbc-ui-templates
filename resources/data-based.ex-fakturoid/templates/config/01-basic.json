@@ -1,0 +1,1663 @@
+{
+  "name": "01 - Basic",
+  "description": "Downloads \n\n - Accounts \n - Users \n - Subjects \n - Bank Accounts \n - Invoices \n - Expenses \n - Todos \n - Events",
+  "data": {
+    "incrementalOutput": true,
+    "jobs": [
+      {
+        "endpoint": "account.json",
+        "dataField": ".",
+        "dataType": "account"
+      },
+      {
+        "endpoint": "users.json",
+        "dataField": ".",
+        "dataType": "users"
+      },
+      {
+        "endpoint": "bank_accounts.json",
+        "dataField": ".",
+        "dataType": "bank_accounts"
+      },
+      {
+        "endpoint": "subjects.json",
+        "dataField": ".",
+        "dataType": "subjects",
+        "params": {
+          "updated_since": {
+            "function": "concat",
+            "args": [
+              {
+                "function": "date",
+                "args": [
+                  "Y-m-d",
+                  {
+                    "function": "strtotime",
+                    "args": [
+                      {
+                        "attr": "since"
+                      },
+                      {
+                        "time": "currentStart"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "T00:00:00+0000"
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "invoices.json",
+        "dataField": ".",
+        "dataType": "invoices",
+        "params": {
+          "updated_since": {
+            "function": "concat",
+            "args": [
+              {
+                "function": "date",
+                "args": [
+                  "Y-m-d",
+                  {
+                    "function": "strtotime",
+                    "args": [
+                      {
+                        "attr": "since"
+                      },
+                      {
+                        "time": "currentStart"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "T00:00:00+0000"
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "expenses.json",
+        "dataField": ".",
+        "dataType": "expenses",
+        "params": {
+          "updated_since": {
+            "function": "concat",
+            "args": [
+              {
+                "function": "date",
+                "args": [
+                  "Y-m-d",
+                  {
+                    "function": "strtotime",
+                    "args": [
+                      {
+                        "attr": "since"
+                      },
+                      {
+                        "time": "currentStart"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "T00:00:00+0000"
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "events.json",
+        "dataField": ".",
+        "dataType": "events",
+        "params": {
+          "since": {
+            "function": "concat",
+            "args": [
+              {
+                "function": "date",
+                "args": [
+                  "Y-m-d",
+                  {
+                    "function": "strtotime",
+                    "args": [
+                      {
+                        "attr": "since"
+                      },
+                      {
+                        "time": "currentStart"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "T00:00:00+0000"
+            ]
+          }
+        }
+      },
+      {
+        "endpoint": "todos.json",
+        "dataField": ".",
+        "dataType": "todos",
+        "params": {
+          "since": {
+            "function": "concat",
+            "args": [
+              {
+                "function": "date",
+                "args": [
+                  "Y-m-d",
+                  {
+                    "function": "strtotime",
+                    "args": [
+                      {
+                        "attr": "since"
+                      },
+                      {
+                        "time": "currentStart"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "T00:00:00+0000"
+            ]
+          }
+        }
+      }
+    ],
+    "mappings": {
+      "account": {
+        "subdomain": {
+          "mapping": {
+            "destination": "subdomain",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "unit_name": {
+          "mapping": {
+            "destination": "unit_name"
+          },
+          "type": "column"
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          },
+          "type": "column"
+        },
+        "invoice_language": {
+          "mapping": {
+            "destination": "invoice_language"
+          },
+          "type": "column"
+        },
+        "city": {
+          "mapping": {
+            "destination": "city"
+          },
+          "type": "column"
+        },
+        "invoice_email": {
+          "mapping": {
+            "destination": "invoice_email"
+          },
+          "type": "column"
+        },
+        "full_name": {
+          "mapping": {
+            "destination": "full_name"
+          },
+          "type": "column"
+        },
+        "vat_rate": {
+          "mapping": {
+            "destination": "vat_rate"
+          },
+          "type": "column"
+        },
+        "invoice_proforma": {
+          "mapping": {
+            "destination": "invoice_proforma"
+          },
+          "type": "column"
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          },
+          "type": "column"
+        },
+        "invoice_paypal": {
+          "mapping": {
+            "destination": "invoice_paypal"
+          },
+          "type": "column"
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          },
+          "type": "column"
+        },
+        "custom_email_text": {
+          "mapping": {
+            "destination": "custom_email_text"
+          },
+          "type": "column"
+        },
+        "eet_invoice_default": {
+          "mapping": {
+            "destination": "eet_invoice_default"
+          },
+          "type": "column"
+        },
+        "invoice_gopay": {
+          "mapping": {
+            "destination": "invoice_gopay"
+          },
+          "type": "column"
+        },
+        "invoice_note": {
+          "mapping": {
+            "destination": "invoice_note"
+          },
+          "type": "column"
+        },
+        "plan": {
+          "mapping": {
+            "destination": "plan"
+          },
+          "type": "column"
+        },
+        "html_url": {
+          "mapping": {
+            "destination": "html_url"
+          },
+          "type": "column"
+        },
+        "overdue_email_text": {
+          "mapping": {
+            "destination": "overdue_email_text"
+          },
+          "type": "column"
+        },
+        "send_invoice_from_proforma_email": {
+          "mapping": {
+            "destination": "send_invoice_from_proforma_email"
+          },
+          "type": "column"
+        },
+        "street2": {
+          "mapping": {
+            "destination": "street2"
+          },
+          "type": "column"
+        },
+        "street": {
+          "mapping": {
+            "destination": "street"
+          },
+          "type": "column"
+        },
+        "vat_price_mode": {
+          "mapping": {
+            "destination": "vat_price_mode"
+          },
+          "type": "column"
+        },
+        "iban": {
+          "mapping": {
+            "destination": "iban"
+          },
+          "type": "column"
+        },
+        "vat_no": {
+          "mapping": {
+            "destination": "vat_no"
+          },
+          "type": "column"
+        },
+        "swift_bic": {
+          "mapping": {
+            "destination": "swift_bic"
+          },
+          "type": "column"
+        },
+        "registration_no": {
+          "mapping": {
+            "destination": "registration_no"
+          },
+          "type": "column"
+        },
+        "invoice_number_format": {
+          "mapping": {
+            "destination": "invoice_number_format"
+          },
+          "type": "column"
+        },
+        "proforma_number_format": {
+          "mapping": {
+            "destination": "proforma_number_format"
+          },
+          "type": "column"
+        },
+        "phone": {
+          "mapping": {
+            "destination": "phone"
+          },
+          "type": "column"
+        },
+        "plan_price": {
+          "mapping": {
+            "destination": "plan_price"
+          },
+          "type": "column"
+        },
+        "web": {
+          "mapping": {
+            "destination": "web"
+          },
+          "type": "column"
+        },
+        "currency": {
+          "mapping": {
+            "destination": "currency"
+          },
+          "type": "column"
+        },
+        "bank_account": {
+          "mapping": {
+            "destination": "bank_account"
+          },
+          "type": "column"
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          },
+          "type": "column"
+        },
+        "due": {
+          "mapping": {
+            "destination": "due"
+          },
+          "type": "column"
+        },
+        "invoice_payment_method": {
+          "mapping": {
+            "destination": "invoice_payment_method"
+          },
+          "type": "column"
+        },
+        "send_thank_you_email": {
+          "mapping": {
+            "destination": "send_thank_you_email"
+          },
+          "type": "column"
+        },
+        "vat_mode": {
+          "mapping": {
+            "destination": "vat_mode"
+          },
+          "type": "column"
+        },
+        "zip": {
+          "mapping": {
+            "destination": "zip"
+          },
+          "type": "column"
+        },
+        "send_overdue_email": {
+          "mapping": {
+            "destination": "send_overdue_email"
+          },
+          "type": "column"
+        },
+        "displayed_note": {
+          "mapping": {
+            "destination": "displayed_note"
+          },
+          "type": "column"
+        },
+        "email": {
+          "mapping": {
+            "destination": "email"
+          },
+          "type": "column"
+        },
+        "country": {
+          "mapping": {
+            "destination": "country"
+          },
+          "type": "column"
+        },
+        "eet": {
+          "mapping": {
+            "destination": "eet"
+          },
+          "type": "column"
+        }
+      },
+      "users": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "full_name": {
+          "mapping": {
+            "destination": "full_name"
+          },
+          "type": "column"
+        },
+        "email": {
+          "mapping": {
+            "destination": "email"
+          },
+          "type": "column"
+        },
+        "avatar_url": {
+          "mapping": {
+            "destination": "avatar_url"
+          },
+          "type": "column"
+        }
+      },
+      "bank_accounts": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "iban": {
+          "type": "column",
+          "mapping": {
+            "destination": "iban"
+          }
+        },
+        "swift_bic": {
+          "type": "column",
+          "mapping": {
+            "destination": "swift_bic"
+          }
+        },
+        "name": {
+          "type": "column",
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "number": {
+          "type": "column",
+          "mapping": {
+            "destination": "number"
+          }
+        },
+        "pairing": {
+          "type": "column",
+          "mapping": {
+            "destination": "pairing"
+          }
+        },
+        "payment_adjustment": {
+          "type": "column",
+          "mapping": {
+            "destination": "payment_adjustment"
+          }
+        },
+        "currency": {
+          "type": "column",
+          "mapping": {
+            "destination": "currency"
+          }
+        }
+      },
+      "subjects": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "enabled_reminders": {
+          "mapping": {
+            "destination": "enabled_reminders"
+          },
+          "type": "column"
+        },
+        "iban": {
+          "mapping": {
+            "destination": "iban"
+          },
+          "type": "column"
+        },
+        "email": {
+          "mapping": {
+            "destination": "email"
+          },
+          "type": "column"
+        },
+        "zip": {
+          "mapping": {
+            "destination": "zip"
+          },
+          "type": "column"
+        },
+        "vat_no": {
+          "mapping": {
+            "destination": "vat_no"
+          },
+          "type": "column"
+        },
+        "variable_symbol": {
+          "mapping": {
+            "destination": "variable_symbol"
+          },
+          "type": "column"
+        },
+        "web": {
+          "mapping": {
+            "destination": "web"
+          },
+          "type": "column"
+        },
+        "street2": {
+          "mapping": {
+            "destination": "street2"
+          },
+          "type": "column"
+        },
+        "phone": {
+          "mapping": {
+            "destination": "phone"
+          },
+          "type": "column"
+        },
+        "name": {
+          "mapping": {
+            "destination": "name"
+          },
+          "type": "column"
+        },
+        "bank_account": {
+          "mapping": {
+            "destination": "bank_account"
+          },
+          "type": "column"
+        },
+        "street": {
+          "mapping": {
+            "destination": "street"
+          },
+          "type": "column"
+        },
+        "type": {
+          "mapping": {
+            "destination": "type"
+          },
+          "type": "column"
+        },
+        "country": {
+          "mapping": {
+            "destination": "country"
+          },
+          "type": "column"
+        },
+        "custom_id": {
+          "mapping": {
+            "destination": "custom_id"
+          },
+          "type": "column"
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          },
+          "type": "column"
+        },
+        "html_url": {
+          "mapping": {
+            "destination": "html_url"
+          },
+          "type": "column"
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          },
+          "type": "column"
+        },
+        "full_name": {
+          "mapping": {
+            "destination": "full_name"
+          },
+          "type": "column"
+        },
+        "private_note": {
+          "mapping": {
+            "destination": "private_note"
+          },
+          "type": "column"
+        },
+        "email_copy": {
+          "mapping": {
+            "destination": "email_copy"
+          },
+          "type": "column"
+        },
+        "local_vat_no": {
+          "mapping": {
+            "destination": "local_vat_no"
+          },
+          "type": "column"
+        },
+        "city": {
+          "mapping": {
+            "destination": "city"
+          },
+          "type": "column"
+        },
+        "registration_no": {
+          "mapping": {
+            "destination": "registration_no"
+          },
+          "type": "column"
+        },
+        "avatar_url": {
+          "mapping": {
+            "destination": "avatar_url"
+          },
+          "type": "column"
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          },
+          "type": "column"
+        }
+      },
+      "invoices": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "paypal": {
+          "mapping": {
+            "destination": "paypal"
+          },
+          "type": "column"
+        },
+        "client_country": {
+          "mapping": {
+            "destination": "client_country"
+          },
+          "type": "column"
+        },
+        "generator_id": {
+          "mapping": {
+            "destination": "generator_id"
+          },
+          "type": "column"
+        },
+        "related_id": {
+          "mapping": {
+            "destination": "related_id"
+          },
+          "type": "column"
+        },
+        "html_url": {
+          "mapping": {
+            "destination": "html_url"
+          },
+          "type": "column"
+        },
+        "correction": {
+          "mapping": {
+            "destination": "correction"
+          },
+          "type": "column"
+        },
+        "issued_on": {
+          "mapping": {
+            "destination": "issued_on"
+          },
+          "type": "column"
+        },
+        "remaining_amount": {
+          "mapping": {
+            "destination": "remaining_amount"
+          },
+          "type": "column"
+        },
+        "note": {
+          "mapping": {
+            "destination": "note"
+          },
+          "type": "column"
+        },
+        "vat_price_mode": {
+          "mapping": {
+            "destination": "vat_price_mode"
+          },
+          "type": "column"
+        },
+        "currency": {
+          "mapping": {
+            "destination": "currency"
+          },
+          "type": "column"
+        },
+        "taxable_fulfillment_due": {
+          "mapping": {
+            "destination": "taxable_fulfillment_due"
+          },
+          "type": "column"
+        },
+        "cancelled_at": {
+          "mapping": {
+            "destination": "cancelled_at"
+          },
+          "type": "column"
+        },
+        "url": {
+          "mapping": {
+            "destination": "url"
+          },
+          "type": "column"
+        },
+        "language": {
+          "mapping": {
+            "destination": "language"
+          },
+          "type": "column"
+        },
+        "your_zip": {
+          "mapping": {
+            "destination": "your_zip"
+          },
+          "type": "column"
+        },
+        "transferred_tax_liability": {
+          "mapping": {
+            "destination": "transferred_tax_liability"
+          },
+          "type": "column"
+        },
+        "subject_custom_id": {
+          "mapping": {
+            "destination": "subject_custom_id"
+          },
+          "type": "column"
+        },
+        "eu_electronic_service": {
+          "mapping": {
+            "destination": "eu_electronic_service"
+          },
+          "type": "column"
+        },
+        "partial_proforma": {
+          "mapping": {
+            "destination": "partial_proforma"
+          },
+          "type": "column"
+        },
+        "tags": {
+          "mapping": {
+            "destination": "tags"
+          },
+          "type": "column",
+          "forceType": true
+        },
+        "webinvoice_seen_at": {
+          "mapping": {
+            "destination": "webinvoice_seen_at"
+          },
+          "type": "column"
+        },
+        "your_name": {
+          "mapping": {
+            "destination": "your_name"
+          },
+          "type": "column"
+        },
+        "iban": {
+          "mapping": {
+            "destination": "iban"
+          },
+          "type": "column"
+        },
+        "swift_bic": {
+          "mapping": {
+            "destination": "swift_bic"
+          },
+          "type": "column"
+        },
+        "client_city": {
+          "mapping": {
+            "destination": "client_city"
+          },
+          "type": "column"
+        },
+        "pdf_url": {
+          "mapping": {
+            "destination": "pdf_url"
+          },
+          "type": "column"
+        },
+        "client_street": {
+          "mapping": {
+            "destination": "client_street"
+          },
+          "type": "column"
+        },
+        "your_street2": {
+          "mapping": {
+            "destination": "your_street2"
+          },
+          "type": "column"
+        },
+        "client_zip": {
+          "mapping": {
+            "destination": "client_zip"
+          },
+          "type": "column"
+        },
+        "client_vat_no": {
+          "mapping": {
+            "destination": "client_vat_no"
+          },
+          "type": "column"
+        },
+        "eet_records": {
+          "mapping": {
+            "destination": "eet_records"
+          },
+          "type": "column",
+          "forceType": true
+        },
+        "paid_at": {
+          "mapping": {
+            "destination": "paid_at"
+          },
+          "type": "column"
+        },
+        "due_on": {
+          "mapping": {
+            "destination": "due_on"
+          },
+          "type": "column"
+        },
+        "public_html_url": {
+          "mapping": {
+            "destination": "public_html_url"
+          },
+          "type": "column"
+        },
+        "reminder_sent_at": {
+          "mapping": {
+            "destination": "reminder_sent_at"
+          },
+          "type": "column"
+        },
+        "custom_id": {
+          "mapping": {
+            "destination": "custom_id"
+          },
+          "type": "column"
+        },
+        "variable_symbol": {
+          "mapping": {
+            "destination": "variable_symbol"
+          },
+          "type": "column"
+        },
+        "native_subtotal": {
+          "mapping": {
+            "destination": "native_subtotal"
+          },
+          "type": "column"
+        },
+        "your_registration_no": {
+          "mapping": {
+            "destination": "your_registration_no"
+          },
+          "type": "column"
+        },
+        "client_registration_no": {
+          "mapping": {
+            "destination": "client_registration_no"
+          },
+          "type": "column"
+        },
+        "hide_bank_account": {
+          "mapping": {
+            "destination": "hide_bank_account"
+          },
+          "type": "column"
+        },
+        "client_name": {
+          "mapping": {
+            "destination": "client_name"
+          },
+          "type": "column"
+        },
+        "number": {
+          "mapping": {
+            "destination": "number"
+          },
+          "type": "column"
+        },
+        "footer_note": {
+          "mapping": {
+            "destination": "footer_note"
+          },
+          "type": "column"
+        },
+        "supply_code": {
+          "mapping": {
+            "destination": "supply_code"
+          },
+          "type": "column"
+        },
+        "order_number": {
+          "mapping": {
+            "destination": "order_number"
+          },
+          "type": "column"
+        },
+        "eet_cash_register": {
+          "mapping": {
+            "destination": "eet_cash_register"
+          },
+          "type": "column"
+        },
+        "subject_id": {
+          "mapping": {
+            "destination": "subject_id"
+          },
+          "type": "column"
+        },
+        "paid_amount": {
+          "mapping": {
+            "destination": "paid_amount"
+          },
+          "type": "column"
+        },
+        "sent_at": {
+          "mapping": {
+            "destination": "sent_at"
+          },
+          "type": "column"
+        },
+        "subtotal": {
+          "mapping": {
+            "destination": "subtotal"
+          },
+          "type": "column"
+        },
+        "correction_id": {
+          "mapping": {
+            "destination": "correction_id"
+          },
+          "type": "column"
+        },
+        "native_total": {
+          "mapping": {
+            "destination": "native_total"
+          },
+          "type": "column"
+        },
+        "client_local_vat_no": {
+          "mapping": {
+            "destination": "client_local_vat_no"
+          },
+          "type": "column"
+        },
+        "token": {
+          "mapping": {
+            "destination": "token"
+          },
+          "type": "column"
+        },
+        "eet_store": {
+          "mapping": {
+            "destination": "eet_store"
+          },
+          "type": "column"
+        },
+        "your_country": {
+          "mapping": {
+            "destination": "your_country"
+          },
+          "type": "column"
+        },
+        "private_note": {
+          "mapping": {
+            "destination": "private_note"
+          },
+          "type": "column"
+        },
+        "your_street": {
+          "mapping": {
+            "destination": "your_street"
+          },
+          "type": "column"
+        },
+        "subject_url": {
+          "mapping": {
+            "destination": "subject_url"
+          },
+          "type": "column"
+        },
+        "proforma": {
+          "mapping": {
+            "destination": "proforma"
+          },
+          "type": "column"
+        },
+        "updated_at": {
+          "mapping": {
+            "destination": "updated_at"
+          },
+          "type": "column"
+        },
+        "exchange_rate": {
+          "mapping": {
+            "destination": "exchange_rate"
+          },
+          "type": "column"
+        },
+        "remaining_native_amount": {
+          "mapping": {
+            "destination": "remaining_native_amount"
+          },
+          "type": "column"
+        },
+        "eet": {
+          "mapping": {
+            "destination": "eet"
+          },
+          "type": "column"
+        },
+        "your_local_vat_no": {
+          "mapping": {
+            "destination": "your_local_vat_no"
+          },
+          "type": "column"
+        },
+        "your_vat_no": {
+          "mapping": {
+            "destination": "your_vat_no"
+          },
+          "type": "column"
+        },
+        "gopay": {
+          "mapping": {
+            "destination": "gopay"
+          },
+          "type": "column"
+        },
+        "your_city": {
+          "mapping": {
+            "destination": "your_city"
+          },
+          "type": "column"
+        },
+        "status": {
+          "mapping": {
+            "destination": "status"
+          },
+          "type": "column"
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at"
+          },
+          "type": "column"
+        },
+        "due": {
+          "mapping": {
+            "destination": "due"
+          },
+          "type": "column"
+        },
+        "accepted_at": {
+          "mapping": {
+            "destination": "accepted_at"
+          },
+          "type": "column"
+        },
+        "payment_method": {
+          "mapping": {
+            "destination": "payment_method"
+          },
+          "type": "column"
+        },
+        "total": {
+          "mapping": {
+            "destination": "total"
+          },
+          "type": "column"
+        },
+        "bank_account": {
+          "mapping": {
+            "destination": "bank_account"
+          },
+          "type": "column"
+        },
+        "client_street2": {
+          "mapping": {
+            "destination": "client_street2"
+          },
+          "type": "column"
+        },
+        "lines": {
+          "type": "table",
+          "destination": "invoice_lines",
+          "parentKey": {
+            "destination": "invoice_id",
+            "primaryKey": false
+          },
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id",
+                "primaryKey": true
+              },
+              "type": "column"
+            },
+            "unit_price_without_vat": {
+              "mapping": {
+                "destination": "unit_price_without_vat"
+              },
+              "type": "column"
+            },
+            "unit_price_with_vat": {
+              "mapping": {
+                "destination": "unit_price_with_vat"
+              },
+              "type": "column"
+            },
+            "name": {
+              "mapping": {
+                "destination": "name"
+              },
+              "type": "column"
+            },
+            "unit_price": {
+              "mapping": {
+                "destination": "unit_price"
+              },
+              "type": "column"
+            },
+            "vat_rate": {
+              "mapping": {
+                "destination": "vat_rate"
+              },
+              "type": "column"
+            },
+            "unit_name": {
+              "mapping": {
+                "destination": "unit_name"
+              },
+              "type": "column"
+            },
+            "quantity": {
+              "mapping": {
+                "destination": "quantity"
+              },
+              "type": "column"
+            }
+          }
+        }
+      },
+      "expenses": {
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "document_type": {
+          "type": "column",
+          "mapping": {
+            "destination": "document_type"
+          }
+        },
+        "paid_amount": {
+          "type": "column",
+          "mapping": {
+            "destination": "paid_amount"
+          }
+        },
+        "private_note": {
+          "type": "column",
+          "mapping": {
+            "destination": "private_note"
+          }
+        },
+        "number": {
+          "type": "column",
+          "mapping": {
+            "destination": "number"
+          }
+        },
+        "bank_account": {
+          "type": "column",
+          "mapping": {
+            "destination": "bank_account"
+          }
+        },
+        "supplier_street": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_street"
+          }
+        },
+        "custom_id": {
+          "type": "column",
+          "mapping": {
+            "destination": "custom_id"
+          }
+        },
+        "original_number": {
+          "type": "column",
+          "mapping": {
+            "destination": "original_number"
+          }
+        },
+        "updated_at": {
+          "type": "column",
+          "mapping": {
+            "destination": "updated_at"
+          }
+        },
+        "payment_method": {
+          "type": "column",
+          "mapping": {
+            "destination": "payment_method"
+          }
+        },
+        "paid_on": {
+          "type": "column",
+          "mapping": {
+            "destination": "paid_on"
+          }
+        },
+        "supplier_city": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_city"
+          }
+        },
+        "native_total": {
+          "type": "column",
+          "mapping": {
+            "destination": "native_total"
+          }
+        },
+        "swift_bic": {
+          "type": "column",
+          "mapping": {
+            "destination": "swift_bic"
+          }
+        },
+        "supplier_name": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_name"
+          }
+        },
+        "due_on": {
+          "type": "column",
+          "mapping": {
+            "destination": "due_on"
+          }
+        },
+        "received_on": {
+          "type": "column",
+          "mapping": {
+            "destination": "received_on"
+          }
+        },
+        "variable_symbol": {
+          "type": "column",
+          "mapping": {
+            "destination": "variable_symbol"
+          }
+        },
+        "supply_code": {
+          "type": "column",
+          "mapping": {
+            "destination": "supply_code"
+          }
+        },
+        "description": {
+          "type": "column",
+          "mapping": {
+            "destination": "description"
+          }
+        },
+        "subject_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "subject_url"
+          }
+        },
+        "proportional_vat_deduction": {
+          "type": "column",
+          "mapping": {
+            "destination": "proportional_vat_deduction"
+          }
+        },
+        "subtotal": {
+          "type": "column",
+          "mapping": {
+            "destination": "subtotal"
+          }
+        },
+        "created_at": {
+          "type": "column",
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "supplier_country": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_country"
+          }
+        },
+        "exchange_rate": {
+          "type": "column",
+          "mapping": {
+            "destination": "exchange_rate"
+          }
+        },
+        "html_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "html_url"
+          }
+        },
+        "subject_id": {
+          "type": "column",
+          "mapping": {
+            "destination": "subject_id"
+          }
+        },
+        "supplier_zip": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_zip"
+          }
+        },
+        "supplier_vat_no": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_vat_no"
+          }
+        },
+        "currency": {
+          "type": "column",
+          "mapping": {
+            "destination": "currency"
+          }
+        },
+        "url": {
+          "type": "column",
+          "mapping": {
+            "destination": "url"
+          }
+        },
+        "iban": {
+          "type": "column",
+          "mapping": {
+            "destination": "iban"
+          }
+        },
+        "total": {
+          "type": "column",
+          "mapping": {
+            "destination": "total"
+          }
+        },
+        "issued_on": {
+          "type": "column",
+          "mapping": {
+            "destination": "issued_on"
+          }
+        },
+        "transferred_tax_liability": {
+          "type": "column",
+          "mapping": {
+            "destination": "transferred_tax_liability"
+          }
+        },
+        "taxable_fulfillment_due": {
+          "type": "column",
+          "mapping": {
+            "destination": "taxable_fulfillment_due"
+          }
+        },
+        "supplier_registration_no": {
+          "type": "column",
+          "mapping": {
+            "destination": "supplier_registration_no"
+          }
+        },
+        "native_subtotal": {
+          "type": "column",
+          "mapping": {
+            "destination": "native_subtotal"
+          }
+        },
+        "vat_price_mode": {
+          "type": "column",
+          "mapping": {
+            "destination": "vat_price_mode"
+          }
+        },
+        "tags": {
+          "type": "column",
+          "forceType": true,
+          "mapping": {
+            "destination": "tags"
+          }
+        },
+        "status": {
+          "type": "column",
+          "mapping": {
+            "destination": "status"
+          }
+        },
+        "lines": {
+          "type": "table",
+          "destination": "expense_lines",
+          "parentKey": {
+            "destination": "expense_id",
+            "primaryKey": false
+          },
+          "tableMapping": {
+            "id": {
+              "mapping": {
+                "destination": "id",
+                "primaryKey": true
+              },
+              "type": "column"
+            },
+            "quantity": {
+              "mapping": {
+                "destination": "quantity"
+              },
+              "type": "column"
+            },
+            "unit_name": {
+              "mapping": {
+                "destination": "unit_name"
+              },
+              "type": "column"
+            },
+            "unit_price_without_vat": {
+              "mapping": {
+                "destination": "unit_price_without_vat"
+              },
+              "type": "column"
+            },
+            "name": {
+              "mapping": {
+                "destination": "name"
+              },
+              "type": "column"
+            },
+            "unit_price": {
+              "mapping": {
+                "destination": "unit_price"
+              },
+              "type": "column"
+            },
+            "vat_rate": {
+              "mapping": {
+                "destination": "vat_rate"
+              },
+              "type": "column"
+            },
+            "unit_price_with_vat": {
+              "mapping": {
+                "destination": "unit_price_with_vat"
+              },
+              "type": "column"
+            }
+          }
+        }
+      },
+      "events": {
+        "invoice_id": {
+          "mapping": {
+            "destination": "invoice_id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "subject_id": {
+          "mapping": {
+            "destination": "subject_id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "user.id": {
+          "mapping": {
+            "destination": "user_id",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "name": {
+          "mapping": {
+            "destination": "name",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "created_at": {
+          "mapping": {
+            "destination": "created_at",
+            "primaryKey": true
+          },
+          "type": "column"
+        },
+        "text": {
+          "mapping": {
+            "destination": "text"
+          },
+          "type": "column"
+        },
+        "subject_url": {
+          "mapping": {
+            "destination": "subject_url"
+          },
+          "type": "column"
+        },
+        "invoice_url": {
+          "mapping": {
+            "destination": "invoice_url"
+          },
+          "type": "column"
+        }
+      },
+      "todos": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "completed_at": {
+          "type": "column",
+          "mapping": {
+            "destination": "completed_at"
+          }
+        },
+        "subject_id": {
+          "type": "column",
+          "mapping": {
+            "destination": "subject_id"
+          }
+        },
+        "created_at": {
+          "type": "column",
+          "mapping": {
+            "destination": "created_at"
+          }
+        },
+        "subject_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "subject_url"
+          }
+        },
+        "invoice_id": {
+          "type": "column",
+          "mapping": {
+            "destination": "invoice_id"
+          }
+        },
+        "name": {
+          "type": "column",
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "invoice_url": {
+          "type": "column",
+          "mapping": {
+            "destination": "invoice_url"
+          }
+        },
+        "text": {
+          "type": "column",
+          "mapping": {
+            "destination": "text"
+          }
+        }
+      }
+    }
+  }
+}
