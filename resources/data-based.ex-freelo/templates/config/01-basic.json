@@ -1,9 +1,29 @@
 {
   "name": "01 - Basic",
-  "description": "Downloads \n\n - work reports from specific date",
+  "description": "Downloads \n\n - projects \n - tasklists \n - tasks \n - users \n - work reports (since the defined date)",
   "data": {
     "incrementalOutput": true,
     "jobs": [
+      {
+        "endpoint": "users",
+        "dataField": "data.users",
+        "dataType": "users"
+      },
+      {
+        "endpoint": "all-projects",
+        "dataField": "data.projects",
+        "dataType": "projects"
+      },
+      {
+        "endpoint": "all-tasklists",
+        "dataField": "data.tasklists",
+        "dataType": "tasklists"
+      },
+      {
+        "endpoint": "all-tasks",
+        "dataField": "data.tasks",
+        "dataType": "tasks"
+      },
       {
         "endpoint": "work-reports",
         "dataField": "data.reports",
@@ -139,6 +159,197 @@
           "type": "column",
           "mapping": {
             "destination": "worker.fullname"
+          }
+        }
+      },
+      "users": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "fullname": {
+          "type": "column",
+          "mapping": {
+            "destination": "fullname"
+          }
+        }
+      },
+      "projects": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "type": "column",
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "owner.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "owner_id"
+          }
+        },
+        "owner.fullname": {
+          "type": "column",
+          "mapping": {
+            "destination": "owner_fullname"
+          }
+        },
+        "state.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "state_id"
+          }
+        },
+        "state.state": {
+          "type": "column",
+          "mapping": {
+            "destination": "state_name"
+          }
+        }
+      },
+      "tasklists": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "type": "column",
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "project.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "project_id"
+          }
+        },
+        "state.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "state_id"
+          }
+        },
+        "state.state": {
+          "type": "column",
+          "mapping": {
+            "destination": "state_name"
+          }
+        }
+      },
+      "tasks": {
+        "id": {
+          "type": "column",
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "name": {
+          "type": "column",
+          "mapping": {
+            "destination": "name"
+          }
+        },
+        "tasklist.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "tasklist_id"
+          }
+        },
+        "date_add": {
+          "type": "column",
+          "mapping": {
+            "destination": "date_add"
+          }
+        },
+        "due_date": {
+          "type": "column",
+          "mapping": {
+            "destination": "due_date"
+          }
+        },
+        "due_date_end": {
+          "type": "column",
+          "mapping": {
+            "destination": "due_date_end"
+          }
+        },
+        "state.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "state_id"
+          }
+        },
+        "state.state": {
+          "type": "column",
+          "mapping": {
+            "destination": "state_name"
+          }
+        },
+        "author.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "author_id"
+          }
+        },
+        "author.name": {
+          "type": "column",
+          "mapping": {
+            "destination": "author_name"
+          }
+        },
+        "worker.id": {
+          "type": "column",
+          "mapping": {
+            "destination": "worker_id"
+          }
+        },
+        "worker.name": {
+          "type": "column",
+          "mapping": {
+            "destination": "worker_name"
+          }
+        },
+        "labels": {
+          "type": "table",
+          "destination": "task-labels",
+          "parentKey": {
+            "primaryKey": true,
+            "destination": "task_id"
+          },
+          "tableMapping": {
+            "uuid": {
+              "type": "column",
+              "mapping": {
+                "destination": "uuid",
+                "primaryKey": true
+              }
+            },
+            "name": {
+              "type": "column",
+              "mapping": {
+                "destination": "name"
+              }
+            },
+            "color": {
+              "type": "column",
+              "mapping": {
+                "destination": "color"
+              }
+            }
           }
         }
       }
