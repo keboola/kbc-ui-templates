@@ -1,0 +1,63 @@
+{
+    "name": "Ads Campaign Groups",
+    "description": "Extracting all campaign groups", 
+    "data": {
+        "incrementalOutput": true,
+        "mappings": {
+            "campaign_groups": {
+                "runSchedule.start": "runSchedule_start",
+                "runSchedule.end": "runSchedule_end",
+                "changeAuditStamps.created.time": "changeAuditStamps_created_time",
+                "changeAuditStamps.lastModified.time": "changeAuditStamps_lastModified_time" ,
+                "name": "name",
+                "test": "test",
+                "servingStatuses": {
+                    "type": "table",
+                    "destination": "campaign_groups_servingStatuses",
+                    "parentKey": {
+                        "destination": "campaign_group_id"
+                    },
+                    "tableMapping": {
+                        ".": "servingStatuses"
+                    }
+                },
+                "allowedCampaignTypes": {
+                    "type": "table",
+                    "destination": "campaign_groups_allowedCampaignTypes",
+                    "parentKey": {
+                        "destination": "campaign_group_id"
+                    },
+                    "tableMapping": {
+                        ".": "allowedCampaignTypes"
+                    }
+                },
+                "backfilled": "backfilled",
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "account": "account",
+                "status": "status"
+            }
+        },
+        "jobs": [
+            {
+                "endpoint": "adCampaignGroupsV2",
+                "params": {
+                    "q": "search",
+                    "search.status.values[0]": "ACTIVE",
+                    "search.status.values[1]": "ARCHIVED",
+                    "search.status.values[2]": "CANCELED",
+                    "search.status.values[3]": "DRAFT",
+                    "search.status.values[4]": "PAUSED"
+                },
+                "dataField": "elements",
+                "dataType": "campaign_groups",
+                "scroller": "campaign_scroller"
+            }
+        ]
+    }
+}
