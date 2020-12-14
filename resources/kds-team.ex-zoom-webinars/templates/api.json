@@ -1,0 +1,27 @@
+{
+   "baseUrl":"http://api.zoom.us/v2/",
+   "pagination":{
+      "method":"pagenum",
+      "limit":300,
+      "limitParam":"page_size",
+      "pageParam":"page_number"
+   },
+   "http":{
+      "ignoreErrors":[
+         404,
+         400
+      ],
+      "headers":{
+         "authorization":{
+            "function":"concat",
+            "args":[
+               "Bearer ",
+               {
+                  "attr":"#token"
+               }
+            ]
+         }
+      }
+   }
+}
+

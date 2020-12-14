@@ -1,0 +1,27 @@
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://app.fakturoid.cz/api/v2/accounts/",
+      {
+        "attr": "slug"
+      },
+      "/"
+    ]
+  },
+  "authentication": {
+    "type": "basic"
+  },
+  "http": {
+    "headers": {
+      "User-Agent": "Keboola extractor (contact@data-based.io)",
+      "Content-Type": "application/json"
+    }
+  },
+  "pagination": {
+    "method": "pagenum",
+    "pageParam": "page",
+    "firstPage": 1,
+    "firstPageParams": false
+  }
+}

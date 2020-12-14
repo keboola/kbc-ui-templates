@@ -4,8 +4,8 @@
     },
     "baseUrl": "https://api.bitbucket.org/2.0/",
     "pagination": {
-        "method": "pagenum",
-        "pageParam": "page"
+        "method": "response.url",
+        "urlKey": "next"
     },
     "http": {
         "headers": {

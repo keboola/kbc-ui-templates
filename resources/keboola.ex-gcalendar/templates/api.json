@@ -1,5 +1,10 @@
 {
   "baseUrl": "https://www.googleapis.com/calendar/v3/",
+  "pagination": {
+    "method": "response.param",
+    "responseParam": "nextPageToken",
+    "queryParam": "pageToken"
+  },
   "name": "gcalendar",
   "authentication": {
     "type": "oauth20.login",
