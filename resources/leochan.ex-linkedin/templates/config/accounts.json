@@ -1,0 +1,58 @@
+{
+    "name": "Ad Accounts",
+    "description": "Extracting all Ad Accounts assoicated to the organization", 
+    "data": {
+        "incrementalOutput": true,
+        "mappings": {
+            "accounts": {
+                "test": "test",
+                "changeAuditStamps.created.time": "changeAuditStamps_created_time",
+                "changeAuditStamps.lastModified.time": "changeAuditStamps_lastModified_time",
+                "currency": "currency",
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": "name",
+                "notifiedOnCampaignOptimization": "notifiedOnCampaignOptimization",
+                "notifiedOnCreativeApproval": "notifiedOnCreativeApproval",
+                "notifiedOnCreativeRejection": "notifiedOnCreativeRejection",
+                "notifiedOnEndOfCampaign": "notifiedOnEndOfCampaign",
+                "reference": "reference",
+                "servingStatuses": {
+                    "type": "table",
+                    "destination": "accounts_servingStatuses",
+                    "parentKey": {
+                        "destination": "account_id"
+                    },
+                    "tableMapping": {
+                        ".": "servingStatuses"
+                    }
+                },
+                "status": "status",
+                "totalBudget.amount": "totalBudget",
+                "totalBudget.currency": "totalBudget_currency",
+                "totalBudgetEndsAt": "totalBudgetEndsAt",
+                "type": "type",
+                "version.versionTag": "version"
+            }
+        },
+        "jobs": [
+            {
+                "endpoint": "adAccountsV2",
+                "params": {
+                    "q": "search",
+                    "search.status.values[0]": "DRAFT",
+                    "search.status.values[1]": "CANCELED",
+                    "search.status.values[2]": "ACTIVE"
+                },
+                "dataField": "elements",
+                "dataType": "accounts",
+                "scroller": "campaign_scroller"
+            }
+        ]
+    }
+}
