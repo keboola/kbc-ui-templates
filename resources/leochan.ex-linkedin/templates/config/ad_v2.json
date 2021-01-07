@@ -5,6 +5,12 @@
         "incrementalOutput": true,
         "mappings": {
             "campaigns": {
+                "associatedEntity": "associatedEntity",
+                "campaignGroup": "campaignGroup",
+                "optimizationTargetType": "optimizationTargetType",
+                "test": "test",
+                "unitCost.amount": "unitCost_amount",
+                "unitCost.currencyCode": "unitCost.currencyCode",
                 "targeting.includedTargetingFacets.locations.0": {
                     "type": "column",
                     "mapping": {
