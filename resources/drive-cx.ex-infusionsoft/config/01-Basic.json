@@ -1,0 +1,278 @@
+{
+    "name": "Contacts and Campaigns",
+    "description": "",
+    "data": {
+        "jobs": [
+            {
+                "endpoint": "contacts",
+                "dataField": "contacts",
+                "dataType": "contacts"
+            },
+            {
+                "endpoint": "campaigns",
+                "dataField": "campaigns",
+                "dataType": "campaigns"
+            }
+        ],
+        "mappings": {
+            "campaigns": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "date_created": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "date_created"
+                    }
+                },
+                "published_date": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "published_date"
+                    }
+                },
+                "active_contact_count": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "active_contact_count"
+                    }
+                },
+                "published_status": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "published_status"
+                    }
+                },
+                "completed_contact_count": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "completed_contact_count"
+                    }
+                },
+                "published_time_zone": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "published_time_zone"
+                    }
+                },
+                "time_zone": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "time_zone"
+                    }
+                },
+                "error_message": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "error_message"
+                    }
+                }
+            },
+            "contacts": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "email_opted_in": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "email_opted_in"
+                    }
+                },
+                "email_status": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "email_status"
+                    }
+                },
+                "owner_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "owner_id"
+                    }
+                },
+                "date_created": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "date_created"
+                    }
+                },
+                "given_name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "given_name"
+                    }
+                },
+                "middle_name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "middle_name"
+                    }
+                },
+                "family_name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "family_name"
+                    }
+                },
+                "ScoreValue": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "ScoreValue"
+                    }
+                },
+                "last_updated": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "last_updated"
+                    }
+                },
+                "last_updated_utc_millis": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "last_updated_utc_millis"
+                    }
+                },
+                "company_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "company_id"
+                    }
+                },
+                "company_company_name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "company_company_name"
+                    }
+                }
+            },
+            "contacts_addresses": {
+                "line1": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "line1"
+                    }
+                },
+                "line2": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "line2"
+                    }
+                },
+                "locality": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "locality"
+                    }
+                },
+                "region": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "region"
+                    }
+                },
+                "field": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "field"
+                    }
+                },
+                "postal_code": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "postal_code"
+                    }
+                },
+                "zip_code": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "zip_code"
+                    }
+                },
+                "zip_four": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "zip_four"
+                    }
+                },
+                "country_code": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "country_code"
+                    }
+                },
+                "JSON_parentId": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "JSON_parentId"
+                    }
+                }
+            },
+            "contacts_email_addresses": {
+                "email": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "email"
+                    }
+                },
+                "field": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "field"
+                    }
+                },
+                "JSON_parentId": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "JSON_parentId"
+                    }
+                }
+            },
+            "contacts_phone_numbers": {
+                "number": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "number"
+                    }
+                },
+                "extension": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "extension"
+                    }
+                },
+                "field": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "field"
+                    }
+                },
+                "type": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "type"
+                    }
+                },
+                "JSON_parentId": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "JSON_parentId"
+                    }
+                }
+            }
+        }
+    }
+}
