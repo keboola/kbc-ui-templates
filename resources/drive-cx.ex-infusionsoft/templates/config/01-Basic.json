@@ -160,8 +160,9 @@
                 },
                 "tag_ids": {
                     "type": "column",
+                    "forceType": true,
                     "mapping": {
-                        "destination": "tag_ids"
+                      "destination": "tag_ids"
                     }
                 },
                 "addresses": {
