@@ -61,7 +61,7 @@
             },
             "persons": {
                 "id": {
-                    "mapping": 
+                    "mapping": {
                         "destination": "contact_id",
                         "primaryKey": true
                     }
