@@ -61,7 +61,7 @@
             },
             "persons": {
                 "id": {
-                    "mapping": {
+                    "mapping": 
                         "destination": "contact_id",
                         "primaryKey": true
                     }
@@ -72,17 +72,23 @@
                 "email": {
                     "type": "table",
                     "destination": "person_emails",
+                    "parentKey": {
+                        "destination": "contact_id",
+                        "primaryKey": true
+                    },
                     "tableMapping": {
                         "label": {
                             "type": "column",
                             "mapping": {
-                                "destination": "label"
+                                "destination": "label",
+                                "primaryKey": true
                             }
                         },
                         "value": {
                             "type": "column",
                             "mapping": {
-                                "destination": "value"
+                                "destination": "value",
+                                "primaryKey": true
                             }
                         },
                         "primary": {
