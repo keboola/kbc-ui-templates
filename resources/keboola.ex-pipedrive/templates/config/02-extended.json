@@ -72,17 +72,23 @@
                 "email": {
                     "type": "table",
                     "destination": "person_emails",
+                    "parentKey": {
+                        "destination": "contact_id",
+                        "primaryKey": true
+                    },
                     "tableMapping": {
                         "label": {
                             "type": "column",
                             "mapping": {
-                                "destination": "label"
+                                "destination": "label",
+                                "primaryKey": true
                             }
                         },
                         "value": {
                             "type": "column",
                             "mapping": {
-                                "destination": "value"
+                                "destination": "value",
+                                "primaryKey": true
                             }
                         },
                         "primary": {
@@ -105,7 +111,6 @@
                 "email": "owner_email"
             },
             "deals": {
-                "deal_deleted": "deal_deleted",
                 "lost_time": "lost_time",
                 "add_time": "add_time",
                 "currency": "deal_currency",
@@ -120,7 +125,8 @@
                 "pipeline_id": "pipeline_id",
                 "org_id.value": "org_id",
                 "user_id.value": "owner_id",
-                "deal_active": "deal_active",
+                "active": "deal_active",
+                "deleted": "deal_deleted",
                 "id": {
                     "mapping": {
                         "destination": "deal_id",
