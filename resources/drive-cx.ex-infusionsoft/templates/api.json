@@ -1,0 +1,22 @@
+{
+    "baseUrl": "https://api.infusionsoft.com/crm/rest/v1/",
+    "authentication": {
+        "type": "oauth20",
+        "format": "json",
+        "headers": {
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "authorization": "data.access_token"
+                    }
+                ]
+            }
+        }
+    },
+    "pagination": {
+        "method": "offset",
+        "limit": "1000"
+    }
+}
