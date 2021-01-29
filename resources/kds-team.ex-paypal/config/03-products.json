@@ -1,0 +1,41 @@
+{
+    "name": "Products",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "v1/catalogs/products",
+                "dataType": "products",
+                "dataField": "products",
+                "params": {
+                    "start_time": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings": {
+            "billing_plans": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": "name",
+                "description": "description",
+                "create_time": "create_time"
+            }
+        }
+    }
+}

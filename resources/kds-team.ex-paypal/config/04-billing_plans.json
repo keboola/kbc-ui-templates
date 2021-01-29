@@ -1,0 +1,44 @@
+{
+    "name": "Billing Plans",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "v1/payments/billing-plans",
+                "dataType": "billing_plans",
+                "dataField": "plans",
+                "params": {
+                    "start_time": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings": {
+            "billing_plans": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "state": "state",
+                "name": "name",
+                "description": "description",
+                "type": "type",
+                "create_time": "create_time",
+                "update_time": "update_time"
+            }
+        }
+    }
+}
