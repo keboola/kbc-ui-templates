@@ -126,6 +126,7 @@
                 "org_id.value": "org_id",
                 "user_id.value": "owner_id",
                 "active": "deal_active",
+                "deleted": "deal_deleted",
                 "id": {
                     "mapping": {
                         "destination": "deal_id",
