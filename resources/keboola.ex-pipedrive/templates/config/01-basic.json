@@ -104,7 +104,8 @@
         "email_messages_count": "email_messages_count",
         "expected_close_date": "expected_close_date",
         "stage_order_nr": "stage_order_nr",
-        "active": "deal_active"
+        "active": "deal_active",
+        "deleted": "deal_deleted"
       },
       "pipelines": {
         "id": {
