@@ -1,5 +1,6 @@
 {
     "name": "Subscription Plans",
+    "description": "Subscription Plans",
     "data": {
         "incrementalOutput": true,
         "jobs": [

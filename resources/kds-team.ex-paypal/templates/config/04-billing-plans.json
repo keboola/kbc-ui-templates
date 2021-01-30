@@ -1,5 +1,6 @@
 {
     "name": "Billing Plans",
+    "description": "Billing Plans",
     "data": {
         "incrementalOutput": true,
         "jobs": [
