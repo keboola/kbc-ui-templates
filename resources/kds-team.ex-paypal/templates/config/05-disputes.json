@@ -1,0 +1,46 @@
+{
+    "name": "Disputes",
+    "description": "Disputes",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "v1/customer/disputes",
+                "dataType": "disputes",
+                "dataField": "items",
+                "params": {
+                    "start_time": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings": {
+            "disputes": {
+                "dispute_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "create_time": "create_time",
+                "update_time": "update_time",
+                "status": "status",
+                "reason": "reason",
+                "dispute_state": "dispute_state",
+                "dispute_amount.currency_code": "currency_code",
+                "dispute_amount.value": "dispute_amount"
+            }
+        }
+    }
+}
