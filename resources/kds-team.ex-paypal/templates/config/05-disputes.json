@@ -1,5 +1,6 @@
 {
     "name": "Disputes",
+    "description": "Disputes",
     "data": {
         "incrementalOutput": true,
         "jobs": [

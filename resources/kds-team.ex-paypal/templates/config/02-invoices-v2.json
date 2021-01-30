@@ -1,5 +1,6 @@
 {
     "name": "Invoices using API V2",
+    "description": "Invoices using API V2",
     "data": {
         "incrementalOutput": true,
         "jobs": [
