@@ -1,0 +1,31 @@
+{
+    "name": "Web Experience Profile",
+    "description": "Web Experience Profile",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "v1/payment-experience/web-profiles",
+                "dataType": "web_profiles",
+                "dataField": "."
+            }
+        ],
+        "mappings": {
+            "web_profiles": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": "name",
+                "flow_config.landing_page_type": "landing_page_type",
+                "flow_config.bank_txn_pending_url": "bank_txn_pending_url",
+                "input_fields.no_shipping": "no_shipping",
+                "input_fields.address_override": "address_override",
+                "presentation.logo_image": "logo_image"
+            }
+        }
+    }
+}

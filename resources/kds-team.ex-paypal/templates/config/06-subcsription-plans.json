@@ -1,0 +1,44 @@
+{
+    "name": "Subscription Plans",
+    "description": "Subscription Plans",
+    "data": {
+        "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "v1/billing/plans",
+                "dataType": "billing_plans",
+                "dataField": "plans",
+                "params": {
+                    "start_time": {
+                        "function": "date",
+                        "args": [
+                            "Y-m-d",
+                            {
+                                "function": "strtotime",
+                                "args": [
+                                    "-7 days"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ],
+        "mappings": {
+            "billing_plans": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "product_id": "product_id",
+                "status": "status",
+                "name": "name",
+                "description": "description",
+                "create_time": "create_time"
+            }
+        }
+    }
+}
