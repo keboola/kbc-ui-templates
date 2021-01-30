@@ -1,6 +1,7 @@
 {
     "name": "Web Experience Profile",
-    "config": {
+    "description": "Web Experience Profile",
+    "data": {
         "incrementalOutput": true,
         "jobs": [
             {
