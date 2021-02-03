@@ -19,6 +19,6 @@
     "type": "basic"
   },
   "retryConfig": {
-    "maxRetries": 5
+    "maxRetries": 15
   }
 }
