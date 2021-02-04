@@ -1,5 +1,5 @@
 {
-    "name": "Contacts and Campaigns",
+    "name": "Contacts, Tags, and Campaigns",
     "description": "",
     "data": {
         "jobs": [
@@ -12,6 +12,11 @@
                 "endpoint": "campaigns",
                 "dataField": "campaigns",
                 "dataType": "campaigns"
+            },
+            {
+                "endpoint": "tags",
+                "dataField": "tags",
+                "dataType": "tags"
             }
         ],
         "mappings": {
@@ -160,8 +165,9 @@
                 },
                 "tag_ids": {
                     "type": "column",
+                    "forceType": true,
                     "mapping": {
-                        "destination": "tag_ids"
+                      "destination": "tag_ids"
                     }
                 },
                 "addresses": {
@@ -244,7 +250,7 @@
                 },
                 "phone_numbers": {
                     "type": "table",
-                    "destination": "contacts_email_addresses",
+                    "destination": "contacts_phone_numbers",
                     "tableMapping": {
                         "number": {
                             "type": "column",
@@ -270,6 +276,45 @@
                                 "destination": "type"
                             }
                         }
+                    }
+                }
+            },
+            "tags": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "description": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "description"
+                    }
+                },
+                "category_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "category_id"
+                    }
+                },
+                "category_name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "category_name"
+                    }
+                },
+                "category_description": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "category_description"
                     }
                 }
             }
