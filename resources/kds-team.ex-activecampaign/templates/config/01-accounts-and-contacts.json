@@ -1,42 +1,459 @@
 {
     "name": "Contacts + Accounts + Deals + Campaigns + Messages + Automations",
-    "description": "Downloads all data from the above listed endpoints",
+    "description": "Downloads all data from the above listed endpoints. NOTE: If you wish to add custom fields please update the `mappings` section accordingly.",
     "data": {
-        "jobs": [
+         "jobs": [
+    {
+      "endpoint": "contacts",
+      "dataField": "contacts",
+      "params": {
+        "filters[updated_after]": {
+          "function": "date",
+          "args": [
+            "Y-m-dTH:i:s",
             {
-                "endpoint": "contacts",
-                "dataField": "contacts"
-            },
-            {
-                "endpoint": "accounts",
-                "dataField": "accounts"
-            },
-            {
-                "endpoint": "deals",
-                "dataField": "deals"
-            },
-            {
-                "endpoint": "campaigns",
-                "dataField": "campaigns",
-                "children": [
+              "function": "strtotime",
+              "args": [
+                {
+                  "function": "ifempty",
+                  "args": [
                     {
-                        "endpoint": "campaigns/{campaign_id}/links",
-                        "dataType": "link_details",
-                        "dataField": "links",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        }
-                    }
-                ]
-            },
-            {
-                "endpoint": "messages",
-                "dataField": "messages"
-            },
-            {
-                "endpoint": "automations",
-                "dataField": "automations"
+                      "attr": "updated_since"
+                    },
+                    "2000-01-01T00:00:00"
+                  ]
+                }
+              ]
             }
-        ]
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "accounts",
+      "dataField": "accounts",
+      "params": {
+        "filters[updated_after]": {
+          "function": "date",
+          "args": [
+            "Y-m-dTH:i:s",
+            {
+              "function": "strtotime",
+              "args": [
+                {
+                  "function": "ifempty",
+                  "args": [
+                    {
+                      "attr": "updated_since"
+                    },
+                    "2000-01-01T00:00:00"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "deals",
+      "dataField": "deals",
+      "params": {
+        "filters[updated_after]": {
+          "function": "date",
+          "args": [
+            "Y-m-dTH:i:s",
+            {
+              "function": "strtotime",
+              "args": [
+                {
+                  "function": "ifempty",
+                  "args": [
+                    {
+                      "attr": "updated_since"
+                    },
+                    "2000-01-01T00:00:00"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "endpoint": "campaigns",
+      "dataField": "campaigns",
+      "params": {
+        "filters[updated_after]": {
+          "function": "date",
+          "args": [
+            "Y-m-dTH:i:s",
+            {
+              "function": "strtotime",
+              "args": [
+                {
+                  "function": "ifempty",
+                  "args": [
+                    {
+                      "attr": "updated_since"
+                    },
+                    "2000-01-01T00:00:00"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "children": [
+        {
+          "endpoint": "campaigns/{campaign_id}/links",
+          "dataType": "link_details",
+          "dataField": "links",
+          "placeholders": {
+            "campaign_id": "id"
+          }
+        }
+      ]
+    },
+    {
+      "endpoint": "messages",
+      "dataField": "messages"
+    },
+    {
+      "endpoint": "automations",
+      "dataField": "automations"
+    }
+  ],
+      "mappings": {
+        "contacts": {
+          "id": {
+            "type": "column",
+            "mapping": {
+              "destination": "id",
+              "primaryKey": true
+            }
+          },
+          "organization": "organization",
+          "email": "email",
+          "phone": "phone",
+          "firstName": "firstName",
+          "lastName": "lastName",
+          "orgid": "orgid",
+          "orgname": "orgname",
+          "segmentio_id": "segmentio_id",
+          "cdate": "cdate",
+          "bounced_hard": "bounced_hard",
+          "bounced_soft": "bounced_soft",
+          "bounced_date": "bounced_date",
+          "ip": "ip",
+          "ua": "ua",
+          "hash": "hash",
+          "socialdata_lastcheck": "socialdata_lastcheck",
+          "email_local": "email_local",
+          "emailDomain": "emailDomain",
+          "sentcnt": "sentcnt",
+          "rating_tstamp": "rating_tstamp",
+          "gravatar": "gravatar",
+          "deleted": "deleted",
+          "anonymized": "anonymized",
+          "adate": "adate",
+          "udate": "udate",
+          "edate": "edate",
+          "deleted_at": "deleted_at",
+          "created_utc_timestamp": "created_utc_timestamp",
+          "updated_utc_timestamp": "updated_utc_timestamp",
+          "created_timestamp": "created_timestamp",
+          "updated_timestamp": "updated_timestamp",
+          "created_by": "created_by",
+          "updated_by": "updated_by",
+          "email_empty": "email_empty",
+          "scoreValues": {
+            "type": "column",
+            "mapping": {
+              "destination": "scoreValues"
+            },
+            "forceType": true
+          },
+          "accountContacts": {
+            "type": "column",
+            "mapping": {
+              "destination": "accountContacts"
+            },
+            "forceType": true
+          },
+          "links_bounceLogs": "links_bounceLogs",
+          "links_contactAutomations": "links_contactAutomations",
+          "links_contactData": "links_contactData",
+          "links_contactGoals": "links_contactGoals",
+          "links_contactLists": "links_contactLists",
+          "links_contactLogs": "links_contactLogs",
+          "links_contactTags": "links_contactTags",
+          "links_contactDeals": "links_contactDeals",
+          "links_deals": "links_deals",
+          "links_fieldValues": "links_fieldValues",
+          "links_geoIps": "links_geoIps",
+          "links_notes": "links_notes",
+          "links_organization": "links_organization",
+          "links_plusAppend": "links_plusAppend",
+          "links_trackingLogs": "links_trackingLogs",
+          "links_scoreValues": "links_scoreValues",
+          "links_accountContacts": "links_accountContacts",
+          "links_automationEntryCounts": "links_automationEntryCounts"
+        },
+    "accounts": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id",
+          "primaryKey": true
+        }
+      },
+      "name": "name",
+      "accountUrl": "accountUrl",
+      "createdTimestamp": "createdTimestamp",
+      "updatedTimestamp": "updatedTimestamp",
+      "contactCount": "contactCount",
+      "dealCount": "dealCount",
+      "links": {
+        "type": "column",
+        "mapping": {
+          "destination": "links"
+        },
+        "forceType": true
+      }
+    },
+    "deals": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id",
+          "primaryKey": true
+        }
+      },
+      "owner": "owner",
+      "contact": "contact",
+      "organization": "organization",
+      "group": "group",
+      "stage": "stage",
+      "title": "title",
+      "description": "description",
+      "percent": "percent",
+      "cdate": "cdate",
+      "mdate": "mdate",
+      "nextdate": "nextdate",
+      "nexttaskid": "nexttaskid",
+      "value": "value",
+      "currency": "currency",
+      "winProbability": "winProbability",
+      "winProbabilityMdate": "winProbabilityMdate",
+      "status": "status",
+      "activitycount": "activitycount",
+      "nextdealid": "nextdealid",
+      "edate": "edate",
+      "links_dealActivities": "links_dealActivities",
+      "links_contact": "links_contact",
+      "links_contactDeals": "links_contactDeals",
+      "links_group": "links_group",
+      "links_nextTask": "links_nextTask",
+      "links_notes": "links_notes",
+      "links_account": "links_account",
+      "links_customerAccount": "links_customerAccount",
+      "links_organization": "links_organization",
+      "links_owner": "links_owner",
+      "links_scoreValues": "links_scoreValues",
+      "links_stage": "links_stage",
+      "links_tasks": "links_tasks",
+      "links_dealCustomFieldData": "links_dealCustomFieldData",
+      "isDisabled": "isDisabled",
+      "account": "account",
+      "customerAccount": "customerAccount"
+    },
+    "campaigns": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id",
+          "primaryKey": true
+        }
+      },
+      "type": "type",
+      "userid": "userid",
+      "segmentid": "segmentid",
+      "bounceid": "bounceid",
+      "realcid": "realcid",
+      "sendid": "sendid",
+      "threadid": "threadid",
+      "seriesid": "seriesid",
+      "formid": "formid",
+      "basetemplateid": "basetemplateid",
+      "basemessageid": "basemessageid",
+      "addressid": "addressid",
+      "source": "source",
+      "name": "name",
+      "cdate": "cdate",
+      "mdate": "mdate",
+      "sdate": "sdate",
+      "ldate": "ldate",
+      "send_amt": "send_amt",
+      "total_amt": "total_amt",
+      "opens": "opens",
+      "uniqueopens": "uniqueopens",
+      "linkclicks": "linkclicks",
+      "uniquelinkclicks": "uniquelinkclicks",
+      "subscriberclicks": "subscriberclicks",
+      "forwards": "forwards",
+      "uniqueforwards": "uniqueforwards",
+      "hardbounces": "hardbounces",
+      "softbounces": "softbounces",
+      "unsubscribes": "unsubscribes",
+      "unsubreasons": "unsubreasons",
+      "updates": "updates",
+      "socialshares": "socialshares",
+      "replies": "replies",
+      "uniquereplies": "uniquereplies",
+      "status": "status",
+      "public": "public",
+      "mail_transfer": "mail_transfer",
+      "mail_send": "mail_send",
+      "mail_cleanup": "mail_cleanup",
+      "mailer_log_file": "mailer_log_file",
+      "tracklinks": "tracklinks",
+      "tracklinksanalytics": "tracklinksanalytics",
+      "trackreads": "trackreads",
+      "trackreadsanalytics": "trackreadsanalytics",
+      "analytics_campaign_name": "analytics_campaign_name",
+      "tweet": "tweet",
+      "facebook": "facebook",
+      "survey": "survey",
+      "embed_images": "embed_images",
+      "htmlunsub": "htmlunsub",
+      "textunsub": "textunsub",
+      "htmlunsubdata": "htmlunsubdata",
+      "textunsubdata": "textunsubdata",
+      "recurring": "recurring",
+      "willrecur": "willrecur",
+      "split_type": "split_type",
+      "split_content": "split_content",
+      "split_offset": "split_offset",
+      "split_offset_type": "split_offset_type",
+      "split_winner_messageid": "split_winner_messageid",
+      "split_winner_awaiting": "split_winner_awaiting",
+      "responder_offset": "responder_offset",
+      "responder_type": "responder_type",
+      "responder_existing": "responder_existing",
+      "reminder_field": "reminder_field",
+      "reminder_format": "reminder_format",
+      "reminder_type": "reminder_type",
+      "reminder_offset": "reminder_offset",
+      "reminder_offset_type": "reminder_offset_type",
+      "reminder_offset_sign": "reminder_offset_sign",
+      "reminder_last_cron_run": "reminder_last_cron_run",
+      "activerss_interval": "activerss_interval",
+      "activerss_url": "activerss_url",
+      "activerss_items": "activerss_items",
+      "ip4": "ip4",
+      "laststep": "laststep",
+      "managetext": "managetext",
+      "schedule": "schedule",
+      "scheduleddate": "scheduleddate",
+      "waitpreview": "waitpreview",
+      "deletestamp": "deletestamp",
+      "replysys": "replysys",
+      "links_user": "links_user",
+      "links_automation": "links_automation",
+      "links_campaignMessage": "links_campaignMessage",
+      "links_campaignMessages": "links_campaignMessages",
+      "links_links": "links_links",
+      "links_campaignLists": "links_campaignLists",
+      "user": "1",
+      "automation": "automation"
+    },
+    "link_details": {
+      "parent_id": {
+        "type": "user",
+        "mapping": {
+          "destination": "campaign_id"
+        }
+      },
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id",
+          "primaryKey": true
+        }
+      },
+      "campaignid": "campaignid",
+      "messageid": "messageid",
+      "link": "link",
+      "name": "name",
+      "ref": "ref",
+      "tracked": "tracked",
+      "links_campaign": "links_campaign",
+      "links_message": "links_message",
+      "campaign": "campaign",
+      "message": "message"
+    },
+    "messages": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id",
+          "primaryKey": true
+        }
+      },
+      "userid": "userid",
+      "ed_instanceid": "ed_instanceid",
+      "ed_version": "ed_version",
+      "cdate": "cdate",
+      "mdate": "mdate",
+      "name": "name",
+      "fromname": "fromname",
+      "fromemail": "fromemail",
+      "reply2": "reply2",
+      "priority": "priority",
+      "charset": "charset",
+      "encoding": "encoding",
+      "format": "format",
+      "subject": "subject",
+      "preheader_text": "preheader_text",
+      "text": "text",
+      "html": "html",
+      "htmlfetch": "htmlfetch",
+      "textfetch": "textfetch",
+      "hidden": "hidden",
+      "preview_mime": "preview_mime",
+      "preview_data": "preview_data",
+      "links_user": "links_user",
+      "user": "user"
+    },
+    "automations": {
+      "id": {
+        "type": "column",
+        "mapping": {
+          "destination": "id",
+          "primaryKey": true
+        }
+      },
+      "name": "name",
+      "cdate": "cdate",
+      "mdate": "mdate",
+      "userid": "userid",
+      "status": "status",
+      "entered": "entered",
+      "exited": "exited",
+      "hidden": "hidden",
+      "defaultscreenshot": "defaultscreenshot",
+      "screenshot": "screenshot",
+      "links_campaigns": "links_campaigns",
+      "links_contactGoals": "links_contactGoals",
+      "links_contactAutomations": "links_contactAutomations",
+      "links_blocks": "links_blocks",
+      "links_goals": "links_goals",
+      "links_sms": "links_sms",
+      "links_sitemessages": "links_sitemessages"
+    }
+  }
     }
 }
