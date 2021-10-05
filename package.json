@@ -8,7 +8,6 @@
     "rmdir-recursive": "0.0.1"
   },
   "scripts": {
-    "build": "node src/scripts/app/build.js",
-    "build-assets": "node src/scripts/app/build-assets.js"
+    "build": "node src/scripts/app/build.js"
   }
 }
