@@ -14,10 +14,3 @@ install:
 script:
   - yarn build resources
   - yarn build-assets $DIST_BUCKET $DIST_FOLDER
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: ./scripts/deploy-script.sh
-  on:
-    branch: master
