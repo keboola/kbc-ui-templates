@@ -1,9 +1,4 @@
 var fs = require("fs");
-var AWS = require('aws-sdk');
-var _ = require("lodash");
-var zlib = require('zlib');
-var uuid = require('node-uuid');
-
 
 var s3bucket = process.argv[2];
 var s3path = process.argv[3];
@@ -26,4 +21,3 @@ function buildAssetsFile(dir, version) {
     console.log("Writing assets file", dir + "/assets.json");
     fs.writeFileSync(dir + "/assets.json", JSON.stringify(assets));
 }
-

@@ -1,8 +1,6 @@
 var fs = require("fs");
 var AWS = require('aws-sdk');
-var _ = require("lodash");
 var zlib = require('zlib');
-var uuid = require('node-uuid');
 
 AWS.config.region = 'us-east-1';
 
