@@ -4,9 +4,7 @@
   "description": "Keboola Connection UI Templates",
   "main": "src/scripts/app",
   "dependencies": {
-    "aws-sdk": "^2.2.15",
     "lodash": "^3.10.1",
-    "node-uuid": "^1.4.3",
     "rmdir-recursive": "0.0.1"
   },
   "scripts": {
