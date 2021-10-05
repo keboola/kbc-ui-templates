@@ -1,17 +1,20 @@
 language: node_js
+
 node_js:
-  - "5"
+  - "14"
+
 install:
-- time npm install
-- git --version
-- git describe --tags
-- export KBC_UI_TEMPLATES_REVISION=`git describe --tags`
-- export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-- export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+  - yarn
+  - git --version
+  - git describe --tags
+  - export KBC_UI_TEMPLATES_REVISION=`git describe --tags --always --long`
+  - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+  - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
 script:
- - npm run build resources
- - npm run build-assets $DIST_BUCKET $DIST_FOLDER
-sudo: false
+  - yarn build resources
+  - yarn build-assets $DIST_BUCKET $DIST_FOLDER
+
 deploy:
   provider: script
   skip_cleanup: true
