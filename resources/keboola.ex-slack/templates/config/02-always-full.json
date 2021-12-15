@@ -10,12 +10,12 @@
         "dataField": "members"
       },
       {
-        "endpoint": "channels.list",
+        "endpoint": "conversations.list",
         "dataType": "channels",
         "dataField": "channels",
         "children": [
           {
-            "endpoint": "channels.history?channel={id}",
+            "endpoint": "conversations.history?channel={id}",
             "dataType": "messages",
             "dataField": "messages",
             "placeholders": {
