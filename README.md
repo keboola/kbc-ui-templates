@@ -18,3 +18,7 @@ All pushes to `master` branch are automatically deployed.
 
 - Example of creating Generic Extractor template is available in the
   [Developer Docs](https://developers.keboola.com/extend/generic-extractor/registration/#example)
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
