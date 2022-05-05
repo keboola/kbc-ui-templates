@@ -2,7 +2,7 @@
     "baseUrl": "https://api.github.com/",
     "retryConfig": {
      "http": {
-      "retryHeader": "X-RetryAfter",
+      "retryHeader": "x-ratelimit-reset",
       "codes": [
        403
       ]
