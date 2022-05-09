@@ -1,8 +1,8 @@
 {
   "name": "kbc-ui.templates",
-  "version": "0.0.0",
+  "private": true,
+  "version": "0.1.0",
   "description": "Keboola Connection UI Templates",
-  "main": "src/scripts/app",
   "dependencies": {
     "lodash": "^3.10.1",
     "rmdir-recursive": "0.0.1"
