@@ -1,6 +1,6 @@
-# kbc-ui-templates
+# KBC UI Templates
 
-[![Build Status](https://app.travis-ci.com/keboola/kbc-ui-templates.svg?branch=master)](https://app.travis-ci.com/keboola/kbc-ui-templates)
+[![Main Workflow](https://github.com/keboola/kbc-ui-templates/actions/workflows/main.yml/badge.svg)](https://github.com/keboola/kbc-ui-templates/actions/workflows/main.yml)
 
 Configuration Templates for **Generic Extractor**
 
@@ -12,7 +12,7 @@ Configuration Templates for **Generic Extractor**
 
 ## Deployment
 
-All pushes to `master` branch are automatically deployed.
+All pushes to `main` branch are automatically deployed.
 
 ## Resources
 
