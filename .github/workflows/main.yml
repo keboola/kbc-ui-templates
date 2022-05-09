@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - ujovlado-general-update
 
 jobs:
   build-and-deploy:
@@ -28,9 +27,9 @@ jobs:
       - name: "Configure AWS credentials"
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::409988231645:role/kbc-ui-templates-role
+          role-to-assume: arn:aws:iam::554559046605:role/kbc-ui-templates-role
           role-session-name: kbc-ui-templates-deploy-to-s3-on-main
           aws-region: us-east-1
       - name: "Deploy to s3"
         run: |
-          aws s3 sync dist s3://vlado-ui-team-keboola-dev-common-origin/kbc-ui-templates --cache-control "max-age=600"
+          aws s3 sync dist s3://ui-keboola-assets-com-common-origin/kbc-ui-templates --cache-control "max-age=600"
