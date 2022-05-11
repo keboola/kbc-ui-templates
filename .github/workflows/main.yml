@@ -1,0 +1,35 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: "Build and deploy to s3"
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      - name: "Setup Node"
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+          cache: 'yarn'
+      - name: "Install dependencies"
+        run: yarn
+      - name: "Build resources"
+        run: yarn build resources
+      - name: "Configure AWS credentials"
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::554559046605:role/kbc-ui-templates-role
+          role-session-name: kbc-ui-templates-deploy-to-s3-on-main
+          aws-region: us-east-1
+      - name: "Deploy to s3"
+        run: |
+          aws s3 sync dist s3://ui-keboola-assets-com-common-origin/kbc-ui-templates --cache-control "max-age=600"

@@ -1,17 +1,13 @@
 {
   "name": "kbc-ui.templates",
-  "version": "0.0.0",
+  "private": true,
+  "version": "0.1.0",
   "description": "Keboola Connection UI Templates",
-  "main": "src/scripts/app",
   "dependencies": {
-    "aws-sdk": "^2.2.15",
     "lodash": "^3.10.1",
-    "node-uuid": "^1.4.3",
     "rmdir-recursive": "0.0.1"
   },
   "scripts": {
-    "build": "node src/scripts/app/build.js",
-    "build-assets": "node src/scripts/app/build-assets.js",
-    "upload": "node src/scripts/app/upload.js"
+    "build": "node build.js"
   }
 }
