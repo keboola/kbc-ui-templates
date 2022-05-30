@@ -22,3 +22,7 @@ All pushes to `main` branch are automatically deployed.
 ## License
 
 MIT licensed, see [LICENSE](./LICENSE) file.
+
+## License
+
+MIT licensed, see [LICENSE](./LICENSE) file.
