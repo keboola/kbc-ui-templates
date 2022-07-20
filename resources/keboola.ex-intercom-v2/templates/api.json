@@ -3,7 +3,8 @@
     "http": {
         "defaultOptions": {
             "headers": {
-                "Accept": "application/json"
+                "Accept": "application/json",
+                "Intercom-Version": "1.0"
             }
         }
     },
