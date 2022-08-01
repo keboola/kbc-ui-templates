@@ -14,14 +14,11 @@ This account is used to retrieve token which is used as a parameter in all API c
 parameters.api.authentication.loginRequest.params.email
 - `password` (string - secured):
 parameters.config.#password
-- `datetime-from` (string - ISO datetime format):
+- `datetime-from` (optional, string - ISO datetime format):
 parameters.config.datetime-from - example: `2022-07-01T00:00:00.000Z`
-- `outputBucket` (string):
-parameters.config.outputBucket - name of the bucket that the output tables should go to
-- `incrementalOutput` (bool):
-parameters.config.incrementalOutput - if set to false, truncates tables before new run
-- `debug` (bool):
-parameters.config.debug - set to true for debug messages to show up in Keboola
+- `datetime-to` (optional, string - ISO datetime format):
+parameters.config.datetime-from - example: `2022-07-01T00:00:00.000Z`
+
 
 
 ## Table output
