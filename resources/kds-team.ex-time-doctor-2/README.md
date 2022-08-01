@@ -1,4 +1,4 @@
-# Time Doctor 2 Extractor config
+# Time Doctor 2 Extractor
 
 There are two json files for this extractor. One is for initial load and the second one is for increments.
 These two files differ in only one parameter and that is "from" in endpoints which support date range when called.
@@ -26,4 +26,16 @@ parameters.config.datetime-from - example: `2022-07-01T00:00:00.000Z`
 
 
 ![picture](imgs/output_scheme.png)
+
+## Extractor Logic
+
+1. Get auth token from /login endpoint
+
+1. Get company ID from /authorization endpoint
+
+3. Get list of users from /users endpoint
+
+4. Use the list of users to iterate over /activity/worklog, activity/edit-time and /activity/timeuse endpoints. Both of these require specification of date range using “from” and/or “to” params in ISO datetime format.  
+
+5. Consume data from /projects and /tasks endpoints.
  
