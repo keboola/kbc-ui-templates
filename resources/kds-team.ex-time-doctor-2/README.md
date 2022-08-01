@@ -1,8 +1,8 @@
 # Time Doctor 2 Extractor
 
-There are two json files for this extractor. One is for initial load and the second one is for increments.
-These two files differ in only one parameter and that is "from" in endpoints which support date range when called.
-It is recommended by TimeDoctor 2 API Docs to not use time window of more than 7 days, but test showed that a whole month can be downloaded at once.
+There are two configs available for this extractor. One is for initial load and the second one is for increments.
+
+It is recommended by TimeDoctor 2 API Docs to not use time window of more than 7 days.
 
 
 # Configuration
