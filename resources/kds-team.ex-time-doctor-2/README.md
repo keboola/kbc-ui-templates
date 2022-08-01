@@ -10,14 +10,12 @@ It is recommended by TimeDoctor 2 API Docs to not use time window of more than 7
 User has to define an account to login with. This is a combination of email and password.
 This account is used to retrieve token which is used as a parameter in all API calls.
 
-- `email` (string):
-parameters.api.authentication.loginRequest.params.email
-- `password` (string - secured):
-parameters.config.#password
-- `datetime-from` (optional, string - ISO datetime format):
-parameters.config.datetime-from - example: `2022-07-01T00:00:00.000Z`
+- `email` (string): Time Doctor 2 account to log in with
+- `password` (string - secured): Time Doctor 2 password
+- `datetime-from` (optional, string - ISO datetime format:
+ example: `2022-07-01T00:00:00.000Z`
 - `datetime-to` (optional, string - ISO datetime format):
-parameters.config.datetime-from - example: `2022-07-01T00:00:00.000Z`
+example: `2022-07-01T00:00:00.000Z`
 
 
 
