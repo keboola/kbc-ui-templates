@@ -2,7 +2,7 @@
   "name": "Time Doctor 2 - initial load",
   "Description": "Gets users, projects, tasks, worklogs, worklog edits and user related info in specified time range.",
   "data": {
-    "incrementalOutput": false,
+    "incrementalOutput": true,
     "jobs": [
       {
         "endpoint": "/api/1.0/authorization",
