@@ -36,6 +36,15 @@
                         "time": "previousStart"
                       }
                     ]
+                  },
+                  "to": {
+                    "function": "date",
+                    "args": [
+                      "Y-m-dTH:i:s",
+                      {
+                        "function": "time"
+                      }
+                    ]
                   }
                 }
               },
@@ -56,6 +65,15 @@
                         "time": "previousStart"
                       }
                     ]
+                  },
+                  "to": {
+                    "function": "date",
+                    "args": [
+                      "Y-m-dTH:i:s",
+                      {
+                        "function": "time"
+                      }
+                    ]
                   }
                 }
               },
@@ -74,6 +92,15 @@
                       "Y-m-dTH:i:s",
                       {
                         "time": "previousStart"
+                      }
+                    ]
+                  },
+                  "to": {
+                    "function": "date",
+                    "args": [
+                      "Y-m-dTH:i:s",
+                      {
+                        "function": "time"
                       }
                     ]
                   }
