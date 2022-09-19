@@ -2,7 +2,7 @@
   "name": "Time Doctor 2 - initial load",
   "Description": "Gets users, projects, tasks, worklogs, worklog edits and user related info in specified time range.",
   "data": {
-    "incrementalOutput": true,
+    "incrementalOutput": false,
     "jobs": [
       {
         "endpoint": "/api/1.0/authorization",
@@ -141,10 +141,20 @@
         "folders.weight": "folders_weight"
       },
       "worklog": {
-        "start": "start",
+        "userId": {
+          "mapping": {
+            "destination": "userId",
+            "primaryKey": true
+          }
+        },
+        "start": {
+          "mapping": {
+            "destination": "start",
+            "primaryKey": true
+          }
+        },
         "time": "time",
         "mode": "mode",
-        "userId": "user_id",
         "taskId": "task_id",
         "taskName": "task_name",
         "projectId": "project_id",
@@ -155,10 +165,16 @@
         "parent_id": {
           "type": "user",
           "mapping": {
-            "destination": "user_id"
+            "destination": "user_id",
+            "primaryKey": true
           }
         },
-        "start": "start",
+        "start": {
+          "mapping": {
+            "destination": "start",
+            "primaryKey": true
+          }
+        },
         "time": "time",
         "score": "score",
         "category": "category",
@@ -167,8 +183,18 @@
         "title": "title"
       },
       "edit-time": {
-        "id": "id",
-        "start": "start",
+        "id": {
+          "mapping": {
+            "destination": "id",
+            "primaryKey": true
+          }
+        },
+        "start": {
+          "mapping": {
+            "destination": "start",
+            "primaryKey": true
+          }
+        },
         "time": "time",
         "approved": "approved",
         "operation": "operation",
