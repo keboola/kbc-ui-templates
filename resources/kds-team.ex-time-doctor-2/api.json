@@ -1,0 +1,36 @@
+{
+  "baseUrl": "https://api2.timedoctor.com/",
+  "authentication": {
+    "type": "login",
+    "loginRequest": {
+      "endpoint": "/api/1.0/login",
+      "method": "POST",
+      "params": {
+        "permission": "read",
+        "email": {
+          "attr": "email"
+        },
+        "password": {
+          "attr": "#password"
+        }      
+      },
+      "headers": {
+        "accept": "application/json"
+      }
+    },
+    "format": "json",
+    "apiRequest": {
+      "query": {
+        "token": "data.token"
+      }
+    },
+    "expires": {
+      "response": "data.expiresAt"
+    }
+  },
+  "pagination": {
+    "method": "pagenum",
+    "limit": 200,
+    "firstPage": 0
+  }
+}
