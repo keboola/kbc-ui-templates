@@ -1,6 +1,6 @@
 {
     "name": "dbt Cloud API",
-    "Description": "The dbt Cloud API makes it possible to fetch data from your dbt Cloud account and programmatically run and monitor dbt jobs. ",
+    "Description": "The dbt Cloud API makes it possible to fetch data from your dbt Cloud account and programmatically run and monitor dbt jobs.",
     "data": {
         "id": "dbt_cloud",
         "incrementalOutput": true,
