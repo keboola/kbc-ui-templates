@@ -23,7 +23,6 @@
      "Authorization"
     ],
     "ignoreErrors": [
-     401,
      404
     ]
    }
