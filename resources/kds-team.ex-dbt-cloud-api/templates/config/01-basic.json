@@ -1,0 +1,600 @@
+{
+    "name": "dbt Cloud API",
+    "Description": "The dbt Cloud API makes it possible to fetch data from your dbt Cloud account and programmatically run and monitor dbt jobs.",
+    "data": {
+        "incrementalOutput": true,
+        "http": {
+            "headers": {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": {
+                    "function": "concat",
+                    "args": [
+                        "Token ",
+                        {
+                            "attr": "#token"
+                        }
+                    ]
+                }
+            }
+        },
+        "jobs": [
+            {
+                "endpoint": "accounts",
+                "dataType": "accounts",
+                "dataField": "data",
+                "children": [
+                    {
+                        "endpoint": "accounts/{1:account_id}/projects",
+                        "dataField": "data",
+                        "dataType": "projects",
+                        "placeholders": {
+                            "1:account_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "accounts/{1:account_id}/jobs",
+                        "dataField": "data",
+                        "dataType": "jobs",
+                        "placeholders": {
+                            "1:account_id": "id"
+                        }
+                    },
+                    {
+                        "endpoint": "accounts/{1:account_id}/runs",
+                        "dataField": "data",
+                        "dataType": "runs",
+                        "placeholders": {
+                            "1:account_id": "id"
+                        },
+                        "children": [
+                            {
+                                "endpoint": "accounts/{2:account_id}/runs/{1:run_id}/artifacts",
+                                "dataField": ".",
+                                "dataType": "run_artifacts",
+                                "placeholders": {
+                                    "2:account_id": "id",
+                                    "1:run_id": "id"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "mappings": {
+            "run_artifacts": {
+                "data": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id"
+                    },
+                    "forceType": true
+                },
+                "parent_id": {
+                    "type": "user",
+                    "mapping": {
+                        "destination": "run_id",
+                        "primaryKey": true
+                    }
+                }
+            },
+            "accounts": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "state": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "state"
+                    }
+                },
+                "plan": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "plan"
+                    }
+                },
+                "pending_cancel": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pending_cancel"
+                    }
+                },
+                "locked": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "locked"
+                    }
+                },
+                "lock_reason": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "lock_reason"
+                    }
+                },
+                "unlock_if_subscription_renewed": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "unlock_if_subscription_renewed"
+                    }
+                },
+                "unlocked_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "unlocked_at"
+                    }
+                },
+                "read_only_seats": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "read_only_seats"
+                    }
+                },
+                "run_slots": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "run_slots"
+                    }
+                },
+                "developer_seats": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "developer_seats"
+                    }
+                },
+                "queue_limit": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "queue_limit"
+                    }
+                },
+                "pod_memory_request_mebibytes": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "pod_memory_request_mebibytes"
+                    }
+                },
+                "run_duration_limit_seconds": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "run_duration_limit_seconds"
+                    }
+                },
+                "enterprise_authentication_method": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "enterprise_authentication_method"
+                    }
+                },
+                "enterprise_login_slug": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "enterprise_login_slug"
+                    }
+                },
+                "enterprise_unique_identifier": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "enterprise_unique_identifier"
+                    }
+                },
+                "billing_email_address": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "billing_email_address"
+                    }
+                },
+                "develop_file_system": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "develop_file_system"
+                    }
+                },
+                "created_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "updated_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "starter_repo_url": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "starter_repo_url"
+                    }
+                },
+                "sso_reauth": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "sso_reauth"
+                    }
+                },
+                "git_auth_level": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "git_auth_level"
+                    }
+                },
+                "identifier": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "identifier"
+                    }
+                }
+            },
+            "jobs": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "account_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "account_id",
+                        "primaryKey": true
+                    }
+                },
+                "project_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "project_id"
+                    }
+                },
+                "environment_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "environment_id"
+                    }
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "dbt_version": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dbt_version"
+                    }
+                },
+                "triggers": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "triggers"
+                    },
+                    "forceType": true
+                },
+                "execute_steps": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "execute_steps"
+                    },
+                    "forceType": true
+                },
+                "settings": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "settings"
+                    },
+                    "forceType": true
+                },
+                "state": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "state"
+                    }
+                },
+                "generate_docs": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "generate_docs"
+                    }
+                },
+                "schedule": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "schedule"
+                    },
+                    "forceType": true
+                }
+            },
+            "runs": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "trigger_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "trigger_id"
+                    }
+                },
+                "account_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "account_id",
+                        "primaryKey": true
+                    }
+                },
+                "project_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "project_id"
+                    }
+                },
+                "job_definition_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "job_definition_id"
+                    }
+                },
+                "status": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "status"
+                    }
+                },
+                "git_branch": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "git_branch"
+                    }
+                },
+                "git_sha": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "git_sha"
+                    }
+                },
+                "status_message": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "status_message"
+                    }
+                },
+                "dbt_version": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dbt_version"
+                    }
+                },
+                "created_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "updated_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                },
+                "dequeued_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dequeued_at"
+                    }
+                },
+                "started_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "started_at"
+                    }
+                },
+                "finished_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "finished_at"
+                    }
+                },
+                "last_checked_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "last_checked_at"
+                    }
+                },
+                "last_heartbeat_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "last_heartbeat_at"
+                    }
+                },
+                "owner_thread_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "owner_thread_id"
+                    }
+                },
+                "executed_by_thread_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "executed_by_thread_id"
+                    }
+                },
+                "artifacts_saved": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "artifacts_saved"
+                    }
+                },
+                "artifact_s3_path": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "artifact_s3_path"
+                    }
+                },
+                "has_docs_generated": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "has_docs_generated"
+                    }
+                },
+                "trigger": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "trigger"
+                    },
+                    "forceType": true
+                },
+                "job": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "job"
+                    },
+                    "forceType": true
+                },
+                "duration": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "duration"
+                    }
+                },
+                "queued_duration": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "queued_duration"
+                    }
+                },
+                "run_duration": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "run_duration"
+                    }
+                },
+                "duration_humanized": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "duration_humanized"
+                    }
+                },
+                "queued_duration_humanized": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "queued_duration_humanized"
+                    }
+                },
+                "run_duration_humanized": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "run_duration_humanized"
+                    }
+                },
+                "finished_at_humanized": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "finished_at_humanized"
+                    }
+                },
+                "status_humanized": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "status_humanized"
+                    }
+                },
+                "created_at_humanized": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at_humanized"
+                    }
+                }
+            },
+            "projects": {
+                "id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "id",
+                        "primaryKey": true
+                    }
+                },
+                "account_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "account_id",
+                        "primaryKey": true
+                    }
+                },
+                "connection": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "connection"
+                    },
+                    "forceType": true
+                },
+                "connection_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "connection_id"
+                    }
+                },
+                "dbt_project_subdirectory": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "dbt_project_subdirectory"
+                    },
+                    "forceType": true
+                },
+                "name": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "name"
+                    }
+                },
+                "repository": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "repository"
+                    },
+                    "forceType": true
+                },
+                "repository_id": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "repository_id"
+                    }
+                },
+                "state": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "state"
+                    }
+                },
+                "created_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "created_at"
+                    }
+                },
+                "updated_at": {
+                    "type": "column",
+                    "mapping": {
+                        "destination": "updated_at"
+                    }
+                }
+            }
+        }
+    }
+}
