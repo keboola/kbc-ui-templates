@@ -1,0 +1,29 @@
+{
+   "baseUrl": "https://cloud.getdbt.com/api/v2/",
+   "pagination": {
+    "method": "multiple",
+    "scrollers": {
+     "list_scroller": {
+      "method": "offset",
+      "limit": "100"
+     },
+     "search_scroller": {
+      "method": "cursor",
+      "idKey": "dummy",
+      "param": "continueAfter"
+     }
+    },
+    "default": "list_scroller"
+   },
+   "http": {
+    "headers": {
+     "Content-Type": "application/json"
+    },
+    "requiredHeaders": [
+     "Authorization"
+    ],
+    "ignoreErrors": [
+     404
+    ]
+   }
+}
