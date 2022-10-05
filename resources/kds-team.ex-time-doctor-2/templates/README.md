@@ -12,10 +12,9 @@ This account is used to retrieve token which is used as a parameter in all API c
 
 - `email` (string): Time Doctor 2 account to log in with
 - `password` (string - secured): Time Doctor 2 password
-- `datetime-from` (optional, string - ISO datetime format:
- example: `2022-07-01T00:00:00.000Z`
-- `datetime-to` (optional, string - ISO datetime format):
-example: `2022-07-01T00:00:00.000Z`
+- `paramFrom` (optional, string) - [strtotime](https://www.php.net/manual/en/function.strtotime.php) format:
+ example: `7 days ago`
+
 
 
 
