@@ -1,8 +1,8 @@
 {
-  "name": "Time Doctor 2 - initial load",
-  "Description": "Gets users, projects, tasks, worklogs, worklog edits and user related info in specified time range.",
+  "name": "Time Doctor 2 Extractor",
+  "Description": "Gets users, projects, tasks, worklogs, worklog edits and user related info in increments.",
   "data": {
-    "incrementalOutput": false,
+    "incrementalOutput": true,
     "jobs": [
       {
         "endpoint": "/api/1.0/authorization",
@@ -29,10 +29,18 @@
                   "detail": "true",
                   "task-project-names": "true",
                   "from": {
-                    "attr": "datetime-from"
-                  },
-                  "to": {
-                    "attr": "datetime-to"
+                    "function": "date",
+                    "args": [
+                      "Y-m-dTH:i:s",
+                      {
+                        "function": "strtotime",
+                        "args": [
+                          {
+                            "attr": "paramFrom"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 }
               },
@@ -46,10 +54,18 @@
                 },
                 "params": {
                   "from": {
-                    "attr": "datetime-from"
-                  },
-                  "to": {
-                    "attr": "datetime-to"
+                    "function": "date",
+                    "args": [
+                      "Y-m-dTH:i:s",
+                      {
+                        "function": "strtotime",
+                        "args": [
+                          {
+                            "attr": "paramFrom"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 }
               },
@@ -63,10 +79,18 @@
                 },
                 "params": {
                   "from": {
-                    "attr": "datetime-from"
-                  },
-                  "to": {
-                    "attr": "datetime-to"
+                    "function": "date",
+                    "args": [
+                      "Y-m-dTH:i:s",
+                      {
+                        "function": "strtotime",
+                        "args": [
+                          {
+                            "attr": "paramFrom"
+                          }
+                        ]
+                      }
+                    ]
                   }
                 }
               }
