@@ -15,13 +15,13 @@
     },
     "defaultOptions": {
       "params": {
-        "count": "1000"
+        "limit": "200"
       }
     }
   },
   "pagination": {
     "method": "response.param",
-    "responseParam": "messages.999.ts",
-    "queryParam": "latest"
+    "responseParam": "response_metadata.next_cursor",
+    "queryParam": "cursor"
   }
 }
