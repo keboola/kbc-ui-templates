@@ -1,0 +1,48 @@
+{
+  "name":"Invoices + Internal Documents",
+  "description":"Download\n\n - issued invoices (including all details)\n - received invoices (including all details)\n - internal documents (including all details) ",
+  "data":{
+    "jobs":[
+      {
+        "endpoint":"faktura-vydana",
+        "dataField":"winstrom.faktura-vydana",
+        "children":[
+          {
+            "endpoint":"faktura-vydana/{1:faktura-vydana}",
+            "dataField":"winstrom.faktura-vydana",
+            "placeholders":{
+              "1:faktura-vydana":"id"
+            }
+          }
+        ]
+      },
+      {
+        "endpoint":"faktura-prijata",
+        "dataField":"winstrom.faktura-prijata",
+        "children":[
+          {
+            "endpoint":"faktura-prijata/{1:faktura-prijata}",
+            "dataField":"winstrom.faktura-prijata",
+            "placeholders":{
+              "1:faktura-prijata":"id"
+            }
+          }
+        ]
+      },
+      {
+        "endpoint":"interni-doklad",
+        "dataField":"winstrom.interni-doklad",
+        "children":[
+          {
+            "endpoint":"interni-doklad/{1:interni-doklad}",
+            "dataField":"winstrom.interni-doklad",
+            "placeholders":{
+              "1:interni-doklad":"id"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  
+}
