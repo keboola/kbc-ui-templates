@@ -1,8 +1,459 @@
 {
-    "name": "V2 - Ads Analytics",
-    "description": "All campaign ad analytics",
+    "name": "Ads Analytics - Last 7 days",
+    "description": "Extracting all campaigns ad analytics for the last 7 days", 
     "data": {
         "incrementalOutput": true,
+        "jobs": [
+            {
+                "endpoint": "adCampaigns",
+                "params": {
+                    "q": "search",
+                    "search.status.values[0]": "ACTIVE",
+                    "search.status.values[1]": "COMPLETED",
+                    "search.status.values[2]": "PAUSED",
+                    "search.status.values[3]": "ARCHIVED",
+                    "search.status.values[4]": "CANCELED",
+                    "search.status.values[5]": "DRAFT"
+                },
+                "dataField": "elements",
+                "dataType": "campaigns",
+                "scroller": "campaign_scroller",
+                "children": [
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_inmail_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,actionClicks,adUnitClicks,leadGenerationMailContactInfoShares,leadGenerationMailInterestedClicks,opens,sends,textUrlClicks"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_basic_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,clicks,commentLikes,comments,companyPageClicks,follows,impressions,landingPageClicks,likes,otherEngagements,reactions,shares,totalEngagements"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_cost",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,conversionValueInLocalCurrency,costInLocalCurrency,costInUsd"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_other_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,externalWebsiteConversions,externalWebsitePostClickConversions,externalWebsitePostViewConversions,oneClickLeadFormOpens,oneClickLeads"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_video_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,fullScreenPlays,videoCompletions,videoFirstQuartileCompletions,videoMidpointCompletions,videoStarts,videoThirdQuartileCompletions,videoViews"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_basic_viral_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,viralClicks,viralCommentLikes,viralComments,viralCompanyPageClicks,viralFollows,viralImpressions,viralLandingPageClicks,viralLikes,viralOtherEngagements,viralReactions,viralShares,viralTotalEngagements"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_other_viral_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,viralExternalWebsiteConversions,viralExternalWebsitePostClickConversions,viralExternalWebsitePostViewConversions,viralOneClickLeadFormOpens,viralOneClickLeads"
+                        }
+                    },
+                    {
+                        "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
+                        "placeholders": {
+                            "campaign_id": "id"
+                        },
+                        "dataField": "elements",
+                        "dataType": "ads_video_viral_stats",
+                        "params": {
+                            "q": "analytics",
+                            "timeGranularity": {
+                                "attr": "timeGranularity"
+                            },
+                            "pivot": {
+                                "attr": "pivot"
+                            },
+                            "dateRange.start.year": {
+                                "function": "date",
+                                "args": [
+                                    "Y",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.day": {
+                                "function": "date",
+                                "args": [
+                                    "d",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "dateRange.start.month": {
+                                "function": "date",
+                                "args": [
+                                    "m",
+                                    {
+                                        "function": "strtotime",
+                                        "args": [
+                                            "-7 days"
+                                        ]
+                                    }
+                                ]
+                            },
+                            "fields": "dateRange,pivotValue,pivot,viralFullScreenPlays,viralVideoCompletions,viralVideoFirstQuartileCompletions,viralVideoMidpointCompletions,viralVideoStarts,viralVideoThirdQuartileCompletions,viralVideoViews"
+                        }
+                    }
+                ]
+            }
+        ],
         "mappings": {
             "campaigns": {
                 "associatedEntity": "associatedEntity",
@@ -939,313 +1390,6 @@
                     }
                 }
             }
-        },
-        "jobs": [
-            {
-                "endpoint": "adCampaignsV2",
-                "params": {
-                    "q": "search",
-                    "search.status.values[0]": "ACTIVE",
-                    "search.status.values[1]": "COMPLETED",
-                    "search.status.values[2]": "PAUSED",
-                    "search.status.values[3]": "ARCHIVED",
-                    "search.status.values[4]": "CANCELED",
-                    "search.status.values[5]": "DRAFT"
-                },
-                "dataField": "elements",
-                "dataType": "campaigns",
-                "scroller": "campaign_scroller",
-                "children": [
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_inmail_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,actionClicks,adUnitClicks,leadGenerationMailContactInfoShares,leadGenerationMailInterestedClicks,opens,sends,textUrlClicks"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_basic_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,clicks,commentLikes,comments,companyPageClicks,follows,impressions,landingPageClicks,likes,otherEngagements,reactions,shares,totalEngagements"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_cost",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,conversionValueInLocalCurrency,costInLocalCurrency,costInUsd"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_other_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,externalWebsiteConversions,externalWebsitePostClickConversions,externalWebsitePostViewConversions,oneClickLeadFormOpens,oneClickLeads"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_video_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,fullScreenPlays,videoCompletions,videoFirstQuartileCompletions,videoMidpointCompletions,videoStarts,videoThirdQuartileCompletions,videoViews"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_basic_viral_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,viralClicks,viralCommentLikes,viralComments,viralCompanyPageClicks,viralFollows,viralImpressions,viralLandingPageClicks,viralLikes,viralOtherEngagements,viralReactions,viralShares,viralTotalEngagements"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_other_viral_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,viralExternalWebsiteConversions,viralExternalWebsitePostClickConversions,viralExternalWebsitePostViewConversions,viralOneClickLeadFormOpens,viralOneClickLeads"
-                        }
-                    },
-                    {
-                        "endpoint": "adAnalyticsV2?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",
-                        "placeholders": {
-                            "campaign_id": "id"
-                        },
-                        "dataField": "elements",
-                        "dataType": "ads_video_viral_stats",
-                        "params": {
-                            "q": "analytics",
-                            "timeGranularity": {
-                                "attr": "timeGranularity"
-                            },
-                            "pivot": {
-                                "attr": "pivot"
-                            },
-                            "dateRange.start.year": {
-                                "attr": "start_year"
-                            },
-                            "dateRange.end.day": {
-                                "attr": "end_day"
-                            },
-                            "dateRange.end.month": {
-                                "attr": "end_month"
-                            },
-                            "dateRange.end.year": {
-                                "attr": "end_year"
-                            },
-                            "dateRange.start.day": {
-                                "attr": "start_day"
-                            },
-                            "dateRange.start.month": {
-                                "attr": "start_month"
-                            },
-                            "fields": "dateRange,pivotValue,pivot,viralFullScreenPlays,viralVideoCompletions,viralVideoFirstQuartileCompletions,viralVideoMidpointCompletions,viralVideoStarts,viralVideoThirdQuartileCompletions,viralVideoViews"
-                        }
-                    }
-                ]
-            }
-        ]
+        }
     }
 }

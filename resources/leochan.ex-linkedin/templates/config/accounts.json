@@ -42,7 +42,7 @@
         },
         "jobs": [
             {
-                "endpoint": "adAccountsV2",
+                "endpoint": "adAccounts",
                 "params": {
                     "q": "search",
                     "search.status.values[0]": "DRAFT",
