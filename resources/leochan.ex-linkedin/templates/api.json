@@ -1,9 +1,10 @@
 {
-  "baseUrl": "https://api.linkedin.com/v2/",
+  "baseUrl": "https://api.linkedin.com/rest/",
   "authentication": {
     "type": "oauth20",
     "format": "json",
     "headers": {
+      "Linkedin-Version": "202304",
       "Authorization": {
         "function": "concat",
         "args": [

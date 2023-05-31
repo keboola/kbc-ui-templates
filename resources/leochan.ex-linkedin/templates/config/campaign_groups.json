@@ -45,7 +45,7 @@
         },
         "jobs": [
             {
-                "endpoint": "adCampaignGroupsV2",
+                "endpoint": "adCampaignGroups",
                 "params": {
                     "q": "search",
                     "search.status.values[0]": "ACTIVE",
