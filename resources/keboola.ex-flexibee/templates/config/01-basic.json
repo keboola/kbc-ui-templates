@@ -8,7 +8,7 @@
         "dataField": "winstrom.faktura-vydana",
         "children": [
           {
-            "endpoint": "faktura-vydana/{1:faktura-vydana}",
+            "endpoint": "faktura-vydana/{1:faktura-vydana}.json",
             "dataField": "winstrom.faktura-vydana",
             "placeholders": {
               "1:faktura-vydana": "id"
@@ -21,7 +21,7 @@
         "dataField": "winstrom.faktura-prijata",
         "children": [
           {
-            "endpoint": "faktura-prijata/{1:faktura-prijata}",
+            "endpoint": "faktura-prijata/{1:faktura-prijata}.json",
             "dataField": "winstrom.faktura-prijata",
             "placeholders": {
               "1:faktura-prijata": "id"
