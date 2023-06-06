@@ -16,6 +16,15 @@
   "authentication": {
     "type": "basic"
   },
+  "retryConfig": {
+    "http": {
+      "retryHeader": "RetryAfter",
+      "codes": [
+        400
+      ]
+    },
+    "maxRetries": 10
+  },
   "http": {
     "defaultOptions": {
       "headers": {
