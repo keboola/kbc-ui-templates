@@ -6,7 +6,7 @@
      {
       "attr": "host"
      },
-     ".flexibee.eu/c/",
+     ".flexibee.eu:5434/c/",
       {
         "attr": "domain"
       },
