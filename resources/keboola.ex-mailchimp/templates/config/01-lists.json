@@ -5,21 +5,89 @@
     "incrementalOutput": false,
     "debug": 0,
     "jobs": [
-        {
-          "endpoint": "lists",
-          "dataField": "lists",
-          "dataType": "lists",
-          "children": [
-            {
-              "endpoint": "lists/{id}/members",
-              "placeholders": {
-                "id": "id"
-              },
-              "dataField": "members",
-              "dataType": "members"
-            }
-          ]
+      {
+        "endpoint": "lists",
+        "dataField": "lists",
+        "dataType": "lists",
+        "children": [
+          {
+            "endpoint": "lists/{id}/members",
+            "placeholders": {
+              "id": "id"
+            },
+            "dataField": "members",
+            "dataType": "members"
+          }
+        ]
+      }
+    ],
+    "mappings": {
+      "members": {
+        "id": "id",
+        "email_address": "email_address",
+        "unique_email_id": "unique_email_id",
+        "contact_id": "contact_id",
+        "full_name": "full_name",
+        "web_id": "web_id",
+        "email_type": "email_type",
+        "status": "status",
+        "consents_to_one_to_one_messaging": "consents_to_one_to_one_messaging",
+        "merge_fields": {
+          "type": "column",
+          "mapping": {
+            "destination": "merge_fields"
+          },
+          "forceType": true
+        },
+        "stats.avg_open_rate": "stats_avg_open_rate",
+        "stats.avg_click_rate": "stats_avg_click_rate",
+        "ip_signup": "ip_signup",
+        "timestamp_signup": "timestamp_signup",
+        "ip_opt": "ip_opt",
+        "timestamp_opt": "timestamp_opt",
+        "member_rating": "member_rating",
+        "last_changed": "last_changed",
+        "language": "language",
+        "vip": "vip",
+        "email_client": "email_client",
+        "location.latitude": "location_latitude",
+        "location.longitude": "location_longitude",
+        "location.gmtoff": "location_gmtoff",
+        "location.dstoff": "location_dstoff",
+        "location.country_code": "location_country_code",
+        "location.timezone": "location_timezone",
+        "location.region": "location_region",
+        "source": "source",
+        "tags_count": "tags_count",
+        "tags": {
+          "type": "column",
+          "mapping": {
+            "destination": "tags"
+          },
+          "forceType": true
+        },
+        "list_id": "list_id",
+        "_links": {
+          "type": "table",
+          "destination": "members_links",
+          "parentKey": {
+            "destination": "JSON_parentId"
+          },
+          "tableMapping": {
+            "rel": "rel",
+            "href": "href",
+            "method": "method",
+            "targetSchema": "targetSchema",
+            "schema": "schema"
+          }
+        },
+        "parent_id": {
+          "type": "user",
+          "mapping": {
+            "destination": "parent_id"
+          }
         }
-    ]
+      }
+    }
   }
 }
