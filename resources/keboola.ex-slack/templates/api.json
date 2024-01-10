@@ -1,32 +1,33 @@
 {
-  "baseUrl": "https://slack.com/api/",
-  "authentication": {
-    "type": "oauth20",
-    "format": "json",
-    "Authorization": {
-        "function": "concat",
-        "args": [
-          "Bearer ",
-          {
-            "authorization": "data.access_token"
-          }
-        ]
-      }
-    }
-  },
-  "http": {
-    "headers": {
-      "Accept": "application/json"
+    "baseUrl": "https://slack.com/api/",
+    "authentication": {
+        "type": "oauth20",
+        "format": "json",
+        "headers": {
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "authorization": "data.access_token"
+                    }
+                ]
+            }
+        }
     },
-    "defaultOptions": {
-      "params": {
-        "limit": "200"
-      }
+    "http": {
+        "headers": {
+            "Accept": "application/json"
+        },
+        "defaultOptions": {
+            "params": {
+                "limit": "200"
+            }
+        }
+    },
+    "pagination": {
+        "method": "response.param",
+        "responseParam": "response_metadata.next_cursor",
+        "queryParam": "cursor"
     }
-  },
-  "pagination": {
-    "method": "response.param",
-    "responseParam": "response_metadata.next_cursor",
-    "queryParam": "cursor"
-  }
 }
