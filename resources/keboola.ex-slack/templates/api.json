@@ -3,9 +3,14 @@
   "authentication": {
     "type": "oauth20",
     "format": "json",
-    "query": {
-      "token": {
-        "authorization": "data.access_token"
+    "Authorization": {
+        "function": "concat",
+        "args": [
+          "Bearer ",
+          {
+            "authorization": "data.access_token"
+          }
+        ]
       }
     }
   },
