@@ -1,36 +1,36 @@
 {
-  "baseUrl": "https://api.linkedin.com/rest/",
-  "authentication": {
-    "type": "oauth20",
-    "format": "json",
-    "headers": {
-      "Linkedin-Version": "202404",
-      "Authorization": {
-        "function": "concat",
-        "args": [
-          "Bearer ",
-          {
-            "authorization": "data.access_token"
-          }
-        ]
-      }
-    }
-  },
-  "pagination": {
+    "baseUrl": "https://api.linkedin.com/rest/",
+    "authentication": {
+        "type": "oauth20",
+        "format": "json",
+        "headers": {
+            "Linkedin-Version": "202404",
+            "Authorization": {
+                "function": "concat",
+                "args": [
+                    "Bearer ",
+                    {
+                        "authorization": "data.access_token"
+                    }
+                ]
+            }
+        }
+    },
+    "pagination": {
         "method": "multiple",
         "scrollers": {
-          "campaign_scroller": {
-            "method": "response.param",
-            "responseParam": "metadata.nextPageToken",
-            "includeParams": true,
-            "queryParam": "pageToken"
-          },
-          "accounts_scroller": {
-            "method": "response.param",
-            "responseParam": "metadata.nextPageToken",
-            "includeParams": true,
-            "queryParam": "pageToken"
-          }
+            "campaign_scroller": {
+                "method": "response.param",
+                "responseParam": "metadata.nextPageToken",
+                "includeParams": true,
+                "queryParam": "pageToken"
+            },
+            "accounts_scroller": {
+                "method": "response.param",
+                "responseParam": "metadata.nextPageToken",
+                "includeParams": true,
+                "queryParam": "pageToken"
+            }
         }
-      }
     }
+}
