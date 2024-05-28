@@ -4,7 +4,7 @@
     "type": "oauth20",
     "format": "json",
     "headers": {
-      "Linkedin-Version": "202304",
+      "Linkedin-Version": "202404",
       "Authorization": {
         "function": "concat",
         "args": [
@@ -16,15 +16,21 @@
       }
     }
   },
-  "pagination":{
-    "method": "multiple",
-    "scrollers": {
-        "campaign_scroller":{
-            "method": "offset",
-            "limit": 10,
-            "offsetParam": "start",
-            "limitParam": "count"
+  "pagination": {
+        "method": "multiple",
+        "scrollers": {
+          "campaign_scroller": {
+            "method": "response.param",
+            "responseParam": "metadata.nextPageToken",
+            "includeParams": true,
+            "queryParam": "pageToken"
+          },
+          "accounts_scroller": {
+            "method": "response.param",
+            "responseParam": "metadata.nextPageToken",
+            "includeParams": true,
+            "queryParam": "pageToken"
+          }
         }
+      }
     }
-  }
-}
