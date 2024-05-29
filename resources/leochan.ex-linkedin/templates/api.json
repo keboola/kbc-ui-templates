@@ -25,7 +25,7 @@
                 "includeParams": true,
                 "queryParam": "pageToken"
             },
-            "accounts_scroller": {
+            "account_scroller": {
                 "method": "response.param",
                 "responseParam": "metadata.nextPageToken",
                 "includeParams": true,

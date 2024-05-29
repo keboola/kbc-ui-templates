@@ -176,6 +176,7 @@
                 },
                 "unitCost.amount": "unitCost_amount",
                 "runSchedule.start": {
+                "runSchedule.start": {
                     "type": "column",
                     "mapping": {
                         "destination": "runSchedule"
@@ -959,7 +960,7 @@
                 },
                 "dataField": "elements",
                 "dataType": "accounts",
-                "scroller": "account_scroller",
+                "scroller": "accounts_scroller",
                 "children": [
                     {
                         "endpoint": "adAccounts/{accounts_id}/adCampaigns",
@@ -980,7 +981,7 @@
                         },
                         "dataField": "elements",
                         "dataType": "campaigns",
-                        "scroller": "campaign_scroller",
+                        "scroller": "campaigns_scroller",
                         "children": [
                             {
                                 "endpoint": "adAnalytics?campaigns[0]=urn:li:sponsoredCampaign:{campaign_id}",

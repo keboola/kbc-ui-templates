@@ -54,7 +54,7 @@
                 },
                 "dataField": "elements",
                 "dataType": "accounts",
-                "scroller": "accounts_scroller"
+                "scroller": "account_scroller"
             }
         ]
     }
