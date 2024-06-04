@@ -6,31 +6,49 @@
     "jobs": [
       {
         "endpoint": "tags.json",
-        "dataType": "tags"
+        "dataType": "tags",
+        "params": {
+          "page[size]": 100
+        }
       },
       {
         "endpoint": "organizations.json",
         "dataType": "organizations",
-        "dataField": "organizations"
+        "dataField": "organizations",
+        "params": {
+          "page[size]": 100
+        }
       },
       {
         "endpoint": "users.json",
         "dataType": "users",
-        "dataField": "users"
+        "dataField": "users",
+        "params": {
+          "page[size]": 100
+        }
       },
       {
         "endpoint": "ticket_fields.json",
         "dataType": "tickets_fields",
-        "dataField": "ticket_fields"
+        "dataField": "ticket_fields",
+        "params": {
+          "page[size]": 100
+        }
       },
       {
         "endpoint": "groups.json",
         "dataType": "groups",
         "dataField": "groups",
+        "params": {
+          "page[size]": 100
+        },
         "children": [
           {
             "endpoint": "groups/{id}/users.json",
             "dataType": "users_groups",
+            "params": {
+              "page[size]": 100
+            },
             "placeholders": {
               "id": "id"
             }
