@@ -1,6 +1,6 @@
 {
     "name": "Ad Accounts",
-    "description": "Extracting all Ad Accounts assoicated to the organization", 
+    "description": "Extracting all Ad Accounts assoicated to the organization",
     "data": {
         "incrementalOutput": true,
         "mappings": {
@@ -47,11 +47,14 @@
                     "q": "search",
                     "search.status.values[0]": "DRAFT",
                     "search.status.values[1]": "CANCELED",
-                    "search.status.values[2]": "ACTIVE"
+                    "search.status.values[2]": "PENDING_DELETION",
+                    "search.status.values[3]": "REMOVED",
+                    "search.status.values[4]": "ACTIVE",
+                    "pageSize": 1000
                 },
                 "dataField": "elements",
                 "dataType": "accounts",
-                "scroller": "campaign_scroller"
+                "scroller": "account_scroller"
             }
         ]
     }

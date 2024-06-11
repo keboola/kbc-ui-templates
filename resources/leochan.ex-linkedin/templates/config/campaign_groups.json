@@ -44,20 +44,43 @@
             }
         },
         "jobs": [
+        {
+          "endpoint": "adAccounts",
+          "params": {
+            "pageSize": 1000,
+            "q": "search",
+            "search.status.values[0]": "DRAFT",
+            "search.status.values[1]": "CANCELED",
+            "search.status.values[2]": "PENDING_DELETION",
+            "search.status.values[3]": "REMOVED",
+            "search.status.values[4]": "ACTIVE"
+          },
+          "dataField": "elements",
+          "dataType": "accounts",
+          "scroller": "account_scroller",
+          "children": [
             {
-                "endpoint": "adCampaignGroups",
-                "params": {
-                    "q": "search",
-                    "search.status.values[0]": "ACTIVE",
-                    "search.status.values[1]": "ARCHIVED",
-                    "search.status.values[2]": "CANCELED",
-                    "search.status.values[3]": "DRAFT",
-                    "search.status.values[4]": "PAUSED"
-                },
-                "dataField": "elements",
-                "dataType": "campaign_groups",
-                "scroller": "campaign_scroller"
+              "endpoint": "adAccounts/{accounts_id}/adCampaignGroups",
+              "placeholders": {
+                "accounts_id": "id"
+              },
+              "params": {
+                "pageSize": 1000,
+                "q": "search",
+                "search.status.values[6]": "REMOVED",
+                "search.status.values[5]": "PENDING_DELETION",
+                "search.status.values[4]": "DRAFT",
+                "search.status.values[3]": "CANCELED",
+                "search.status.values[2]": "ARCHIVED",
+                "search.status.values[1]": "PAUSED",
+                "search.status.values[0]": "ACTIVE"
+              },
+              "dataField": "elements",
+              "dataType": "campaign_groups",
+              "scroller": "campaign_scroller"
             }
-        ]
+          ]
+        }
+      ]
     }
 }
