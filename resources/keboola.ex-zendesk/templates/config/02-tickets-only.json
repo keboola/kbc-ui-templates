@@ -7,6 +7,7 @@
       {
         "endpoint": "tags.json",
         "dataType": "tags",
+        "scroller": "response",
         "params": {
           "page[size]": 100
         }
@@ -15,6 +16,7 @@
         "endpoint": "organizations.json",
         "dataType": "organizations",
         "dataField": "organizations",
+        "scroller": "response",
         "params": {
           "page[size]": 100
         }
@@ -23,6 +25,7 @@
         "endpoint": "users.json",
         "dataType": "users",
         "dataField": "users",
+        "scroller": "response",
         "params": {
           "page[size]": 100
         }
