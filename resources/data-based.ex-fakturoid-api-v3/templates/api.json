@@ -1,0 +1,61 @@
+{
+  "baseUrl": {
+    "function": "concat",
+    "args": [
+      "https://app.fakturoid.cz/api/v3/accounts/",
+      {"attr": "slug"},
+      "/"
+    ]
+  },
+  "http": {
+    "headers": {
+      "User-Agent"  : "Keboola extractor (contact@data-based.io)",
+      "Content-Type": "application/json"
+    }
+  },
+  "pagination": {
+    "method": "pagenum",
+    "pageParam": "page",
+    "firstPage": 1,
+    "firstPageParams": false
+  },
+  "authentication": {
+    "type": "login",
+    "format": "json",
+    "loginRequest": {
+      "endpoint": "https://app.fakturoid.cz/api/v3/oauth/token",
+      "method": "POST",
+      "headers": {
+        "Accept": "application/json",
+        "Authorization": {
+          "function": "concat",
+          "args": [
+            "Basic ",
+            {
+              "function": "base64_encode",
+              "args": [
+                {
+                  "function": "concat",
+                  "args": [
+                    {"attr": "client_id"},
+                    ":",
+                    {"attr": "#client_secret"}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "params": {"grant_type": "client_credentials", "scope": "read"}
+    },
+    "apiRequest": {
+      "headers": {
+        "Authorization": {
+          "function": "concat",
+          "args": [ "Bearer ", {"response": "access_token"} ]
+        }
+      }
+    }
+  }
+}
