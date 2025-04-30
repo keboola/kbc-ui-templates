@@ -4,7 +4,7 @@
         "type": "oauth20",
         "format": "json",
         "headers": {
-            "Linkedin-Version": "202404",
+            "Linkedin-Version": "202504",
             "Authorization": {
                 "function": "concat",
                 "args": [
