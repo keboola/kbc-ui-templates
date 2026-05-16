@@ -9,19 +9,18 @@
         "dataField": "items",
         "children": [
           {
-            "endpoint": "playlists?channelId={channelId}&part=id,snippet",
-            "dataType": "playlists",
+            "endpoint": "search?type=video&channelId={channelId}&part=id",
             "dataField": "items",
             "placeholders": {
               "channelId": "id"
             },
             "children": [
               {
-                "endpoint": "playlistItems?playlistId={playlistId}&part=id,snippet",
-                "dataType": "videos",
+                "endpoint": "videos?id={videoId}&part=id,snippet,statistics",
+                "dataType": "videosDetail",
                 "dataField": "items",
                 "placeholders": {
-                  "playlistId": "id"
+                  "videoId": "id.videoId"
                 }
               }
             ]
